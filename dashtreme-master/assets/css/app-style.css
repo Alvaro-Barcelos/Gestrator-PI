@@ -166,7 +166,7 @@ a {
   outline: none!important
 }
 
-a:hover{
+a:card{
   color: #ffffff;
   text-decoration: none;
 }
@@ -2998,7 +2998,7 @@ table.grid td {
 [class*="icheck-material"] {
   min-height: 22px;
   margin-top: 6px;
-  margin-bottom: 6px 
+  margin-bottom: 6px;
   padding-left: 0px; }
   [class*="icheck-material"] > label {
     padding-left: 29px !important;
@@ -3312,20 +3312,17 @@ table.grid td {
 
 
 .footer {
-  bottom: 0px;
-  color: rgba(255, 255, 255, 0.73);
-  text-align: center;
-  padding: 12px 30px;
-  position: absolute;
-  right: 0;
-  left: 250px;
-  background-color: transparent;
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
-  -webkit-transition: all 0.3s ease;
-  -moz-transition: all 0.3s ease;
-  -o-transition: all 0.3s ease;
-  transition: all 0.3s ease; 
-}
+    color: rgba(255, 255, 255, 0.73);
+    text-align: center;
+    padding: 12px 30px;
+    background-color: transparent;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    
+  }
+  
 #wrapper.toggled .footer{
     position: absolute;
     left: 0px;

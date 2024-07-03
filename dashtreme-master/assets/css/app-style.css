@@ -2998,7 +2998,7 @@ table.grid td {
 [class*="icheck-material"] {
   min-height: 22px;
   margin-top: 6px;
-  margin-bottom: 6px 
+  margin-bottom: 6px;
   padding-left: 0px; }
   [class*="icheck-material"] > label {
     padding-left: 29px !important;
@@ -3267,6 +3267,10 @@ table.grid td {
   display: none;
 }
 
+.grande{
+    height: 420px;
+}
+
 .card-body-icon {
   position: absolute;
   z-index: 0;
@@ -3523,6 +3527,8 @@ table.grid td {
     cursor: pointer;
 }
 
+
+
 .card { 
      margin-bottom:25px;
 	 }
@@ -3648,8 +3654,6 @@ table.grid td {
 
 
 }
-
-
 
 
 

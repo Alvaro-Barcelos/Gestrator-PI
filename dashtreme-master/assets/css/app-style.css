@@ -3267,6 +3267,10 @@ table.grid td {
   display: none;
 }
 
+.grande{
+    height: 420px;
+}
+
 .card-body-icon {
   position: absolute;
   z-index: 0;
@@ -3522,6 +3526,8 @@ table.grid td {
     font-size: 15px;
     cursor: pointer;
 }
+
+
 
 .card { 
      margin-bottom:25px;

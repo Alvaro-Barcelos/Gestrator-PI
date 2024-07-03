@@ -18,6 +18,10 @@ File: app-style
   font-weight: normal;
   font-style: normal;
 }
+.logo{
+  width: 60px;
+  height: 60px;
+}
 .zmdi {
   display: inline-block;
   font: normal normal normal 14px/1 'Material-Design-Iconic-Font';

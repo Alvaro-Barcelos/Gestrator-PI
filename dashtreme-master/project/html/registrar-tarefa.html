@@ -29,7 +29,18 @@
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   
+
+  <style>
+     
+  /* #input-2 option {
+    background-color: white; 
+    color: #212529; 
+  } */
+  </style>
+
 </head>
+
+
 <body class="bg-theme bg-theme1">
  
     <!-- Start wrapper-->
@@ -197,22 +208,23 @@
              <input type="text" class="form-control" id="input-1" placeholder="Nome da Tarefa">
             </div>
             <div class="form-group">
-                <label for="input-2">Categoria</label>
-                <div class="custom-dropdown">
-                    <select id="input-2" class="form-control">
-                        <option value="" disabled selected hidden>Selecione uma categoria</option>
-                        <option value="categoria1">Categoria 1</option>
-                        <option value="categoria2">Categoria 2</option>
-                        <option value="categoria3">Categoria 3</option>
-                    </select>
-                    <div class="arrow-down"></div>
+              <label for="input-2">Categoria</label>
+              <div class="custom-dropdown">
+                <select id="input-2" class="form-control">
+                  <option value="" disabled selected hidden>Selecione uma categoria</option>
+                  <option value="categoria1">Categoria 1</option>       <!-- Acrescentei novas class e um css la no app-style, para que o options fique da forma correta -->
+                  <option value="categoria2">Categoria 2</option>
+                  <option value="categoria3">Categoria 3</option>
+                </select>
+                 <div class="arrow-down"></div>
                 </div>
-            </div>
+              </div>
             
             <div class="form-group">
              <label for="input-3">Prazo de entrega</label>
              <input type="date" class="form-control" id="input-3" placeholder="Enter Your Mobile Number">
             </div>
+
             <div class="form-group">
              <label for="input-4">descrição</label>
              <input type="text" class="form-control" id="input-4" placeholder="Descrição da tarefa">
@@ -226,7 +238,7 @@
           </div>
        </div>
 
-
+     
        <!--start color switcher-->
    <div class="right-sidebar">
     <div class="switcher-icon">

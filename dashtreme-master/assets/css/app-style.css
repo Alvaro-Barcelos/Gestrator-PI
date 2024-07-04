@@ -3681,6 +3681,6 @@ table.grid td {
   }
 
    /* Estilo para o ícone do calendário */
-   input[type="date"]::-webkit-calendar-picker-indicator {
+   input[type="date"]::-webkit-calendar-picker-indicator {      /* Estilização que o Renzo fez, acrescnetei esse filtro para que a cor do icone do calendario fique branco  */
     filter: invert(1); /* Inverte as cores da imagem */
   }

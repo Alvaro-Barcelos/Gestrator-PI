@@ -184,63 +184,80 @@
       <div class="col-lg-6">
          <div class="card">
            <div class="card-body">
-           <div class="card-title">Vertical Form</div>
+           <div class="card-title">Registrar funcionário</div>
            <hr>
             <form>
-           <div class="form-group">
-            <label for="input-1">Nome completo</label>
-            <input type="text" class="form-control" id="input-1" placeholder="Nome completo">
-           </div>
-           <div class="form-group">
-            <label for="input-3">CPF</label>
-            <input type="number" class="form-control" id="input-3" placeholder="Enter Your Mobile Number">
-           </div>
-           <div class="form-group">
-            <label for="input-3">RG</label>
-            <input type="number" class="form-control" id="input-3" placeholder="Enter Your Mobile Number">
-           </div>
-           <div class="form-group">
-            <label for="input-2">Email</label>
-            <input type="email" class="form-control" id="input-2" placeholder="Enter Your Email Address">
-           </div>
-           <div class="form-group">
-            <label for="input-3">Celular</label>
-            <input type="text" class="form-control" id="input-3" placeholder="Enter Your Mobile Number">
-           </div>
-           <div class="form-group">
-            <label for="input-4">Acesso</label>
-            <input type="text" class="form-control" id="input-4" placeholder="Enter Password">
-           </div>
-           <div class="form-group">
-            <label for="input-4">Data</label>
-            <input type="text" class="form-control" id="input-4" placeholder="Enter Password">
-           </div>
-           
-           <div class="form-group">
-            <label for="input-5">Cidade</label>
-            <input type="text" class="form-control" id="input-5" placeholder="Confirm Password">
-           </div>
-           <div class="form-group">
-            <label for="input-5">Endereço</label>
-            <input type="text" class="form-control" id="input-5" placeholder="Confirm Password">
-           </div>
-           <div class="form-group py-2">
-             <div class="icheck-material-white">
-            <input type="checkbox" id="user-checkbox1" checked=""/>
-            <label for="user-checkbox1">I Agree Terms & Conditions</label>
-            </div>
-           </div>
-           <div class="form-group">
-            <button type="submit" class="btn btn-light px-5"><i class="icon-lock"></i> Register</button>
-          </div>
-          </form>
-         </div>
-         </div>
-      </div>
-
-      <div class="col-lg-6">
-        
-          </form>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label for="input-1">Nome completo</label>
+                    <input type="text" class="form-control" id="input-1" placeholder="Nome completo">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="customFile">Imagem do funcionário</label>
+                    <input type="file" class="form-control" id="customFile" />
+                  </div>
+                  <div class="form-group">
+                    <label for="input-3">CPF</label>
+                    <input type="text" class="form-control" id="cpf" placeholder="CPF">
+                  </div>
+                  <div class="form-group">
+                    <label for="input-3">RG</label>
+                    <input type="text" class="form-control" id="rg" placeholder="RG">
+                  </div>
+                  <div class="form-group">
+                    <label for="input-2">Email</label>
+                    <input type="email" class="form-control" id="email" placeholder="Adicionar Email">
+                  </div>
+                  <div class="form-group">
+                    <label for="input-3">Celular</label>
+                    <input type="text" class="form-control" id="celular" placeholder="00 0000-0000">
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label for="input-4">Acesso</label>
+                    <input type="text" class="form-control" id="input-4" placeholder="Senha do funcionário">
+                  </div>
+                  <div class="form-group">
+                    <label for="input-2">Setor</label>
+                    <div class="custom-dropdown">
+                      <select id="input-2" class="form-control">
+                        <option value="" disabled selected hidden>Selecione um Setor</option>
+                        <option value="categoria1">TI</option>
+                        <option value="categoria2">RH</option>
+                        <option value="categoria3">Gerencia</option>
+                      </select>
+                      <div class="arrow-down"></div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="input-3">Data de nascimento</label>
+                    <input type="date" class="form-control" id="input-3" placeholder="Enter Your Mobile Number">
+                  </div>
+                  <div class="form-group">
+                    <label for="input-pcd">Funcionário PCD</label>
+                    <select class="form-control" id="input-pcd">
+                      <option value="" disabled selected hidden>Selecione uma opção</option>
+                      <option value="sim">Sim</option>
+                      <option value="nao">Não</option>
+                    </select>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="input-5">Cidade</label>
+                    <input type="text" class="form-control" id="input-5" placeholder="Nome da Cidade">
+                  </div>
+                  <div class="form-group">
+                    <label for="input-5">Endereço</label>
+                    <input type="text" class="form-control" id="input-5" placeholder="Enderço completo">
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <button type="submit" class="btn btn-light px-5"><i class="icon-lock"></i> Registrar</button>
+              </div>
+            </form>
          </div>
          </div>
       </div>
@@ -258,15 +275,7 @@
     <a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
     <!--End Back To Top Button-->
 	
-	<!--Start footer-->
-	<footer class="footer">
-      <div class="container">
-        <div class="text-center">
-          Copyright © 2018 Dashtreme Admin
-        </div>
-      </div>
-    </footer>
-	<!--End footer-->
+
 	
 	<!--start color switcher-->
    <div class="right-sidebar">
@@ -308,19 +317,29 @@
    
   </div><!--End wrapper-->
 
+<!-- Mascaras javascript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/inputmask/5.0.7/jquery.inputmask.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(function(){
+    $("#cpf").inputmask("999.999.999-99");
+    $("#celular").inputmask("(99) 99999-9999");
+    $("#rg").inputmask("99.999.999-9");
+  });
+</script>
 
   <!-- Bootstrap core JavaScript-->
-  <script src="assets/js/jquery.min.js"></script>
-  <script src="assets/js/popper.min.js"></script>
-  <script src="assets/js/bootstrap.min.js"></script>
+  <script src="../../assets/js/jquery.min.js"></script>
+  <script src="../../assets/js/popper.min.js"></script>
+  <script src="../../assets/js/bootstrap.min.js"></script>
 	
  <!-- simplebar js -->
-  <script src="assets/plugins/simplebar/js/simplebar.js"></script>
+  <script src="../../assets/plugins/simplebar/js/simplebar.js"></script>
   <!-- sidebar-menu js -->
-  <script src="assets/js/sidebar-menu.js"></script>
+  <script src="../../assets/js/sidebar-menu.js"></script>
   
   <!-- Custom scripts -->
-  <script src="assets/js/app-script.js"></script>
+  <script src="../../assets/js/app-script.js"></script>
 	
 </body>
 </html>

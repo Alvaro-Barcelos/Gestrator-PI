@@ -3676,7 +3676,11 @@ table.grid td {
 
 
 #input-2 option {
-    background-color: white; 
+    background-color: white;      /* Estilização que o Renzo colocou para estilizar o options, deixando ele perfeito */
     color: #212529; 
   }
 
+   /* Estilo para o ícone do calendário */
+   input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1); /* Inverte as cores da imagem */
+  }

@@ -174,7 +174,7 @@
   <div class="content-wrapper">
     <div class="container-fluid">
 
-    <div class="row mt-3">
+    <div class="row mt-3 centralizar">
       <div class="col-lg-6">
          <div class="card">
            <div class="card-body">
@@ -188,16 +188,16 @@
                     <input type="text" class="form-control" id="input-1" placeholder="Nome completo">
                   </div>
                   <div class="form-group">
-                    <label class="form-label" for="customFile">Imagem do funcionário</label>
+                    <label class="form-label" class="form-control"  for="customFile">Imagem do funcionário</label>
                     <input type="file" class="form-control" id="customFile" />
                   </div>
                   <div class="form-group">
                     <label for="input-3">CPF</label>
-                    <input type="text" class="form-control" id="cpf" placeholder="CPF">
+                    <input class="form-control" type="text" id="cpf" name="cpf" maxlength="14" onkeyup="handleCPF(event)" required placeholder="000.000.000-00">
                   </div>
                   <div class="form-group">
                     <label for="input-3">RG</label>
-                    <input type="text" class="form-control" id="rg" placeholder="RG">
+                    <input class="form-control" type="text" id="RG" name="RG" maxlength="13" onkeyup="handleRG(event)" required placeholder="Adicionar RG">
                   </div>
                   <div class="form-group">
                     <label for="input-2">Email</label>
@@ -205,7 +205,7 @@
                   </div>
                   <div class="form-group">
                     <label for="input-3">Celular</label>
-                    <input type="text" class="form-control" id="celular" placeholder="00 0000-0000">
+                    <input class="form-control" type="tel" id="telefone" name="telefone" maxlength="15" onkeyup="handlePhone(event)" required placeholder="00 0000-0000">
                   </div>
                 </div>
                 <div class="col-lg-6">
@@ -311,16 +311,65 @@
    
   </div><!--End wrapper-->
 
-<!-- Mascaras javascript -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/inputmask/5.0.7/jquery.inputmask.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-  $(document).ready(function(){
-    $("#cpf").inputmask("999.999.999-99");
-    $("#celular").inputmask("(99) 99999-9999");
-    $("#rg").inputmask("99.999.999-9");
-  });
-</script>
+  <!-- MASCARAS -->
+  <script>
+    const handlePhone = (event) => {
+      let input = event.target;
+      input.value = phoneMask(input.value);
+    };
+
+    const phoneMask = (value) => {
+      if (!value) return "";
+      value = value.replace(/\D/g, "");
+      value = value.replace(/(\d{2})(\d)/, "($1) $2");
+      value = value.replace(/(\d)(\d{4})$/, "$1-$2");
+      return value;
+    };
+
+    const handleCPF = (event) => {
+      let input = event.target;
+      input.value = cpfMask(input.value);
+    };
+
+    const cpfMask = (value) => {
+      if (!value) return "";
+      value = value.replace(/\D/g, "");
+      value = value.replace(/(\d{3})(\d)/, "$1.$2");
+      value = value.replace(/(\d{3})(\d)/, "$1.$2");
+      value = value.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
+      return value;
+    };
+
+    const handleRG = (event) => {
+      let input = event.target;
+      input.value = rgMask(input.value);
+    };
+
+    const rgMask = (value) => {
+      if (!value) return "";
+      value = value.toUpperCase(); // Converte para maiúsculo
+      value = value.replace(/[^a-zA-Z0-9]/g, ""); // Remove tudo que não for letra ou dígito
+      value = value.replace(/([a-zA-Z]{2})(\d)/, "$1-$2"); // Adiciona um hífen após os primeiros dois caracteres
+      value = value.replace(/(\d{2})(\d)/, "$1.$2"); // Adiciona um ponto após os próximos dois dígitos
+      value = value.replace(/(\d{3})(\d)/, "$1.$2"); // Adiciona um ponto após os próximos três dígitos
+      value = value.replace(/(\d{3})(\d)/, "$1"); // Os últimos três dígitos
+      return value;
+    };
+
+
+
+    const handleCEP = (event) => {
+      let input = event.target;
+      input.value = cepMask(input.value);
+    };
+
+    const cepMask = (value) => {
+      if (!value) return "";
+      value = value.replace(/\D/g, "");
+      value = value.replace(/(\d{5})(\d{1,2})$/, "$1-$2");
+      return value;
+    };
+  </script>
 
   <!-- Bootstrap core JavaScript-->
   <script src="../../assets/js/jquery.min.js"></script>

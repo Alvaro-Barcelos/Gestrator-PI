@@ -781,6 +781,25 @@ body.bg-theme15 {
 	color:#ffffff;
 }
 
+.card-title-inline {
+	margin-bottom: .75rem;
+	font-weight: 600;
+	font-size: 16px;
+	color: white; 
+    display: inline;
+    margin-right: 8%;
+    background-color: transparent;
+}
+
+.card-title-colo > option{
+    color: white;
+}
+
+.margin-c{
+    margin-left: 7%;
+    margin-right: 18%;
+}
+
 .card-action{
 	float: right
 }

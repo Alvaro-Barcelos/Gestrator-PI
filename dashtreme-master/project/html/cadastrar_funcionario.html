@@ -188,15 +188,14 @@
                     <input type="text" class="form-control" id="input-1" placeholder="Nome completo">
                   </div>
                   <div class="form-group">
-                    <label for="input-3">Imagem do funcionário</label>
-                    <label class="select-style" class="form-label"  for="customFile">Adicionar imagem</label>
+                    <label for="input-3">Imagem do funcionário</label><i id="image-icon" class="fas" style="display: none;"></i>
+                    <label class="select-style" class="form-label"  for="customFile">Adicionar imagem </label>
                     <input type="file"  class="select-style" id="customFile" onchange="handleImageUpload(event)"/>
-                    <i id="image-icon" class="fas" style="display: none;"></i>
+                    
                   </div>
                   <div class="form-group">
-                    <label for="input-3">CPF</label>
-                    <input class="form-control" type="text" id="cpf" name="cpf" maxlength="14" onkeyup="handleCPF(event)" required placeholder="000.000.000-00">
-                    <i id="cpf-icon" class="fas" style="display: none;"></i>
+                    <label for="input-3">CPF</label><i id="cpf-icon" class="fas" style="display: none;"></i>
+                    <input class="form-control" type="text" id="cpf" name="cpf" maxlength="14" onkeyup="handleCPF(event)" required placeholder="000.000.000-00"  >
                   </div>
                   <div class="form-group">
                     <label for="input-3">RG</label>

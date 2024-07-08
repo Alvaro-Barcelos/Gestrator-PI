@@ -189,12 +189,14 @@
                   </div>
                   <div class="form-group">
                     <label for="input-3">Imagem do funcionário</label>
-                    <label class="select-style" class="form-label"  for="customFile">adicionar imagem</label>
-                    <input type="file"  class="select-style" id="customFile" />
+                    <label class="select-style" class="form-label"  for="customFile">Adicionar imagem</label>
+                    <input type="file"  class="select-style" id="customFile" onchange="handleImageUpload(event)"/>
+                    <i id="image-icon" class="fas" style="display: none;"></i>
                   </div>
                   <div class="form-group">
                     <label for="input-3">CPF</label>
                     <input class="form-control" type="text" id="cpf" name="cpf" maxlength="14" onkeyup="handleCPF(event)" required placeholder="000.000.000-00">
+                    <i id="cpf-icon" class="fas" style="display: none;"></i>
                   </div>
                   <div class="form-group">
                     <label for="input-3">RG</label>
@@ -330,6 +332,7 @@
     const handleCPF = (event) => {
       let input = event.target;
       input.value = cpfMask(input.value);
+      validateCPF(input.value);
     };
 
     const cpfMask = (value) => {
@@ -357,8 +360,6 @@
       return value;
     };
 
-
-
     const handleCEP = (event) => {
       let input = event.target;
       input.value = cepMask(input.value);
@@ -369,6 +370,50 @@
       value = value.replace(/\D/g, "");
       value = value.replace(/(\d{5})(\d{1,2})$/, "$1-$2");
       return value;
+    };
+
+    const validateCPF = (cpf) => {
+      cpf = cpf.replace(/[^\d]+/g, '');
+      if (cpf.length !== 11 || /^(\d)\1+$/.test(cpf)) {
+        setValidationIcon('cpf-icon', false);
+        return false;
+      }
+      let sum = 0;
+      let remainder;
+      for (let i = 1; i <= 9; i++) sum += parseInt(cpf.substring(i - 1, i)) * (11 - i);
+      remainder = (sum * 10) % 11;
+      if ((remainder === 10) || (remainder === 11)) remainder = 0;
+      if (remainder !== parseInt(cpf.substring(9, 10))) {
+        setValidationIcon('cpf-icon', false);
+        return false;
+      }
+      sum = 0;
+      for (let i = 1; i <= 10; i++) sum += parseInt(cpf.substring(i - 1, i)) * (12 - i);
+      remainder = (sum * 10) % 11;
+      if ((remainder === 10) || (remainder === 11)) remainder = 0;
+      if (remainder !== parseInt(cpf.substring(10, 11))) {
+        setValidationIcon('cpf-icon', false);
+        return false;
+      }
+      setValidationIcon('cpf-icon', true);
+      return true;
+    };
+
+    const setValidationIcon = (elementId, isValid) => {
+      const icon = document.getElementById(elementId);
+      icon.style.display = 'inline-block';
+      icon.className = isValid ? 'fas fa-check-circle text-success' : 'fas fa-times-circle text-danger';
+    };
+
+    const handleImageUpload = (event) => {
+      const input = event.target;
+      const icon = document.getElementById('image-icon');
+      if (input.files && input.files[0]) {
+        icon.style.display = 'inline-block';
+        icon.className = 'fas fa-check-circle text-success';
+      } else {
+        icon.style.display = 'none';
+      }
     };
   </script>
 

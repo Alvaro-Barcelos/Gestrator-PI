@@ -23,6 +23,12 @@ File: app-style
   width: 60px;
   height: 60px;
 }
+.correct-icon {
+  display: inline-block; /* Para garantir que o ícone respeite o espaço */
+  width: 50px; /* Largura desejada */
+  height: auto; /* Altura automática para manter proporções */
+  margin-right: 10px; /* Espaço à direita da imagem */
+}
 .select-style[type="file"] {
   display: none;
 }
@@ -31,10 +37,9 @@ File: app-style
   width: 100%;
   height: calc(1.5em + 0.75rem + 2px);
   padding: 0.375rem 0.75rem;
-  font-size: 12px;
+  font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
-  color: #c9c7c7;
   background-color: #ffffff3b;
   background-clip: padding-box;
   /* border: 1px solid #ced4da; */

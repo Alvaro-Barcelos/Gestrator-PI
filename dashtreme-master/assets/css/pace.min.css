@@ -83,12 +83,6 @@
   margin: 0 auto;
 }
 
-.mt-3{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 auto;
-}
 
 .pace.pace-active {
 	width: 100%;

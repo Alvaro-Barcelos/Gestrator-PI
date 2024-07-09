@@ -23,6 +23,12 @@ File: app-style
   width: 60px;
   height: 60px;
 }
+.correct-icon {
+  display: inline-block; /* Para garantir que o ícone respeite o espaço */
+  width: 50px; /* Largura desejada */
+  height: auto; /* Altura automática para manter proporções */
+  margin-right: 10px; /* Espaço à direita da imagem */
+}
 .select-style[type="file"] {
   display: none;
 }

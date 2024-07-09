@@ -1,5 +1,5 @@
 <?php
-include_once('../conexao.php');
+include_once('conexao.php');
 
 if (isset($_POST['email']) && isset($_POST['senha'])) {
     if (strlen($_POST['email']) == 0) {
@@ -26,13 +26,13 @@ if (isset($_POST['email']) && isset($_POST['senha'])) {
                 $_SESSION['usuario'] = $usuario['usuario'];
 
                 // Redirecionar para a página de teste
-                header("Location: ../../html/agenda/pagina.php");
+                header("Location: ../html/home_adm.html");
                 exit;
             } else {
-                header("Location: ../../html/index.html");
+                header("Location: ../html/index.html");
             }
         } else {
-            header("Location: ../../html/index.html");
+            header("Location: ../html/index.html");
         }
     }
 }

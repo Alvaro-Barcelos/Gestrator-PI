@@ -112,13 +112,13 @@
         </div>
         <div class="content-wrapper">
             <div class="container-fluid">
-                <div class="row mt-3">
+                <div class="row mt-3 centralizar">
                     <div class="col-lg-6">
                         <div class="card">
                             <div class="card-body">
                                 <div class="card-title">Cadastre o conteúdo aqui</div>
                                 <hr>
-                                <form action="seu_script_php.php" method="POST" enctype="multipart/form-data">
+                                <form action="../php/recebeConteudo.php" method="POST" enctype="multipart/form-data">
                                     <div class="form-group">
                                         <label for="input-content-name">Nome do Conteúdo</label>
                                         <input type="text" class="form-control" id="input-content-name"
@@ -141,8 +141,7 @@
                                             name="content_image" accept="image/*" required>
                                     </div>
                                     <div class="form-group">
-                                        <center><button type="submit" class="btn btn-light px-5">Cadastrar
-                                                conteúdo</button></center>
+                                        <center><button  type="submit" class="btn btn-light px-5">Cadastrar conteúdo</button></center>
                                     </div>
                                 </form>
                             </div>

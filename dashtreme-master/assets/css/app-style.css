@@ -2531,6 +2531,10 @@ table.grid td {
     border-bottom-left-radius: .25rem;
 }
 
+.return{
+    text-align: center;
+}
+
 .tabs-vertical .nav-tabs{
 	border:0;
 	border-right: 1px solid #dee2e6;

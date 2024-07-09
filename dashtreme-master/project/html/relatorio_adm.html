@@ -69,7 +69,7 @@
       </li>
 
       <li>
-        <a href="registrar-tarefa.html">
+        <a href="registrar-servico.html">
           <i class="fa-solid fa-list-check" style="color: #9e9e9e;"></i> <span>Serviço</span>
         </a>
       </li>
@@ -224,12 +224,12 @@
                 <input type="text" class="form-control" id="nomeFuncionario" placeholder="Digite o nome do funcionário">
               </div>
               <div class="form-group">
-                <label for="dataTarefa">Data da Tarefa</label>
-                <input type="date" class="form-control" id="dataTarefa">
+                <label for="dataServico">Data da Serviço</label>
+                <input type="date" class="form-control" id="dataServico">
               </div>
               <div class="form-group">
-                <label for="setorTarefa">Setor</label>
-                <select class="form-control" id="setorTarefa">
+                <label for="setorServico">Setor</label>
+                <select class="form-control" id="setorServico">
                   <option value="">Selecione o setor</option>
                   <option value="Contabilidade">Contabilidade</option>
                   <option value="Recursos Humanos">Recursos Humanos</option>
@@ -237,14 +237,16 @@
                 </select>
               </div>
               <div class="form-group">
-                <label for="tipoTarefa">Tipo de Tarefa</label>
-                <select class="form-control" id="tipoTarefa">
-                  <option value="">Selecione o tipo de tarefa</option>
+                <label for="tipoServico">Tipo de Serviço</label>
+                <select class="form-control" id="tipoServico">
+                  <option value="">Selecione o tipo de serviço</option>
                   <option value="Individual">Individual</option>
                   <option value="Grupo">Grupo</option>
                 </select>
               </div>
-              <button type="submit" class="btn btn-primary">Pesquisar</button>
+              <div class="form-group">
+                <button type="submit" class="btn btn-light px-5">Pesquisar <i class="fas fa-search" style="color: #dbdbdb;"></i></button>
+              </div>
             </form>
 
             <!-- Relatório -->

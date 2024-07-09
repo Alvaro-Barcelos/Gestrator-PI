@@ -1,3 +1,26 @@
+<?php
+include_once('conexao.php');
+
+if (isset($_POST['email']) && isset($_POST['senha']) && isset($_POST['usuario'])) {
+    $usuario = $conexao->real_escape_string($_POST['usuario']);
+    $email = $conexao->real_escape_string($_POST['email']);
+    $senha = $_POST['senha'];
+
+    // Hash a senha antes de armazenar no banco de dados
+    $senha_hash = password_hash($senha, PASSWORD_DEFAULT);
+
+    $sql_code = "INSERT INTO login (usuario, email, senha, tipo) VALUES ('$usuario', '$email', '$senha_hash', 'gerente')";
+    $sql_query = $conexao->query($sql_code) or die("Falha na execução do código SQL: " . $conexao->error);
+
+    if ($sql_query) {
+        echo "Usuário registrado com sucesso!";
+    } else {
+        echo "Erro ao registrar usuário.";
+    }
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,18 +31,18 @@
   <meta name="author" content=""/>
   <title>Dashtreme Admin - Free Dashboard for Bootstrap 4 by Codervent</title>
   <!-- loader-->
-  <link href="assets/css/pace.min.css" rel="stylesheet"/>
-  <script src="assets/js/pace.min.js"></script>
+  <link href="../../assets/css/pace.min.css" rel="stylesheet"/>
+  <script src="../../assets/js/pace.min.js"></script>
   <!--favicon-->
-  <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="../../assets/images/favicon.ico" type="image/x-icon">
   <!-- Bootstrap core CSS-->
-  <link href="assets/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="../../assets/css/bootstrap.min.css" rel="stylesheet"/>
   <!-- animate CSS-->
-  <link href="assets/css/animate.css" rel="stylesheet" type="text/css"/>
+  <link href="../../assets/css/animate.css" rel="stylesheet" type="text/css"/>
   <!-- Icons CSS-->
-  <link href="assets/css/icons.css" rel="stylesheet" type="text/css"/>
+  <link href="../../assets/css/icons.css" rel="stylesheet" type="text/css"/>
   <!-- Custom Style-->
-  <link href="assets/css/app-style.css" rel="stylesheet"/>
+  <link href="../../assets/css/app-style.css" rel="stylesheet"/>
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   
@@ -38,58 +61,59 @@
 		<div class="card-body">
 		 <div class="card-content p-2">
 		 	<div class="text-center">
-		 		<img src="assets/images/logo-icon.png" alt="logo icon">
+		 		<img src="../../assets/images/logo-icon.png" alt="logo icon">
 		 	</div>
 		  <div class="card-title text-uppercase text-center py-3">Sign Up</div>
-		    <form>
-			  <div class="form-group">
-			  <label for="exampleInputName" class="sr-only">Name</label>
+
+
+		    <form action="" method="post">
+
+        <div class="form-group">
+
+			  <label for="exampleInputEmailId" class="sr-only">Usuario </label>
+
 			   <div class="position-relative has-icon-right">
-				  <input type="text" id="exampleInputName" class="form-control input-shadow" placeholder="Enter Your Name">
-				  <div class="form-control-position">
-					  <i class="icon-user"></i>
-				  </div>
-			   </div>
-			  </div>
-			  <div class="form-group">
-			  <label for="exampleInputEmailId" class="sr-only">Email ID</label>
-			   <div class="position-relative has-icon-right">
-				  <input type="text" id="exampleInputEmailId" class="form-control input-shadow" placeholder="Enter Your Email ID">
+				  <input type="text" id="exampleInputEmailId" name="usuario" class="form-control input-shadow" placeholder="Enter Your usuario">
+
 				  <div class="form-control-position">
 					  <i class="icon-envelope-open"></i>
 				  </div>
+
 			   </div>
+
 			  </div>
+			  
+			  <div class="form-group">
+
+			  <label for="exampleInputEmailId" class="sr-only">Email </label>
+
+			   <div class="position-relative has-icon-right">
+				  <input type="text" id="exampleInputEmailId" name="email" class="form-control input-shadow" placeholder="Enter Your Email ID">
+
+				  <div class="form-control-position">
+					  <i class="icon-envelope-open"></i>
+				  </div>
+
+			   </div>
+
+			  </div>
+
 			  <div class="form-group">
 			   <label for="exampleInputPassword" class="sr-only">Password</label>
 			   <div class="position-relative has-icon-right">
-				  <input type="text" id="exampleInputPassword" class="form-control input-shadow" placeholder="Choose Password">
+				  <input type="password" id="exampleInputPassword" name="senha" class="form-control input-shadow" placeholder="Choose Password">
 				  <div class="form-control-position">
 					  <i class="icon-lock"></i>
 				  </div>
 			   </div>
 			  </div>
-			  
-			   <div class="form-group">
-			     <div class="icheck-material-white">
-                   <input type="checkbox" id="user-checkbox" checked="" />
-                   <label for="user-checkbox">I Agree With Terms & Conditions</label>
-			     </div>
-			    </div>
-			  
-			 <button type="button" class="btn btn-light btn-block waves-effect waves-light">Sign Up</button>
-			  <div class="text-center mt-3">Sign Up With</div>
-			  
-			 <div class="form-row mt-4">
-			  <div class="form-group mb-0 col-6">
-			   <button type="button" class="btn btn-light btn-block"><i class="fa fa-facebook-square"></i> Facebook</button>
-			 </div>
-			 <div class="form-group mb-0 col-6 text-right">
-			  <button type="button" class="btn btn-light btn-block"><i class="fa fa-twitter-square"></i> Twitter</button>
-			 </div>
-			</div>
+
+        <input type="submit" value="Cadastrar" class="btn btn-light btn-block waves-effect waves-light">
+
 			
 			 </form>
+
+
 		   </div>
 		  </div>
 		  <div class="card-footer text-center py-3">

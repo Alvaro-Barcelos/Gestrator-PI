@@ -48,11 +48,11 @@
         <img class="logo" src="../imagens/GE.png" alt="logo icon" width="150px" height="150px">
 		 	</div>
 		  <div class="card-title text-uppercase text-center py-3">Logar</div>
-		    <form>
+		    <form method="post" action="../php/login.php">
 			  <div class="form-group">
 			  <label for="exampleInputUsername" class="sr-only">Email</label>
 			   <div class="position-relative has-icon-right">
-				  <input type="text" id="exampleInputUsername" class="form-control input-shadow" placeholder="Email">
+				  <input type="text" id="exampleInputUsername" name="email" class="form-control input-shadow" placeholder="Email">
 				  <div class="form-control-position">
 					  <i class="icon-user"></i>
 				  </div>
@@ -61,7 +61,7 @@
 			  <div class="form-group">
 			  <label for="exampleInputPassword" class="sr-only">Senha</label>
 			   <div class="position-relative has-icon-right">
-				  <input type="password" id="exampleInputPassword" class="form-control input-shadow" placeholder="Senha">
+				  <input type="password" id="exampleInputPassword" name="senha" class="form-control input-shadow" placeholder="Senha">
 				  <div class="form-control-position">
 					  <i class="icon-lock"></i>
 				  </div>
@@ -72,6 +72,7 @@
 			  <a href="reset-password.html">Esqueci minha senha!</a>
 			 </div>
 			</div>
+
 			 <button type="button" class="btn btn-light btn-block">Entrar</button>
 
 			 

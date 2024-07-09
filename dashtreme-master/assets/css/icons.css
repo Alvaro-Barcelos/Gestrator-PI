@@ -37,7 +37,7 @@ File: app-style
   width: 100%;
   height: calc(1.5em + 0.75rem + 2px);
   padding: 0.375rem 0.75rem;
-  font-size: 1rem;
+  font-size: 0.999rem;
   font-weight: 400;
   line-height: 1.5;
   background-color: #ffffff3b;
@@ -45,6 +45,7 @@ File: app-style
   /* border: 1px solid #ced4da; */
   border-radius: 0.25rem;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  text-transform: capitalize; /* Transforma a primeira letra de cada palavra para maiúscula */
 }
 
 

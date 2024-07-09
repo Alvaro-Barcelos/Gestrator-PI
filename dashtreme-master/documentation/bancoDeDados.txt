@@ -1,0 +1,58 @@
+CREATE DATABASE gestrator;
+
+CREATE TABLE login (
+id_login int auto_increment PRIMARY KEY,
+usuario varchar(30),
+senha Varchar(255),
+tipo Varchar(10)
+);
+
+CREATE TABLE Setor (
+id_setor int auto_increment PRIMARY KEY,
+nome_setor Varchar(60),
+quantidade int,
+id_tarefa int
+);
+
+CREATE TABLE servico (
+id_servico int auto_increment PRIMARY KEY,
+nome_servico Varchar(50),
+descricao Varchar(50),
+prazo_entrega date,
+data_criada date,
+situacao Varchar(20),
+porcentagem float
+);
+
+CREATE TABLE Funcionario (
+id_funcionario int auto_increment PRIMARY KEY,
+nome_funcionario Varchar(90),
+Nacionalidade Varchar(20),
+data_nascimento date,
+cpf char(13),
+rg Varchar(16),
+email text,
+celular Varchar(16),
+cidade Varchar(20),
+Endereco Varchar(60),
+pcd Varchar(16),
+foto_funcionario blob,
+id_setor int,
+id_login int,
+FOREIGN KEY(id_setor) REFERENCES Setor (id_setor),
+FOREIGN KEY(id_login) REFERENCES login (id_login)
+);
+
+CREATE TABLE conteudo (
+id_conteudo int auto_increment PRIMARY KEY,
+nome_conteudo Varchar(30),
+descricao Varchar(30),
+pdf longblob,
+capa blob,
+id_setor int,
+FOREIGN KEY(id_setor) REFERENCES Setor (id_setor)
+);
+
+ALTER TABLE Setor ADD FOREIGN KEY(id_tarefa) REFERENCES servico (id_tarefa)
+
+

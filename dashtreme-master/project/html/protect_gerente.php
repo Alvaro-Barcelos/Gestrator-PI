@@ -4,8 +4,11 @@
         session_start();
     }
 
-    if(!isset($_SESSION['id_login']) || $_SESSION['tipo_conta'] !== 'gerente'){
-        header("Location: restricao.html");
+    if(!isset($_SESSION['id_login'])){
+        header("Location: semLogin.html");
+        if( $_SESSION['tipo_conta'] !== 'gerente'){
+            header("Location: restricao.html");
+        }
     }
 
 ?>

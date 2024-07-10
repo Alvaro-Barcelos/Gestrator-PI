@@ -248,7 +248,7 @@
                     <a href="javascript:void();" data-target="#profile" data-toggle="pill" class="nav-link active"><i class="icon-user"></i> <span class="hidden-xs">Profile</span></a>
                 </li>
                 <li class="nav-item">
-                    <a href="javascript:void();" data-target="#messages" data-toggle="pill" class="nav-link"><i class="icon-envelope-open"></i> <span class="hidden-xs">Messages</span></a>
+                    <a href="javascript:void();" data-target="#messages" data-toggle="pill" class="nav-link"><i class="icon-envelope-open"></i> <span class="hidden-xs">Email</span></a>
                 </li>
                 <li class="nav-item">
                     <a href="javascript:void();" data-target="#edit" data-toggle="pill" class="nav-link"><i class="icon-note"></i> <span class="hidden-xs">Edit</span></a>
@@ -322,43 +322,41 @@
                     <!--/row-->
                 </div>
                 <div class="tab-pane" id="messages">
-                    <div class="alert alert-info alert-dismissible" role="alert">
-				   <button type="button" class="close" data-dismiss="alert">&times;</button>
-				    <div class="alert-icon">
-					 <i class="icon-info"></i>
-				    </div>
-				    <div class="alert-message">
-				      <span><strong>Info!</strong> Lorem Ipsum is simply dummy text.</span>
-				    </div>
-                  </div>
+                  
+                  <form action="../php/enviar_email.php" method="POST">
+                  <div class="col-lg-6">
+                    <div class="card">
+                      <div class="card-body">
+
+                      <div class="card-title">Enviar Email</div>
+                      <hr>                   
+                      <div class="form-group">
+                       <label for="input-3">Nome</label>
+                       <input type="text" class="form-control" name="nome" id="input-3" placeholder="Seu Nome">
+                      </div>
+
+                      <div class="form-group">
+                       <label for="input-4">Email</label>
+                       <input type="text" class="form-control" name="email" id="input-4" placeholder="Seu Email">
+                      </div>
+
+                      <div class="form-group">
+                       <label for="input-5">Menssagem</label>
+                       <textarea name="mensagem"  cols="30" rows="10"></textarea>                   
+                      </div>
+
+                      <div class="form-group">
+                       <button type="submit" class="btn btn-light px-5"><i class="icon-lock"></i> Enviar Email</button>
+                     </div>
+
+                     </form>
+                    </div>
+                    </div>
+                 </div>
                   <div class="table-responsive">
                     <table class="table table-hover table-striped">
                         <tbody>                                    
-                            <tr>
-                                <td>
-                                   <span class="float-right font-weight-bold">3 hrs ago</span> Here is your a link to the latest summary report from the..
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                   <span class="float-right font-weight-bold">Yesterday</span> There has been a request on your account since that was..
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                   <span class="float-right font-weight-bold">9/10</span> Porttitor vitae ultrices quis, dapibus id dolor. Morbi venenatis lacinia rhoncus. 
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                   <span class="float-right font-weight-bold">9/4</span> Vestibulum tincidunt ullamcorper eros eget luctus. 
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                   <span class="float-right font-weight-bold">9/4</span> Maxamillion ais the fix for tibulum tincidunt ullamcorper eros. 
-                                </td>
-                            </tr>
+                           
                         </tbody> 
                     </table>
                   </div>

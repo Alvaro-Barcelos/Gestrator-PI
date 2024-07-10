@@ -194,12 +194,12 @@
 
             <div class="form-group">
              <label for="input-1">Nome do Serviço</label>
-             <input type="text" class="form-control" id="input-1" placeholder="Nome do Serviço">
+             <input type="text" class="form-control" id="input-1" placeholder="Nome do Serviço" name="nome">
             </div>
             <div class="form-group">
               <label for="input-2">Setor</label>
               <div class="custom-dropdown">
-                <select id="input-2" class="form-control">
+                <select id="input-2" class="form-control" name="setor">
                   <option value="" disabled selected hidden>Selecione um Setor</option>
                   <option value="1">Administrativo</option>    <!-- Acrescentei novas class e um css la no app-style, para que o options fique da forma correta -->
                   <option value="2">Comercial</option>
@@ -215,17 +215,17 @@
             
             <div class="form-group">
               <label for="input-3">Data de ínicio</label>
-              <input type="date" class="form-control date-input" id="input-3" placeholder="Selecione a data"> 
+              <input type="date" class="form-control date-input" id="input-3" placeholder="Selecione a data" name="data_inicio"> 
             </div>    
             <div class="form-group">
              <label for="input-3">Prazo de entrega</label>
-             <input type="date" class="form-control date-input" id="input-3" placeholder="Selecione a data"> 
+             <input type="date" class="form-control date-input" id="input-3" placeholder="Selecione a data" name="data_final"> 
             </div>
 
             <div class="form-group">
               <label for="input-content-description">Descrição do serviço</label>
               <textarea class="form-control" id="input-content-description"
-                  name="content_description" rows="3"
+                  name="descricao" rows="3"
                   placeholder="Digite a descrição do serviço" required></textarea>
           </div>
             

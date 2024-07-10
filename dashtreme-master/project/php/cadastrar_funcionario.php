@@ -13,7 +13,8 @@
     $cargo = $_POST['cargo'];
     $data_nascimento = $_POST['data_nascimento'];
     $pcd = $_POST['pcd'];
-    
+    $cidade = $_POST['cidade'];
+    $endereco = $_POST['endereco'];
 
 
 ?>

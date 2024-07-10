@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Dashtreme Admin - Free Dashboard for Bootstrap 4 by Codervent</title>
+    <title>Conteúdo</title>
     <!-- loader-->
     <link href="../../assets/css/pace.min.css" rel="stylesheet" />
     <script src="../../assets/js/pace.min.js"></script>
@@ -135,15 +135,16 @@
                                       <input type="file"  class="select-style" name="imagem_funcionario" id="customFile" name="content_pdf" accept=".pdf" required onchange="handleImageUpload(event)"/> 
                                     </div>
                                     <div class="form-group">
+                                      <label for="input-3">Capa do Conteúdo</label><i id="image-icon" class="fas" style="display: none;padding: 8px;"></i>
+                                      <label class="select-style" class="form-label"  for="customFile">Adicionar imagem</label>
+                                      <input type="file" class="select-style" name="capa_conteudo" id="customFile" accept=".png, .jpg, .jpeg" onchange="handleImageUpload(event)"/>
+
+                                    </div>
+                                    <div class="form-group">
                                         <label for="input-content-description">Descrição do Conteúdo</label>
                                         <textarea class="form-control" id="input-content-description"
                                             name="content_description" rows="3"
                                             placeholder="Digite uma breve descrição do conteúdo" required></textarea>
-                                    </div>
-                                    <div class="form-group">
-                                      <label for="input-3">Imagem do Conteúdo</label><i id="image-icon" class="fas" style="display: none;padding: 8px;"></i>
-                                      <label class="select-style" class="form-label"  for="customFile">Adicionar imagem</label>
-                                      <input type="file"  class="select-style" name="imagem_funcionario" id="customFile" onchange="handleImageUpload(event)"/> 
                                     </div>
                                     <div class="form-group">
                                       <label for="input-2">Setor</label>

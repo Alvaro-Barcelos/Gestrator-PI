@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
   <meta charset="utf-8"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
   <meta name="description" content=""/>
   <meta name="author" content=""/>
-  <title>Gestrator</title>
+  <title>Registrar Serviço</title>
   <!-- loader-->
   <link href="../../assets/css/pace.min.css" rel="stylesheet"/>
   <script src="../../assets/js/pace.min.js"></script>
@@ -88,7 +88,7 @@
     
           <li>
             <a href="relatorio_adm.html">
-              <i class="zmdi zmdi-assignment" style="color: #9e9e9e;"></i><span>Relatório</span>
+              <i class="zmdi zmdi-assignment" style="color: #9e9e9e;"></i> <span>Relatório</span>
             </a>
           </li>
     
@@ -188,33 +188,26 @@
        <div class="col-lg-6">
           <div class="card">
             <div class="card-body">
-            <div class="card-title">Registrar Tarefa</div>
+            <div class="card-title">Registrar Serviço</div>
             <hr>
-             <form>
-              <div class="form-group">
-                <label for="input-2">Tarefa</label>
-                <div class="custom-dropdown">
-                    <select id="input-2" class="form-control">
-                        <option value="" disabled selected hidden>Selecione uma tarefa</option>
-                        <option value="categoria1">Criar tarefa</option>
-                        <option value="categoria2">Consultar tarefa</option>
-                    </select>
-                    <div class="arrow-down"></div>
-                </div>
-            </div>
+             <form method="post" action="">
 
             <div class="form-group">
-             <label for="input-1">Nome da Tarefa</label>
-             <input type="text" class="form-control" id="input-1" placeholder="Nome da Tarefa">
+             <label for="input-1">Nome do Serviço</label>
+             <input type="text" class="form-control" id="input-1" placeholder="Nome do Serviço">
             </div>
             <div class="form-group">
-              <label for="input-2">Categoria</label>
+              <label for="input-2">Setor</label>
               <div class="custom-dropdown">
                 <select id="input-2" class="form-control">
-                  <option value="" disabled selected hidden>Selecione uma categoria</option>
-                  <option value="categoria1">Categoria 1</option>    <!-- Acrescentei novas class e um css la no app-style, para que o options fique da forma correta -->
-                  <option value="categoria2">Categoria 2</option>
-                  <option value="categoria3">Categoria 3</option>
+                  <option value="" disabled selected hidden>Selecione um Setor</option>
+                  <option value="1">Administrativo</option>    <!-- Acrescentei novas class e um css la no app-style, para que o options fique da forma correta -->
+                  <option value="2">Comercial</option>
+                  <option value="3">Marketing</option>
+                  <option value="4">Financeiro</option>
+                  <option value="5">Compras</option>
+                  <option value="6">Recursos Humanos</option>
+                  <option value="7">Operações</option>
                 </select>
                  <div class="arrow-down"></div>
                 </div>
@@ -227,7 +220,7 @@
 
             <div class="form-group">
              <label for="input-4">descrição</label>
-             <input type="text" class="form-control" id="input-4" placeholder="Descrição da tarefa">  <!-- Para que o icone do calendario fique branco coloquei um filtro, para achar esse filtro é só ir no css app-style -->
+             <input type="text" class="form-control" id="input-4" placeholder="Descrição do Serviço">  <!-- Para que o icone do calendario fique branco coloquei um filtro, para achar esse filtro é só ir no css app-style -->
             </div>
             
             <div class="form-group">

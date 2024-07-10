@@ -56,3 +56,11 @@ FOREIGN KEY(id_setor) REFERENCES Setor (id_setor)
 );
 
 ALTER TABLE Setor ADD FOREIGN KEY(id_servico) REFERENCES servico (id_servico)
+
+INSERT INTO setor(nome_setor, quantidade) VALUES('Administrativo' ,0);
+INSERT INTO setor(nome_setor, quantidade) VALUES('Comercial' ,0);
+INSERT INTO setor(nome_setor, quantidade) VALUES('Marketing' ,0);
+INSERT INTO setor(nome_setor, quantidade) VALUES('Financeiro' ,0);
+INSERT INTO setor(nome_setor, quantidade) VALUES('Compras' ,0);
+INSERT INTO setor(nome_setor, quantidade) VALUES('Recursos humanos' ,0);
+INSERT INTO setor(nome_setor, quantidade) VALUES('Operações' ,0);

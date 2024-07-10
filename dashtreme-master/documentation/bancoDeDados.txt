@@ -13,7 +13,6 @@ CREATE TABLE Setor (
 id_setor int auto_increment PRIMARY KEY,
 nome_setor Varchar(60),
 quantidade int,
-id_servico int
 );
 
 CREATE TABLE servico (
@@ -23,8 +22,10 @@ descricao Varchar(50),
 prazo_entrega date,
 data_criada date,
 situacao Varchar(20),
-porcentagem float
-);
+porcentagem float,
+id_setor int,
+FOREIGN KEY(id_setor) REFERENCES Setor (id_setor)
+)
 
 CREATE TABLE Funcionario (
 id_funcionario int auto_increment PRIMARY KEY,
@@ -55,7 +56,6 @@ id_setor int,
 FOREIGN KEY(id_setor) REFERENCES Setor (id_setor)
 );
 
-ALTER TABLE Setor ADD FOREIGN KEY(id_servico) REFERENCES servico (id_servico)
 
 INSERT INTO setor(nome_setor, quantidade) VALUES('Administrativo' ,0);
 INSERT INTO setor(nome_setor, quantidade) VALUES('Comercial' ,0);

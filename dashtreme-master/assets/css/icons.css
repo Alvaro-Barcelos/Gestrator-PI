@@ -47,6 +47,29 @@ File: app-style
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   text-transform: capitalize; /* Transforma a primeira letra de cada palavra para maiúscula */
 }
+/* cores do relatorio */
+
+  .bg-custom1 {
+    background-color: #ff9999; /* Vermelho claro */
+  }
+  .bg-custom2 {
+    background-color: #66b3ff; /* Azul claro */
+  }
+  .bg-custom3 {
+    background-color: #99ff99; /* Verde claro */
+  }
+  .bg-custom4 {
+    background-color: #ffcc99; /* Laranja claro */
+  }
+  .bg-custom5 {
+    background-color: #ffb3e6; /* Rosa claro */
+  }
+  .bg-custom6 {
+    background-color: #c2c2f0; /* Roxo claro */
+  }
+  .bg-custom7 {
+    background-color: #ff6666; /* Vermelho */
+  }
 
 
 

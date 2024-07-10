@@ -4,14 +4,11 @@
 
     $nome_funcionario = $_POST['nome'];
 
-
-    $imagem = $_POST['imagem_funcionario'];
-
     $imagem = $_FILES['imagem_funcionario']['tmp_name'];
     $imagem_destino = '../imagensBd/' . $_FILES['imagem_funcionario']['name'];
-
+    
     move_uploaded_file($imagem, $imagem_destino);
-
+    
     $cpf = $_POST['cpf'];
     $rg = $_POST['rg'];
     $email = $_POST['email'];
@@ -24,18 +21,25 @@
     $pcd = $_POST['pcd'];
     $cidade = $_POST['cidade'];
     $endereco = $_POST['endereco'];
-
-    if($cargo = "gerente"){
+    
+    if ($cargo == "gerente") {
         $tipo = "gerente";
-    }elseif($cargo = "supervisor"){
+    } elseif ($cargo == "supervisor") {
         $tipo = "supervisor";
-    }else{
+    } else {
         $tipo = "comum";
     }
-
-
-    $login = mysqli_query($conexao, "INSERT INTO login(usuario, email, senha, tipo) 
-    VALUES('$nome_funcionario','$email', '$acesso', $tipo)");
+    
+    $query = "INSERT INTO login (usuario, email, senha, tipo) VALUES ('$nome_funcionario', '$email', '$acesso', '$tipo')";
+    
+    $login = mysqli_query($conexao, $query);
+    
+    if ($login) {
+        echo "User successfully registered.";
+    } else {
+        echo "Error: " . mysqli_error($conexao);
+    }
+    
 
 
     $id_login_query = "SELECT id_login FROM login

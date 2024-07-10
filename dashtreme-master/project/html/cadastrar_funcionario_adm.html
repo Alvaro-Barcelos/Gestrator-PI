@@ -180,17 +180,17 @@
            <div class="card-body">
            <div class="card-title">Registrar novo funcionário</div>
            <hr>
-            <form>
+            <form method="post" action="../php/cadastrar_funcionario.php" enctype="multipart/form-data">
               <div class="row">
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label for="input-1">Nome completo</label>
-                    <input type="text" class="form-control" id="input-1" placeholder="Nome completo">
+                    <input type="text" class="form-control" name="nome" id="input-1" placeholder="Nome completo">
                   </div>
                   <div class="form-group">
                     <label for="input-3">Imagem do funcionário</label><i id="image-icon" class="fas" style="display: none;padding: 8px;"></i>
                     <label class="select-style" class="form-label"  for="customFile">Adicionar imagem</label>
-                    <input type="file"  class="select-style" id="customFile" onchange="handleImageUpload(event)"/>
+                    <input type="file"  class="select-style" name="imagem_funcionario" id="customFile" onchange="handleImageUpload(event)"/>
                     
                   </div>
                   <div class="form-group">
@@ -200,31 +200,31 @@
                   </div>
                   <div class="form-group">
                     <label for="input-3">RG</label>
-                    <input class="form-control" type="text" id="RG" name="RG" maxlength="13" onkeyup="handleRG(event)" required placeholder="Adicionar RG">
+                    <input class="form-control" type="text" id="RG" name="rg" maxlength="13" onkeyup="handleRG(event)" required placeholder="Adicionar RG">
                   </div>
                   <div class="form-group">
                     <label for="input-2">Email</label>
-                    <input type="email" class="form-control" id="email" placeholder="Adicionar Email">
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Adicionar Email">
                   </div>
                   <div class="form-group">
                     <label for="input-3">Celular</label>
-                    <input class="form-control" type="tel" id="telefone" name="telefone" maxlength="15" onkeyup="handlePhone(event)" required placeholder="00 0000-0000">
+                    <input class="form-control" type="tel" id="celular" name="celular" maxlength="15" onkeyup="handlePhone(event)" required placeholder="00 0000-0000">
                   </div>
                   <div class="form-group">
                     <label for="input-5">Nacionalidade</label>
-                    <input type="text" class="form-control" id="input-5" placeholder="Nacionalidade" required>
+                    <input type="text" class="form-control" id="input-5" name="nacionalidade" placeholder="Nacionalidade" required>
                   </div>
                   
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label for="input-4">Acesso</label>
-                    <input type="text" class="form-control" id="input-4" placeholder="Senha do funcionário" required>
+                    <input type="text" class="form-control" id="input-4" name="senha" placeholder="Senha do funcionário" required>
                   </div>
                   <div class="form-group">
                     <label for="input-2">Setor</label>
                     <div class="custom-dropdown">
-                      <select id="input-2" class="form-control" required>
+                      <select id="input-2" class="form-control" name="setor" required>
                         <option value="" disabled selected hidden>Selecione um Setor</option>
                         <option value="categoria1">Administrativo</option>
                         <option value="categoria2">Comercial</option>
@@ -239,24 +239,24 @@
                   </div>
                   <div class="form-group">
                     <label for="input-1">Cargo</label>
-                    <input type="text" class="form-control" id="input-1" placeholder="Cargo do funcionário">
+                    <input type="text" class="form-control" name="cargo" id="input-1" placeholder="Cargo do funcionário">
                   </div>
                   <div class="form-group">
                     <label for="input-3">Data de nascimento</label>
-                    <input type="date" class="form-control" id="input-3" placeholder="Enter Your Mobile Number" required >
+                    <input type="date" class="form-control" name="data_nascimento" id="input-3" placeholder="Enter Your Mobile Number" required >
                   </div>
                   <div class="form-group">
                     <label for="input-pcd">Funcionário PCD</label>
-                    <input type="text" class="form-control" id="input-4" placeholder="Caso não for PCD não preencher">
+                    <input type="text" class="form-control" name="pcd" id="input-4" placeholder="Caso não for PCD não preencher">
                   </div>
                   
                   <div class="form-group">
                     <label for="input-5">Cidade</label>
-                    <input type="text" class="form-control" id="input-5" placeholder="Nome da Cidade" required>
+                    <input type="text" class="form-control" name="cidade" id="input-5" placeholder="Nome da Cidade" required>
                   </div>
                   <div class="form-group">
                     <label for="input-5">Endereço</label>
-                    <input type="text" class="form-control" id="input-5" placeholder="Enderço completo" required>
+                    <input type="text" class="form-control" name="endereco" id="input-5" placeholder="Enderço completo" required>
                   </div>
                   
                 </div>

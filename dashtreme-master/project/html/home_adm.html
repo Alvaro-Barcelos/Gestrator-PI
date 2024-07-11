@@ -32,11 +32,37 @@
 
 
   <style>
+  .modal-content {
+    background-color: #004085 !important;
+    color: white;
+  }
 
-    .modal-content{
-        background-color: #004085 !important; 
-    }
+  .btn-custom-close {
+    background-color: #6c757d; /* Cor personalizada para o botão "Close" */
+    border-color: #6c757d;
+  }
 
+  .btn-custom-save {
+    background-color: #3c8dbc; /* Cor personalizada para o botão "Save changes" */
+    border-color: #3c8dbc;
+  }
+
+  .btn-custom-close:hover,
+  .btn-custom-save:hover {
+    opacity: 0.8; /* Efeito de opacidade ao passar o mouse */
+  }
+
+  .btn-close-custom {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+  }
+
+  .btn-close-custom:hover {
+    color: #ccc;
+  }
+    
   </style>
 
 
@@ -371,19 +397,22 @@
         <div class="modal-content">
           <div class="modal-header">
             <h1 class="modal-title fs-5" id="exampleModalLabel">Iphone 5</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <button type="button" class="btn-close-custom" data-bs-dismiss="modal" aria-label="Close">
+              <i class="fas fa-times"></i>
+            </button>
           </div>
           <div class="modal-body">
             <!-- Conteúdo do modal para Iphone 5 -->
             ...
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn " data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn">Save changes</button>
+            <button type="button" class="btn btn-secondary btn-custom-close" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary btn-custom-save">Save changes</button>
           </div>
         </div>
       </div>
     </div>
+    
     
     <!-- Modal for Earphone GL -->
     <div class="modal fade" id="modalEarphoneGL" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

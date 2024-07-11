@@ -14,7 +14,12 @@
     $email = $_POST['email'];
     $celular = $_POST['celular'];
     $nacionalidade = $_POST['nacionalidade'];
+
     $acesso = $_POST['acesso'];
+
+    // Hash a senha antes de armazenar no banco de dados
+    $senha_hash = password_hash($acesso, PASSWORD_DEFAULT);
+
     $setor = $_POST['setor'];
     $cargo = $_POST['cargo'];
     $data_nascimento = $_POST['data_nascimento'];
@@ -30,7 +35,7 @@
         $tipo = "comum";
     }
     
-    $query = "INSERT INTO login (usuario, email, senha, tipo) VALUES ('$nome_funcionario', '$email', '$acesso', '$tipo')";
+    $query = "INSERT INTO login (usuario, email, senha, tipo) VALUES ('$nome_funcionario', '$email', '$senha_hash', '$tipo')";
     
     $login = mysqli_query($conexao, $query);
     

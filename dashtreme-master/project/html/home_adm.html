@@ -29,6 +29,43 @@
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   
+
+
+  <style>
+  .modal-content {
+    background-color: #004085 !important;
+    color: white;
+  }
+
+  .btn-custom-close {
+    background-color: #6c757d; /* Cor personalizada para o botão "Close" */
+    border-color: #6c757d;
+  }
+
+  .btn-custom-save {
+    background-color: #3c8dbc; /* Cor personalizada para o botão "Save changes" */
+    border-color: #3c8dbc;
+  }
+
+  .btn-custom-close:hover,
+  .btn-custom-save:hover {
+    opacity: 0.8; /* Efeito de opacidade ao passar o mouse */
+  }
+
+  .btn-close-custom {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+  }
+
+  .btn-close-custom:hover {
+    color: #ccc;
+  }
+    
+  </style>
+
+
 </head>
 
 <body class="bg-theme bg-theme1">
@@ -75,7 +112,12 @@
           <i class="fa-solid fa-list-check" style="color: #9e9e9e;"></i> <span>Serviço</span>
         </a>
       </li>
-
+      <li>
+        <a href="https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fcalendar.google.com%2Fcalendar%2Fu%2F0%2Fr&emr=1&followup=https%3A%2F%2Fcalendar.google.com%2Fcalendar%2Fu%2F0%2Fr&ifkv=AdF4I77H6Q8kDjrou1wIGuHz3S3_9WHl1Z6w3HQ5MAbJVDPoIZHRKIQUAYS0YHfymJmHEtgj8rOdfQ&osid=1&passive=1209600&service=cl&flowName=GlifWebSignIn&flowEntry=ServiceLogin&dsh=S268491357%3A1720720457775498&ddm=0">
+          <i class="zmdi zmdi-calendar-check"></i> <span>Calendar</span>
+        </a>
+      </li>
+      <li>
       <li>
         <a href="relatorio_adm.html">
           <i class="zmdi zmdi-assignment" style="color: #9e9e9e;"></i> <span>Relatório</span>
@@ -235,112 +277,243 @@
               </div>
              </div>
 		 </div>
-	       <div class="table-responsive">
-                 <table class="table align-items-center table-flush table-borderless">
-                  <thead>
-                   <tr>
-                     <th>Serviço</th>
-
-                     <th>ID do serviço</th>
-                     <th>Setor</th>
-                     <th>Inicio</th>
-                     <th>Final</th>
-                     <th>Porcentagem</th>
-                     <th>Situação</th>
-                   </tr>
-                   </thead>
-                   <tbody><tr>
-                    <td>Iphone 5</td>
-
-                    <td>#9405822</td>
-                    <td>Administrativo</td>
-                    <td>03 Aug 2017</td>
-                    <td>03 Aug 2017</td>
-					          <td>
-                      <div class="progress shadow" style="height: 3px;">
-                        <div class="progress-bar bg-danger" role="progressbar" style="width:15%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>                      
-                    </td>
-                    <td>Pendente</td>
-                   </tr>
-
-                   <tr>
-                    <td>Earphone GL</td>
-
-                    <td>#9405820</td>
-                    <td>Recursos humanos</td>
-                    <td>03 Aug 2017</td>
-                    <td>03 Aug 2017</td>
-					          <td>
-                      <div class="progress shadow" style="height: 3px;">
-                        <div class="progress-bar bg-warning" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                    </td>
-                    <td>Em andamento</td>
-                   </tr>
-
-                   <tr>
-                    <td>HD Hand Camera</td>
-
-                    <td>#9405830</td>
-                    <td>Compras</td>
-                    <td>03 Aug 2017</td>
-                    <td>03 Aug 2017</td>
-					          <td>
-                      <div class="progress shadow" style="height: 3px;">
-                        <div class="progress-bar bg-success" role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                    </td>
-                    <td>Em andamento</td>
-                   </tr>
-
-                   <tr>
-                    <td>Clasic Shoes</td>
-
-                    <td>#9405825</td>
-                    <td>Tecnologia</td>
-                    <td>03 Aug 2017</td>
-                    <td>03 Aug 2017</td>
-					          <td>
-                      <div class="progress shadow" style="height: 3px;">
-                        <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                    </td>
-                    <td>Concluída</td>
-                   </tr>
-
-                   <tr>
-                    <td>Hand Watch</td>
-
-                    <td>#9405840</td>
-                    <td>Financeiros</td>
-                    <td>03 Aug 2017</td>
-                    <td>03 Aug 2017</td>
-					          <td>
-                      <div class="progress shadow" style="height: 3px;">
-                        <div class="progress-bar bg-warning" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                    </td>
-                    <td>Em andamento</td>
-                   </tr>
-				   
-				   <tr>
-                    <td>Clasic Shoes</td>
-
-                    <td>#9405825</td>
-                    <td>Operações</td>
-                    <td>03 Aug 2017</td>
-                    <td>03 Aug 2017</td>
-					          <td>
-                      <div class="progress shadow" style="height: 3px;">
-                        <div class="progress-bar bg-danger" role="progressbar" style="width:28%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>     
-                    </td>
-                    <td>Em andamento</td>
-                   </tr>
-
-                 </tbody></table>
-               </div>
+     <div class="table-responsive">
+      <table class="table align-items-center table-flush table-borderless">
+        <thead>
+          <tr>
+            <th>Serviço</th>
+            <th>ID do serviço</th>
+            <th>Setor</th>
+            <th>Inicio</th>
+            <th>Final</th>
+            <th>Porcentagem</th>
+            <th>Situação</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#modalIphone5">Iphone 5</button>
+            </td>
+            <td>#9405822</td>
+            <td>Administrativo</td>
+            <td>03 Aug 2017</td>
+            <td>03 Aug 2017</td>
+            <td>
+              <div class="progress shadow" style="height: 3px;">
+                <div class="progress-bar bg-danger" role="progressbar" style="width:15%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>                      
+            </td>
+            <td>Pendente</td>
+          </tr>
+          
+          <tr>
+            <td>
+              <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#modalEarphoneGL">Earphone GL</button>
+            </td>
+            <td>#9405820</td>
+            <td>Recursos humanos</td>
+            <td>03 Aug 2017</td>
+            <td>03 Aug 2017</td>
+            <td>
+              <div class="progress shadow" style="height: 3px;">
+                <div class="progress-bar bg-warning" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </td>
+            <td>Em andamento</td>
+          </tr>
+    
+          <tr>
+            <td>
+              <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#modalHDHandCamera">HD Hand Camera</button>
+            </td>
+            <td>#9405830</td>
+            <td>Compras</td>
+            <td>03 Aug 2017</td>
+            <td>03 Aug 2017</td>
+            <td>
+              <div class="progress shadow" style="height: 3px;">
+                <div class="progress-bar bg-success" role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </td>
+            <td>Em andamento</td>
+          </tr>
+    
+          <tr>
+            <td>
+              <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#modalClasicShoes">Clasic Shoes</button>
+            </td>
+            <td>#9405825</td>
+            <td>Tecnologia</td>
+            <td>03 Aug 2017</td>
+            <td>03 Aug 2017</td>
+            <td>
+              <div class="progress shadow" style="height: 3px;">
+                <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </td>
+            <td>Concluída</td>
+          </tr>
+    
+          <tr>
+            <td>
+              <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#modalHandWatch">Hand Watch</button>
+            </td>
+            <td>#9405840</td>
+            <td>Financeiros</td>
+            <td>03 Aug 2017</td>
+            <td>03 Aug 2017</td>
+            <td>
+              <div class="progress shadow" style="height: 3px;">
+                <div class="progress-bar bg-warning" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </td>
+            <td>Em andamento</td>
+          </tr>
+    
+          <tr>
+            <td>
+              <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#modalClasicShoesOp">Clasic Shoes</button>
+            </td>
+            <td>#9405825</td>
+            <td>Operações</td>
+            <td>03 Aug 2017</td>
+            <td>03 Aug 2017</td>
+            <td>
+              <div class="progress shadow" style="height: 3px;">
+                <div class="progress-bar bg-danger" role="progressbar" style="width:28%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>     
+            </td>
+            <td>Em andamento</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <!-- Modal Templates -->
+    <!-- Modal for Iphone 5 -->
+    <div class="modal fade" id="modalIphone5" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Iphone 5</h1>
+            <button type="button" class="btn-close-custom" data-bs-dismiss="modal" aria-label="Close">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+          <div class="modal-body">
+            <!-- Conteúdo do modal para Iphone 5 -->
+            ...
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary btn-custom-close" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary btn-custom-save">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+    <!-- Modal for Earphone GL -->
+    <div class="modal fade" id="modalEarphoneGL" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Earphone GL</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <!-- Conteúdo do modal para Earphone GL -->
+            ...
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Modal for HD Hand Camera -->
+    <div class="modal fade" id="modalHDHandCamera" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">HD Hand Camera</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <!-- Conteúdo do modal para HD Hand Camera -->
+            ...
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Modal for Clasic Shoes -->
+    <div class="modal fade" id="modalClasicShoes" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Clasic Shoes</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <!-- Conteúdo do modal para Clasic Shoes -->
+            ...
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Modal for Hand Watch -->
+    <div class="modal fade" id="modalHandWatch" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Hand Watch</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <!-- Conteúdo do modal para Hand Watch -->
+            ...
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Modal for Clasic Shoes in Operações -->
+    <div class="modal fade" id="modalClasicShoesOp" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Clasic Shoes (Operações)</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <!-- Conteúdo do modal para Clasic Shoes em Operações -->
+            ...
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
 	   </div>
 	 </div>
 	</div><!--End Row-->
@@ -510,6 +683,8 @@
   <!-- Index js -->
   <script src="../../assets/js/index.js"></script>
 
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
   
 </body>
 </html>

@@ -9,17 +9,21 @@
 <?php
       include_once('../conexao.php');
 //    variavel          nome no form
-      $nome = $_POST['nome'];
+      $nome_conteudo = $_POST['nome_conteudo'];
       $descricao = $_POST['descricao'];
-      $quantidade = $_POST['quantidade'];
-      $preco = $_POST['preco'];
+      $id_setor = $_POST['id_setor'];
 
-      $foto_produto = $_FILES['foto_produto']['tmp_name'];
-      $foto_produto_destino = '../imagensDinamicas/' . $_FILES['foto_produto']['name'];
+      $pdf = $_FILES['pdf']['tmp_name'];
+      $pdf_destino = '../imagensBd/' . $_FILES['PDF']['name'];
+
+      move_uploaded_file($pfd_coteudo, $pdf_destino );
+
+      $capa = $_FILES['capa']['tmp_name'];
+      $capa_destino = '../imagensBd/' . $_FILES['foto_conteudo']['name'];
 
       move_uploaded_file($foto_produto, $foto_produto_destino);
 
-      $insere_produto = mysqli_query($conexao, "INSERT INTO produto (nome_produto, descricao, quantidade, preco,  foto_produto) 
+      $insere_conteudo = mysqli_query($conexao, "INSERT INTO produto (nome_produto, descricao, quantidade, preco,  foto_produto) 
           VALUES ('$produto', '$descricao', $quantidade, $preco,  '$foto_produto_destino')");
 
       if ($insere_produto) {

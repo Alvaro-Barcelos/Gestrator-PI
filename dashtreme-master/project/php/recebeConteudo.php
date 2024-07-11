@@ -1,47 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
 <?php
-// Arquivo recebeConteudo.php
+      include_once('../conexao.php');
+//    variavel          nome no form
+      $nome = $_POST['nome'];
+      $descricao = $_POST['descricao'];
+      $quantidade = $_POST['quantidade'];
+      $preco = $_POST['preco'];
 
-// Inclui o arquivo de conexão
-include 'conexao.php';
+      $foto_produto = $_FILES['foto_produto']['tmp_name'];
+      $foto_produto_destino = '../imagensDinamicas/' . $_FILES['foto_produto']['name'];
 
-// Verifica se o formulário foi submetido
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Obtém os dados do formulário
-    $content_name = $_POST['content_name'];
-    $content_description = $_POST['content_description'];
-    $setor = $_POST['input-2']; // Id do setor selecionado
+      move_uploaded_file($foto_produto, $foto_produto_destino);
 
-    // Processa o upload do PDF e da imagem
-    $content_pdf = $_FILES['content_pdf']['name'];
-    $content_image = $_FILES['content_image']['name'];
-    $pdf_temp = $_FILES['content_pdf']['tmp_name'];
-    $image_temp = $_FILES['content_image']['tmp_name'];
+      $insere_produto = mysqli_query($conexao, "INSERT INTO produto (nome_produto, descricao, quantidade, preco,  foto_produto) 
+          VALUES ('$produto', '$descricao', $quantidade, $preco,  '$foto_produto_destino')");
 
-    // Move os arquivos para o diretório desejado (exemplo)
-    move_uploaded_file($pdf_temp, "caminho/para/salvar/pdf/" . $content_pdf);
-    move_uploaded_file($image_temp, "caminho/para/salvar/imagem/" . $content_image);
+      if ($insere_produto) {
+        echo '    <div class="mb-32">';
+        echo '      <h1 class="text-5xl text-greenF">INSERIDO COM SUCESSO!</h1>';
+        echo '      <div class="mt-20 text-center">';
+        echo '        <a href="../../html/agenda/pagina.php"<button class="botao">Voltar ao Início</button></a>';    /* o css do botao está no css interno */
+        echo '      </div>';
+        echo '    </div>';
+      } else {
+        echo "<div class='retornos'>";
+        echo "<h2> Ocorreu um erro ao inserir os dados. Por favor, tente novamente. </h2>";
+        echo "</div>";
+      }
+      ?>
+    </div>
+  </main>
+</body>
 
-    // Prepara a query de inserção
-    $sql = "INSERT INTO conteudo (nome_conteudo, descricao, pdf, capa, id_setor)
-            VALUES (?, ?, ?, ?, ?)";
-
-    // Prepara a declaração SQL com prepared statement
-    $stmt = $conexao->prepare($sql);
-
-    // Vincula parâmetros
-    $stmt->bind_param("ssssi", $content_name, $content_description, $content_pdf, $content_image, $setor);
-
-    // Executa a query
-    if ($stmt->execute()) {
-        echo "Dados inseridos com sucesso!";
-    } else {
-        echo "Erro ao inserir dados: " . $stmt->error;
-    }
-
-    // Fecha a declaração e a conexão
-    $stmt->close();
-}
-
-// Fecha a conexão com o banco de dados
-$conexao->close();
-?>
+</html>
+</body>
+</html>

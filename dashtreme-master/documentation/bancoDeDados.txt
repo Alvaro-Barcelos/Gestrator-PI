@@ -22,9 +22,10 @@ descricao Varchar(50),
 prazo_entrega date,
 data_criada date,
 situacao Varchar(20),
-porcentagem float,
+porcentagem int,
 id_setor int,
 FOREIGN KEY(id_setor) REFERENCES Setor (id_setor)
+CONSTRAINT chk_porcentagem CHECK (porcentagem >= 0 AND porcentagem <= 100)
 )
 
 CREATE TABLE Funcionario (

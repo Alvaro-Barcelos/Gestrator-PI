@@ -7,26 +7,26 @@
 </head>
 <body>
 <?php
-      include_once('../conexao.php');
+      include_once('conexao.php');
 //    variavel          nome no form
       $nome_conteudo = $_POST['nome_conteudo'];
       $descricao = $_POST['descricao'];
       $id_setor = $_POST['id_setor'];
 
       $pdf = $_FILES['pdf']['tmp_name'];
-      $pdf_destino = '../imagensBd/' . $_FILES['PDF']['name'];
+      $pdf_destino = '../imagensBd/' . $_FILES['pdf']['name'];
 
-      move_uploaded_file($pfd_coteudo, $pdf_destino );
+      move_uploaded_file($pdf, $pdf_destino );
 
       $capa = $_FILES['capa']['tmp_name'];
-      $capa_destino = '../imagensBd/' . $_FILES['foto_conteudo']['name'];
+      $capa_destino = '../imagensBd/' . $_FILES['capa']['name'];
 
-      move_uploaded_file($foto_produto, $foto_produto_destino);
+      move_uploaded_file($capa, $capa_destino);
 
-      $insere_conteudo = mysqli_query($conexao, "INSERT INTO produto (nome_produto, descricao, quantidade, preco,  foto_produto) 
-          VALUES ('$produto', '$descricao', $quantidade, $preco,  '$foto_produto_destino')");
+      $insere_conteudo = mysqli_query($conexao, "INSERT INTO conteudo (nome_conteudo, descricao, pdf, capa, id_setor) 
+      VALUES ('$nome_conteudo', '$descricao', '$pdf_destino', '$capa_destino', '$id_setor')");
 
-      if ($insere_produto) {
+      if ($insere_conteudo) {
         echo '    <div class="mb-32">';
         echo '      <h1 class="text-5xl text-greenF">INSERIDO COM SUCESSO!</h1>';
         echo '      <div class="mt-20 text-center">';

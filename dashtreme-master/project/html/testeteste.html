@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="../php/recebeConteudo.php" method="POST" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="input-content-name">Nome do Conteúdo</label>
+          <input type="text" class="form-control" id="input-content-name" name="nome_conteudo"
+            placeholder="Digite o nome do conteúdo" required>
+        </div>
+        <div class="form-group">
+          <label for="input-3">PDF do conteúdo</label><i id="image-icon" class="fas" style="display: none;padding: 8px;"></i>
+          <label class="select-style" class="form-label"  for="customFile">Adicionar PDF</label>
+          <input type="file"  class="select-style" name="pdf" id="customFile" onchange="handleImageUpload(event)"/> 
+        </div>
+        <div class="form-group">
+          <label for="input-content-description">Descrição do Conteúdo</label>
+          <textarea class="form-control" id="input-content-description" name="descricao" rows="3"
+            placeholder="Digite uma breve descrição do conteúdo" required></textarea>
+        </div>
+        <div class="form-group ">
+          <label for="input-3">Imagem do Conteúdo</label><i id="image-icon" class="fas"
+            style="display: none;padding: 8px;"></i>
+          <label class="select-style" class="form-label" for="customFile">Adicionar imagem</label>
+          <input type="file" class="select-style" id="customFile" onchange="handleImageUpload(event)"
+            name="capa" accept="image/*" required>
+        </div>
+        <div class="form-group">
+          <label for="input-2">Setor</label>
+          <div class="custom-dropdown">
+            <select id="input-2" class="form-control" name="id_setor" required>
+              <option value="" disabled selected hidden>Selecione um Setor</option>
+              <option value="1">Administrativo</option>
+              <option value="2">Comercial</option>
+              <option value="3">Marketing</option>
+              <option value="4">Financeiro</option>
+              <option value="5">Compras</option>
+              <option value="6">Recursos humanos</option>
+              <option value="7">Operações</option>
+            </select>
+            <div class="arrow-down"></div>
+          </div>
+        </div>
+        <div class="form-group">
+          <input type="submit" value="Cadastrar conteúdo" class="btn btn-light px-5"> 
+        </div>
+          
+      </form>
+</body>
+</html>

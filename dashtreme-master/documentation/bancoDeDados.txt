@@ -12,7 +12,7 @@ tipo Varchar(10)
 CREATE TABLE Setor (
 id_setor int auto_increment PRIMARY KEY,
 nome_setor Varchar(60),
-quantidade int,
+quantidade int
 );
 
 CREATE TABLE servico (
@@ -21,11 +21,11 @@ nome_servico Varchar(50),
 descricao Varchar(50),
 prazo_entrega date,
 data_criada date,
-situacao Varchar(20),
+situacao Varchar(20) DEFAULT 'Em Andamento',
 porcentagem float,
 id_setor int,
 FOREIGN KEY(id_setor) REFERENCES Setor (id_setor)
-)
+);
 
 CREATE TABLE Funcionario (
 id_funcionario int auto_increment PRIMARY KEY,

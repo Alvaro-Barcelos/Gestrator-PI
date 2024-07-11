@@ -8,4 +8,7 @@
     $data_final = $_POST['data_final'];
     $descricao = $_POST['descricao'];
 
+
+    $registrar_servico = "INSERT INTO servico (nome_servico, descricao, prazo_entrega, data_criada, id_setor) VALUES ('$nome', '$descricao', '$data_final', '$data_inicio', '$setor')";
+
 ?>

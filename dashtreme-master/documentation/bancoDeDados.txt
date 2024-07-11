@@ -12,7 +12,7 @@ tipo Varchar(10)
 CREATE TABLE Setor (
 id_setor int auto_increment PRIMARY KEY,
 nome_setor Varchar(60),
-quantidade int,
+quantidade int
 );
 
 CREATE TABLE servico (
@@ -21,10 +21,11 @@ nome_servico Varchar(50),
 descricao Varchar(50),
 prazo_entrega date,
 data_criada date,
-situacao Varchar(20),
-porcentagem float,
+situacao Varchar(20) DEFAULT 'Em Andamento',
+porcentagem int DEFAULT 0,
 id_setor int,
 FOREIGN KEY(id_setor) REFERENCES Setor (id_setor)
+CONSTRAINT chk_porcentagem CHECK (porcentagem >= 0 AND porcentagem <= 100)
 )
 
 CREATE TABLE Funcionario (

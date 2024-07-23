@@ -360,8 +360,8 @@ hr {
     cursor: pointer;
     display: inline-block;
     position: fixed; /* Fixa na posição */
-    left: 20px; /* Distância da direita */
-    top: 600px; /* Distância do topo */
+    left: 5px; /* Distância da direita */
+    top: 500px; /* Distância do topo */
     border-radius: 50%; /* Borda circular */
     transition: all 0.3s ease; /* Transição suave */
     z-index: 1000 !important; /* Z-index para estar acima dos outros elementos */

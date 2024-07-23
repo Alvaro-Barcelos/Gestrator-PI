@@ -286,7 +286,7 @@ hr {
   position: fixed;
   top: 0px;
   left: 0px;
-  z-index: 1000;
+  z-index: 999;
   overflow: hidden;
   width: 250px;
   height: 100%;
@@ -362,11 +362,11 @@ hr {
     display: inline-block;
     box-shadow: 0 16px 38px -12px rgba(0,0,0,.56), 0 4px 25px 0 rgba(0,0,0,.12), 0 8px 10px -5px rgba(0,0,0,.2); /* Sombra */
     position: fixed; /* Fixa na posição */
-    right: 20px; /* Distância da direita */
-    top: 20px; /* Distância do topo */
+    left: 20px; /* Distância da direita */
+    top: 600px; /* Distância do topo */
     border-radius: 50%; /* Borda circular */
     transition: all 0.3s ease; /* Transição suave */
-    z-index: 1000; /* Z-index para estar acima dos outros elementos */
+    z-index: 1000 !important; /* Z-index para estar acima dos outros elementos */
   }
 
 .right-sidebar.right-toggled{
@@ -1739,8 +1739,8 @@ table.grid td {
 }
 
 .card .table td, .card .table th {
-    padding-right: 1.5rem;
-    padding-left: 1.5rem;
+    padding-right: 1rem;
+    padding-left: 1rem;
 }
 .table {
     width: 100%;

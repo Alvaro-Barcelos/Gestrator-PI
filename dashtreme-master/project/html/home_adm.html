@@ -64,6 +64,67 @@
   .btn-close-custom:hover {
     color: #ccc;
   }
+
+  .teste{
+    background-color: #F2B705;
+  }
+  .teste1{
+    background-color: #04BF68;
+  }
+  .teste2{
+    background-color: #D93D59;
+  }
+
+  .mediaa{
+    background-color: #5D55DB;
+  }
+  .alta{
+    background-color: #450F91;
+  }
+  .baixa{
+    background-color: #5E9FF2;
+  }
+
+
+  table th{
+    padding: 10px 0px !important;
+    font-size: 14px !important;
+    border: 1px solid rgba(196, 196, 196, 0.473) !important;
+    text-align: center;
+  }
+
+  table td{
+    padding: 3px !important;
+    text-align: center;
+    border: 1px solid rgba(196, 196, 196, 0.473) !important;
+  }
+
+  table td:first-child, table th:first-child {
+    border-left: none !important;
+  }
+
+  table td:last-child, table th:last-child {
+    border-right: none !important;
+  }
+  .sem-espaco{
+    text-align: left !important;
+  }
+
+  .este-mes{
+    color: #80e935;
+
+  }
+
+  .proximo-mes{
+    color: #85d2ff;
+
+  }
+
+  .btn{
+    color: white !important;
+
+
+  }
     
   </style>
 
@@ -263,7 +324,7 @@
 	<div class="row">
 	 <div class="col-12 col-lg-12">
 	   <div class="card">
-	     <div class="card-header">Ordens Recentes
+	     <div class="card-header este-mes">Este mês
 		  <div class="card-action">
              <div class="dropdown">
              <a href="javascript:void();" class="dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown">
@@ -284,109 +345,99 @@
         <thead>
           <tr>
             <th>Serviço</th>
-            <th>ID do serviço</th>
+            <th>Equipe</th>
+            <th>Situação</th>
+            <th>prioridade</th>
             <th>Setor</th>
             <th>Inicio</th>
             <th>Final</th>
-            <th>Porcentagem</th>
-            <th>Situação</th>
+
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>
-              <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#modalIphone5">Iphone 5</button>
+            <td class="sem-espaco">
+              <button type="button" class="btn " data-bs-toggle="modal" data-bs-target="#modalIphone5">Alterar as planilhas S5</button>
             </td>
-            <td>#9405822</td>
+            <td>#</td>
+            <td class="teste2">Pendente</td>
+            <td class="alta">Alta</td>
             <td>Administrativo</td>
             <td>03 Aug 2017</td>
             <td>03 Aug 2017</td>
-            <td>
-              <div class="progress shadow" style="height: 3px;">
-                <div class="progress-bar bg-danger" role="progressbar" style="width:15%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>                      
-            </td>
-            <td>Pendente</td>
+
+
+
           </tr>
           
           <tr>
-            <td>
-              <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#modalEarphoneGL">Earphone GL</button>
+            <td class="sem-espaco">
+              <button type="button" class="btn " data-bs-toggle="modal" data-bs-target="#modalEarphoneGL">Earphone GL</button>
             </td>
-            <td>#9405820</td>
+            <td>#</td>
+            <td class="teste">Em andamento</td>
+            <td class="mediaa">Media</td>
             <td>Recursos humanos</td>
             <td>03 Aug 2017</td>
             <td>03 Aug 2017</td>
-            <td>
-              <div class="progress shadow" style="height: 3px;">
-                <div class="progress-bar bg-warning" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </td>
-            <td>Em andamento</td>
+
+
           </tr>
     
           <tr>
-            <td>
-              <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#modalHDHandCamera">HD Hand Camera</button>
+            <td class="sem-espaco">
+              <button type="button" class="btn " data-bs-toggle="modal" data-bs-target="#modalHDHandCamera">HD Hand Camera</button>
             </td>
-            <td>#9405830</td>
+            <td>#</td>
+            <td class="teste">Em andamento</td>
+            <td class="baixa">Baixa</td>
             <td>Compras</td>
             <td>03 Aug 2017</td>
             <td>03 Aug 2017</td>
-            <td>
-              <div class="progress shadow" style="height: 3px;">
-                <div class="progress-bar bg-success" role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </td>
-            <td>Em andamento</td>
+
+
           </tr>
     
           <tr>
-            <td>
-              <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#modalClasicShoes">Clasic Shoes</button>
+            <td class="sem-espaco">
+              <button type="button" class="btn " data-bs-toggle="modal" data-bs-target="#modalClasicShoes">Clasic Shoes</button>
             </td>
-            <td>#9405825</td>
+            <td>#</td>
+            <td class="teste1">Concluída</td>
+            <td class="baixa">Baixa</td>
             <td>Tecnologia</td>
             <td>03 Aug 2017</td>
             <td>03 Aug 2017</td>
-            <td>
-              <div class="progress shadow" style="height: 3px;">
-                <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </td>
-            <td>Concluída</td>
+
+
           </tr>
     
           <tr>
-            <td>
-              <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#modalHandWatch">Hand Watch</button>
+            <td class="sem-espaco">
+              <button type="button" class="btn " data-bs-toggle="modal" data-bs-target="#modalHandWatch">Hand Watch</button>
             </td>
-            <td>#9405840</td>
+            <td>#</td>
+            <td class="teste">Em andamento</td>
+            <td class="alta">Alta</td>
             <td>Financeiros</td>
             <td>03 Aug 2017</td>
             <td>03 Aug 2017</td>
-            <td>
-              <div class="progress shadow" style="height: 3px;">
-                <div class="progress-bar bg-warning" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </td>
-            <td>Em andamento</td>
+
+
           </tr>
     
           <tr>
-            <td>
-              <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#modalClasicShoesOp">Clasic Shoes</button>
+            <td class="sem-espaco">
+              <button type="button" class="btn " data-bs-toggle="modal" data-bs-target="#modalClasicShoesOp">Clasic Shoes</button>
             </td>
-            <td>#9405825</td>
+            <td>#</td>
+            <td class="teste">Em andamento</td>
+            <td class="mediaa">Media</td>
             <td>Operações</td>
             <td>03 Aug 2017</td>
             <td>03 Aug 2017</td>
-            <td>
-              <div class="progress shadow" style="height: 3px;">
-                <div class="progress-bar bg-danger" role="progressbar" style="width:28%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>     
-            </td>
-            <td>Em andamento</td>
+
+
           </tr>
         </tbody>
       </table>
@@ -519,6 +570,256 @@
 	   </div>
 	 </div>
 	</div><!--End Row-->
+
+  <div class="row">
+    <div class="col-12 col-lg-12">
+      <div class="card">
+        <div class="card-header proximo-mes">Proximo mês
+       <div class="card-action">
+              <div class="dropdown">
+              <a href="javascript:void();" class="dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown">
+               <i class="icon-options"></i>
+              </a>
+               <div class="dropdown-menu dropdown-menu-right">
+               <a class="dropdown-item" href="javascript:void();">Action</a>
+               <a class="dropdown-item" href="javascript:void();">Another action</a>
+               <a class="dropdown-item" href="javascript:void();">Something else here</a>
+               <div class="dropdown-divider"></div>
+               <a class="dropdown-item" href="javascript:void();">Separated link</a>
+                </div>
+               </div>
+              </div>
+      </div>
+      <div class="table-responsive">
+       <table class="table align-items-center table-flush table-borderless">
+         <thead>
+           <tr>
+             <th>Serviço</th>
+             <th>Equipe</th>
+             <th>Situação</th>
+             <th>prioridade</th>
+             <th>Setor</th>
+             <th>Inicio</th>
+             <th>Final</th>
+ 
+           </tr>
+         </thead>
+         <tbody>
+           <tr>
+             <td class="sem-espaco">
+               <button type="button" class="btn " data-bs-toggle="modal" data-bs-target="#modalIphone5">Alterar as planilhas S5</button>
+             </td>
+             <td>#</td>
+             <td class="teste2">Pendente</td>
+             <td class="alta">Alta</td>
+             <td>Administrativo</td>
+             <td>03 Aug 2017</td>
+             <td>03 Aug 2017</td>
+ 
+ 
+ 
+           </tr>
+           
+           <tr>
+             <td class="sem-espaco">
+               <button type="button" class="btn " data-bs-toggle="modal" data-bs-target="#modalEarphoneGL">Earphone GL</button>
+             </td>
+             <td>#</td>
+             <td class="teste">Em andamento</td>
+             <td class="mediaa">Media</td>
+             <td>Recursos humanos</td>
+             <td>03 Aug 2017</td>
+             <td>03 Aug 2017</td>
+ 
+ 
+           </tr>
+     
+           <tr>
+             <td class="sem-espaco">
+               <button type="button" class="btn " data-bs-toggle="modal" data-bs-target="#modalHDHandCamera">HD Hand Camera</button>
+             </td>
+             <td>#</td>
+             <td class="teste">Em andamento</td>
+             <td class="baixa">Baixa</td>
+             <td>Compras</td>
+             <td>03 Aug 2017</td>
+             <td>03 Aug 2017</td>
+ 
+ 
+           </tr>
+     
+           <tr>
+             <td class="sem-espaco">
+               <button type="button" class="btn " data-bs-toggle="modal" data-bs-target="#modalClasicShoes">Clasic Shoes</button>
+             </td>
+             <td>#</td>
+             <td class="teste1">Concluída</td>
+             <td class="baixa">Baixa</td>
+             <td>Tecnologia</td>
+             <td>03 Aug 2017</td>
+             <td>03 Aug 2017</td>
+ 
+ 
+           </tr>
+     
+           <tr>
+             <td class="sem-espaco">
+               <button type="button" class="btn " data-bs-toggle="modal" data-bs-target="#modalHandWatch">Hand Watch</button>
+             </td>
+             <td>#</td>
+             <td class="teste">Em andamento</td>
+             <td class="alta">Alta</td>
+             <td>Financeiros</td>
+             <td>03 Aug 2017</td>
+             <td>03 Aug 2017</td>
+ 
+ 
+           </tr>
+     
+           <tr>
+             <td class="sem-espaco">
+               <button type="button" class="btn " data-bs-toggle="modal" data-bs-target="#modalClasicShoesOp">Clasic Shoes</button>
+             </td>
+             <td>#</td>
+             <td class="teste">Em andamento</td>
+             <td class="mediaa">Media</td>
+             <td>Operações</td>
+             <td>03 Aug 2017</td>
+             <td>03 Aug 2017</td>
+ 
+ 
+           </tr>
+         </tbody>
+       </table>
+     </div>
+     
+     <!-- Modal Templates -->
+     <!-- Modal for Iphone 5 -->
+     <div class="modal fade" id="modalIphone5" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+       <div class="modal-dialog">
+         <div class="modal-content">
+           <div class="modal-header">
+             <h1 class="modal-title fs-5" id="exampleModalLabel">Iphone 5</h1>
+             <button type="button" class="btn-close-custom" data-bs-dismiss="modal" aria-label="Close">
+               <i class="fas fa-times"></i>
+             </button>
+           </div>
+           <div class="modal-body">
+             <!-- Conteúdo do modal para Iphone 5 -->
+             ...
+           </div>
+           <div class="modal-footer">
+             <button type="button" class="btn btn-secondary btn-custom-close" data-bs-dismiss="modal">Close</button>
+             <button type="button" class="btn btn-primary btn-custom-save">Save changes</button>
+           </div>
+         </div>
+       </div>
+     </div>
+     
+     
+     <!-- Modal for Earphone GL -->
+     <div class="modal fade" id="modalEarphoneGL" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+       <div class="modal-dialog">
+         <div class="modal-content">
+           <div class="modal-header">
+             <h1 class="modal-title fs-5" id="exampleModalLabel">Earphone GL</h1>
+             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+           </div>
+           <div class="modal-body">
+             <!-- Conteúdo do modal para Earphone GL -->
+             ...
+           </div>
+           <div class="modal-footer">
+             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+             <button type="button" class="btn btn-primary">Save changes</button>
+           </div>
+         </div>
+       </div>
+     </div>
+     
+     <!-- Modal for HD Hand Camera -->
+     <div class="modal fade" id="modalHDHandCamera" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+       <div class="modal-dialog">
+         <div class="modal-content">
+           <div class="modal-header">
+             <h1 class="modal-title fs-5" id="exampleModalLabel">HD Hand Camera</h1>
+             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+           </div>
+           <div class="modal-body">
+             <!-- Conteúdo do modal para HD Hand Camera -->
+             ...
+           </div>
+           <div class="modal-footer">
+             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+             <button type="button" class="btn btn-primary">Save changes</button>
+           </div>
+         </div>
+       </div>
+     </div>
+     
+     <!-- Modal for Clasic Shoes -->
+     <div class="modal fade" id="modalClasicShoes" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+       <div class="modal-dialog">
+         <div class="modal-content">
+           <div class="modal-header">
+             <h1 class="modal-title fs-5" id="exampleModalLabel">Clasic Shoes</h1>
+             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+           </div>
+           <div class="modal-body">
+             <!-- Conteúdo do modal para Clasic Shoes -->
+             ...
+           </div>
+           <div class="modal-footer">
+             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+             <button type="button" class="btn btn-primary">Save changes</button>
+           </div>
+         </div>
+       </div>
+     </div>
+     
+     <!-- Modal for Hand Watch -->
+     <div class="modal fade" id="modalHandWatch" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+       <div class="modal-dialog">
+         <div class="modal-content">
+           <div class="modal-header">
+             <h1 class="modal-title fs-5" id="exampleModalLabel">Hand Watch</h1>
+             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+           </div>
+           <div class="modal-body">
+             <!-- Conteúdo do modal para Hand Watch -->
+             ...
+           </div>
+           <div class="modal-footer">
+             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+             <button type="button" class="btn btn-primary">Save changes</button>
+           </div>
+         </div>
+       </div>
+     </div>
+     
+     <!-- Modal for Clasic Shoes in Operações -->
+     <div class="modal fade" id="modalClasicShoesOp" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+       <div class="modal-dialog">
+         <div class="modal-content">
+           <div class="modal-header">
+             <h1 class="modal-title fs-5" id="exampleModalLabel">Clasic Shoes (Operações)</h1>
+             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+           </div>
+           <div class="modal-body">
+             <!-- Conteúdo do modal para Clasic Shoes em Operações -->
+             ...
+           </div>
+           <div class="modal-footer">
+             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+             <button type="button" class="btn btn-primary">Save changes</button>
+           </div>
+         </div>
+       </div>
+     </div>
+     
+      </div>
+    </div>
+   </div><!--End Row-->
   <div class="row">
     <div class="col-12 col-lg-8 col-xl-8">
      <div class="card">
@@ -628,7 +929,7 @@
   <!--start color switcher-->
    <div class="right-sidebar">
     <div class="switcher-icon">
-      <i class="zmdi zmdi-settings zmdi-hc-spin"></i>
+      <i id="switchIcon" class="zmdi zmdi-power"></i>
     </div>
     <div class="right-sidebar-content">
 

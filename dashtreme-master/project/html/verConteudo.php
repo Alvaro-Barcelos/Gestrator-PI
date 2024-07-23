@@ -66,8 +66,9 @@
         </li>
 
         <li>
-          <a href="agenda_adm.html">
-            <i class="fa-solid fa-calendar" style="color: #9e9e9e;"></i> <span>Agenda</span>
+          <a
+            href="https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fcalendar.google.com%2Fcalendar%2Fu%2F0%2Fr&emr=1&followup=https%3A%2F%2Fcalendar.google.com%2Fcalendar%2Fu%2F0%2Fr&ifkv=AdF4I77H6Q8kDjrou1wIGuHz3S3_9WHl1Z6w3HQ5MAbJVDPoIZHRKIQUAYS0YHfymJmHEtgj8rOdfQ&osid=1&passive=1209600&service=cl&flowName=GlifWebSignIn&flowEntry=ServiceLogin&dsh=S268491357%3A1720720457775498&ddm=0">
+            <i class="zmdi zmdi-calendar-check"></i> <span>Calendário</span>
           </a>
         </li>
 
@@ -88,13 +89,7 @@
             <i class="fa-solid fa-list-check" style="color: #9e9e9e;"></i> <span>Serviço</span>
           </a>
         </li>
-        <li>
-          <a
-            href="https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fcalendar.google.com%2Fcalendar%2Fu%2F0%2Fr&emr=1&followup=https%3A%2F%2Fcalendar.google.com%2Fcalendar%2Fu%2F0%2Fr&ifkv=AdF4I77H6Q8kDjrou1wIGuHz3S3_9WHl1Z6w3HQ5MAbJVDPoIZHRKIQUAYS0YHfymJmHEtgj8rOdfQ&osid=1&passive=1209600&service=cl&flowName=GlifWebSignIn&flowEntry=ServiceLogin&dsh=S268491357%3A1720720457775498&ddm=0">
-            <i class="zmdi zmdi-calendar-check"></i> <span>Calendar</span>
-          </a>
-        </li>
-        <li>
+
         <li>
           <a href="relatorio_adm.html">
             <i class="zmdi zmdi-assignment" style="color: #9e9e9e;"></i><span>Relatório</span>
@@ -192,31 +187,61 @@
             <div class="card">
               <div class="card-body">
                 <div class="card-title">Registrar novo funcionário</div>
-                
-                  </div>
-                  <div class="form-group">
-                    <button type="submit" class="btn btn-light px-5">Cadastrar conteúdo</button>
-                  </div>
-                </form>
+                <!-- Conteúdo principal dos produtos -->
+                <?php
+                include_once ('../conexao.php');
+                $sql = "SELECT * FROM conteudo";
+                $resultado = mysqli_query($conexao, $sql);
+
+                if (mysqli_num_rows($resultado) > 0) {
+                  while ($row = mysqli_fetch_assoc($resultado)) {
+                    echo "<div class='options'>";
+                    echo "    <div class='content-image img-classe'>";
+                    echo "        <img src='" . $row['capa'] . "' alt=''>";
+                    echo "    </div>";
+                    echo "    <h1 class='titulo-options'>Nome: " . $row['nome_conteudo'] . "</h1>";
+                    echo "    <p>Preço: R$" . $row['preco'] . "</p>";
+                    echo "    <p>Quantidade: " . $row['quantidade'] . "</p>";
+
+                    echo "<form action='atualizar_estoque.php' method='post'>";
+                    echo "<input type='hidden' name='id' value='" . $row['id_produto'] . "'>";
+                    echo "<button type='submit' class='fa-regular fa-pen-to-square' style='color: #38a9ff;'</button> </td>";
+                    echo "</form>";
+
+                    echo "<form action='excluir_estoque.php' method='post'>";
+                    echo "<input type='hidden' name='id' value='" . $row['id_produto'] . "'>";
+                    echo "<button type='submit' class='fa-solid fa-trash'  style='color: #d33131';</button> </td>";
+                    echo "</form>";
+                    echo "</div>";
+                  }
+                } else {
+                  echo "<p>Nenhum produto encontrado.</p>";
+                }
+                ?>
               </div>
+              <div class="form-group">
+                <button type="submit" class="btn btn-light px-5">Cadastrar conteúdo</button>
+              </div>
+              </form>
             </div>
           </div>
         </div>
-        <!--End Row-->
       </div>
-      <!--End container-fluid-->
+      <!--End Row-->
     </div>
-    <!--End content-wrapper-->
+    <!--End container-fluid-->
+  </div>
+  <!--End content-wrapper-->
 
-    <!--Start footer-->
-    <footer class="footer">
-      <div class="container">
-        <div class="text-center">
-          © 2022 Gestrator. Criado com amor por Grupo GE. Todos os direitos reservados.
-        </div>
+  <!--Start footer-->
+  <footer class="footer">
+    <div class="container">
+      <div class="text-center">
+        © 2022 Gestrator. Criado com amor por Grupo GE. Todos os direitos reservados.
       </div>
-    </footer>
-    <!--End footer-->
+    </div>
+  </footer>
+  <!--End footer-->
 
   </div>
   <!--End wrapper-->

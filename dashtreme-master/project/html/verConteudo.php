@@ -192,31 +192,61 @@
             <div class="card">
               <div class="card-body">
                 <div class="card-title">Registrar novo funcionário</div>
-                
-                  </div>
-                  <div class="form-group">
-                    <button type="submit" class="btn btn-light px-5">Cadastrar conteúdo</button>
-                  </div>
-                </form>
+                <!-- Conteúdo principal dos produtos -->
+                <?php
+                include_once ('../conexao.php');
+                $sql = "SELECT * FROM conteudo";
+                $resultado = mysqli_query($conexao, $sql);
+
+                if (mysqli_num_rows($resultado) > 0) {
+                  while ($row = mysqli_fetch_assoc($resultado)) {
+                    echo "<div class='options'>";
+                    echo "    <div class='content-image img-classe'>";
+                    echo "        <img src='" . $row['capa'] . "' alt=''>";
+                    echo "    </div>";
+                    echo "    <h1 class='titulo-options'>Nome: " . $row['nome_conteudo'] . "</h1>";
+                    echo "    <p>Preço: R$" . $row['preco'] . "</p>";
+                    echo "    <p>Quantidade: " . $row['quantidade'] . "</p>";
+
+                    echo "<form action='atualizar_estoque.php' method='post'>";
+                    echo "<input type='hidden' name='id' value='" . $row['id_produto'] . "'>";
+                    echo "<button type='submit' class='fa-regular fa-pen-to-square' style='color: #38a9ff;'</button> </td>";
+                    echo "</form>";
+
+                    echo "<form action='excluir_estoque.php' method='post'>";
+                    echo "<input type='hidden' name='id' value='" . $row['id_produto'] . "'>";
+                    echo "<button type='submit' class='fa-solid fa-trash'  style='color: #d33131';</button> </td>";
+                    echo "</form>";
+                    echo "</div>";
+                  }
+                } else {
+                  echo "<p>Nenhum produto encontrado.</p>";
+                }
+                ?>
               </div>
+              <div class="form-group">
+                <button type="submit" class="btn btn-light px-5">Cadastrar conteúdo</button>
+              </div>
+              </form>
             </div>
           </div>
         </div>
-        <!--End Row-->
       </div>
-      <!--End container-fluid-->
+      <!--End Row-->
     </div>
-    <!--End content-wrapper-->
+    <!--End container-fluid-->
+  </div>
+  <!--End content-wrapper-->
 
-    <!--Start footer-->
-    <footer class="footer">
-      <div class="container">
-        <div class="text-center">
-          © 2022 Gestrator. Criado com amor por Grupo GE. Todos os direitos reservados.
-        </div>
+  <!--Start footer-->
+  <footer class="footer">
+    <div class="container">
+      <div class="text-center">
+        © 2022 Gestrator. Criado com amor por Grupo GE. Todos os direitos reservados.
       </div>
-    </footer>
-    <!--End footer-->
+    </div>
+  </footer>
+  <!--End footer-->
 
   </div>
   <!--End wrapper-->

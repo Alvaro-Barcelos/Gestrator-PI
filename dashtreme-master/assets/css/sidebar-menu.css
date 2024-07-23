@@ -55,6 +55,7 @@
     background: rgba(255, 255, 255, 0.15);
     border-left-color: #ffffff;
 }
+
 .sidebar-menu>li .label, .sidebar-menu>li .badge {
 	margin-top: 3px;
 	margin-right: 5px;

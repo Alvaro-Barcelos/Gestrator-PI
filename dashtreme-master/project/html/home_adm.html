@@ -344,7 +344,7 @@
               <button type="button" class="btn " data-bs-toggle="modal" data-bs-target="#modalIphone5">Alterar as planilhas S5</button>
             </td>
             <td><i class="fa-solid fa-user-plus"></i></td>
-            <td class="teste2">Pendente</td>
+            <td class="situacao teste2">Pendente</td>
             <td class="alta">Alta</td>
             <td>Administrativo</td>
             <td>03 Aug 2017</td>
@@ -360,7 +360,7 @@
               <button type="button" class="btn " data-bs-toggle="modal" data-bs-target="#modalEarphoneGL">Earphone GL</button>
             </td>
             <td><i class="fa-solid fa-user-plus"></i></td>
-            <td class="teste">Em andamento</td>
+            <td class="situacao teste">Em andamento</td>
             <td class="mediaa">Media</td>
             <td>Recursos humanos</td>
             <td>03 Aug 2017</td>
@@ -375,7 +375,7 @@
               <button type="button" class="btn " data-bs-toggle="modal" data-bs-target="#modalHDHandCamera">HD Hand Camera</button>
             </td>
             <td><i class="fa-solid fa-user-plus"></i></td>
-            <td class="teste">Em andamento</td>
+            <td class="situacao teste">Em andamento</td>
             <td class="baixa">Baixa</td>
             <td>Compras</td>
             <td>03 Aug 2017</td>
@@ -390,7 +390,7 @@
               <button type="button" class="btn " data-bs-toggle="modal" data-bs-target="#modalClasicShoes">Clasic Shoes</button>
             </td>
             <td><i class="fa-solid fa-user-plus"></i></td>
-            <td class="teste1">Concluída</td>
+            <td class="situacao teste1">Concluída</td>
             <td class="baixa">Baixa</td>
             <td>Tecnologia</td>
             <td>03 Aug 2017</td>
@@ -404,7 +404,7 @@
               <button type="button" class="btn " data-bs-toggle="modal" data-bs-target="#modalHandWatch">Hand Watch</button>
             </td>
             <td><i class="fa-solid fa-user-plus"></i></td>
-            <td class="teste">Em andamento</td>
+            <td class="situacao teste">Em andamento</td>
             <td class="alta">Alta</td>
             <td>Financeiros</td>
             <td>03 Aug 2017</td>
@@ -418,7 +418,7 @@
               <button type="button" class="btn " data-bs-toggle="modal" data-bs-target="#modalClasicShoesOp">Clasic Shoes</button>
             </td>
             <td><i class="fa-solid fa-user-plus"></i></td>
-            <td class="teste">Em andamento</td>
+            <td class="situacao teste">Em andamento</td>
             <td class="mediaa">Media</td>
             <td>Operações</td>
             <td>03 Aug 2017</td>
@@ -919,6 +919,22 @@
   <!--end color switcher-->
    
   </div><!--End wrapper-->
+
+  
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".situacao").click(function(){
+                var situacoes = ["Pendente", "Em andamento", "Concluída"];
+                var classes = ["teste2", "teste", "teste1"];
+                var current = $(this).text().trim();
+                var index = situacoes.indexOf(current);
+                var nextIndex = (index + 1) % situacoes.length;
+                
+                $(this).removeClass(classes.join(" ")).addClass(classes[nextIndex]).text(situacoes[nextIndex]);
+            });
+        });
+    </script>
 
   <!-- Bootstrap core JavaScript-->
   <script src="../../assets/js/jquery.min.js"></script>

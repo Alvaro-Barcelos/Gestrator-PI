@@ -150,6 +150,22 @@
 
   }
     
+
+  .dropdown-menu {
+            background-color: white; /* Cor de fundo branca */
+            border: 1px solid #ddd;  /* Borda cinza clara */
+        }
+        .dropdown-item {
+            color: #333; /* Cor do texto */
+        }
+        .dropdown-item:hover {
+            background-color: #f8f9fa; /* Cor de fundo ao passar o mouse */
+            color: #007bff; /* Cor do texto ao passar o mouse */
+        }
+
+
+
+
   </style>
 
 
@@ -738,7 +754,7 @@ $resultado = mysqli_query($conexao, "SELECT servico.*, setor.nome_setor FROM ser
   <!--start color switcher-->
    <div class="right-sidebar">
     <div class="switcher-icon">
-      <i id="switchIcon" class="zmdi zmdi-power"></i>
+      <i class="zmdi zmdi-brush"></i>
     </div>
     <div>
     </div>

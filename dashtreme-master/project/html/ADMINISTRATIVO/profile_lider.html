@@ -131,7 +131,7 @@
   </header>
   <!--End topbar header-->
 
-<div class="clearfix"></div>
+  <div class="clearfix"></div>
 	
   <div class="content-wrapper">
     <div class="container-fluid">
@@ -144,8 +144,8 @@
             </div>
             <div class="card-body pt-5">
                 <img src="https://via.placeholder.com/110x110" alt="profile-image" class="profile">
-                <h5 class="card-title">Mark Stern</h5>
-                <p class="card-text">Sou um Engenheiro de Software em busca de melhorar</p>
+                <h5 class="card-title">Renzo Lutkenhaus Cleto de Souza</h5>
+               
                 <!-- <div class="icon-block">
                   <a href="javascript:void();"><i class="fa fa-facebook bg-facebook text-white"></i></a>
 				  <a href="javascript:void();"> <i class="fa fa-twitter bg-twitter text-white"></i></a>
@@ -182,25 +182,7 @@
                     </div>
                   </div>
 
-                    <hr>
-                  <div class="media align-items-center">
-                     <div class="media-body text-left ml-3">
-                       <div class="progress-wrapper">
-                         <p>Conhecimento em orçamentação e controle de despesas</p>
-                        </div>                   
-                    </div>
-                  </div>  
                   
-                  <hr>
-                  <div class="media align-items-center">
-                     <div class="media-body text-left ml-3">
-                       <div class="progress-wrapper">
-                         <p>Capacidade de lidar com múltiplas responsabilidades e prazos</p>
-                        </div>                   
-                    </div>
-                  </div> 
-
-
 
               </div>
         </div>
@@ -214,9 +196,9 @@
                 <li class="nav-item">
                     <a href="javascript:void();" data-target="#profile" data-toggle="pill" class="nav-link active"><i class="icon-user"></i> <span class="hidden-xs">Profile</span></a>
                 </li>
-                <li class="nav-item">
-                    <a href="javascript:void();" data-target="#messages" data-toggle="pill" class="nav-link"><i class="icon-envelope-open"></i> <span class="hidden-xs">Messages</span></a>
-                </li>
+                <!-- <li class="nav-item">
+                    <a href="javascript:void();" data-target="#messages" data-toggle="pill" class="nav-link"><i class="icon-envelope-open"></i> <span class="hidden-xs">Email</span></a>
+                </li> -->
                 <li class="nav-item">
                     <a href="javascript:void();" data-target="#edit" data-toggle="pill" class="nav-link"><i class="icon-note"></i> <span class="hidden-xs">Edit</span></a>
                 </li>
@@ -230,11 +212,45 @@
                             <p>
                                 Renzo Lutkenhaus Cleto de Souza
                             </p>
+                            <hr>
+
                             <h6>Email</h6>
                             <p>
                                renzocleto1108@gmail.com
                             </p>
+                            <hr>
+
+                            <h6>Data de Nascimento</h6>
+                            <p>
+                              11/08/2005
+                           </p>
+                           <hr>
+
+                           <h6>Telefone</h6>
+                           <p>
+                            (31) 97543-7985
+                           </p>
+                           <hr>
+
+                         <h6>Cidade</h6>
+                         <p>
+                          Belo Horizonte
+                         </p>
+                         <hr>
+
+                       <h6>Endereço</h6>
+                         <p>
+                          Av. Miguel Perrela 975
+                       </p>
+                       <hr>
+
+                       <h6>Setor</h6>
+                       <p>
+                        TI
+                     </p>
+
                         </div>
+                        
                         <!-- <div class="col-md-6">
                             <h6>Recent badges</h6>
                             <a href="javascript:void();" class="badge badge-dark badge-pill">html5</a>
@@ -250,7 +266,7 @@
                             <span class="badge badge-success"><i class="fa fa-cog"></i> 43 Forks</span>
                             <span class="badge badge-danger"><i class="fa fa-eye"></i> 245 Views</span>
                         </div> -->
-
+<!-- 
                         <div class="col-md-12">
                             <h5 class="mt-2 mb-3"><span class="fa fa-clock-o ion-clock float-right"></span> Recent Activity</h5>
                              <div class="table-responsive">
@@ -284,48 +300,46 @@
                                 </tbody>
                             </table>
                           </div>
-                        </div>
+                        </div> -->
                     </div>
                     <!--/row-->
                 </div>
                 <div class="tab-pane" id="messages">
-                    <div class="alert alert-info alert-dismissible" role="alert">
-				   <button type="button" class="close" data-dismiss="alert">&times;</button>
-				    <div class="alert-icon">
-					 <i class="icon-info"></i>
-				    </div>
-				    <div class="alert-message">
-				      <span><strong>Info!</strong> Lorem Ipsum is simply dummy text.</span>
-				    </div>
-                  </div>
+                  
+                  <form action=""  onsubmit="senhaOk();" method="POST">
+                  <div class="col-lg-6">
+                    <div class="card">
+                      <div class="card-body">
+
+                      <div class="card-title">Enviar Email</div>
+                      <hr>                   
+                      <div class="form-group">
+                       <label for="input-3">Nome</label>
+                       <input type="text" class="form-control" name="nome" id="input-3" placeholder="Seu Nome">
+                      </div>
+
+                      <div class="form-group">
+                       <label for="input-4">Email</label>
+                       <input type="text" class="form-control" name="email" id="input-4" placeholder="Seu Email">
+                      </div>
+
+                      <div class="form-group">
+                       <label for="input-5">Menssagem</label>
+                       <textarea name="mensagem"  cols="30" rows="10"></textarea>                   
+                      </div>
+
+                      <div class="form-group">
+                       <button type="submit" class="btn btn-light px-5"><i class="icon-lock"></i> Enviar Email</button>
+                     </div>
+
+                     </form>
+                    </div>
+                    </div>
+                 </div>
                   <div class="table-responsive">
                     <table class="table table-hover table-striped">
                         <tbody>                                    
-                            <tr>
-                                <td>
-                                   <span class="float-right font-weight-bold">3 hrs ago</span> Here is your a link to the latest summary report from the..
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                   <span class="float-right font-weight-bold">Yesterday</span> There has been a request on your account since that was..
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                   <span class="float-right font-weight-bold">9/10</span> Porttitor vitae ultrices quis, dapibus id dolor. Morbi venenatis lacinia rhoncus. 
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                   <span class="float-right font-weight-bold">9/4</span> Vestibulum tincidunt ullamcorper eros eget luctus. 
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                   <span class="float-right font-weight-bold">9/4</span> Maxamillion ais the fix for tibulum tincidunt ullamcorper eros. 
-                                </td>
-                            </tr>
+                           
                         </tbody> 
                     </table>
                   </div>
@@ -333,30 +347,22 @@
                 <div class="tab-pane" id="edit">
                     <form>
                         <div class="form-group row">
-                            <label class="col-lg-3 col-form-label form-control-label">Nome Completo</label>
+                            <label class="col-lg-3 col-form-label form-control-label">Nome</label>
                             <div class="col-lg-9">
-                                <input class="form-control" type="text" value="Renzo Lutkenhaus Cleto de Souza">
+                                <input class="form-control" type="text" value="" placeholder="Nome Completo">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-lg-3 col-form-label form-control-label">Email</label>
                             <div class="col-lg-9">
-                                <input class="form-control" type="text" value="renzocleto1108@gmail.com">
+                                <input class="form-control" type="text" value="" placeholder="Email">
                             </div>
                         </div>
-
-                        <div class="form-group row">
-                          <label class="col-lg-3 col-form-label form-control-label">Data de nascimento</label>
-                          <div class="col-lg-9">
-                              <input class="form-control" type="text" value="Data de nascimento">
-                          </div>
-                      </div>
-
 
                       <div class="form-group row">
                         <label class="col-lg-3 col-form-label form-control-label">Telefone</label>
                         <div class="col-lg-9">
-                            <input class="form-control" type="text" value="(31) 975437985">
+                            <input class="form-control" type="text" value="" placeholder="Telefone">
                         </div>
                     </div>
 
@@ -371,47 +377,83 @@
                         <div class="form-group row">
                           <label class="col-lg-3 col-form-label form-control-label">Cidade</label>
                           <div class="col-lg-9">
-                              <input class="form-control" type="email" value="Belo Horizonte">      
+                              <input class="form-control" type="email" value="" placeholder="Cidade">      
                           </div>
                       </div>
                       
                         <div class="form-group row">
                             <label class="col-lg-3 col-form-label form-control-label">Endereço</label>
                             <div class="col-lg-9">
-                                <input class="form-control" type="url" value="Av.Miguel Perrela">
+                                <input class="form-control" type="url" value=""  placeholder="Endereço">
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label class="col-lg-3 col-form-label form-control-label">Setor</label>
                             <div class="col-lg-9">
-                                <input class="form-control" type="text" value="TI" placeholder="TI">
-                            </div>
-                        </div>
-
-                       
-                       
-                       
-
-                        <div class="form-group row">
-                            <label class="col-lg-3 col-form-label form-control-label">Password</label>
-                            <div class="col-lg-9">
-                                <input class="form-control" type="password" value="11111122333">
+                                <input class="form-control" type="text" value="" placeholder="Setor">
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label class="col-lg-3 col-form-label form-control-label">Confirm password</label>
-                            <div class="col-lg-9">
-                                <input class="form-control" type="password" value="11111122333">
-                            </div>
+                          <label class="col-lg-3 col-form-label form-control-label">Skills</label>
+                          <div class="col-lg-9">
+                              <input class="form-control" type="text" value="" placeholder="Skill">
+                          </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <label class="col-lg-3 col-form-label form-control-label">Skills</label>
+                        <div class="col-lg-9">
+                            <input class="form-control" type="text" value="" placeholder="Skill">
                         </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <label class="col-lg-3 col-form-label form-control-label">Skills</label>
+                      <div class="col-lg-9">
+                          <input class="form-control" type="text" value="" placeholder="Skill">
+                      </div>
+                  </div>
+
+                       
+
+                  <div class="form-group row">
+                    <label class="col-lg-3 col-form-label form-control-label">Senha</label>
+                    <div class="col-lg-9 input-group">
+                        <input class="form-control" type="password" name="senha" size="15" required onchange='confereSenha();' placeholder="******">
+                        <div class="input-group-append">
+                            <span class="input-group-text" onclick="mostrarSenha('senha')">
+                                <i class="fa fa-eye" id="olhoSenha"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group row">
+                    <label class="col-lg-3 col-form-label form-control-label">Confirmar Senha</label>
+                    <div class="col-lg-9 input-group">
+                        <input class="form-control" type="password" name="confirma" size="15" required onchange='confereSenha();' placeholder="******">
+                        <div class="input-group-append">
+                            <span class="input-group-text" onclick="mostrarSenha('confirma')">
+                                <i class="fa fa-eye" id="olhoConfirma"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+
 
                         <div class="form-group row">
                             <label class="col-lg-3 col-form-label form-control-label"></label>
                             <div class="col-lg-9">
-                                <input type="reset" class="btn btn-secondary" value="Cancel">
-                                <input type="button" class="btn btn-primary" value="Save Changes">
+                              <button type="submit" class="btn btn-light px-5">Cancel</button>
+                              <button type="submit" class="btn btn-light px-5">Atualizar</button>
                             </div>
 
                         </div>
@@ -423,6 +465,7 @@
       </div>
         
     </div>
+
 
 	<!--start overlay-->
 		  <div class="overlay toggle-menu"></div>
@@ -498,6 +541,46 @@
   
   <!-- Custom scripts -->
   <script src="../../../assets/js/app-script.js"></script>
+
+
+  <!-- Script pro confirmador de senha -->
+
+<script>
+  function confereSenha() {
+    const senha = document.querySelector('input[name=senha]');
+    const confirma = document.querySelector('input[name=confirma]');
+  
+    if (confirma.value === senha.value){
+      confirma.setCustomValidity('');
+    } else{
+      confirma.setCustomValidity('As senhas não conferem');
+    }
+  }
+  
+  function senhaOK() {
+    alert("Senhas conferem!")
+  }
+    </script>
+  
+  
+   <!-- Script pro olho da senha  -->
+  
+   <script>
+    function mostrarSenha(id) {
+        var campo = document.getElementsByName(id)[0];
+        var tipo = campo.getAttribute('type');
+  
+        if (tipo === 'password') {
+            campo.setAttribute('type', 'text');
+            document.getElementById('olho' + id.charAt(0).toUpperCase() + id.slice(1)).classList.remove('fa-eye');
+            document.getElementById('olho' + id.charAt(0).toUpperCase() + id.slice(1)).classList.add('fa-eye-slash');
+        } else {
+            campo.setAttribute('type', 'password');
+            document.getElementById('olho' + id.charAt(0).toUpperCase() + id.slice(1)).classList.remove('fa-eye-slash');
+            document.getElementById('olho' + id.charAt(0).toUpperCase() + id.slice(1)).classList.add('fa-eye');
+        }
+    }
+  </script>
 	
 </body>
 </html>

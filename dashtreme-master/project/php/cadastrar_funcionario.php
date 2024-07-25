@@ -22,6 +22,7 @@
 
     $setor = $_POST['setor'];
     $cargo = $_POST['cargo'];
+    $salario = $_POST['salario'];
     $data_nascimento = $_POST['data_nascimento'];
     $pcd = $_POST['pcd'];
     $cidade = $_POST['cidade'];

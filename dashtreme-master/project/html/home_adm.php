@@ -74,15 +74,33 @@
   .teste2{
     background-color: #D93D59;
   }
+  .teste3{
+    background-color: gray;
+  }
 
-  .mediaa{
+  .alta {
     background-color: #5D55DB;
+
   }
-  .alta{
-    background-color: #450F91;
+  .media3 {
+      background-color: #450F91;
+
   }
-  .baixa{
-    background-color: #5E9FF2;
+  .baixa {
+      background-color: #5E9FF2;
+  }
+
+  .w-120{
+    width: 400px !important;
+  }
+  .w-100{
+    width: 200px !important;
+  }
+  .w-50{
+    width: 100px !important;
+  }
+  .w-75{
+    width: 150px !important;
   }
 
 
@@ -307,259 +325,92 @@
  </div>  
 	  
 
-	
-	<div class="row">
-	 <div class="col-12 col-lg-12">
-	   <div class="card">
-	     <div class="card-header este-mes">Este mês
-		  <div class="card-action">
-             <div class="dropdown">
-             <a href="javascript:void();" class="dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown">
-              <i class="icon-options"></i>
-             </a>
-              <div class="dropdown-menu dropdown-menu-right">
-              <a class="dropdown-item" href="javascript:void();">Action</a>
-              <a class="dropdown-item" href="javascript:void();">Another action</a>
-              <a class="dropdown-item" href="javascript:void();">Something else here</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="javascript:void();">Separated link</a>
-               </div>
-              </div>
-             </div>
-		 </div>
-     <div class="table-responsive">
-      <table class="table align-items-center table-flush table-borderless">
-        <thead>
-          <tr>
-            <th>Serviço</th>
-            <th>Equipe</th>
-            <th>Situação</th>
-            <th>prioridade</th>
-            <th>Setor</th>
-            <th>Inicio</th>
-            <th>Final</th>
-            <th>Nota</th>
+ <?php
+include_once("../php/conexao.php");
 
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="sem-espaco">
-              <button type="button" class="btn " data-bs-toggle="modal" data-bs-target="#modalIphone5">Alterar as planilhas S5</button>
-            </td>
-            <td><i class="fa-solid fa-user-plus"></i></td>
-            <td class="situacao teste2">Pendente</td>
-            <td class="alta">Alta</td>
-            <td>Administrativo</td>
-            <td>03 Aug 2017</td>
-            <td>03 Aug 2017</td>
-            <td><i class="fa-regular fa-comment"></i></td>
+$resultado = mysqli_query($conexao, "SELECT servico.*, setor.nome_setor FROM servico JOIN setor ON servico.id_setor = setor.id_setor");
+?>
 
+<div class="row">
+    <div class="col-12 col-lg-12">
+        <div class="card">
+            <div class="card-header este-mes">Este mês
+                <div class="card-action">
+                    <div class="dropdown">
+                        <a href="javascript:void();" class="dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown">
+                            <i class="icon-options"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="javascript:void();">Action</a>
+                            <a class="dropdown-item" href="javascript:void();">Another action</a>
+                            <a class="dropdown-item" href="javascript:void();">Something else here</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="javascript:void();">Separated link</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table align-items-center table-flush table-borderless">
+                    <thead>
+                        <tr>
+                            <th class="w-120">Serviço</th>
+                            <th >Equipe</th>
+                            <th>Situação</th>
+                            <th class="w-75">Prioridade</th>
+                            <th>Setor</th>
+                            <th>Início</th>
+                            <th>Final</th>
+                            <th>Nota</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php while($row = mysqli_fetch_assoc($resultado)): ?>
+                            <tr>
+                                <td class="sem-espaco w-120">
+                                    <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#modal<?= $row['id_servico'] ?>">
+                                        <?= $row['nome_servico'] ?>
+                                    </button>
+                                </td>
+                                <td class="w-50"><i class="fa-solid fa-user-plus"></i></td>
+                                <td class="situacao w-100 <?= strtolower(str_replace(' ', '-', $row['situacao'])) ?>"><?= $row['situacao'] ?></td>
+                                <td class="prioridade <?= strtolower($row['prioridade']) ?>"><?= $row['prioridade'] ?></td>
+                                <td><?= $row['nome_setor'] ?></td>
+                                <td><?= date('d M Y', strtotime($row['data_criada'])) ?></td>
+                                <td><?= date('d M Y', strtotime($row['data_final'])) ?></td>
+                                <td><i class="fa-regular fa-comment"></i></td>
+                            </tr>
 
-
-          </tr>
-          
-          <tr>
-            <td class="sem-espaco">
-              <button type="button" class="btn " data-bs-toggle="modal" data-bs-target="#modalEarphoneGL">Earphone GL</button>
-            </td>
-            <td><i class="fa-solid fa-user-plus"></i></td>
-            <td class="situacao teste">Em andamento</td>
-            <td class="mediaa">Media</td>
-            <td>Recursos humanos</td>
-            <td>03 Aug 2017</td>
-            <td>03 Aug 2017</td>
-            <td><i class="fa-regular fa-comment"></i></td>
-
-
-          </tr>
-    
-          <tr>
-            <td class="sem-espaco">
-              <button type="button" class="btn " data-bs-toggle="modal" data-bs-target="#modalHDHandCamera">HD Hand Camera</button>
-            </td>
-            <td><i class="fa-solid fa-user-plus"></i></td>
-            <td class="situacao teste">Em andamento</td>
-            <td class="baixa">Baixa</td>
-            <td>Compras</td>
-            <td>03 Aug 2017</td>
-            <td>03 Aug 2017</td>
-            <td><i class="fa-regular fa-comment"></i></td>
-
-
-          </tr>
-    
-          <tr>
-            <td class="sem-espaco">
-              <button type="button" class="btn " data-bs-toggle="modal" data-bs-target="#modalClasicShoes">Clasic Shoes</button>
-            </td>
-            <td><i class="fa-solid fa-user-plus"></i></td>
-            <td class="situacao teste1">Concluída</td>
-            <td class="baixa">Baixa</td>
-            <td>Tecnologia</td>
-            <td>03 Aug 2017</td>
-            <td>03 Aug 2017</td>
-            <td><i class="fa-regular fa-comment"></i></td>
-
-          </tr>
-    
-          <tr>
-            <td class="sem-espaco">
-              <button type="button" class="btn " data-bs-toggle="modal" data-bs-target="#modalHandWatch">Hand Watch</button>
-            </td>
-            <td><i class="fa-solid fa-user-plus"></i></td>
-            <td class="situacao teste">Em andamento</td>
-            <td class="alta">Alta</td>
-            <td>Financeiros</td>
-            <td>03 Aug 2017</td>
-            <td>03 Aug 2017</td>
-            <td><i class="fa-regular fa-comment"></i></td>
-
-          </tr>
-    
-          <tr>
-            <td class="sem-espaco">
-              <button type="button" class="btn " data-bs-toggle="modal" data-bs-target="#modalClasicShoesOp">Clasic Shoes</button>
-            </td>
-            <td><i class="fa-solid fa-user-plus"></i></td>
-            <td class="situacao teste">Em andamento</td>
-            <td class="mediaa">Media</td>
-            <td>Operações</td>
-            <td>03 Aug 2017</td>
-            <td>03 Aug 2017</td>
-            <td><i class="fa-regular fa-comment"></i></td>
-
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    
-    <!-- Modal Templates -->
-    <!-- Modal for Iphone 5 -->
-    <div class="modal fade" id="modalIphone5" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Iphone 5</h1>
-            <button type="button" class="btn-close-custom" data-bs-dismiss="modal" aria-label="Close">
-              <i class="fas fa-times"></i>
-            </button>
-          </div>
-          <div class="modal-body">
-            <!-- Conteúdo do modal para Iphone 5 -->
-            ...
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary btn-custom-close" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary btn-custom-save">Save changes</button>
-          </div>
+                            <!-- Modal for <?= $row['nome_servico'] ?> -->
+                            <div class="modal fade" id="modal<?= $row['id_servico'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel"><?= $row['nome_servico'] ?></h1>
+                                            <button type="button" class="btn-close-custom" data-bs-dismiss="modal" aria-label="Close">
+                                                <i class="fas fa-times"></i>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <!-- Conteúdo do modal para <?= $row['nome_servico'] ?> -->
+                                            <?= $row['descricao'] ?>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary btn-custom-close" data-bs-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-primary btn-custom-save">Save changes</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endwhile; ?>
+                    </tbody>
+                </table>
+            </div>
         </div>
-      </div>
     </div>
+
     
-    
-    <!-- Modal for Earphone GL -->
-    <div class="modal fade" id="modalEarphoneGL" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Earphone GL</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <!-- Conteúdo do modal para Earphone GL -->
-            ...
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    <!-- Modal for HD Hand Camera -->
-    <div class="modal fade" id="modalHDHandCamera" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">HD Hand Camera</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <!-- Conteúdo do modal para HD Hand Camera -->
-            ...
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    <!-- Modal for Clasic Shoes -->
-    <div class="modal fade" id="modalClasicShoes" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Clasic Shoes</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <!-- Conteúdo do modal para Clasic Shoes -->
-            ...
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    <!-- Modal for Hand Watch -->
-    <div class="modal fade" id="modalHandWatch" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Hand Watch</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <!-- Conteúdo do modal para Hand Watch -->
-            ...
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    <!-- Modal for Clasic Shoes in Operações -->
-    <div class="modal fade" id="modalClasicShoesOp" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Clasic Shoes (Operações)</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <!-- Conteúdo do modal para Clasic Shoes em Operações -->
-            ...
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-	   </div>
-	 </div>
+
 	</div><!--End Row-->
 	<div class="row">
     <div class="col-12 col-lg-12">
@@ -584,7 +435,7 @@
        <table class="table align-items-center table-flush table-borderless">
          <thead>
            <tr>
-             <th>Serviço</th>
+             <th class="w-120">Serviço</th>
              <th>Equipe</th>
              <th>Situação</th>
              <th>prioridade</th>
@@ -597,7 +448,7 @@
          </thead>
          <tbody>
            <tr>
-             <td class="sem-espaco">
+             <td class="sem-espaco w-120">
                <button type="button" class="btn " data-bs-toggle="modal" data-bs-target="#modalIphone5">Alterar as planilhas S5</button>
              </td>
              <td><i class="fa-solid fa-user-plus"></i></td>
@@ -928,19 +779,31 @@
 
   
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(document).ready(function(){
-            $(".situacao").click(function(){
-                var situacoes = ["Pendente", "Em andamento", "Concluída"];
-                var classes = ["teste2", "teste", "teste1"];
-                var current = $(this).text().trim();
-                var index = situacoes.indexOf(current);
-                var nextIndex = (index + 1) % situacoes.length;
-                
-                $(this).removeClass(classes.join(" ")).addClass(classes[nextIndex]).text(situacoes[nextIndex]);
-            });
+  <script>
+    $(document).ready(function(){
+        // Handle status change
+        $(".situacao").click(function(){
+            var situacoes = ["Pendente", "Em andamento", "Concluída", "Não iniciado"];
+            var classes = ["teste2", "teste", "teste1", "teste3"];
+            var current = $(this).text().trim();
+            var index = situacoes.indexOf(current);
+            var nextIndex = (index + 1) % situacoes.length;
+
+            $(this).removeClass(classes.join(" ")).addClass(classes[nextIndex]).text(situacoes[nextIndex]);
         });
-    </script>
+
+        // Handle priority change
+        $(".prioridade").click(function(){
+            var prioridades = ["Alta", "media", "Baixa"];
+            var classes = ["alta", "media3", "baixa"];
+            var current = $(this).text().trim();
+            var index = prioridades.indexOf(current);
+            var nextIndex = (index + 1) % prioridades.length;
+
+            $(this).removeClass(classes.join(" ")).addClass(classes[nextIndex]).text(prioridades[nextIndex]);
+        });
+    });
+</script>
 
   <!-- Bootstrap core JavaScript-->
   <script src="../../assets/js/jquery.min.js"></script>

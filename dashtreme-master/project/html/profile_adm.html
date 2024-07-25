@@ -101,7 +101,7 @@
       <li>
       <div class="right-sidebar" id="sidebar">
         <div class="switcher-icon" onclick="toggleSidebar()">
-          <i id="switchIcon" class="zmdi zmdi-power"></i>
+          <i class="zmdi zmdi-brush"></i>
         </div>
         <div class="right-sidebar-content">
           <p class="mb-0">Gaussion Texture</p>
@@ -468,23 +468,30 @@
                   </div>
 
                        
-                       
-                       
 
-                        <div class="form-group row">
-                            <label class="col-lg-3 col-form-label form-control-label">Password</label>
-                            <div class="col-lg-9">
-                                <input class="form-control" type="password"  name="senha" size="15" required onchange='confereSenha();'  placeholder="******">
-                            </div>
+                  <div class="form-group row">
+                    <label class="col-lg-3 col-form-label form-control-label">Senha</label>
+                    <div class="col-lg-9 input-group">
+                        <input class="form-control" type="password" name="senha" size="15" required onchange='confereSenha();' placeholder="******">
+                        <div class="input-group-append">
+                            <span class="input-group-text" onclick="mostrarSenha('senha')">
+                                <i class="fa fa-eye" id="olhoSenha"></i>
+                            </span>
                         </div>
-
-
-                        <div class="form-group row">
-                            <label class="col-lg-3 col-form-label form-control-label">Confirmar password</label>
-                            <div class="col-lg-9">
-                                <input class="form-control" type="password"  name="confirma" size="15"  required onchange='confereSenha();'   placeholder="******">
-                            </div>
+                    </div>
+                </div>
+                
+                <div class="form-group row">
+                    <label class="col-lg-3 col-form-label form-control-label">Confirmar Senha</label>
+                    <div class="col-lg-9 input-group">
+                        <input class="form-control" type="password" name="confirma" size="15" required onchange='confereSenha();' placeholder="******">
+                        <div class="input-group-append">
+                            <span class="input-group-text" onclick="mostrarSenha('confirma')">
+                                <i class="fa fa-eye" id="olhoConfirma"></i>
+                            </span>
                         </div>
+                    </div>
+                </div>
 
 
 
@@ -575,6 +582,27 @@ function senhaOK() {
   alert("Senhas conferem!")
 }
   </script>
+
+
+ <!-- Script pro olho da senha  -->
+
+ <script>
+  function mostrarSenha(id) {
+      var campo = document.getElementsByName(id)[0];
+      var tipo = campo.getAttribute('type');
+
+      if (tipo === 'password') {
+          campo.setAttribute('type', 'text');
+          document.getElementById('olho' + id.charAt(0).toUpperCase() + id.slice(1)).classList.remove('fa-eye');
+          document.getElementById('olho' + id.charAt(0).toUpperCase() + id.slice(1)).classList.add('fa-eye-slash');
+      } else {
+          campo.setAttribute('type', 'password');
+          document.getElementById('olho' + id.charAt(0).toUpperCase() + id.slice(1)).classList.remove('fa-eye-slash');
+          document.getElementById('olho' + id.charAt(0).toUpperCase() + id.slice(1)).classList.add('fa-eye');
+      }
+  }
+</script>
+
 
 
 	

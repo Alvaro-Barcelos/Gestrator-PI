@@ -1,29 +1,30 @@
 CREATE DATABASE gestrator;
 
-
 CREATE TABLE login (
     id_login int auto_increment PRIMARY KEY,
     usuario varchar(30),
+    email varchar(90),
     senha varchar(255),
     tipo varchar(10)
-);
-
-CREATE TABLE servico (
-    id_servico int auto_increment PRIMARY KEY,
-    nome_servico varchar(50),
-    descricao varchar(50),
-    data_criada date,
-    data_final date,
-    situacao varchar(20),
-    equipe text
 );
 
 CREATE TABLE setor (
     id_setor int auto_increment PRIMARY KEY,
     nome_setor varchar(60),
-    quantidade int,
-    id_servico int,
-    FOREIGN KEY (id_servico) REFERENCES servico (id_servico)
+    quantidade int
+); 
+
+CREATE TABLE servico (
+    id_servico int auto_increment PRIMARY KEY,
+    nome_servico Varchar(50),
+    descricao Varchar(50),
+    data_criada date,
+    data_final date,
+    situacao Varchar(20),
+    prioridade Varchar(20),
+    equipe text,
+    id_setor int,
+    FOREIGN KEY(id_setor) REFERENCES Setor (id_setor)
 );
 
 CREATE TABLE funcionario (
@@ -43,8 +44,8 @@ CREATE TABLE funcionario (
     foto_funcionario blob,
     id_setor int,
     id_login int,
-    FOREIGN KEY (id_setor) REFERENCES setor (id_setor),
-    FOREIGN KEY (id_login) REFERENCES login (id_login)
+    FOREIGN KEY (id_setor) REFERENCES setor (id_setor) ON DELETE CASCADE,
+    FOREIGN KEY (id_login) REFERENCES login (id_login) ON DELETE CASCADE
 );
 
 CREATE TABLE conteudo (
@@ -54,7 +55,7 @@ CREATE TABLE conteudo (
     pdf longblob,
     capa blob,
     id_setor int,
-    FOREIGN KEY (id_setor) REFERENCES setor (id_setor)
+    FOREIGN KEY (id_setor) REFERENCES setor (id_setor) ON DELETE CASCADE
 );
 
 CREATE TABLE comentario (
@@ -62,10 +63,9 @@ CREATE TABLE comentario (
     comentario text,
     id_funcionario int,
     id_servico int,
-    FOREIGN KEY (id_funcionario) REFERENCES funcionario (id_funcionario),
-    FOREIGN KEY (id_servico) REFERENCES servico (id_servico)
+    FOREIGN KEY (id_funcionario) REFERENCES funcionario (id_funcionario) ON DELETE CASCADE,
+    FOREIGN KEY (id_servico) REFERENCES servico (id_servico) ON DELETE CASCADE
 );
-
 
 
 INSERT INTO setor(nome_setor, quantidade) VALUES('Administrativo' ,0);

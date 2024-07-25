@@ -15,7 +15,8 @@
     $celular = $_POST['celular'];
     $nacionalidade = $_POST['nacionalidade'];
 
-    $acesso = $_POST['acesso'];
+    $acesso = $_POST['aces
+    so'];
     
     ?>
 
@@ -50,6 +51,7 @@
 
     $setor = $_POST['setor'];
     $cargo = $_POST['cargo'];
+    $salario = $_POST['salario'];
     $data_nascimento = $_POST['data_nascimento'];
     $pcd = $_POST['pcd'];
     $cidade = $_POST['cidade'];

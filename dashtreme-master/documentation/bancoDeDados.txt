@@ -1,60 +1,71 @@
 CREATE DATABASE gestrator;
 
-  
-CREATE TABLE login (
-id_login int auto_increment PRIMARY KEY,
-usuario varchar(30),
-email Varchar(90),
-senha Varchar(255),
-tipo Varchar(10)
-);
 
-CREATE TABLE Setor (
-id_setor int auto_increment PRIMARY KEY,
-nome_setor Varchar(60),
-quantidade int
+CREATE TABLE login (
+    id_login int auto_increment PRIMARY KEY,
+    usuario varchar(30),
+    senha varchar(255),
+    tipo varchar(10)
 );
 
 CREATE TABLE servico (
-id_servico int auto_increment PRIMARY KEY,
-nome_servico Varchar(50),
-descricao Varchar(50),
-prazo_entrega date,
-data_criada date,
-situacao Varchar(20) DEFAULT 'Em Andamento',
-porcentagem int DEFAULT 0,
-id_setor int,
-FOREIGN KEY(id_setor) REFERENCES Setor (id_setor)
+    id_servico int auto_increment PRIMARY KEY,
+    nome_servico varchar(50),
+    descricao varchar(50),
+    data_criada date,
+    data_final date,
+    situacao varchar(20),
+    equipe text
 );
 
-CREATE TABLE Funcionario (
-id_funcionario int auto_increment PRIMARY KEY,
-nome_funcionario Varchar(90),
-Nacionalidade Varchar(20),
-data_nascimento date,
-cpf char(13),
-rg Varchar(16),
-email text,
-celular Varchar(16),
-cidade Varchar(20),
-Endereco Varchar(60),
-pcd Varchar(16),
-foto_funcionario blob,
-id_setor int,
-id_login int,
-FOREIGN KEY(id_setor) REFERENCES Setor (id_setor),
-FOREIGN KEY(id_login) REFERENCES login (id_login)
+CREATE TABLE setor (
+    id_setor int auto_increment PRIMARY KEY,
+    nome_setor varchar(60),
+    quantidade int,
+    id_servico int,
+    FOREIGN KEY (id_servico) REFERENCES servico (id_servico)
+);
+
+CREATE TABLE funcionario (
+    id_funcionario int auto_increment PRIMARY KEY,
+    nome_funcionario varchar(90),
+    nacionalidade varchar(20),
+    data_nascimento date,
+    cargo varchar(40),
+    salario float,
+    cpf char(13),
+    rg varchar(16),
+    email text,
+    celular varchar(16),
+    cidade varchar(20),
+    endereco varchar(60),
+    pcd varchar(16),
+    foto_funcionario blob,
+    id_setor int,
+    id_login int,
+    FOREIGN KEY (id_setor) REFERENCES setor (id_setor),
+    FOREIGN KEY (id_login) REFERENCES login (id_login)
 );
 
 CREATE TABLE conteudo (
-id_conteudo int auto_increment PRIMARY KEY,
-nome_conteudo Varchar(30),
-descricao Varchar(30),
-pdf longblob,
-capa blob,
-id_setor int,
-FOREIGN KEY(id_setor) REFERENCES Setor (id_setor)
+    id_conteudo int auto_increment PRIMARY KEY,
+    nome_conteudo varchar(30),
+    descricao varchar(30),
+    pdf longblob,
+    capa blob,
+    id_setor int,
+    FOREIGN KEY (id_setor) REFERENCES setor (id_setor)
 );
+
+CREATE TABLE comentario (
+    id_comentario int auto_increment PRIMARY KEY,
+    comentario text,
+    id_funcionario int,
+    id_servico int,
+    FOREIGN KEY (id_funcionario) REFERENCES funcionario (id_funcionario),
+    FOREIGN KEY (id_servico) REFERENCES servico (id_servico)
+);
+
 
 
 INSERT INTO setor(nome_setor, quantidade) VALUES('Administrativo' ,0);

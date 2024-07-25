@@ -103,6 +103,9 @@
     width: 150px !important;
   }
 
+  .w-200{
+    width: 250px !important;
+  }
 
   table th{
     padding: 10px 0px !important;
@@ -391,7 +394,7 @@ $resultado = mysqli_query($conexao, "SELECT servico.*, setor.nome_setor FROM ser
                                 <td class="w-50"><i class="fa-solid fa-user-plus"></i></td>
                                 <td class="situacao w-100 <?= strtolower(str_replace(' ', '-', $row['situacao'])) ?>"><?= $row['situacao'] ?></td>
                                 <td class="prioridade <?= strtolower($row['prioridade']) ?>"><?= $row['prioridade'] ?></td>
-                                <td><?= $row['nome_setor'] ?></td>
+                                <td class="w-200"><?= $row['nome_setor'] ?></td>
                                 <td><?= date('d M Y', strtotime($row['data_criada'])) ?></td>
                                 <td><?= date('d M Y', strtotime($row['data_final'])) ?></td>
                                 <td><i class="fa-regular fa-comment"></i></td>
@@ -810,7 +813,7 @@ $resultado = mysqli_query($conexao, "SELECT servico.*, setor.nome_setor FROM ser
 
         // Handle priority change
         $(".prioridade").click(function(){
-            var prioridades = ["Alta", "media", "Baixa"];
+            var prioridades = ["Alta", "Média", "Baixa"];
             var classes = ["alta", "media3", "baixa"];
             var current = $(this).text().trim();
             var index = prioridades.indexOf(current);

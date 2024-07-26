@@ -975,6 +975,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 
+<!-- Script para abrir sobreposição de tela -->
 <script>
 
 document.addEventListener('DOMContentLoaded', function() {

@@ -3430,7 +3430,9 @@ table.grid td {
     cursor: pointer;
 }
 
-
+.switcher-icon{
+    display: none;
+}
 
 .card { 
      margin-bottom:25px;

@@ -171,6 +171,7 @@
 
 
         /* styles.css popup */
+/* styles.css */
 .popup {
     display: none; /* Oculta o pop-up por padrão */
     position: fixed;
@@ -199,6 +200,53 @@
     cursor: pointer;
     font-size: 20px;
 }
+
+/* sobreposição de tela */
+/* Estilo do ícone */
+#open-chat {
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Sobreposição de tela */
+.overlay {
+    display: none; /* Oculta a sobreposição por padrão */
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 300px; /* Largura da sobreposição */
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    z-index: 1000; /* Garante que a sobreposição fique sobre outros elementos */
+    overflow: auto;
+    transition: transform 0.3s ease;
+    transform: translateX(100%);
+}
+
+.overlay-content {
+    position: relative;
+    height: 100%;
+    padding: 20px;
+}
+
+/* Botão de fechar */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Caixa de chat */
+.chat-box {
+    margin-top: 40px;
+}
+
+
+
+
 
   </style>
 
@@ -428,7 +476,7 @@ $resultado = mysqli_query($conexao, "SELECT servico.*, setor.nome_setor FROM ser
                                 <td class="w-200"><?= $row['nome_setor'] ?></td>
                                 <td><?= date('d M Y', strtotime($row['data_criada'])) ?></td>
                                 <td><?= date('d M Y', strtotime($row['data_final'])) ?></td>
-                                <td><i class="fa-regular fa-comment"></i></td>
+                                <td><i id="open-chat" class="fa-regular fa-comment"></i></td>
                             </tr>
 
                             <!-- Modal for <?= $row['nome_servico'] ?> -->
@@ -466,6 +514,19 @@ $resultado = mysqli_query($conexao, "SELECT servico.*, setor.nome_setor FROM ser
             <p>Este é o conteúdo do pop-up.</p>
         </div>
     </div>
+
+
+    <!-- Sobreposição de tela -->
+    <div id="overlay" class="overlay">
+        <div class="overlay-content">
+            <span id="close-chat" class="close-btn">&times;</span>
+            <div class="chat-box">
+                <!-- Conteúdo do chat vai aqui -->
+                <p>Chat de bate-papo</p>
+            </div>
+        </div>
+    </div>
+
 
 	</div><!--End Row-->
 	<div class="row">
@@ -888,7 +949,7 @@ $resultado = mysqli_query($conexao, "SELECT servico.*, setor.nome_setor FROM ser
 
 <!-- script pra abrir o popup da equipe -->
 <script>
-  // script.js
+ // script.js
 document.addEventListener('DOMContentLoaded', function() {
     var icon = document.getElementById('icon');
     var popup = document.getElementById('popup');
@@ -908,6 +969,38 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('click', function(event) {
         if (event.target === popup) {
             popup.style.display = 'none';
+        }
+    });
+});
+</script>
+
+
+<script>
+
+document.addEventListener('DOMContentLoaded', function() {
+    var openChatBtn = document.getElementById('open-chat');
+    var overlay = document.getElementById('overlay');
+    var closeChatBtn = document.getElementById('close-chat');
+
+    openChatBtn.addEventListener('click', function() {
+        overlay.style.display = 'block';
+        overlay.style.transform = 'translateX(0)';
+    });
+
+    closeChatBtn.addEventListener('click', function() {
+        overlay.style.transform = 'translateX(100%)';
+        setTimeout(function() {
+            overlay.style.display = 'none';
+        }, 300); // Tempo igual ao da transição CSS
+    });
+
+    // Fechar a sobreposição ao clicar fora dela
+    window.addEventListener('click', function(event) {
+        if (event.target === overlay) {
+            overlay.style.transform = 'translateX(100%)';
+            setTimeout(function() {
+                overlay.style.display = 'none';
+            }, 300); // Tempo igual ao da transição CSS
         }
     });
 });

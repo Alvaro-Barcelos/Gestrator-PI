@@ -550,7 +550,7 @@ $resultado = mysqli_query($conexao, "SELECT servico.*, setor.nome_setor FROM ser
      <div id="popup" class="popup">
         <div class="popup-content">
             <button id="close-btn" class="close-btn">&times;</button>
-            <input type="text" id="search-bar" placeholder="Pesquisar...">
+            <input type="text" id="search-bar" placeholder="Pesquise nomes ou equipe">
         </div>
     </div>
 

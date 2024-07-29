@@ -3,67 +3,7 @@
 	  "use strict";
 	$(function() {
 
-		if ($('#lineChart').length) {
-			
-			var ctx = document.getElementById('lineChart').getContext('2d');
-			var myChart = new Chart(ctx, {
-				type: 'line',
-				data: {
-					labels: ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'],
-					datasets: [{
-						label: 'Google',
-						data: [13, 20, 4, 18, 7, 4, 8],
-						backgroundColor: "rgb(255, 255, 255)",
-						borderColor: "transparent",
-						pointRadius :"0",
-						borderWidth: 1
-					}, {
-						label: 'Facebook',
-						data: [3, 30, 6, 6, 3, 4, 11],
-						backgroundColor: "rgba(255, 255, 255, 0.25)",
-						borderColor: "transparent",
-						pointRadius :"0",
-						borderWidth: 1
-					}]
-				},
-			options: {
-				legend: {
-				  display: true,
-				  labels: {
-					fontColor: '#ddd',  
-					boxWidth:40
-				  }
-				},
-				tooltips: {
-				  enabled:false
-				},	
-			  scales: {
-				  xAxes: [{
-					ticks: {
-						beginAtZero:true,
-						fontColor: '#ddd'
-					},
-					gridLines: {
-					  display: true ,
-					  color: "rgba(221, 221, 221, 0.08)"
-					},
-				  }],
-				   yAxes: [{
-					ticks: {
-						beginAtZero:true,
-						fontColor: '#ddd'
-					},
-					gridLines: {
-					  display: true ,
-					  color: "rgba(221, 221, 221, 0.08)"
-					},
-				  }]
-				 }
-
-			 }
-			});
-			
-		}
+		   
 
 
 		if ($('#barChart').length) {

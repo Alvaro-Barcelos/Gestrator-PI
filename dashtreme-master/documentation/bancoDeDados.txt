@@ -75,3 +75,16 @@ INSERT INTO setor(nome_setor, quantidade) VALUES('Financeiro' ,0);
 INSERT INTO setor(nome_setor, quantidade) VALUES('Compras' ,0);
 INSERT INTO setor(nome_setor, quantidade) VALUES('Recursos humanos' ,0);
 INSERT INTO setor(nome_setor, quantidade) VALUES('Operações' ,0);
+
+
+INSERT INTO servico (nome_servico, descricao, data_criada, data_final, situacao, prioridade, id_setor) VALUES
+('Desenvolvimento de Site', 'Criação de um novo site institucional', '2024-01-10', '2024-03-15', 'Concluído', 'Alta', 1),
+('Atualização de Sistema', 'Atualização do sistema de gerenciamento interno', '2024-02-05', '2024-04-20', 'Em Andamento', 'Média', 2),
+('Campanha de Marketing', 'Lançamento de campanha publicitária', '2024-03-01', '2024-05-01', 'Não iniciado', 'Alta', 3),
+('Suporte Técnico', 'Suporte para os clientes da região sul', '2024-01-15', '2024-02-15', 'Concluído', 'Baixa', 4),
+('Análise de Dados', 'Análise de dados de vendas do último trimestre', '2024-04-01', '2024-06-01', 'Em Andamento', 'Média', 2),
+('Treinamento Interno', 'Treinamento para novos funcionários', '2024-05-01', '2024-06-15', 'Não iniciado', 'Alta', 1),
+('Desenvolvimento de Aplicativo', 'Criação de um novo aplicativo móvel', '2024-02-20', '2024-07-20', 'Em Andamento', 'Alta', 3),
+('Manutenção de Sistema', 'Manutenção preventiva do sistema de TI', '2024-03-10', '2024-04-10', 'Concluído', 'Baixa', 4),
+('Pesquisa de Mercado', 'Pesquisa de mercado para novos produtos', '2024-04-15', '2024-06-30', 'Em Andamento', 'Média', 1),
+('Implementação de ERP', 'Implementação de novo sistema ERP', '2024-01-05', '2024-06-05', 'Concluído', 'Alta', 2);

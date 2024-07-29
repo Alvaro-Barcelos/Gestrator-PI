@@ -31,7 +31,7 @@
   
 </head>
 
-<body class="bg-theme bg-theme1">
+<body class="bg-theme bg-theme1" onload="getPassword()">
 
 <!-- start loader -->
    <div id="pageloader-overlay" class="visible incoming"><div class="loader-wrapper-outer"><div class="loader-wrapper-inner" ><div class="loader"></div></div></div></div>
@@ -77,6 +77,11 @@
         <i class="fa-solid fa-user" style="color: #9e9e9e;"></i> <span>Funcionário</span>
       </a>
     </li>
+    <li>
+      <a href="editar_funcionario.html">
+        <i class="zmdi zmdi-accounts-add"></i><span>Listar Funcionários</span></a> 
+      </a>
+    </li>
   
      <li>
        <a href="profile_lider.html">
@@ -102,6 +107,7 @@
         <li class="nav-item">
           <a class="nav-link toggle-menu" href="javascript:void();">
            <i class="icon-menu menu-icon"></i>
+           
          </a>
         </li>
       </ul>
@@ -149,7 +155,7 @@
            <div class="card-body">
            <div class="card-title">Registrar novo funcionário</div>
            <hr>
-            <form method="post" action="../php/cadastrar_funcionario.php" enctype="multipart/form-data">
+            <form method="post" action="../../php/cadastrar_funcionario.php" enctype="multipart/form-data">
               <div class="row">
                 <div class="col-lg-6">
                   <div class="form-group">
@@ -184,6 +190,28 @@
                   </div>     
                 </div>
                 <div class="col-lg-6">
+
+                  <div class="form-group">
+                    
+                    <input type="hidden" class="form-control" id="acesso" name="acesso" placeholder="Senha do funcionário" required>
+
+                    <script>
+                      function getPassword() {
+                          var chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJLMNOPQRSTUVWXYZ@";
+                          var passwordLength = 10;
+                          var password = "";
+                  
+                          for (var i = 0; i < passwordLength; i++) {
+                              var randomNumber = Math.floor(Math.random() * chars.length);
+                              password += chars.substring(randomNumber, randomNumber + 1);
+                          }
+                          
+                          // Set the generated password to the input field with name 'senha'
+                          document.getElementById('acesso').value = password;
+                      }
+                  </script>
+
+                  </div>
                   <div class="form-group">
                     <label for="input-2">Setor</label>
                     <div class="custom-dropdown">
@@ -206,7 +234,7 @@
                   </div>
                   <div class="form-group">
                     <label for="input-1">Salário</label>
-                    <input type="number" class="form-control" name="nome" id="input-1" placeholder="Salário do funcionário">
+                    <input type="number" class="form-control" name="salario" id="input-1" placeholder="Salário do funcionário">
                   </div>
                   <div class="form-group">
                     <label for="input-3">Data de nascimento</label>

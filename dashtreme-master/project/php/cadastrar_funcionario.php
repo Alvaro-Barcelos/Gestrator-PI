@@ -15,8 +15,7 @@
     $celular = $_POST['celular'];
     $nacionalidade = $_POST['nacionalidade'];
 
-    $acesso = $_POST['aces
-    so'];
+    $acesso = $_POST['acesso'];
     
     ?>
 

@@ -218,52 +218,73 @@
 
 
 /* sobreposição de tela */
-/* Estilo do ícone */
-#open-chat {
-    font-size: 24px;
-    cursor: pointer;
-}
-
-/* Sobreposição de tela */
 .overlay {
-    display: none; /* Oculta a sobreposição por padrão */
     position: fixed;
     top: 0;
     right: 0;
-    width: 300px; /* Largura da sobreposição */
+    width: 300px; /* Largura da sobreposição, ajuste conforme necessário */
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
-    color: white;
-    z-index: 1000; /* Garante que a sobreposição fique sobre outros elementos */
-    overflow: auto;
+    background: #fff; /* Fundo branco */
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
     transition: transform 0.3s ease;
-    transform: translateX(100%);
+    transform: translateX(100%); /* Inicialmente fora da tela */
+}
+
+.overlay.show {
+    display: flex;
+    transform: translateX(0); /* Quando visível, posiciona a sobreposição na tela */
 }
 
 .overlay-content {
-    position: relative;
-    height: 100%;
+    background: #fff;
     padding: 20px;
+    border-radius: 8px;
+    width: 100%;
+    box-sizing: border-box;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    color: #000; /* Cor do texto preto */
 }
 
-/* Botão de fechar */
+h2, p {
+    color: #000; /* Garante que todos os textos sejam pretos */
+}
+
+.chat-body {
+    flex: 1;
+    overflow-y: auto; /* Rolagem vertical se necessário */
+    padding-bottom: 60px; /* Espaço para a área de entrada de texto ou botões de enviar */
+}
+
 .close-btn {
     position: absolute;
-    top: 10px;
-    right: 20px;
-    font-size: 24px;
+    top: 20px;
+    left: -50px; /* Ajuste para posicionar o botão fora da sobreposição */
+    background: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
+    font-size: 18px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 }
 
-/* Caixa de chat */
-.chat-box {
-    margin-top: 40px;
+.close-btn i {
+    color: #333; /* Cor do ícone do botão de fechar */
 }
 
-
-
-
-
+i.fa-comment {
+    cursor: pointer;
+    font-size: 24px;
+}
   </style>
 
 
@@ -534,15 +555,18 @@ $resultado = mysqli_query($conexao, "SELECT servico.*, setor.nome_setor FROM ser
     </div>
 
 
-    <!-- Sobreposição de tela -->
-    <div id="overlay" class="overlay">
+   <!-- Sobreposição -->
+   <div id="overlay" class="overlay">
         <div class="overlay-content">
-            <span id="close-chat" class="close-btn">&times;</span>
-            <div class="chat-box">
-                <!-- Conteúdo do chat vai aqui -->
-                <p>Chat de bate-papo</p>
+            <h2>Chat Interno</h2>
+            <div class="chat-body">
+                <!-- Área do chat -->
+                <p>Mensagens vão aqui...</p>
             </div>
         </div>
+        <button id="close-overlay" class="close-btn">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
     </div>
 
 
@@ -998,31 +1022,24 @@ window.addEventListener('click', (event) => {
 
 <!-- Script para abrir sobreposição de tela -->
 <script>
-
+// script.js
 document.addEventListener('DOMContentLoaded', function() {
-    var openChatBtn = document.getElementById('open-chat');
-    var overlay = document.getElementById('overlay');
-    var closeChatBtn = document.getElementById('close-chat');
+    const openChat = document.getElementById('open-chat');
+    const overlay = document.getElementById('overlay');
+    const closeOverlay = document.getElementById('close-overlay');
 
-    openChatBtn.addEventListener('click', function() {
-        overlay.style.display = 'block';
-        overlay.style.transform = 'translateX(0)';
+    openChat.addEventListener('click', function() {
+        overlay.classList.add('show');
     });
 
-    closeChatBtn.addEventListener('click', function() {
-        overlay.style.transform = 'translateX(100%)';
-        setTimeout(function() {
-            overlay.style.display = 'none';
-        }, 300); // Tempo igual ao da transição CSS
+    closeOverlay.addEventListener('click', function() {
+        overlay.classList.remove('show');
     });
 
-    // Fechar a sobreposição ao clicar fora dela
-    window.addEventListener('click', function(event) {
+    // Fecha a sobreposição se clicar fora dela
+    overlay.addEventListener('click', function(event) {
         if (event.target === overlay) {
-            overlay.style.transform = 'translateX(100%)';
-            setTimeout(function() {
-                overlay.style.display = 'none';
-            }, 300); // Tempo igual ao da transição CSS
+            overlay.classList.remove('show');
         }
     });
 });

@@ -172,34 +172,50 @@
 
         /* styles.css popup */
 /* styles.css */
+/* Estilização do popup */
+/* Estilização do popup */
 .popup {
-    display: none; /* Oculta o pop-up por padrão */
+    display: none; /* Esconde o popup por padrão */
     position: fixed;
-    left: 0;
     top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Cor de fundo semi-transparente */
+    background-color: rgba(0, 0, 0, 0.5); /* Fundo escuro e semitransparente */
     justify-content: center;
     align-items: center;
-    z-index: 1000; /* Garante que o pop-up esteja sobre outros elementos */
+    z-index: 1000; /* Fica acima do conteúdo da página */
 }
 
 .popup-content {
     background-color: #fff;
-    padding: 20px;
-    border-radius: 5px;
-    width: 300px;
-    position: relative;
+    padding: 30px; /* Aumenta o padding para um popup maior */
+    border-radius: 8px;
+    text-align: center;
+    width: 400px; /* Aumenta a largura do popup */
+    position: relative; /* Para que o botão de fechar possa ser posicionado */
+    max-width: 90%; /* Ajusta a largura máxima para telas menores */
 }
 
 .close-btn {
+    background: none;
+    border: none;
+    font-size: 30px; /* Aumenta o tamanho do botão de fechar */
+    cursor: pointer;
     position: absolute;
     top: 10px;
     right: 10px;
-    cursor: pointer;
-    font-size: 20px;
+    color: #333; /* Cor do ícone de fechar */
 }
+
+#search-bar {
+    width: 100%;
+    padding: 12px;
+    margin-top: 20px; /* Espaçamento maior acima da barra de pesquisa */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
 
 /* sobreposição de tela */
 /* Estilo do ícone */
@@ -470,7 +486,9 @@ $resultado = mysqli_query($conexao, "SELECT servico.*, setor.nome_setor FROM ser
                                         <?= $row['nome_servico'] ?>
                                     </button>
                                 </td>
-                                <td class="w-50"><i class="fa-solid fa-user-plus" id="icon"></i></td>
+                                <td class="w-50">
+                <i class="fa-solid fa-user-plus" id="icon"></i>
+            </td>
                                 <td class="situacao w-100 <?= strtolower(str_replace(' ', '-', $row['situacao'])) ?>"><?= $row['situacao'] ?></td>
                                 <td class="prioridade <?= strtolower($row['prioridade']) ?>"><?= $row['prioridade'] ?></td>
                                 <td class="w-200"><?= $row['nome_setor'] ?></td>
@@ -507,11 +525,11 @@ $resultado = mysqli_query($conexao, "SELECT servico.*, setor.nome_setor FROM ser
         </div>
     </div>
 
-    <!-- Pop-up -->
-    <div id="popup" class="popup">
+    <!-- O popup -->
+     <div id="popup" class="popup">
         <div class="popup-content">
-            <span class="close-btn" id="close-btn">&times;</span>
-            <p>Este é o conteúdo do pop-up.</p>
+            <button id="close-btn" class="close-btn">&times;</button>
+            <input type="text" id="search-bar" placeholder="Pesquisar...">
         </div>
     </div>
 
@@ -949,29 +967,32 @@ $resultado = mysqli_query($conexao, "SELECT servico.*, setor.nome_setor FROM ser
 
 <!-- script pra abrir o popup da equipe -->
 <script>
- // script.js
-document.addEventListener('DOMContentLoaded', function() {
-    var icon = document.getElementById('icon');
-    var popup = document.getElementById('popup');
-    var closeBtn = document.getElementById('close-btn');
+// Seleciona os elementos
+const icon = document.getElementById('icon');
+const popup = document.getElementById('popup');
+const closeBtn = document.getElementById('close-btn');
 
-    // Abre o pop-up
-    icon.addEventListener('click', function() {
-        popup.style.display = 'flex'; // Usa flexbox para centralizar o pop-up
-    });
+// Função para abrir o popup
+function openPopup() {
+    popup.style.display = 'flex'; // Usa 'flex' para centralizar o conteúdo
+}
 
-    // Fecha o pop-up
-    closeBtn.addEventListener('click', function() {
-        popup.style.display = 'none';
-    });
+// Função para fechar o popup
+function closePopup() {
+    popup.style.display = 'none';
+}
 
-    // Fecha o pop-up clicando fora do conteúdo
-    window.addEventListener('click', function(event) {
-        if (event.target === popup) {
-            popup.style.display = 'none';
-        }
-    });
+// Adiciona eventos de clique
+icon.addEventListener('click', openPopup);
+closeBtn.addEventListener('click', closePopup);
+
+// Fecha o popup se o usuário clicar fora dele
+window.addEventListener('click', (event) => {
+    if (event.target === popup) {
+        closePopup();
+    }
 });
+
 </script>
 
 

@@ -170,7 +170,6 @@
 
 
 
-        /* styles.css popup */
 /* styles.css */
 .popup {
     display: none; /* Oculta o pop-up por padrão */

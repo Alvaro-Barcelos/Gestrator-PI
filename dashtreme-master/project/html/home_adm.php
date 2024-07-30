@@ -1,3 +1,7 @@
+<?php
+  include("protect_gerente.php");
+  include_once("../php/conexao.php");
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -155,14 +159,14 @@
     
 
   .dropdown-menu {
-            background-color: white; /* Cor de fundo branca */
+            background-color: gray; /* Cor de fundo branca */
             border: 1px solid #ddd;  /* Borda cinza clara */
         }
         .dropdown-item {
             color: #333; /* Cor do texto */
         }
         .dropdown-item:hover {
-            background-color: #f8f9fa; /* Cor de fundo ao passar o mouse */
+            background-color: black; /* Cor de fundo ao passar o mouse */
             color: #007bff; /* Cor do texto ao passar o mouse */
         }
 
@@ -170,62 +174,62 @@
 
 
 
-        /* styles.css popup */
-/* styles.css */
-/* Estilização do popup */
-/* Estilização do popup */
+/* styles.css popup */
 .popup {
     display: none; /* Esconde o popup por padrão */
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Fundo escuro e semitransparente */
-    justify-content: center;
-    align-items: center;
+    position: absolute; /* Permite posicionar o popup em relação ao ícone */
     z-index: 1000; /* Fica acima do conteúdo da página */
 }
 
 .popup-content {
     background-color: #fff;
-    padding: 30px; /* Aumenta o padding para um popup maior */
+    padding: 30px;
     border-radius: 8px;
     text-align: center;
-    width: 400px; /* Aumenta a largura do popup */
+    width: 400px;
     position: relative; /* Para que o botão de fechar possa ser posicionado */
-    max-width: 90%; /* Ajusta a largura máxima para telas menores */
+    max-width: 90%;
+}
+
+.popup-arrow {
+    position: absolute;
+    top: -10px; /* Ajuste a posição vertical da seta */
+    left: 50%; /* Centraliza a seta horizontalmente em relação ao popup */
+    margin-left: -10px; /* Move a seta para a esquerda para centralizar */
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid #fff; /* Cor da seta, igual ao fundo do popup */
+}
+
+#search-bar {
+    width: 80%;
+    padding: 8px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    max-width: 600px;
 }
 
 .close-btn {
     background: none;
     border: none;
-    font-size: 30px; /* Aumenta o tamanho do botão de fechar */
+    font-size: 30px;
     cursor: pointer;
     position: absolute;
     top: 10px;
     right: 10px;
-    color: #333; /* Cor do ícone de fechar */
+    color: #333;
 }
-
-#search-bar {
-    width: 80%; /* Ajuste a largura conforme necessário */
-    padding: 8px; /* Menos padding para uma barra mais compacta */
-    margin-top: 10px; /* Espaçamento acima da barra */
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box; /* Inclui o padding e a borda na largura total */
-    max-width: 600px; /* Largura máxima para limitar o crescimento em telas grandes */
-}
-
-
-
-/* sobreposição de tela */
+ 
+/* Sobreposição de tela */
 .overlay {
     position: fixed;
     top: 0;
     right: 0;
-    width: 300px; /* Largura da sobreposição, ajuste conforme necessário */
+    width: 400px; /* Largura da sobreposição */
     height: 100%;
     background: #fff; /* Fundo branco */
     display: none;
@@ -263,6 +267,55 @@ h2, p {
     padding-bottom: 60px; /* Espaço para a área de entrada de texto ou botões de enviar */
 }
 
+.card-header img {
+    margin-right: 10px;
+}
+
+.chat-message img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+.chat-message {
+    background-color: #e1e1e1;
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-direction: column;
+    margin-bottom: 50px;
+}
+
+.message-input {
+    display: flex;
+    gap: 10px;
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+}
+
+.message-input input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.message-input button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.message-input button:hover {
+    background-color: #0056b3;
+}
+
 .close-btn {
     position: absolute;
     top: 20px;
@@ -288,6 +341,25 @@ i.fa-comment {
     cursor: pointer;
     font-size: 24px;
 }
+
+.text-principal {
+    margin-top: 20px;
+    text-align: left;
+}
+
+/* GRAFICO */
+.chart-container-2 {
+    position: relative;
+    height: 450px !important; /* Ajuste a altura conforme necessário */
+    width: 820px ; /* Faz o gráfico ocupar 100% da largura disponível */
+    margin-left: 20%;
+
+}
+
+.tamanho{
+  height: 530px;
+}
+
   </style>
 
 
@@ -385,19 +457,33 @@ i.fa-comment {
            <div class="media">
              <div class="avatar"><img class="align-self-start mr-3" src="https://via.placeholder.com/110x110" alt="user avatar"></div>
             <div class="media-body">
-            <h6 class="mt-2 user-title">Sarajhon Mccoy</h6>
-            <p class="user-subtitle">mccoy@example.com</p>
-            <p class="user-subtitle">Contabilidade</p>
+            <h6 class="mt-2 user-title"><?php echo $_SESSION['usuario']; ?></h6>
+            <?php 
+            
+              $usuario = $_SESSION['usuario']; 
+              
+              $query_funcionario = mysqli_query($conexao, "SELECT f.id_funcionario, f.email, s.nome_setor 
+              FROM funcionario f 
+              JOIN setor s ON f.id_setor = s.id_setor 
+              WHERE f.nome_funcionario = '$usuario'");
+
+                if ($query_funcionario->num_rows > 0) {
+                  // Exibir os dados
+                  while ($row = $query_funcionario->fetch_assoc()) {
+                      $id_funcionario = $row['id_funcionario'];
+                      echo "<p class='user-subtitle'>".$row['email']."</p>";
+                      echo "<p class='user-subtitle'>".$row['nome_setor']."</p>";
+
+                  }}
+                  ?>
+
             </div>
            </div>
           </a>
         </li>
-        <li class="dropdown-divider"></li>
-        <li class="dropdown-item"><i class="icon-envelope mr-2"></i>Mensagens</li>
+
         <li class="dropdown-divider"></li>
         <li class="dropdown-item"><i class="icon-wallet mr-2"></i> Perfil</li>
-        <li class="dropdown-divider"></li>
-        <li class="dropdown-item"><i class="icon-settings mr-2"></i> Configarações</li>
         <li class="dropdown-divider"></li>
         <li class="dropdown-item"><i class="icon-power mr-2"></i> Sair</li>
       </ul>
@@ -465,9 +551,13 @@ i.fa-comment {
 	  
 
  <?php
-include_once("../php/conexao.php");
+  include_once("../php/conexao.php");
 
-$resultado = mysqli_query($conexao, "SELECT servico.*, setor.nome_setor FROM servico JOIN setor ON servico.id_setor = setor.id_setor");
+  $resultado = mysqli_query($conexao, "SELECT servico.*, setor.nome_setor FROM servico JOIN setor ON servico.id_setor = setor.id_setor");
+
+  //Para realizar a consulta so deste mês, vou deixar comentado para gente cvs depois...
+  //$resultado = mysqli_query($conexao, "SELECT servico.*, setor.nome_setor FROM servico JOIN setor ON servico.id_setor = setor.id_setor WHERE DATE_FORMAT(servico.data_final, '%Y-%m') = DATE_FORMAT(NOW(), '%Y-%m')");
+
 ?>
 
 <div class="row">
@@ -512,14 +602,17 @@ $resultado = mysqli_query($conexao, "SELECT servico.*, setor.nome_setor FROM ser
                                     </button>
                                 </td>
                                 <td class="w-50">
-                <i class="fa-solid fa-user-plus" id="icon"></i>
-            </td>
+                                    <i class="fa-solid fa-user-plus open-popup" data-id="<?= $row['id_servico'] ?>"></i>
+                                </td>
                                 <td class="situacao w-100 <?= strtolower(str_replace(' ', '-', $row['situacao'])) ?>"><?= $row['situacao'] ?></td>
                                 <td class="prioridade <?= strtolower($row['prioridade']) ?>"><?= $row['prioridade'] ?></td>
                                 <td class="w-200"><?= $row['nome_setor'] ?></td>
                                 <td><?= date('d M Y', strtotime($row['data_criada'])) ?></td>
                                 <td><?= date('d M Y', strtotime($row['data_final'])) ?></td>
-                                <td><i id="open-chat" class="fa-regular fa-comment"></i></td>
+                                <td>
+                                    <i class="fa-regular fa-comment" data-id="<?= $row['id_servico'] ?>"></i>
+                                </td>
+
                             </tr>
 
                             <!-- Modal for <?= $row['nome_servico'] ?> -->
@@ -550,29 +643,120 @@ $resultado = mysqli_query($conexao, "SELECT servico.*, setor.nome_setor FROM ser
         </div>
     </div>
 
-    <!-- O popup -->
-     <div id="popup" class="popup">
-        <div class="popup-content">
-            <button id="close-btn" class="close-btn">&times;</button>
-            <input type="text" id="search-bar" placeholder="Pesquise nomes ou equipe">
-        </div>
+<!-- O popup -->
+<div id="popup" class="popup">
+    <div class="popup-content">
+        <div class="popup-arrow"></div> <!-- Seta indicando o ícone -->
+        <button id="close-btn" class="close-btn">&times;</button>
+        <h2>Equipe</h2>
+        <p>Adicione funcionários a este serviço</p>
+        <input type="text" id="search-bar" placeholder="Pesquise nomes ou equipe">
     </div>
+</div>
 
 
    <!-- Sobreposição -->
    <div id="overlay" class="overlay">
-        <div class="overlay-content">
-        <input type="text" id="search-bar" placeholder="Pesquise nomes ou equipe">
-            <h2>Chat Interno</h2>
-            <div class="chat-body">
-                <!-- Área do chat -->
-                <p>Mensagens vão aqui...</p>
-            </div>
+    <div class="overlay-content">
+        <button id="close-overlay" class="close-btn">&times;</button>
+        <h2 class="text-principal">Chat Interno</h2>
+        <div class="chat-body">
+            <!-- Conteúdo dos comentários carregados dinamicamente -->
         </div>
-        <button id="close-overlay" class="close-btn">
-            <i class="fa-solid fa-xmark"></i>
-        </button>
+        <form action="" method="post">
+        <input type="hidden" id="service-id" name="service_id" value="">
+            <div class="message-input">
+                <input type="text" name="mensagem" placeholder="Digite sua mensagem...">
+                <button type="submit">Enviar</button>
+            </div>
+        </form>
     </div>
+</div>
+
+   <?php
+include_once('../php/conexao.php');
+
+if (isset($_GET['service_id'])) {
+    $service_id = intval($_GET['service_id']);
+
+    $query_comentarios = mysqli_query($conexao, 
+        "SELECT c.comentario, f.nome_funcionario 
+         FROM comentario c
+         JOIN funcionario f ON c.id_funcionario = f.id_funcionario
+         WHERE c.id_servico = $service_id");
+
+    if (mysqli_num_rows($query_comentarios) > 0) {
+        while ($comentario = mysqli_fetch_assoc($query_comentarios)) {
+            echo '<div class="chat-message">';
+            echo '    <div class="card">';
+            echo '        <div class="card-header">';
+            echo '            <img src="https://via.placeholder.com/30" alt="Avatar">';
+            echo '            ' . htmlspecialchars($comentario['nome_funcionario']);
+            echo '        </div>';
+            echo '        <div class="card-body">';
+            echo '            <blockquote class="blockquote mb-0">';
+            echo '                <p>' . htmlspecialchars($comentario['comentario']) . '</p>';
+            echo '            </blockquote>';
+            echo '        </div>';
+            echo '    </div>';
+            echo '</div>';
+        }
+    } else {
+        echo '<p>Sem comentários para este serviço.</p>';
+    }
+}
+?>
+
+
+<?php
+include_once("../php/conexao.php");
+
+
+// Inicializa variáveis
+$id_funcionario = null;
+
+// Obtém o nome do usuário da sessão
+if (isset($_SESSION['usuario'])) {
+    $usuario = $_SESSION['usuario'];
+
+    // Verifica se o nome do usuário está definido
+    if (!empty($usuario)) {
+        // Consulta para obter o id_funcionario
+        $query_funcionario = mysqli_query($conexao, "SELECT id_funcionario FROM funcionario WHERE nome_funcionario = '$usuario'");
+
+        // Verifica se a consulta retornou algum resultado
+        if ($query_funcionario && $query_funcionario->num_rows > 0) {
+            $row = $query_funcionario->fetch_assoc();
+            $id_funcionario = $row['id_funcionario'];
+        } else {
+            echo 'Usuário não encontrado na tabela funcionario.';
+        }
+    } else {
+        echo 'Nome do usuário na sessão está vazio.';
+    }
+} else {
+    echo 'Usuário não está definido na sessão.';
+}
+
+// Verifica se a requisição é do tipo POST
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['service_id']) && $id_funcionario !== null) {
+        $service_id = (int)$_POST['service_id'];
+        $mensagem = mysqli_real_escape_string($conexao, $_POST['mensagem']);
+
+        // Insere o comentário no banco de dados
+        $query = "INSERT INTO comentario (id_servico, id_funcionario, comentario) VALUES ('$service_id', '$id_funcionario', '$mensagem')";
+        if (mysqli_query($conexao, $query)) {
+            echo 'Comentário enviado com sucesso.';
+        } else {
+            echo 'Erro ao enviar comentário: ' . mysqli_error($conexao);
+        }
+    } else {
+        echo 'ID do serviço ou ID do funcionário não especificado.';
+    }
+}
+?>
+
 
 
 	</div><!--End Row-->
@@ -829,7 +1013,13 @@ $resultado = mysqli_query($conexao, "SELECT servico.*, setor.nome_setor FROM ser
       </div>
     </div>
    </div><!--End Row-->
-  <div class="row">
+
+
+   <?php
+      include_once("../php/conexao.php");
+   ?>
+
+<div class="row">
     <div class="col-12 col-lg-12 col-xl-12">
        <div class="card">
           <div class="card-header">Produtividade do Setor
@@ -848,32 +1038,45 @@ $resultado = mysqli_query($conexao, "SELECT servico.*, setor.nome_setor FROM ser
              </div>
             </div>
           </div>
-          <div class="card-body">
-        <div class="chart-container-2">
-              <canvas id="chart2"></canvas>
-       </div>
+          <div class="card-body tamanho">
+            <div class="chart-container-2">
+              <canvas id="doughnutChart"></canvas>
+            </div>
           </div>
           <div class="table-responsive">
             <table class="table align-items-center">
               <tbody>
-                <tr>
-                  <td><i class="fa fa-circle text-white mr-2"></i>Concluida</td>
-                  <td>5856</td>
-                </tr>
-                <tr>
-                  <td><i class="fa fa-circle text-light-1 mr-2"></i>Em andamento</td>
-                  <td>2602</td>
-                </tr>
-                <tr>
-                  <td><i class="fa fa-circle text-light-2 mr-2"></i>Pendente</td>
-                  <td>1802</td>
-                </tr>
+                <?php
+                $query = "
+                    SELECT situacao, COUNT(*) AS quantidade 
+                    FROM servico 
+                    GROUP BY situacao
+                ";
+                $result = mysqli_query($conexao, $query);
+                $situacoes = [];
+                $quantidades = [];
+
+                if (mysqli_num_rows($result) > 0) {
+                    while($row = mysqli_fetch_assoc($result)) {
+                        $situacoes[] = $row["situacao"];
+                        $quantidades[] = $row["quantidade"];
+                        echo "<tr>";
+                        echo "<td><i class='fa fa-circle text-white mr-2'></i>" . htmlspecialchars($row["situacao"]) . "</td>";
+                        echo "<td>" . htmlspecialchars($row["quantidade"]) . "</td>";
+                        echo "</tr>";
+                    }
+                } else {
+                    echo "<tr><td colspan='2'>Nenhum dado encontrado</td></tr>";
+                }
+
+                mysqli_close($conexao);
+                ?>
               </tbody>
             </table>
           </div>
         </div>
     </div>
- </div><!--End Row-->
+</div><!--End Row-->
 
       <!--End Dashboard Content-->
 	  
@@ -943,6 +1146,160 @@ $resultado = mysqli_query($conexao, "SELECT servico.*, setor.nome_setor FROM ser
 
   
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- JavaScript -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Selecione todos os ícones com a classe 'open-popup'
+    document.querySelectorAll('.open-popup').forEach(function(icon) {
+        icon.addEventListener('click', function() {
+            // Obtenha o ID do serviço e a posição do ícone
+            const serviceId = this.getAttribute('data-id');
+            const rect = this.getBoundingClientRect(); // Obtém a posição do ícone
+
+            // Exiba o popup
+            const popup = document.getElementById('popup');
+            const popupContent = popup.querySelector('.popup-content');
+
+            // Defina o conteúdo do popup
+            popupContent.innerHTML = `
+                <div class="popup-arrow"></div>
+                <button id="close-btn" class="close-btn">&times;</button>
+                <h2>Equipe</h2>
+                <p>Adicione funcionários a este serviço (ID: ${serviceId})</p>
+                <input type="text" id="search-bar" placeholder="Pesquise nomes ou equipe">
+            `;
+
+            // Posicione o popup abaixo do ícone
+            popup.style.top = `${rect.bottom + window.scrollY}px`; // Ajusta a posição vertical
+            popup.style.left = `${rect.left + window.scrollX}px`; // Ajusta a posição horizontal
+
+            popup.style.display = 'block'; // Exibe o popup
+
+            // Adiciona funcionalidade para fechar o popup
+            document.getElementById('close-btn').addEventListener('click', function() {
+                document.getElementById('popup').style.display = 'none'; // Oculta o popup
+            });
+        });
+    });
+
+    // Adiciona funcionalidade para fechar o popup clicando fora dele
+    document.getElementById('popup').addEventListener('click', function(event) {
+        if (event.target === this) {
+            this.style.display = 'none';
+        }
+    });
+});
+</script>
+
+
+  <script>
+document.addEventListener('DOMContentLoaded', function() {
+    var chatIcons = document.querySelectorAll('.fa-comment'); // Alterado para selecionar ícones de comentário
+    var overlay = document.getElementById('overlay');
+    var closeOverlayBtn = document.getElementById('close-overlay');
+    var chatMessages = document.querySelector('.chat-body');
+    var serviceIdInput = document.getElementById('service-id');
+
+    chatIcons.forEach(function(icon) {
+        icon.addEventListener('click', function() {
+            var serviceId = this.getAttribute('data-id');
+            openOverlay(serviceId);
+            serviceIdInput.value = serviceId;
+        });
+    });
+
+    closeOverlayBtn.addEventListener('click', function() {
+        closeOverlay();
+    });
+
+    function openOverlay(serviceId) {
+        overlay.classList.add('show');
+        chatMessages.innerHTML = '<div class="card"><div class="card-header">Mensagem do serviço ID ' + serviceId + '</div><div class="card-body"><blockquote class="blockquote mb-0"><p>Exemplo de mensagem para o serviço ID ' + serviceId + '</p></blockquote></div></div>';
+
+        // Requisição para carregar comentários reais
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', 'get_comments.php?service_id=' + serviceId, true);
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                chatMessages.innerHTML = xhr.responseText;
+            } else {
+                chatMessages.innerHTML = '<p>Erro ao carregar comentários.</p>';
+            }
+        };
+        xhr.send();
+    }
+
+    function closeOverlay() {
+        overlay.classList.remove('show');
+    }
+
+    // Fechar a sobreposição ao clicar fora do conteúdo
+    overlay.addEventListener('click', function(e) {
+        if (e.target === overlay) {
+            closeOverlay();
+        }
+    });
+
+    // Enviar mensagem (opcional)
+    document.getElementById('send-message').addEventListener('click', function() {
+        var mensagem = messageInput.value;
+        if (mensagem) {
+            chatMessages.innerHTML += '<div class="card"><div class="card-body"><blockquote class="blockquote mb-0"><p>' + mensagem + '</p></blockquote></div></div>';
+            messageInput.value = '';
+        }
+    });
+});
+
+
+</script>
+  
+  <script>
+document.addEventListener('DOMContentLoaded', function() {
+    if (document.getElementById('doughnutChart')) {
+        var ctx = document.getElementById('doughnutChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: <?php echo json_encode($situacoes); ?>,
+                datasets: [{
+                    label: 'Quantidade',
+                    data: <?php echo json_encode($quantidades); ?>,
+                    backgroundColor: [
+                        "rgba(255, 99, 132, 0.7)", // Vermelho
+                        "rgba(75, 192, 192, 0.7)", // Verde
+                        "rgba(255, 206, 86, 0.7)"  // Amarelo
+                    ],
+                    borderColor: [
+                        "rgba(255, 99, 132, 1)", // Vermelho
+                        "rgba(75, 192, 192, 1)", // Verde
+                        "rgba(255, 206, 86, 1)"  // Amarelo
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        labels: {
+                          color: '#ddd' // Cor do texto da legenda
+                         }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(tooltipItem) {
+                                return tooltipItem.label + ': ' + tooltipItem.raw;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    }
+});
+</script>
   <script>
     $(document).ready(function(){
         // Handle status change

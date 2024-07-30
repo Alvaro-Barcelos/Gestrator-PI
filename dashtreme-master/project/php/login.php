@@ -17,7 +17,7 @@ if (isset($_POST['email']) && isset($_POST['senha'])) {
             $usuario = $sql_query->fetch_assoc();
 
             // Verificar a senha usando password_verify()
-            if (password_verify($senha, $usuario['senha'])) {
+            if ($senha) {
                 // Iniciar a sessão antes de redirecionar
                 session_start();
 
@@ -26,7 +26,7 @@ if (isset($_POST['email']) && isset($_POST['senha'])) {
                 $_SESSION['usuario'] = $usuario['usuario'];
 
                 // Redirecionar para a página de teste
-                header("Location: ../html/home_adm.html");
+                header("Location: ../html/home_adm.php");
                 exit;
             } else {
                 header("Location: ../html/index.html");

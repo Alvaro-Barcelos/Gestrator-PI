@@ -91,8 +91,8 @@
     $update_setor = mysqli_query($conexao, "UPDATE setor SET quantidade = quantidade + 1 WHERE id_setor = '$setor'");
 
  
-    $criar_funcionario = mysqli_query($conexao, "INSERT INTO funcionario(nome_funcionario, nacionalidade, data_nascimento, cpf, rg, email, celular, cidade, endereco, pcd, foto_funcionario, id_setor, id_login) 
-    VALUES('$nome_funcionario', '$nacionalidade', '$data_nascimento', '$cpf', '$rg', '$email', '$celular', '$cidade', '$endereco', '$pcd', '$imagem_destino', '$setor', '$id_login')");
+    $criar_funcionario = mysqli_query($conexao, "INSERT INTO funcionario(nome_funcionario, nacionalidade, data_nascimento, cargo, salario, cpf, rg, email, celular, cidade, endereco, pcd, foto_funcionario, id_setor, id_login) 
+    VALUES('$nome_funcionario', '$nacionalidade', '$data_nascimento', '$cargo', '$salario', '$cpf', '$rg', '$email', '$celular', '$cidade', '$endereco', '$pcd', '$imagem_destino', '$setor', '$id_login')");
 
     
 

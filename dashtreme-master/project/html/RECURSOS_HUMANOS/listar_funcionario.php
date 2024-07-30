@@ -24,6 +24,7 @@
   <link href="../../../assets/css/sidebar-menu.css" rel="stylesheet" />
   <link href="../../../assets/css/app-style.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 </head>
 
 <body class="bg-theme bg-theme1">
@@ -78,11 +79,11 @@
           <i class="fa-solid fa-user" style="color: #9e9e9e;"></i> <span>Funcionário</span>
         </a>
       </li>
-      <li>
-        <a href="listar_funcionario.html">
-          <i class="zmdi zmdi-accounts-add"></i><span>Listar Funcionários</span></a> 
-        </a>
-      </li>
+  <li>
+    <a href="listar_funcionario.php">
+      <i class="zmdi zmdi-accounts-add"></i><span>Listar Funcionários</span></a> 
+    </a>
+  </li>
     
        <li>
          <a href="profile_lider.html">
@@ -151,88 +152,99 @@
           <div class="col-lg-8">
             <div class="card">
               <div class="card-body">
-                <ul class="nav nav-tabs nav-tabs-primary top-icon nav-justified">
-                  <li class="nav-item">
-                    <a data-toggle="pill" class="nav-link"><i class="icon-note"></i> <span class="hidden-xs">Edit</span></a>
-                  </li>
-                </ul>
+
+
                 <br>
-                <form>
-                  <div class="form-group row">
-                    <label class="col-lg-3 col-form-label form-control-label">Nome</label>
-                    <div class="col-lg-9">
-                      <input class="form-control" type="text" value="" placeholder="Nome Completo">
-                    </div>
-                  </div>
-                  <div class="form-group row">
-                    <label class="col-lg-3 col-form-label form-control-label">Email</label>
-                    <div class="col-lg-9">
-                      <input class="form-control" type="text" value="" placeholder="Email">
-                    </div>
-                  </div>
-                  <div class="form-group row">
-                    <label class="col-lg-3 col-form-label form-control-label">Telefone</label>
-                    <div class="col-lg-9">
-                      <input class="form-control" type="text" value="" placeholder="Telefone">
-                    </div>
-                  </div>
-                  <div class="form-group row">
-                    <label class="col-lg-3 col-form-label form-control-label">Foto</label>
-                    <div class="col-lg-9">
-                      <label class="select-style" for="customFile">Adicionar imagem</label>
-                      <input type="file" class="select-style" id="customFile" onchange="handleImageUpload(event)" />
-                    </div>
-                  </div>
-                  <div class="form-group row">
-                    <label class="col-lg-3 col-form-label form-control-label">Cidade</label>
-                    <div class="col-lg-9">
-                      <input class="form-control" type="text" value="" placeholder="Alterar Cidade">
-                    </div>
-                  </div>
-                  <div class="form-group row">
-                    <label class="col-lg-3 col-form-label form-control-label">Endereço</label>
-                    <div class="col-lg-9">
-                      <input class="form-control" type="text" value="" placeholder="Alterar Endereço">
-                    </div>
-                  </div>
-                  <div class="form-group row">
-                    <label class="col-lg-3 col-form-label form-control-label">Cargo</label>
-                    <div class="col-lg-9">
-                      <input class="form-control" type="text" value="" placeholder="Alterar Cargo">
-                    </div>
-                  </div>
-                  <div class="form-group row">
-                    <label class="col-lg-3 col-form-label form-control-label">Salário</label>
-                    <div class="col-lg-9">
-                      <input class="form-control" type="" value="" placeholder="Alterar Salário">
-                    </div>
-                  </div>
-                  <div class="form-group row">
-                    <label class="col-lg-3 col-form-label form-control-label" for="input-2">Setor</label>
-                    <div class="col-lg-9">
-                      <div class="custom-dropdown">
-                        <select id="input-2" class="form-control" name="setor" required>
-                          <option value="" disabled selected hidden>Selecione um Setor</option>
-                          <option value="1">Administrativo</option>
-                          <option value="2">Comercial</option>
-                          <option value="3">Marketing</option>
-                          <option value="4">Financeiro</option>
-                          <option value="5">Compras</option>
-                          <option value="6">Recursos humanos</option>
-                          <option value="7">Operações</option>
-                        </select>
-                        <div class="arrow-down"></div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="form-group row">
-                    <label class="col-lg-3 col-form-label form-control-label"></label>
-                    <div class="col-lg-9">
-                      <button type="submit" class="btn btn-light px-5">Cancel</button>
-                      <button type="submit" class="btn btn-light px-5">Atualizar</button>
-                    </div>
-                  </div>
-                </form>
+                    <div class="container">
+      <h1 class='card-title'>Lista de Funcionários</h1>
+
+      <?php
+include_once ("../../php/conexao.php");
+
+// Verifica se há um termo de pesquisa
+if (isset($_GET['pesquisa']) && !empty($_GET['pesquisa'])) {
+    $pesquisa_term = $_GET['pesquisa'];
+    // Consulta com junção entre as tabelas `funcionario` e `setor`
+    $sql = "SELECT funcionario.nome_funcionario, funcionario.cargo, setor.nome_setor, funcionario.id_funcionario 
+            FROM funcionario
+            INNER JOIN setor ON setor.id_setor = funcionario.id_setor
+            WHERE funcionario.nome_funcionario LIKE '%$pesquisa_term%'";
+} else {
+    // Consulta sem filtro de pesquisa
+    $sql = "SELECT funcionario.nome_funcionario, funcionario.cargo, setor.nome_setor, funcionario.id_funcionario 
+            FROM funcionario
+            INNER JOIN setor ON setor.id_setor = funcionario.id_setor";
+}
+
+$resultado = mysqli_query($conexao, $sql);
+
+if ($resultado) {
+?>
+    <form method='GET' action=''>
+        <div class="search-bar input">
+            <div>
+                <input type='text' id='search' name='pesquisa' placeholder='Pesquisar...'
+                    value='<?php echo isset($_GET["pesquisa"]) ? $_GET["pesquisa"] : ""; ?>'>
+                <button type='submit' id='btnBusca'><i class='icon-magnifier'></i></button>
+            </div>
+        </div>
+    </form>
+
+    <div id="results">
+        <?php
+        if (mysqli_num_rows($resultado) > 0) {
+            echo "<table border='1'>";
+            echo "<tr>
+                    <th>Nome Completo</th>
+                    <th>Setor</th>
+                    <th>Cargo</th>
+                    <th>Ações</th>
+                  </tr>";
+            while ($row = mysqli_fetch_assoc($resultado)) {
+                echo "<tr>";
+                echo "<td>" . $row['nome_funcionario'] . "</td>";
+                echo "<td>" . $row['nome_setor'] . "</td>";
+                echo "<td>" . $row['cargo'] . "</td>";
+                
+                // Formulário para atualizar funcionário
+                echo "<td>";
+                echo "<form action='atualizarfuncionario.php' method='post' style='display:inline-block;'>";
+                echo "<input type='hidden' name='id' value='" . $row['id_funcionario'] . "'>";
+                echo "<button type='submit' class='fa-regular fa-pen-to-square' style='color: #38a9ff;'></button>";
+                echo "</form>";
+                
+                // Formulário para excluir funcionário
+                echo "<form action='excluirfuncionario.php' method='post' style='display:inline-block;'>";
+                echo "<input type='hidden' name='id' value='" . $row['id_funcionario'] . "'>";
+                echo "<button type='submit' class='fa-solid fa-trash' style='color: #d33131;'></button>";
+                echo "</form>";
+                echo "</td>";
+                
+                echo "</tr>";
+            }
+            echo "</table>";
+        } else {
+            echo "Não há registros na tabela.";
+        }
+        ?>
+    </div>
+    <?php
+    } else {
+        echo "Erro na consulta: " . mysqli_error($conexao);
+    }
+
+    // Fecha a conexão
+    mysqli_close($conexao);
+
+    ?>
+
+            
+                </div>
+          </div>
+        </div>
+        </main>
+          </div>
+          </div>
               </div>
             </div>
           </div>

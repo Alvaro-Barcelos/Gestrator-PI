@@ -556,7 +556,7 @@ $resultado = mysqli_query($conexao, "SELECT servico.*, setor.nome_setor FROM ser
             <input type="text" id="search-bar" placeholder="Pesquise nomes ou equipe">
         </div>
     </div>
-    C:\xampp\htdocs\Gestrator-PI\Gestrator-PI\dashtreme-master\project\html\home_adm.php
+
 
    <!-- Sobreposição -->
    <div id="overlay" class="overlay">

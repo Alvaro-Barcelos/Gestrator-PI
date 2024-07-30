@@ -209,12 +209,15 @@
 }
 
 #search-bar {
-    width: 100%;
-    padding: 12px;
-    margin-top: 20px; /* Espaçamento maior acima da barra de pesquisa */
+    width: 80%; /* Ajuste a largura conforme necessário */
+    padding: 8px; /* Menos padding para uma barra mais compacta */
+    margin-top: 10px; /* Espaçamento acima da barra */
     border: 1px solid #ccc;
     border-radius: 4px;
+    box-sizing: border-box; /* Inclui o padding e a borda na largura total */
+    max-width: 600px; /* Largura máxima para limitar o crescimento em telas grandes */
 }
+
 
 
 /* sobreposição de tela */
@@ -240,7 +243,7 @@
 
 .overlay-content {
     background: #fff;
-    padding: 20px;
+    padding: 25px;
     border-radius: 8px;
     width: 100%;
     box-sizing: border-box;
@@ -553,11 +556,12 @@ $resultado = mysqli_query($conexao, "SELECT servico.*, setor.nome_setor FROM ser
             <input type="text" id="search-bar" placeholder="Pesquise nomes ou equipe">
         </div>
     </div>
-
+    C:\xampp\htdocs\Gestrator-PI\Gestrator-PI\dashtreme-master\project\html\home_adm.php
 
    <!-- Sobreposição -->
    <div id="overlay" class="overlay">
         <div class="overlay-content">
+        <input type="text" id="search-bar" placeholder="Pesquise nomes ou equipe">
             <h2>Chat Interno</h2>
             <div class="chat-body">
                 <!-- Área do chat -->

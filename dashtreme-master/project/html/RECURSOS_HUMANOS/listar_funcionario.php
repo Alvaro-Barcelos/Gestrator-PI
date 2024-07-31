@@ -25,10 +25,81 @@
   <link href="../../../assets/css/app-style.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+  <!-- Custom Styles -->
+  <style>
+    .search-bar {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .search-bar input {
+      width: 100%;
+      max-width: 400px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      margin-right: 10px;
+    }
+
+    .search-bar button {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .search-bar button i {
+      margin-right: 5px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+
+    table, th, td {
+      border: 1px solid #ddd;
+    }
+
+    th, td {
+      padding: 15px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    .action-buttons {
+      display: flex;
+      gap: 10px;
+    }
+
+    .action-buttons form {
+      display: inline-block;
+    }
+
+    .action-buttons button {
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .action-buttons .fa-pen-to-square {
+      color: #38a9ff;
+    }
+
+    .action-buttons .fa-trash {
+      color: #d33131;
+    }
+  </style>
 </head>
 
 <body class="bg-theme bg-theme1">
-
   <!-- Start loader -->
   <div id="pageloader-overlay" class="visible incoming">
     <div class="loader-wrapper-outer">
@@ -45,60 +116,53 @@
     <!-- Start sidebar-wrapper -->
     <div id="sidebar-wrapper" data-simplebar="" data-simplebar-auto-hide="true">
       <div class="brand-logo">
-       <a href="home_adm.html">
-        <img src="../../imagens/GE.png" class="logo-icon" alt="logo icon" >
-        <h5 class="logo-text">Gestrator</h5>
-      </a>
-    </div>
-    <ul class="sidebar-menu do-nicescrol">
-    
-       <li>
-         <a href="home_lider.html">
-           <i class="fa-solid fa-chart-line" style="color: #9e9e9e;"></i> <span>Dashboard</span>
-         </a>
-       </li>
-    
-       <li>
-         <a href="https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fcalendar.google.com%2Fcalendar%2Fu%2F0%2Fr&emr=1&followup=https%3A%2F%2Fcalendar.google.com%2Fcalendar%2Fu%2F0%2Fr&ifkv=AdF4I77H6Q8kDjrou1wIGuHz3S3_9WHl1Z6w3HQ5MAbJVDPoIZHRKIQUAYS0YHfymJmHEtgj8rOdfQ&osid=1&passive=1209600&service=cl&flowName=GlifWebSignIn&flowEntry=ServiceLogin&dsh=S268491357%3A1720720457775498&ddm=0">
-           <i class="zmdi zmdi-calendar-check"></i> <span>Calendário</span>
-         </a>
-       </li>
-       <li>
-       <li>
-         <a href="relatorio_lider.html">
-           <i class="zmdi zmdi-assignment" style="color: #9e9e9e;"></i> <span>Relatório</span>
-         </a>
-       </li>
-       <li>
-        <a href="registrar_servico_lider.html">
-          <i class="fa-solid fa-list-check" style="color: #9e9e9e;"></i> <span>Serviço</span>
+        <a href="home_adm.html">
+          <img src="../../imagens/GE.png" class="logo-icon" alt="logo icon">
+          <h5 class="logo-text">Gestrator</h5>
         </a>
-      </li>
-      <li>
-        <a href="cadastrar_funcionario_lider.html">
-          <i class="fa-solid fa-user" style="color: #9e9e9e;"></i> <span>Funcionário</span>
-        </a>
-      </li>
-  <li>
-    <a href="listar_funcionario.php">
-      <i class="zmdi zmdi-accounts-add"></i><span>Listar Funcionários</span></a> 
-    </a>
-  </li>
-    
-       <li>
-         <a href="profile_lider.html">
-           <i class="zmdi zmdi-face"></i> <span>Perfil</span>
-         </a>
-       </li>
-    
-       <li>
-         <a href="../index.html">
-           <i class="fa-solid fa-right-from-bracket" style="color: #9e9e9e;"></i> <span>Sair</span>
-         </a>
-       </li>
-    
-     </ul>
-    
+      </div>
+      <ul class="sidebar-menu do-nicescrol">
+        <li>
+          <a href="home_lider.html">
+            <i class="fa-solid fa-chart-line" style="color: #9e9e9e;"></i> <span>Dashboard</span>
+          </a>
+        </li>
+        <li>
+          <a href="https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fcalendar.google.com%2Fcalendar%2Fu%2F0%2Fr&emr=1&followup=https%3A%2F%2Fcalendar.google.com%2Fcalendar%2Fu%2F0%2Fr&ifkv=AdF4I77H6Q8kDjrou1wIGuHz3S3_9WHl1Z6w3HQ5MAbJVDPoIZHRKIQUAYS0YHfymJmHEtgj8rOdfQ&osid=1&passive=1209600&service=cl&flowName=GlifWebSignIn&flowEntry=ServiceLogin&dsh=S268491357%3A1720720457775498&ddm=0">
+            <i class="zmdi zmdi-calendar-check"></i> <span>Calendário</span>
+          </a>
+        </li>
+        <li>
+          <a href="relatorio_lider.html">
+            <i class="zmdi zmdi-assignment" style="color: #9e9e9e;"></i> <span>Relatório</span>
+          </a>
+        </li>
+        <li>
+          <a href="registrar_servico_lider.html">
+            <i class="fa-solid fa-list-check" style="color: #9e9e9e;"></i> <span>Serviço</span>
+          </a>
+        </li>
+        <li>
+          <a href="cadastrar_funcionario_lider.html">
+            <i class="fa-solid fa-user" style="color: #9e9e9e;"></i> <span>Funcionário</span>
+          </a>
+        </li>
+        <li>
+          <a href="listar_funcionario.php">
+            <i class="zmdi zmdi-accounts-add"></i><span>Listar Funcionários</span>
+          </a>
+        </li>
+        <li>
+          <a href="profile_lider.html">
+            <i class="zmdi zmdi-face"></i> <span>Perfil</span>
+          </a>
+        </li>
+        <li>
+          <a href="../index.html">
+            <i class="fa-solid fa-right-from-bracket" style="color: #9e9e9e;"></i> <span>Sair</span>
+          </a>
+        </li>
+      </ul>
     </div>
     <!-- End sidebar-wrapper -->
 
@@ -152,99 +216,82 @@
           <div class="col-lg-8">
             <div class="card">
               <div class="card-body">
+                <h1 class='card-title'>Lista de Funcionários</h1>
+                <div class="container">
+                  <?php
+                  include_once ("../../php/conexao.php");
 
+                  // Verifica se há um termo de pesquisa
+                  if (isset($_GET['pesquisa']) && !empty($_GET['pesquisa'])) {
+                      $pesquisa_term = $_GET['pesquisa'];
+                      // Consulta com junção entre as tabelas `funcionario` e `setor`
+                      $sql = "SELECT funcionario.nome_funcionario, funcionario.cargo, setor.nome_setor, funcionario.id_funcionario 
+                              FROM funcionario
+                              INNER JOIN setor ON setor.id_setor = funcionario.id_setor
+                              WHERE funcionario.nome_funcionario LIKE '%$pesquisa_term%'";
+                  } else {
+                      // Consulta sem filtro de pesquisa
+                      $sql = "SELECT funcionario.nome_funcionario, funcionario.cargo, setor.nome_setor, funcionario.id_funcionario 
+                              FROM funcionario
+                              INNER JOIN setor ON setor.id_setor = funcionario.id_setor";
+                  }
 
-                <br>
-                    <div class="container">
-      <h1 class='card-title'>Lista de Funcionários</h1>
+                  $resultado = mysqli_query($conexao, $sql);
 
-      <?php
-include_once ("../../php/conexao.php");
+                  if ($resultado) {
+                  ?>
+                  <form method='GET' action=''>
+                    <div class="search-bar">
+                      <input type='text' id='search' name='pesquisa' placeholder='Pesquisar...'
+                        value='<?php echo isset($_GET["pesquisa"]) ? $_GET["pesquisa"] : ""; ?>'>
+                      <button type='submit' id='btnBusca'><i class="fa fa-search"></i> Buscar</button>
+                    </div>
+                  </form>
 
-// Verifica se há um termo de pesquisa
-if (isset($_GET['pesquisa']) && !empty($_GET['pesquisa'])) {
-    $pesquisa_term = $_GET['pesquisa'];
-    // Consulta com junção entre as tabelas `funcionario` e `setor`
-    $sql = "SELECT funcionario.nome_funcionario, funcionario.cargo, setor.nome_setor, funcionario.id_funcionario 
-            FROM funcionario
-            INNER JOIN setor ON setor.id_setor = funcionario.id_setor
-            WHERE funcionario.nome_funcionario LIKE '%$pesquisa_term%'";
-} else {
-    // Consulta sem filtro de pesquisa
-    $sql = "SELECT funcionario.nome_funcionario, funcionario.cargo, setor.nome_setor, funcionario.id_funcionario 
-            FROM funcionario
-            INNER JOIN setor ON setor.id_setor = funcionario.id_setor";
-}
+                  <div id="results">
+                    <?php
+                    if (mysqli_num_rows($resultado) > 0) {
+                      echo "<table>";
+                      echo "<tr>
+                              <th>Nome Completo</th>
+                              <th>Setor</th>
+                              <th>Cargo</th>
+                              <th>Ações</th>
+                            </tr>";
+                      while ($row = mysqli_fetch_assoc($resultado)) {
+                          echo "<tr>";
+                          echo "<td>" . $row['nome_funcionario'] . "</td>";
+                          echo "<td>" . $row['nome_setor'] . "</td>";
+                          echo "<td>" . $row['cargo'] . "</td>";
+                          echo "<td class='action-buttons'>";
+                          // Formulário para atualizar funcionário
+                          echo "<form action='atualizarfuncionario.php' method='post'>";
+                          echo "<input type='hidden' name='id' value='" . $row['id_funcionario'] . "'>";
+                          echo "<button type='submit' class='fa-regular fa-pen-to-square'></button>";
+                          echo "</form>";
+                          // Formulário para excluir funcionário
+                          echo "<form action='excluirfuncionario.php' method='post'>";
+                          echo "<input type='hidden' name='id' value='" . $row['id_funcionario'] . "'>";
+                          echo "<button type='submit' class='fa-solid fa-trash'></button>";
+                          echo "</form>";
+                          echo "</td>";
+                          echo "</tr>";
+                      }
+                      echo "</table>";
+                    } else {
+                        echo "Não há registros na tabela.";
+                    }
+                    ?>
+                  </div>
+                  <?php
+                  } else {
+                      echo "Erro na consulta: " . mysqli_error($conexao);
+                  }
 
-$resultado = mysqli_query($conexao, $sql);
-
-if ($resultado) {
-?>
-    <form method='GET' action=''>
-        <div class="search-bar input">
-            <div>
-                <input type='text' id='search' name='pesquisa' placeholder='Pesquisar...'
-                    value='<?php echo isset($_GET["pesquisa"]) ? $_GET["pesquisa"] : ""; ?>'>
-                <button type='submit' id='btnBusca'><i class='icon-magnifier'></i></button>
-            </div>
-        </div>
-    </form>
-
-    <div id="results">
-        <?php
-        if (mysqli_num_rows($resultado) > 0) {
-            echo "<table border='1'>";
-            echo "<tr>
-                    <th>Nome Completo</th>
-                    <th>Setor</th>
-                    <th>Cargo</th>
-                    <th>Ações</th>
-                  </tr>";
-            while ($row = mysqli_fetch_assoc($resultado)) {
-                echo "<tr>";
-                echo "<td>" . $row['nome_funcionario'] . "</td>";
-                echo "<td>" . $row['nome_setor'] . "</td>";
-                echo "<td>" . $row['cargo'] . "</td>";
-                
-                // Formulário para atualizar funcionário
-                echo "<td>";
-                echo "<form action='atualizarfuncionario.php' method='post' style='display:inline-block;'>";
-                echo "<input type='hidden' name='id' value='" . $row['id_funcionario'] . "'>";
-                echo "<button type='submit' class='fa-regular fa-pen-to-square' style='color: #38a9ff;'></button>";
-                echo "</form>";
-                
-                // Formulário para excluir funcionário
-                echo "<form action='excluirfuncionario.php' method='post' style='display:inline-block;'>";
-                echo "<input type='hidden' name='id' value='" . $row['id_funcionario'] . "'>";
-                echo "<button type='submit' class='fa-solid fa-trash' style='color: #d33131;'></button>";
-                echo "</form>";
-                echo "</td>";
-                
-                echo "</tr>";
-            }
-            echo "</table>";
-        } else {
-            echo "Não há registros na tabela.";
-        }
-        ?>
-    </div>
-    <?php
-    } else {
-        echo "Erro na consulta: " . mysqli_error($conexao);
-    }
-
-    // Fecha a conexão
-    mysqli_close($conexao);
-
-    ?>
-
-            
+                  // Fecha a conexão
+                  mysqli_close($conexao);
+                  ?>
                 </div>
-          </div>
-        </div>
-        </main>
-          </div>
-          </div>
               </div>
             </div>
           </div>
@@ -257,7 +304,7 @@ if ($resultado) {
     <!-- End content-wrapper -->
 
     <!-- Start Back To Top Button -->
-    <a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
+    <a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i></a>
     <!-- End Back To Top Button -->
 
     <!-- Start footer -->
@@ -295,7 +342,6 @@ if ($resultado) {
       </div>
     </div>
     <!-- End color switcher -->
-
   </div>
   <!-- End wrapper -->
 
@@ -312,7 +358,7 @@ if ($resultado) {
     function confereSenha() {
       const senha = document.querySelector('input[name=senha]');
       const confirma = document.querySelector('input[name=confirma]');
-  
+
       if (confirma.value === senha.value) {
         confirma.setCustomValidity('');
       } else {
@@ -326,7 +372,7 @@ if ($resultado) {
     function mostrarSenha(id) {
       var campo = document.getElementsByName(id)[0];
       var tipo = campo.getAttribute('type');
-  
+
       if (tipo === 'password') {
         campo.setAttribute('type', 'text');
         document.getElementById('olho' + id.charAt(0).toUpperCase() + id.slice(1)).classList.remove('fa-eye');

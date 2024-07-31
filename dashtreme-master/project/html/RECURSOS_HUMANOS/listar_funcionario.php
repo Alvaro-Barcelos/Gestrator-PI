@@ -28,32 +28,32 @@
   <!-- Custom Styles -->
   <style>
     .search-bar {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 20px;
-    }
+  position: relative;
+  display: flex;
+  align-items: center;
+}
 
-    .search-bar input {
-      width: 100%;
-      max-width: 400px;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      margin-right: 10px;
-    }
+.search-bar input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  padding-right: 40px; /* Espaço para o ícone */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
 
-    .search-bar button {
-      padding: 10px 20px;
-      background-color: #007bff;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
+.search-bar button {
+  position: absolute;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #333;
+  font-size: 16px;
+}
 
-    .search-bar button i {
-      margin-right: 5px;
-    }
+.search-bar button:focus {
+  outline: none;
+}
 
     table {
       width: 100%;
@@ -71,7 +71,7 @@
     }
 
     th {
-      background-color: #f2f2f2;
+      background-color: transparent;
     }
 
     .action-buttons {
@@ -241,13 +241,13 @@
                   if ($resultado) {
                   ?>
                   <form method='GET' action=''>
-                    <div class="search-bar">
+                  <div class="search-bar">
                       <input type='text' id='search' name='pesquisa' placeholder='Pesquisar...'
                         value='<?php echo isset($_GET["pesquisa"]) ? $_GET["pesquisa"] : ""; ?>'>
-                      <button type='submit' id='btnBusca'><i class="fa fa-search"></i> Buscar</button>
+                      <button type='submit'><i class="fa fa-search"></i></button>
                     </div>
                   </form>
-
+                  <br>
                   <div id="results">
                     <?php
                     if (mysqli_num_rows($resultado) > 0) {
@@ -356,7 +356,7 @@
   <!-- Script for password validation -->
   <script>
     function confereSenha() {
-      const senha = document.querySelector('input[name=senha]');
+      const senha = document.querySelector('input[name= senha]');
       const confirma = document.querySelector('input[name=confirma]');
 
       if (confirma.value === senha.value) {

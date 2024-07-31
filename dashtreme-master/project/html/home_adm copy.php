@@ -172,24 +172,28 @@
 
 /* styles.css */
 .popup {
-    display: none; /* Oculta o pop-up por padrão */
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Cor de fundo semi-transparente */
-    justify-content: center;
-    align-items: center;
-    z-index: 1000; /* Garante que o pop-up esteja sobre outros elementos */
+    display: none; /* Inicialmente oculto */
+    position: absolute; /* Permite o posicionamento absoluto */
+    background: white;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    z-index: 1000;
 }
 
 .popup-content {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 5px;
-    width: 300px;
+    padding: 15px;
     position: relative;
+}
+
+.popup-arrow {
+    position: absolute;
+    top: -10px;
+    left: 20px; /* Ajuste conforme necessário */
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid white;
 }
 
 .close-btn {
@@ -197,8 +201,8 @@
     top: 10px;
     right: 10px;
     cursor: pointer;
-    font-size: 20px;
 }
+
 
 /* sobreposição de tela */
 /* Estilo do ícone */
@@ -479,7 +483,9 @@ $resultado = mysqli_query($conexao, "SELECT servico.*, setor.nome_setor FROM ser
                                         <?= $row['nome_servico'] ?>
                                     </button>
                                 </td>
-                                <td class="w-50"><i class="fa-solid fa-user-plus" id="icon"></i></td>
+                                <td class="w-50">
+                                 <i class="fa-solid fa-user-plus open-popup" data-id="<?= $row['id_servico'] ?>"></i>
+                         </td>
                                 <td class="situacao w-100 <?= strtolower(str_replace(' ', '-', $row['situacao'])) ?>"><?= $row['situacao'] ?></td>
                                 <td class="prioridade <?= strtolower($row['prioridade']) ?>"><?= $row['prioridade'] ?></td>
                                 <td class="w-200"><?= $row['nome_setor'] ?></td>
@@ -516,14 +522,16 @@ $resultado = mysqli_query($conexao, "SELECT servico.*, setor.nome_setor FROM ser
         </div>
     </div>
 
-    <!-- Pop-up -->
-    <div id="popup" class="popup">
-        <div class="popup-content">
-            <span class="close-btn" id="close-btn">&times;</span>
-            <p>Este é o conteúdo do pop-up.</p>
-        </div>
+<!-- O popup -->
+<div id="popup" class="popup">
+    <div class="popup-content">
+        <div class="popup-arrow"></div>
+        <button id="close-btn" class="close-btn">&times;</button>
+        <h2>Equipe</h2>
+        <p>Adicione funcionários a este serviço</p>
+        <input type="text" id="search-bar" placeholder="Pesquise nomes ou equipe">
     </div>
-
+</div>
 
     <!-- Sobreposição de tela -->
     <div id="overlay" class="overlay">
@@ -1027,26 +1035,31 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <!-- script pra abrir o popup da equipe -->
 <script>
- // script.js
-document.addEventListener('DOMContentLoaded', function() {
-    var icon = document.getElementById('icon');
-    var popup = document.getElementById('popup');
-    var closeBtn = document.getElementById('close-btn');
+$(document).ready(function() {
+    $('.open-popup').on('click', function(e) {
+        // Evita que o popup se mova inesperadamente devido ao scroll da página
+        e.preventDefault();
 
-    // Abre o pop-up
-    icon.addEventListener('click', function() {
-        popup.style.display = 'flex'; // Usa flexbox para centralizar o pop-up
+        // Obtém a posição do ícone
+        var icon = $(this);
+        var offset = icon.offset();
+        var popup = $('#popup');
+        
+        // Posiciona o popup diretamente abaixo do ícone
+        popup.css({
+            top: offset.top + icon.outerHeight() + 10, // Ajuste o 10 se necessário para espaçamento
+            left: offset.left
+        }).show();
     });
 
-    // Fecha o pop-up
-    closeBtn.addEventListener('click', function() {
-        popup.style.display = 'none';
+    $('#close-btn').on('click', function() {
+        $('#popup').hide();
     });
 
-    // Fecha o pop-up clicando fora do conteúdo
-    window.addEventListener('click', function(event) {
-        if (event.target === popup) {
-            popup.style.display = 'none';
+    // Oculta o popup se clicar fora dele
+    $(document).on('click', function(e) {
+        if (!$(e.target).closest('#popup, .open-popup').length) {
+            $('#popup').hide();
         }
     });
 });

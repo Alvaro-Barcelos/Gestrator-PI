@@ -381,7 +381,7 @@ i.fa-comment {
    <ul class="sidebar-menu do-nicescrol">
 
       <li>
-        <a href="home_adm.html">
+        <a href="home_adm.php">
           <i class="fa-solid fa-chart-line" style="color: #9e9e9e;"></i> <span>Dashboard</span>
         </a>
       </li>

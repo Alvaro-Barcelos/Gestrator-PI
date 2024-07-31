@@ -176,32 +176,42 @@
 
 /* styles.css popup */
 .popup {
-    display: none; /* Esconde o popup por padrão */
-    position: absolute; /* Permite posicionar o popup em relação ao ícone */
-    z-index: 1000; /* Fica acima do conteúdo da página */
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .popup-content {
+            position: relative;
+        }
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        .resultados {
+            margin-top: 10px;
+            color: black;
+        }
+        .resultado-item {
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #ddd;
 }
 
-.popup-content {
-    background-color: #fff;
-    padding: 30px;
-    border-radius: 8px;
-    text-align: center;
-    width: 400px;
-    position: relative; /* Para que o botão de fechar possa ser posicionado */
-    max-width: 90%;
+.resultado-item:hover {
+    background-color: #f0f0f0;
 }
 
-.popup-arrow {
-    position: absolute;
-    top: -10px; /* Ajuste a posição vertical da seta */
-    left: 50%; /* Centraliza a seta horizontalmente em relação ao popup */
-    margin-left: -10px; /* Move a seta para a esquerda para centralizar */
-    width: 0;
-    height: 0;
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
-    border-bottom: 10px solid #fff; /* Cor da seta, igual ao fundo do popup */
-}
 
 #search-bar {
     width: 80%;
@@ -213,17 +223,7 @@
     max-width: 600px;
 }
 
-.close-btn {
-    background: none;
-    border: none;
-    font-size: 30px;
-    cursor: pointer;
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    color: #333;
-}
- 
+
 /* Sobreposição de tela */
 .overlay {
     position: fixed;
@@ -360,6 +360,9 @@ i.fa-comment {
   height: 530px;
 }
 
+
+
+
   </style>
 
 
@@ -381,7 +384,7 @@ i.fa-comment {
    <ul class="sidebar-menu do-nicescrol">
 
       <li>
-        <a href="home_adm.html">
+        <a href="home_adm.php">
           <i class="fa-solid fa-chart-line" style="color: #9e9e9e;"></i> <span>Dashboard</span>
         </a>
       </li>
@@ -483,9 +486,10 @@ i.fa-comment {
         </li>
 
         <li class="dropdown-divider"></li>
-        <li class="dropdown-item"><i class="icon-wallet mr-2"></i> Perfil</li>
+        <a href="profile_adm.html"><li class="dropdown-item"><i class="icon-wallet mr-2"></i> Perfil</li></a>
         <li class="dropdown-divider"></li>
-        <li class="dropdown-item"><i class="icon-power mr-2"></i> Sair</li>
+        <a href="../php/logout.php"><li class="dropdown-item"><i class="icon-power mr-2"></i> Sair</li></a>
+        
       </ul>
     </li>
   </ul>
@@ -499,7 +503,14 @@ i.fa-comment {
     <div class="container-fluid">
 
   <!--Start Dashboard Content-->
+  
+  <?php
 
+    include_once("../php/conexao.php");
+
+    
+
+  ?>
 	<div class="card mt-3">
     <div class="card-content">
         <div class="row row-group m-0">
@@ -644,16 +655,19 @@ i.fa-comment {
     </div>
 
 <!-- O popup -->
-<div id="popup" class="popup">
-    <div class="popup-content">
-        <div class="popup-arrow"></div> <!-- Seta indicando o ícone -->
-        <button id="close-btn" class="close-btn">&times;</button>
-        <h2>Equipe</h2>
-        <p>Adicione funcionários a este serviço</p>
-        <input type="text" id="search-bar" placeholder="Pesquise nomes ou equipe">
-    </div>
-</div>
 
+  <div id="popup" class="popup">
+        <div class="popup-content">
+            <button id="close-btn" class="close-btn">&times;</button>
+            <h2>Equipe</h2>
+            <p>Adicione funcionários a este serviço</p>
+            <form action="atualizarEquipe.php" method="post">
+              <input type="text" id="search-bar" name="nome" placeholder="Pesquise nomes ou equipe">
+              <div id="resultados" class="resultados"></div>
+                <input type="submit" value="Atualizar">
+            </form>
+        </div>
+    </div>
 
    <!-- Sobreposição -->
    <div id="overlay" class="overlay">
@@ -747,7 +761,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Insere o comentário no banco de dados
         $query = "INSERT INTO comentario (id_servico, id_funcionario, comentario) VALUES ('$service_id', '$id_funcionario', '$mensagem')";
         if (mysqli_query($conexao, $query)) {
-            echo 'Comentário enviado com sucesso.';
+            echo '';
         } else {
             echo 'Erro ao enviar comentário: ' . mysqli_error($conexao);
         }
@@ -1146,6 +1160,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
 <!-- JavaScript -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
@@ -1165,8 +1181,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="popup-arrow"></div>
                 <button id="close-btn" class="close-btn">&times;</button>
                 <h2>Equipe</h2>
-                <p>Adicione funcionários a este serviço (ID: ${serviceId})</p>
-                <input type="text" id="search-bar" placeholder="Pesquise nomes ou equipe">
+                <form action="../php/atualizarEquipe.php" method="post">
+                  <input type="text" id="search-bar" name="nome" placeholder="Pesquise nomes ou equipe">
+                  <div id="resultados" class="resultados"></div>
+                  <input type="hidden" name="serviceId" value="${serviceId}">
+                  <input type="submit" value="Atualizar">
+                </form>
             `;
 
             // Posicione o popup abaixo do ícone
@@ -1179,6 +1199,34 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('close-btn').addEventListener('click', function() {
                 document.getElementById('popup').style.display = 'none'; // Oculta o popup
             });
+
+            // Adiciona funcionalidade de busca em tempo real
+            const searchBar = document.getElementById('search-bar');
+            searchBar.addEventListener('input', function() {
+                const query = searchBar.value;
+                if (query.length > 0) {
+                    fetch(`buscar_funcionarios.php?query=${query}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            const resultadosDiv = document.getElementById('resultados');
+                            resultadosDiv.innerHTML = '';
+                            data.forEach(funcionario => {
+                                const div = document.createElement('div');
+                                div.textContent = funcionario.nome_funcionario;
+                                div.classList.add('resultado-item'); // Adiciona uma classe para estilização e manipulação
+                                resultadosDiv.appendChild(div);
+
+                                // Adiciona um manipulador de eventos para cada item de resultado
+                                div.addEventListener('click', function() {
+                                    searchBar.value = funcionario.nome_funcionario;
+                                    resultadosDiv.innerHTML = ''; // Limpa os resultados após a seleção
+                                });
+                            });
+                        });
+                } else {
+                    document.getElementById('resultados').innerHTML = '';
+                }
+            });
         });
     });
 
@@ -1189,66 +1237,68 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
 </script>
 
 
   <script>
-document.addEventListener('DOMContentLoaded', function() {
-    var chatIcons = document.querySelectorAll('.fa-comment'); // Alterado para selecionar ícones de comentário
-    var overlay = document.getElementById('overlay');
-    var closeOverlayBtn = document.getElementById('close-overlay');
-    var chatMessages = document.querySelector('.chat-body');
-    var serviceIdInput = document.getElementById('service-id');
 
-    chatIcons.forEach(function(icon) {
-        icon.addEventListener('click', function() {
-            var serviceId = this.getAttribute('data-id');
-            openOverlay(serviceId);
-            serviceIdInput.value = serviceId;
+    document.addEventListener('DOMContentLoaded', function() {
+        var chatIcons = document.querySelectorAll('.fa-comment'); // Alterado para selecionar ícones de comentário
+        var overlay = document.getElementById('overlay');
+        var closeOverlayBtn = document.getElementById('close-overlay');
+        var chatMessages = document.querySelector('.chat-body');
+        var serviceIdInput = document.getElementById('service-id');
+
+        chatIcons.forEach(function(icon) {
+            icon.addEventListener('click', function() {
+                var serviceId = this.getAttribute('data-id');
+                openOverlay(serviceId);
+                serviceIdInput.value = serviceId;
+            });
+        });
+
+        closeOverlayBtn.addEventListener('click', function() {
+            closeOverlay();
+        });
+
+        function openOverlay(serviceId) {
+            overlay.classList.add('show');
+            chatMessages.innerHTML = '<div class="card"><div class="card-header">Mensagem do serviço ID ' + serviceId + '</div><div class="card-body"><blockquote class="blockquote mb-0"><p>Exemplo de mensagem para o serviço ID ' + serviceId + '</p></blockquote></div></div>';
+
+            // Requisição para carregar comentários reais
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'get_comments.php?service_id=' + serviceId, true);
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    chatMessages.innerHTML = xhr.responseText;
+                } else {
+                    chatMessages.innerHTML = '<p>Erro ao carregar comentários.</p>';
+                }
+            };
+            xhr.send();
+        }
+
+        function closeOverlay() {
+            overlay.classList.remove('show');
+        }
+
+        // Fechar a sobreposição ao clicar fora do conteúdo
+        overlay.addEventListener('click', function(e) {
+            if (e.target === overlay) {
+                closeOverlay();
+            }
+        });
+
+        // Enviar mensagem (opcional)
+        document.getElementById('send-message').addEventListener('click', function() {
+            var mensagem = messageInput.value;
+            if (mensagem) {
+                chatMessages.innerHTML += '<div class="card"><div class="card-body"><blockquote class="blockquote mb-0"><p>' + mensagem + '</p></blockquote></div></div>';
+                messageInput.value = '';
+            }
         });
     });
-
-    closeOverlayBtn.addEventListener('click', function() {
-        closeOverlay();
-    });
-
-    function openOverlay(serviceId) {
-        overlay.classList.add('show');
-        chatMessages.innerHTML = '<div class="card"><div class="card-header">Mensagem do serviço ID ' + serviceId + '</div><div class="card-body"><blockquote class="blockquote mb-0"><p>Exemplo de mensagem para o serviço ID ' + serviceId + '</p></blockquote></div></div>';
-
-        // Requisição para carregar comentários reais
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', 'get_comments.php?service_id=' + serviceId, true);
-        xhr.onload = function() {
-            if (xhr.status === 200) {
-                chatMessages.innerHTML = xhr.responseText;
-            } else {
-                chatMessages.innerHTML = '<p>Erro ao carregar comentários.</p>';
-            }
-        };
-        xhr.send();
-    }
-
-    function closeOverlay() {
-        overlay.classList.remove('show');
-    }
-
-    // Fechar a sobreposição ao clicar fora do conteúdo
-    overlay.addEventListener('click', function(e) {
-        if (e.target === overlay) {
-            closeOverlay();
-        }
-    });
-
-    // Enviar mensagem (opcional)
-    document.getElementById('send-message').addEventListener('click', function() {
-        var mensagem = messageInput.value;
-        if (mensagem) {
-            chatMessages.innerHTML += '<div class="card"><div class="card-body"><blockquote class="blockquote mb-0"><p>' + mensagem + '</p></blockquote></div></div>';
-            messageInput.value = '';
-        }
-    });
-});
 
 
 </script>

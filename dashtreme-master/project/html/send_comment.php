@@ -10,7 +10,7 @@ if ($service_id > 0 && !empty($comment)) {
     $result = mysqli_query($conexao, $query);
 
     if ($result) {
-        echo 'Comentário adicionado com sucesso!';
+        echo '';
     } else {
         echo 'Erro ao adicionar comentário.';
     }

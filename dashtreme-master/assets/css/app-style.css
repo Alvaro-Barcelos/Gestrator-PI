@@ -3373,6 +3373,12 @@ table.grid td {
 
 /* Responsive */
 
+@media only screen and (min-width: 1024px){
+    .navbar-nav{
+        display: none;
+    }
+}
+
 
 @media only screen and (max-width: 1199px){
 	
@@ -3385,6 +3391,7 @@ table.grid td {
 		border-right: none;
 		border-bottom: 0;
 	}
+
 }
 
 
@@ -3403,6 +3410,8 @@ table.grid td {
 	.nav-tabs .nav-link{
 		padding: 10px 10px;
 	}
+
+    
 
 }
 

@@ -483,9 +483,10 @@ i.fa-comment {
         </li>
 
         <li class="dropdown-divider"></li>
-        <li class="dropdown-item"><i class="icon-wallet mr-2"></i> Perfil</li>
+        <a href="profile_adm.html"><li class="dropdown-item"><i class="icon-wallet mr-2"></i> Perfil</li></a>
         <li class="dropdown-divider"></li>
-        <li class="dropdown-item"><i class="icon-power mr-2"></i> Sair</li>
+        <a href="../php/logout.php"><li class="dropdown-item"><i class="icon-power mr-2"></i> Sair</li></a>
+        
       </ul>
     </li>
   </ul>
@@ -747,7 +748,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Insere o comentário no banco de dados
         $query = "INSERT INTO comentario (id_servico, id_funcionario, comentario) VALUES ('$service_id', '$id_funcionario', '$mensagem')";
         if (mysqli_query($conexao, $query)) {
-            echo 'Comentário enviado com sucesso.';
+            echo '';
         } else {
             echo 'Erro ao enviar comentário: ' . mysqli_error($conexao);
         }
@@ -1193,62 +1194,63 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
   <script>
-document.addEventListener('DOMContentLoaded', function() {
-    var chatIcons = document.querySelectorAll('.fa-comment'); // Alterado para selecionar ícones de comentário
-    var overlay = document.getElementById('overlay');
-    var closeOverlayBtn = document.getElementById('close-overlay');
-    var chatMessages = document.querySelector('.chat-body');
-    var serviceIdInput = document.getElementById('service-id');
 
-    chatIcons.forEach(function(icon) {
-        icon.addEventListener('click', function() {
-            var serviceId = this.getAttribute('data-id');
-            openOverlay(serviceId);
-            serviceIdInput.value = serviceId;
+    document.addEventListener('DOMContentLoaded', function() {
+        var chatIcons = document.querySelectorAll('.fa-comment'); // Alterado para selecionar ícones de comentário
+        var overlay = document.getElementById('overlay');
+        var closeOverlayBtn = document.getElementById('close-overlay');
+        var chatMessages = document.querySelector('.chat-body');
+        var serviceIdInput = document.getElementById('service-id');
+
+        chatIcons.forEach(function(icon) {
+            icon.addEventListener('click', function() {
+                var serviceId = this.getAttribute('data-id');
+                openOverlay(serviceId);
+                serviceIdInput.value = serviceId;
+            });
+        });
+
+        closeOverlayBtn.addEventListener('click', function() {
+            closeOverlay();
+        });
+
+        function openOverlay(serviceId) {
+            overlay.classList.add('show');
+            chatMessages.innerHTML = '<div class="card"><div class="card-header">Mensagem do serviço ID ' + serviceId + '</div><div class="card-body"><blockquote class="blockquote mb-0"><p>Exemplo de mensagem para o serviço ID ' + serviceId + '</p></blockquote></div></div>';
+
+            // Requisição para carregar comentários reais
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'get_comments.php?service_id=' + serviceId, true);
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    chatMessages.innerHTML = xhr.responseText;
+                } else {
+                    chatMessages.innerHTML = '<p>Erro ao carregar comentários.</p>';
+                }
+            };
+            xhr.send();
+        }
+
+        function closeOverlay() {
+            overlay.classList.remove('show');
+        }
+
+        // Fechar a sobreposição ao clicar fora do conteúdo
+        overlay.addEventListener('click', function(e) {
+            if (e.target === overlay) {
+                closeOverlay();
+            }
+        });
+
+        // Enviar mensagem (opcional)
+        document.getElementById('send-message').addEventListener('click', function() {
+            var mensagem = messageInput.value;
+            if (mensagem) {
+                chatMessages.innerHTML += '<div class="card"><div class="card-body"><blockquote class="blockquote mb-0"><p>' + mensagem + '</p></blockquote></div></div>';
+                messageInput.value = '';
+            }
         });
     });
-
-    closeOverlayBtn.addEventListener('click', function() {
-        closeOverlay();
-    });
-
-    function openOverlay(serviceId) {
-        overlay.classList.add('show');
-        chatMessages.innerHTML = '<div class="card"><div class="card-header">Mensagem do serviço ID ' + serviceId + '</div><div class="card-body"><blockquote class="blockquote mb-0"><p>Exemplo de mensagem para o serviço ID ' + serviceId + '</p></blockquote></div></div>';
-
-        // Requisição para carregar comentários reais
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', 'get_comments.php?service_id=' + serviceId, true);
-        xhr.onload = function() {
-            if (xhr.status === 200) {
-                chatMessages.innerHTML = xhr.responseText;
-            } else {
-                chatMessages.innerHTML = '<p>Erro ao carregar comentários.</p>';
-            }
-        };
-        xhr.send();
-    }
-
-    function closeOverlay() {
-        overlay.classList.remove('show');
-    }
-
-    // Fechar a sobreposição ao clicar fora do conteúdo
-    overlay.addEventListener('click', function(e) {
-        if (e.target === overlay) {
-            closeOverlay();
-        }
-    });
-
-    // Enviar mensagem (opcional)
-    document.getElementById('send-message').addEventListener('click', function() {
-        var mensagem = messageInput.value;
-        if (mensagem) {
-            chatMessages.innerHTML += '<div class="card"><div class="card-body"><blockquote class="blockquote mb-0"><p>' + mensagem + '</p></blockquote></div></div>';
-            messageInput.value = '';
-        }
-    });
-});
 
 
 </script>

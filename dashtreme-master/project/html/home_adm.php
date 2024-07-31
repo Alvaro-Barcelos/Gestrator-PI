@@ -175,20 +175,64 @@
 
 
 /* styles.css popup */
+/* Estilo geral do popup */
 .popup {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 300px;
-            padding: 20px;
-            background-color: white;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        .popup-content {
-            position: relative;
-        }
+    position: absolute;
+    background: #fff;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    display: none; /* Inicialmente oculto */
+    max-width: 300px; /* Tamanho máximo */
+    transition: opacity 0.3s ease, transform 0.3s ease; /* Transição suave */
+    opacity: 0; /* Inicialmente invisível */
+    transform: scale(0.95); /* Inicialmente um pouco menor */
+}
+
+.popup.show {
+    display: block; /* Mostra o popup */
+    opacity: 1; /* Visível */
+    transform: scale(1); /* Tamanho normal */
+}
+
+/* Conteúdo do popup */
+.popup-content {
+    padding: 15px;
+    position: relative;
+}
+
+/* Botão de fechar */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #f1f1f1;
+    border: none;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* Ícone que abre o popup */
+.open-popup {
+    cursor: pointer;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.open-popup.active {
+    color: #007bff;
+    transform: scale(1.1); /* Um pouco maior quando ativo */
+}
+
+
+.popup.show {
+    display: block; /* Mostra o popup */
+}
+
         .close-btn {
             position: absolute;
             top: 10px;
@@ -613,8 +657,8 @@ i.fa-comment {
                                     </button>
                                 </td>
                                 <td class="w-50">
-                                    <i class="fa-solid fa-user-plus open-popup" data-id="<?= $row['id_servico'] ?>"></i>
-                                </td>
+    <i class="fa-solid fa-user-plus open-popup" data-id="<?= $row['id_servico'] ?>"></i>
+</td>
                                 <td class="situacao w-100 <?= strtolower(str_replace(' ', '-', $row['situacao'])) ?>"><?= $row['situacao'] ?></td>
                                 <td class="prioridade <?= strtolower($row['prioridade']) ?>"><?= $row['prioridade'] ?></td>
                                 <td class="w-200"><?= $row['nome_setor'] ?></td>
@@ -656,18 +700,18 @@ i.fa-comment {
 
 <!-- O popup -->
 
-  <div id="popup" class="popup">
-        <div class="popup-content">
-            <button id="close-btn" class="close-btn">&times;</button>
-            <h2>Equipe</h2>
-            <p>Adicione funcionários a este serviço</p>
-            <form action="atualizarEquipe.php" method="post">
-              <input type="text" id="search-bar" name="nome" placeholder="Pesquise nomes ou equipe">
-              <div id="resultados" class="resultados"></div>
-                <input type="submit" value="Atualizar">
-            </form>
-        </div>
+<div id="popup" class="popup">
+    <div class="popup-content">
+        <button id="close-btn" class="close-btn">&times;</button>
+        <h2>Equipe</h2>
+        <p>Adicione funcionários a este serviço</p>
+        <form action="atualizarEquipe.php" method="post">
+            <input type="text" id="search-bar" name="nome" placeholder="Pesquise nomes ou equipe">
+            <div id="resultados" class="resultados"></div>
+            <input type="submit" value="Atualizar">
+        </form>
     </div>
+</div>
 
    <!-- Sobreposição -->
    <div id="overlay" class="overlay">
@@ -1162,7 +1206,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 
-<!-- JavaScript -->
+<!-- POPUP -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     // Selecione todos os ícones com a classe 'open-popup'
@@ -1234,6 +1278,41 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('popup').addEventListener('click', function(event) {
         if (event.target === this) {
             this.style.display = 'none';
+        }
+    });
+});
+
+</script>
+
+<!-- POPUP estlização -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const popup = document.getElementById('popup');
+    const openPopupIcons = document.querySelectorAll('.open-popup');
+    const closeButton = document.getElementById('close-btn');
+
+    openPopupIcons.forEach(icon => {
+        icon.addEventListener('click', (event) => {
+            const iconRect = icon.getBoundingClientRect();
+            const popupRect = popup.getBoundingClientRect();
+
+            // Define a posição do popup logo abaixo do ícone
+            popup.style.top = `${iconRect.bottom + window.scrollY + 10}px`; // 10px abaixo do ícone
+            popup.style.left = `${iconRect.left}px`;
+            popup.classList.add('show'); // Mostra o popup
+            icon.classList.add('active'); // Adiciona a classe ativa ao ícone
+        });
+    });
+
+    closeButton.addEventListener('click', () => {
+        popup.classList.remove('show'); // Esconde o popup
+        openPopupIcons.forEach(icon => icon.classList.remove('active')); // Remove a classe ativa do ícone
+    });
+
+    document.addEventListener('click', (event) => {
+        if (!popup.contains(event.target) && !event.target.classList.contains('open-popup')) {
+            popup.classList.remove('show'); // Esconde o popup
+            openPopupIcons.forEach(icon => icon.classList.remove('active')); // Remove a classe ativa do ícone
         }
     });
 });

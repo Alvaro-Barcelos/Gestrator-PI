@@ -176,32 +176,42 @@
 
 /* styles.css popup */
 .popup {
-    display: none; /* Esconde o popup por padrão */
-    position: absolute; /* Permite posicionar o popup em relação ao ícone */
-    z-index: 1000; /* Fica acima do conteúdo da página */
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .popup-content {
+            position: relative;
+        }
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        .resultados {
+            margin-top: 10px;
+            color: black;
+        }
+        .resultado-item {
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #ddd;
 }
 
-.popup-content {
-    background-color: #fff;
-    padding: 30px;
-    border-radius: 8px;
-    text-align: center;
-    width: 400px;
-    position: relative; /* Para que o botão de fechar possa ser posicionado */
-    max-width: 90%;
+.resultado-item:hover {
+    background-color: #f0f0f0;
 }
 
-.popup-arrow {
-    position: absolute;
-    top: -10px; /* Ajuste a posição vertical da seta */
-    left: 50%; /* Centraliza a seta horizontalmente em relação ao popup */
-    margin-left: -10px; /* Move a seta para a esquerda para centralizar */
-    width: 0;
-    height: 0;
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
-    border-bottom: 10px solid #fff; /* Cor da seta, igual ao fundo do popup */
-}
 
 #search-bar {
     width: 80%;
@@ -213,17 +223,7 @@
     max-width: 600px;
 }
 
-.close-btn {
-    background: none;
-    border: none;
-    font-size: 30px;
-    cursor: pointer;
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    color: #333;
-}
- 
+
 /* Sobreposição de tela */
 .overlay {
     position: fixed;
@@ -359,6 +359,9 @@ i.fa-comment {
 .tamanho{
   height: 530px;
 }
+
+
+
 
   </style>
 
@@ -500,7 +503,14 @@ i.fa-comment {
     <div class="container-fluid">
 
   <!--Start Dashboard Content-->
+  
+  <?php
 
+    include_once("../php/conexao.php");
+
+    
+
+  ?>
 	<div class="card mt-3">
     <div class="card-content">
         <div class="row row-group m-0">
@@ -645,16 +655,19 @@ i.fa-comment {
     </div>
 
 <!-- O popup -->
-<div id="popup" class="popup">
-    <div class="popup-content">
-        <div class="popup-arrow"></div> <!-- Seta indicando o ícone -->
-        <button id="close-btn" class="close-btn">&times;</button>
-        <h2>Equipe</h2>
-        <p>Adicione funcionários a este serviço</p>
-        <input type="text" id="search-bar" placeholder="Pesquise nomes ou equipe">
-    </div>
-</div>
 
+  <div id="popup" class="popup">
+        <div class="popup-content">
+            <button id="close-btn" class="close-btn">&times;</button>
+            <h2>Equipe</h2>
+            <p>Adicione funcionários a este serviço</p>
+            <form action="atualizarEquipe.php" method="post">
+              <input type="text" id="search-bar" name="nome" placeholder="Pesquise nomes ou equipe">
+              <div id="resultados" class="resultados"></div>
+                <input type="submit" value="Atualizar">
+            </form>
+        </div>
+    </div>
 
    <!-- Sobreposição -->
    <div id="overlay" class="overlay">
@@ -1147,6 +1160,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
 <!-- JavaScript -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
@@ -1166,8 +1181,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="popup-arrow"></div>
                 <button id="close-btn" class="close-btn">&times;</button>
                 <h2>Equipe</h2>
-                <p>Adicione funcionários a este serviço (ID: ${serviceId})</p>
-                <input type="text" id="search-bar" placeholder="Pesquise nomes ou equipe">
+                <form action="../php/atualizarEquipe.php" method="post">
+                  <input type="text" id="search-bar" name="nome" placeholder="Pesquise nomes ou equipe">
+                  <div id="resultados" class="resultados"></div>
+                  <input type="hidden" name="serviceId" value="${serviceId}">
+                  <input type="submit" value="Atualizar">
+                </form>
             `;
 
             // Posicione o popup abaixo do ícone
@@ -1180,6 +1199,34 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('close-btn').addEventListener('click', function() {
                 document.getElementById('popup').style.display = 'none'; // Oculta o popup
             });
+
+            // Adiciona funcionalidade de busca em tempo real
+            const searchBar = document.getElementById('search-bar');
+            searchBar.addEventListener('input', function() {
+                const query = searchBar.value;
+                if (query.length > 0) {
+                    fetch(`buscar_funcionarios.php?query=${query}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            const resultadosDiv = document.getElementById('resultados');
+                            resultadosDiv.innerHTML = '';
+                            data.forEach(funcionario => {
+                                const div = document.createElement('div');
+                                div.textContent = funcionario.nome_funcionario;
+                                div.classList.add('resultado-item'); // Adiciona uma classe para estilização e manipulação
+                                resultadosDiv.appendChild(div);
+
+                                // Adiciona um manipulador de eventos para cada item de resultado
+                                div.addEventListener('click', function() {
+                                    searchBar.value = funcionario.nome_funcionario;
+                                    resultadosDiv.innerHTML = ''; // Limpa os resultados após a seleção
+                                });
+                            });
+                        });
+                } else {
+                    document.getElementById('resultados').innerHTML = '';
+                }
+            });
         });
     });
 
@@ -1190,6 +1237,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
 </script>
 
 

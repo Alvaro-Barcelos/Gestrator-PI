@@ -208,13 +208,13 @@ if ($resultado) {
                 
                 // Formulário para atualizar funcionário
                 echo "<td>";
-                echo "<form action='atualizarfuncionario.php' method='post' style='display:inline-block;'>";
+                echo "<form action='../../php/atualizar_funcionario.php' method='post' style='display:inline-block;'>";
                 echo "<input type='hidden' name='id' value='" . $row['id_funcionario'] . "'>";
                 echo "<button type='submit' class='fa-regular fa-pen-to-square' style='color: #38a9ff;'></button>";
                 echo "</form>";
                 
                 // Formulário para excluir funcionário
-                echo "<form action='excluirfuncionario.php' method='post' style='display:inline-block;'>";
+                echo "<form action='../../php/excluir_funcionario.php' method='post' style='display:inline-block;'>";
                 echo "<input type='hidden' name='id' value='" . $row['id_funcionario'] . "'>";
                 echo "<button type='submit' class='fa-solid fa-trash' style='color: #d33131;'></button>";
                 echo "</form>";

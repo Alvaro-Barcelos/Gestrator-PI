@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <meta name="description" content="" />
   <meta name="author" content="" />
-  <title>Cadastrar Funcionário</title>
+  <title>Conteúdos</title>
   <!-- loader-->
   <link href="../../assets/css/pace.min.css" rel="stylesheet" />
   <script src="../../assets/js/pace.min.js"></script>
@@ -31,7 +31,97 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    h3 {
+      margin-top: 10px;
+      margin-bottom: 40px;
+    }
 
+    .card-conteudos {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto;
+    }
+
+    .card {
+      border-radius: 5%;
+      margin-right: 40px;
+      margin-left: 40px;
+    }
+
+    .card img {
+      border-radius: ;
+      width: 100%;
+      height: 200px;
+    }
+
+
+    .card-conteudos {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .card {
+      width: 19rem;
+      height: 22rem;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+
+    /* Adiciona um efeito de elevação ao passar o mouse */
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card-img-top {
+      width: 100%;
+      /* Faz com que a imagem ocupe toda a largura do card */
+      height: 12rem;
+      /* Altura fixa para a imagem (ajuste conforme necessário) */
+      object-fit: cover;
+      /* Garante que a imagem se ajuste ao tamanho do contêiner */
+    }
+
+    .card-body {
+      padding: 15px;
+      /* Adiciona um pouco de padding ao conteúdo do card */
+    }
+
+    .card a:hover{
+      text-decoration: none;
+    }
+
+    .card-link {
+      color: #fff;
+      /* Cor do link */
+      text-decoration: none;
+      /* Remove o sublinhado do link */
+    }
+
+    .card-link:hover {
+      text-decoration: underline;
+      /* Adiciona sublinhado ao passar o mouse */
+    }
+
+    /* Assegura que a largura do contêiner e o espaçamento estejam corretos */
+    .card-conteudos::after {
+      content: "";
+      flex: auto;
+      /* Permite que o espaço restante seja ajustado */
+    }
+
+    @media (max-width: 1199px) {
+      .card-conteudos {
+        justify-content: space-around;
+        /* Ajusta o alinhamento para telas menores */
+      }
+    }
+  </style>
 </head>
 
 <body class="bg-theme bg-theme1">
@@ -125,7 +215,7 @@
           </li>
 
         </ul>
-,,
+        ,,
         <ul class="navbar-nav align-items-center right-nav-link">
           <li class="nav-item dropdown-lg">
             <a class="nav-link dropdown-toggle dropdown-toggle-nocaret waves-effect" data-toggle="dropdown"
@@ -180,56 +270,52 @@
     </header>
     <!--End topbar header-->
     <div class="clearfix"></div>
-    <div class="content-wrapper">
-      <div class="container-fluid">
-        <div class="row mt-3 centralizar">
-          <div class="col-lg-6">
-            <div class="card">
-              <div class="card-body">
-                <div class="card-title">Conteudo</div>
-                <!-- Conteúdo principal dos produtos -->
-                <?php
-                include_once ('conexao.php');
-                $sql = "SELECT * FROM conteudo";
-                $resultado = mysqli_query($conexao, $sql);
-
-                if (mysqli_num_rows($resultado) > 0) {
-                  while ($row = mysqli_fetch_assoc($resultado)) {
-                    echo "<div class='options'>";
-                    echo "    <div class='content-image img-classe'>";
-                    echo "        <img src='" . $row['capa'] . "' alt=''>";
-                    echo "    </div>";
-                    echo "    <h1 class='titulo-options'>Nome: " . $row['nome_conteudo'] . "</h1>";
-                    echo "    <p>Desvrição: R$" . $row['descricao'] . "</p>";
-                  }
-                } else {
-                  echo "<p>Nenhum produto encontrado.</p>";
-                }
-                ?>
-              </div>
-              <div class="form-group">
-                <button type="submit" class="btn btn-light px-5">Cadastrar conteúdo</button>
-              </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!--End Row-->
-    </div>
-    <!--End container-fluid-->
   </div>
-  <!--End content-wrapper-->
 
-  <!--Start footer-->
-  <footer class="footer">
+
+
+  <div class="content-wrapper">
+
+    <div class="card-conteudos">
+
+      <!-- Conteúdo principal dos produtos -->
+      <?php
+      include_once ('conexao.php');
+      $sql = "SELECT * FROM conteudo";
+      $resultado = mysqli_query($conexao, $sql);
+
+      if (mysqli_num_rows($resultado) > 0) {
+        while ($row = mysqli_fetch_assoc($resultado)) {
+          echo "<div class='card'>";
+          echo "    <img class='card-img-top' src='" . $row['capa'] . "' alt='Card image cap'>";
+          echo "    <div class='card-body'>";
+          echo "    <h5>" . $row['nome_conteudo'] . "</h5>";
+          echo "    <hr>";
+          echo "    <h5>" . $row['descricao'] . "</h5>";
+          echo "    <hr>";
+          echo "       <a href='" . $row['pdf'] . "' class='card-link' target='_blank'>Abrir PDF</a>";
+          echo "    </div>";
+          echo "</div>";
+        }
+      } else {
+        echo "<center><p>Nenhum produto encontrado.</p></center>";
+      }
+      ?>
+
+
+      </form>
+    </div>
+  </div>
+
+  <!-- Start footer-->
+  <!-- <footer class="footer">
     <div class="container">
       <div class="text-center">
         © 2022 Gestrator. Criado com amor por Grupo GE. Todos os direitos reservados.
       </div>
     </div>
-  </footer>
-  <!--End footer-->
+  </footer> -->
+  <!--End footer -->
 
   </div>
   <!--End wrapper-->

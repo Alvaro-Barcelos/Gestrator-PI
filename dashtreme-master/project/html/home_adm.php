@@ -37,8 +37,9 @@
 
   <style>
   .modal-content {
-    background-color: #004085 !important;
+    background-color: black !important;
     color: white;
+    width: 500px;
   }
 
   .btn-custom-close {
@@ -227,7 +228,6 @@
     color: #007bff;
     transform: scale(1.1); /* Um pouco maior quando ativo */
 }
-
 
 .popup.show {
     display: block; /* Mostra o popup */
@@ -495,9 +495,7 @@ i.fa-comment {
  <nav class="navbar navbar-expand fixed-top">
  <ul class="navbar-nav mr-auto align-items-center">
       <li class="nav-item">
-        <a class="nav-link toggle-menu" href="javascript:void();">
-          <i class="icon-menu menu-icon"></i>
-        </a>
+        
       </li>
     </ul>
      

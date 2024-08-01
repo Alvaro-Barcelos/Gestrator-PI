@@ -265,12 +265,12 @@
                           echo "<td>" . $row['cargo'] . "</td>";
                           echo "<td class='action-buttons'>";
                           // Formulário para atualizar funcionário
-                          echo "<form action='atualizarfuncionario.php' method='post'>";
+                          echo "<form action='../../php/atualizar_funcionario.php' method='post'>";
                           echo "<input type='hidden' name='id' value='" . $row['id_funcionario'] . "'>";
                           echo "<button type='submit' class='fa-regular fa-pen-to-square'></button>";
                           echo "</form>";
                           // Formulário para excluir funcionário
-                          echo "<form action='excluirfuncionario.php' method='post'>";
+                          echo "<form action='../../php/excluir_funcionario.php' method='post' method='post'>";
                           echo "<input type='hidden' name='id' value='" . $row['id_funcionario'] . "'>";
                           echo "<button type='submit' class='fa-solid fa-trash'></button>";
                           echo "</form>";
@@ -288,62 +288,7 @@
                       echo "Erro na consulta: " . mysqli_error($conexao);
                   }
 
-$resultado = mysqli_query($conexao, $sql);
 
-if ($resultado) {
-?>
-    <form method='GET' action=''>
-        <div class="search-bar input">
-            <div>
-                <input type='text' id='search' name='pesquisa' placeholder='Pesquisar...'
-                    value='<?php echo isset($_GET["pesquisa"]) ? $_GET["pesquisa"] : ""; ?>'>
-                <button type='submit' id='btnBusca'><i class='icon-magnifier'></i></button>
-            </div>
-        </div>
-    </form>
-
-    <div id="results">
-        <?php
-        if (mysqli_num_rows($resultado) > 0) {
-            echo "<table border='1'>";
-            echo "<tr>
-                    <th>Nome Completo</th>
-                    <th>Setor</th>
-                    <th>Cargo</th>
-                    <th>Ações</th>
-                  </tr>";
-            while ($row = mysqli_fetch_assoc($resultado)) {
-                echo "<tr>";
-                echo "<td>" . $row['nome_funcionario'] . "</td>";
-                echo "<td>" . $row['nome_setor'] . "</td>";
-                echo "<td>" . $row['cargo'] . "</td>";
-                
-                // Formulário para atualizar funcionário
-                echo "<td>";
-                echo "<form action='../../php/atualizar_funcionario.php' method='post' style='display:inline-block;'>";
-                echo "<input type='hidden' name='id' value='" . $row['id_funcionario'] . "'>";
-                echo "<button type='submit' class='fa-regular fa-pen-to-square' style='color: #38a9ff;'></button>";
-                echo "</form>";
-                
-                // Formulário para excluir funcionário
-                echo "<form action='../../php/excluir_funcionario.php' method='post' style='display:inline-block;'>";
-                echo "<input type='hidden' name='id' value='" . $row['id_funcionario'] . "'>";
-                echo "<button type='submit' class='fa-solid fa-trash' style='color: #d33131;'></button>";
-                echo "</form>";
-                echo "</td>";
-                
-                echo "</tr>";
-            }
-            echo "</table>";
-        } else {
-            echo "Não há registros na tabela.";
-        }
-        ?>
-    </div>
-    <?php
-    } else {
-        echo "Erro na consulta: " . mysqli_error($conexao);
-    }
 
     // Fecha a conexão
     mysqli_close($conexao);

@@ -69,7 +69,7 @@
     $login = mysqli_query($conexao, $query);
     
     if ($login) {
-        echo "User successfully registered.";
+        echo "";
     } else {
         echo "Error: " . mysqli_error($conexao);
     }
@@ -93,6 +93,12 @@
  
     $criar_funcionario = mysqli_query($conexao, "INSERT INTO funcionario(nome_funcionario, nacionalidade, data_nascimento, cargo, salario, cpf, rg, email, celular, cidade, endereco, pcd, foto_funcionario, id_setor, id_login) 
     VALUES('$nome_funcionario', '$nacionalidade', '$data_nascimento', '$cargo', '$salario', '$cpf', '$rg', '$email', '$celular', '$cidade', '$endereco', '$pcd', '$imagem_destino', '$setor', '$id_login')");
+
+    if($criar_funcionario){
+        header("Location: ../html/cadastroSucesso.html");
+    }else{
+        echo"Algo deu errado";
+    }
 
     
 

@@ -231,6 +231,12 @@
 
 .popup.show {
     display: block; /* Mostra o popup */
+    width: 500px;
+}
+
+.btn-{
+  border-radius: 10px;
+  padding: 10px;
 }
 
         .close-btn {
@@ -553,60 +559,68 @@ i.fa-comment {
   <!--Start Dashboard Content-->
   
   <?php
+include_once("../php/conexao.php");
 
-    include_once("../php/conexao.php");
+// Consultas SQL para buscar os dados
+$sqlTotalServicos = "SELECT COUNT(*) AS total FROM servico";
+$sqlServicosConcluidos = "SELECT COUNT(*) AS total FROM servico WHERE situacao = 'concluido'";
+$sqlServicosAndamento = "SELECT COUNT(*) AS total FROM servico WHERE situacao = 'em andamento'";
+$sqlServicosPendentes = "SELECT COUNT(*) AS total FROM servico WHERE situacao = 'pendente'";
 
-    
+// Executando as consultas e obtendo os resultados
+$resultTotalServicos = $conexao->query($sqlTotalServicos)->fetch_assoc();
+$resultServicosConcluidos = $conexao->query($sqlServicosConcluidos)->fetch_assoc();
+$resultServicosAndamento = $conexao->query($sqlServicosAndamento)->fetch_assoc();
+$resultServicosPendentes = $conexao->query($sqlServicosPendentes)->fetch_assoc();
 
-  ?>
-	<div class="card mt-3">
+?>
+
+<div class="card mt-3">
     <div class="card-content">
         <div class="row row-group m-0">
             <div class="col-12 col-lg-6 col-xl-3 border-light">
                 <div class="card-body">
-                  <h5 class="text-white mb-0">9526 <span class="float-right"><i class="fa-solid fa-list-check" style="color: #ffffff;"></i></span></h5>
+                    <h5 class="text-white mb-0"><?php echo $resultTotalServicos['total']; ?> <span class="float-right"><i class="fa-solid fa-list-check" style="color: #ffffff;"></i></span></h5>
                     <div class="progress my-3" style="height:3px;">
                        <div class="progress-bar" style="width:55%"></div>
                     </div>
-                  <p class="mb-0 text-white small-font">Total de ordens</p>
+                    <p class="mb-0 text-white small-font">Total de serviços</p>
                 </div>
             </div>
 
             <div class="col-12 col-lg-6 col-xl-3 border-light">
                 <div class="card-body">
-                  <h5 class="text-white mb-0">8323 <span class="float-right"><i class="fa-solid fa-check" style="color: #ffffff;"></i></span></h5>
+                    <h5 class="text-white mb-0"><?php echo $resultServicosConcluidos['total']; ?> <span class="float-right"><i class="fa-solid fa-check" style="color: #ffffff;"></i></span></h5>
                     <div class="progress my-3" style="height:3px;">
                        <div class="progress-bar" style="width:55%"></div>
                     </div>
-                  <p class="mb-0 text-white small-font">Total de ordens concluidas</p>
+                    <p class="mb-0 text-white small-font">Total de serviços concluídos</p>
                 </div>
             </div>
 
             <div class="col-12 col-lg-6 col-xl-3 border-light">
-              <div class="card-body">
-                <h5 class="text-white mb-0">8323 <span class="float-right"><i class="fa-solid fa-clock" style="color: #f1f4f8;"></i></span></h5>
-                  <div class="progress my-3" style="height:3px;">
-                     <div class="progress-bar" style="width:55%"></div>
-                  </div>
-                <p class="mb-0 text-white small-font">Total de ordens em processo</p>
-              </div>
-          </div>
-
-          <div class="col-12 col-lg-6 col-xl-3 border-light">
-            <div class="card-body">
-              <h5 class="text-white mb-0">8323 <span class="float-right"><i class="fa-solid fa-circle-exclamation" style="color: #fafcff;"></i></span></h5>
-                <div class="progress my-3" style="height:3px;">
-                   <div class="progress-bar" style="width:55%"></div>
+                <div class="card-body">
+                    <h5 class="text-white mb-0"><?php echo $resultServicosAndamento['total']; ?> <span class="float-right"><i class="fa-solid fa-clock" style="color: #f1f4f8;"></i></span></h5>
+                    <div class="progress my-3" style="height:3px;">
+                       <div class="progress-bar" style="width:55%"></div>
+                    </div>
+                    <p class="mb-0 text-white small-font">Total de serviços em andamento</p>
                 </div>
-              <p class="mb-0 text-white small-font">Total de ordens atrasadas</p>
+            </div>
+
+            <div class="col-12 col-lg-6 col-xl-3 border-light">
+                <div class="card-body">
+                    <h5 class="text-white mb-0"><?php echo $resultServicosPendentes['total']; ?> <span class="float-right"><i class="fa-solid fa-circle-exclamation" style="color: #fafcff;"></i></span></h5>
+                    <div class="progress my-3" style="height:3px;">
+                       <div class="progress-bar" style="width:55%"></div>
+                    </div>
+                    <p class="mb-0 text-white small-font">Total de serviços pendentes</p>
+                </div>
             </div>
         </div>
-
-
-
-        </div>
     </div>
- </div>  
+</div>
+
 	  
 
  <?php
@@ -1074,7 +1088,7 @@ document.addEventListener('DOMContentLoaded', function() {
                   <input type="text" id="search-bar" name="nome" placeholder="Pesquise nomes ou equipe">
                   <div id="resultados" class="resultados"></div>
                   <input type="hidden" name="serviceId" value="${serviceId}">
-                  <input type="submit" value="Atualizar">
+                  <input type="submit" class="btn-" value="Atualizar">
                 </form>
             `;
 

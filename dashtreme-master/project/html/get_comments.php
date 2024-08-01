@@ -15,7 +15,7 @@ if ($result) {
 
         echo '<div class="card">
             <div class="card-header">
-                <img src="https://via.placeholder.com/30" alt="Avatar"> ' . htmlspecialchars($funcionario['nome_funcionario']) . '
+                <img src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*g09N-jl7JtVjVZGcd-vL2g.jpeg" width="30px" alt="Avatar"> ' . htmlspecialchars($funcionario['nome_funcionario']) . '
             </div>
             <div class="card-body">
                 <blockquote class="blockquote mb-0">

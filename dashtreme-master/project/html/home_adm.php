@@ -1058,18 +1058,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <!-- POPUP -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // Selecione todos os ícones com a classe 'open-popup'
+    let popup = document.getElementById('popup');
+
     document.querySelectorAll('.open-popup').forEach(function(icon) {
         icon.addEventListener('click', function() {
-            // Obtenha o ID do serviço e a posição do ícone
             const serviceId = this.getAttribute('data-id');
-            const rect = this.getBoundingClientRect(); // Obtém a posição do ícone
+            const rect = this.getBoundingClientRect();
 
-            // Exiba o popup
-            const popup = document.getElementById('popup');
             const popupContent = popup.querySelector('.popup-content');
-
-            // Defina o conteúdo do popup
             popupContent.innerHTML = `
                 <div class="popup-arrow"></div>
                 <button id="close-btn" class="close-btn">&times;</button>
@@ -1082,54 +1078,51 @@ document.addEventListener('DOMContentLoaded', function() {
                 </form>
             `;
 
-            // Posicione o popup abaixo do ícone
-            popup.style.top = `${rect.bottom + window.scrollY}px`; // Ajusta a posição vertical
-            popup.style.left = `${rect.left + window.scrollX}px`; // Ajusta a posição horizontal
+            popup.style.top = `${rect.bottom + window.scrollY}px`;
+            popup.style.left = `${rect.left + window.scrollX}px`;
+            popup.style.display = 'block';
 
-            popup.style.display = 'block'; // Exibe o popup
-
-            // Adiciona funcionalidade para fechar o popup
             document.getElementById('close-btn').addEventListener('click', function() {
-                document.getElementById('popup').style.display = 'none'; // Oculta o popup
+                popup.style.display = 'none';
             });
 
-            // Adiciona funcionalidade de busca em tempo real
             const searchBar = document.getElementById('search-bar');
             searchBar.addEventListener('input', function() {
-                const query = searchBar.value;
-                if (query.length > 0) {
-                    fetch(`buscar_funcionarios.php?query=${query}`)
-                        .then(response => response.json())
-                        .then(data => {
-                            const resultadosDiv = document.getElementById('resultados');
-                            resultadosDiv.innerHTML = '';
-                            data.forEach(funcionario => {
-                                const div = document.createElement('div');
-                                div.textContent = funcionario.nome_funcionario;
-                                div.classList.add('resultado-item'); // Adiciona uma classe para estilização e manipulação
-                                resultadosDiv.appendChild(div);
+              const query = searchBar.value;
+              if (query.length > 0) {
+                  fetch(`buscar_funcionarios.php?query=${query}`)
+                      .then(response => response.json())
+                      .then(data => {
+                          const resultadosDiv = document.getElementById('resultados');
+                          resultadosDiv.innerHTML = '';
+                          data.forEach(funcionario => {
+                              const div = document.createElement('div');
+                              div.textContent = funcionario.nome_funcionario;
+                              div.classList.add('resultado-item');
+                              resultadosDiv.appendChild(div);
 
-                                // Adiciona um manipulador de eventos para cada item de resultado
-                                div.addEventListener('click', function() {
-                                    searchBar.value = funcionario.nome_funcionario;
-                                    resultadosDiv.innerHTML = ''; // Limpa os resultados após a seleção
-                                });
-                            });
-                        });
-                } else {
-                    document.getElementById('resultados').innerHTML = '';
-                }
-            });
+                              div.addEventListener('click', function(event) {
+                                  event.stopPropagation(); // Impede o fechamento do popup
+                                  searchBar.value = funcionario.nome_funcionario;
+                                  resultadosDiv.innerHTML = '';
+                              });
+                          });
+                      });
+              } else {
+                  document.getElementById('resultados').innerHTML = '';
+              }
+          });
+
         });
     });
 
-    // Adiciona funcionalidade para fechar o popup clicando fora dele
-    document.getElementById('popup').addEventListener('click', function(event) {
-        if (event.target === this) {
-            this.style.display = 'none';
+    document.addEventListener('click', function(event) {
+        if (!popup.contains(event.target) && !event.target.closest('.open-popup')) {
+            popup.style.display = 'none';
         }
     });
 });
+
 
 </script>
 

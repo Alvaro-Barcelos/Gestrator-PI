@@ -77,7 +77,7 @@
     echo '            <div class="card-body centralizar">';
     echo '                <div class="card-content p-2">';
     echo '                    <h3>Conteudo cadastrado com sucesso <i class="fa-regular fa-circle-check" style="color: #ffffff;"></i></h3><br>';
-    echo '                    <center><button  type="submit" class="btn btn-light px-5"><a href="">Voltar a página inicial</a></button></center>';
+    echo '                    <center><button  type="submit" class="btn btn-light px-5"><a href="../html/home_adm.php">Voltar a página inicial</a></button></center>';
     echo '                </div>';
     echo '            </div>';
     echo '        </div>';

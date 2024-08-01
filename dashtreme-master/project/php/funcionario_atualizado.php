@@ -31,8 +31,7 @@ $foto_funcionario = mysqli_real_escape_string($conexao, $_POST['foto_funcionario
                 
     // Verifica se a consulta foi bem-sucedida
     if ($consulta) {
-        echo '<h1>ATUALIZADO COM SUCESSO!</h1>';
-        echo '<a href="../html/RECURSOS_HUMANOS/listar_funcionario.php"><button>Voltar ao Início</button></a>';
+        header("Location: ../html/editadoSucesso.html");;
     } else {
         echo "<h2> Ocorreu um erro ao atualizar os dados. Por favor, tente novamente. </h2>";
     }

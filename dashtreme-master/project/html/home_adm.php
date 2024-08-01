@@ -458,7 +458,7 @@ i.fa-comment {
         </a>
       </li>
       <li>
-      <a href="editar_funcionario.html">
+      <a href="listar_funcionario.php">
         <i class="zmdi zmdi-accounts-add"></i><span>Listar Funcionários</span></a> 
       </a>
     </li>

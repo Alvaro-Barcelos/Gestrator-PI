@@ -26,7 +26,7 @@ With the special permitions HR you can: register a employee in system; search fo
 
 ## Employee
 
-The employees only use system see the task they must to do.
+The employees only use system to see the task they must to do.
 
 ---
 

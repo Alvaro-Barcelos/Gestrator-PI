@@ -102,7 +102,7 @@
     width: 200px !important;
   }
   .w-50{
-    width: 100px !important;
+    width: 120px !important;
   }
   .w-75{
     width: 150px !important;
@@ -411,6 +411,29 @@ i.fa-comment {
 }
 
 
+.team-member {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Espaçamento entre os elementos */
+}
+
+.team-member img {
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+    position: relative;
+}
+
+.team-member img:hover {
+    content: attr(data-name); /* Pega o nome do atributo data-name */
+
+    transform: translateY(-5px);
+    color: #fff;
+    padding: 5px;
+    white-space: nowrap;
+}
+
 
 
   </style>
@@ -574,7 +597,7 @@ $resultServicosPendentes = $conexao->query($sqlServicosPendentes)->fetch_assoc()
 ?>
 
 <div class="card mt-3">
-    <div class="card-content">
+    <div class="card-content"> 
         <div class="row row-group m-0">
             <div class="col-12 col-lg-6 col-xl-3 border-light">
                 <div class="card-body">
@@ -620,13 +643,26 @@ $resultServicosPendentes = $conexao->query($sqlServicosPendentes)->fetch_assoc()
 </div>
 
 	  
+<?php
+include_once("../php/conexao.php");
 
- <?php
-  include_once("../php/conexao.php");
-
-
-$resultado = mysqli_query($conexao, "SELECT servico.*, setor.nome_setor FROM servico JOIN setor ON servico.id_setor = setor.id_setor WHERE DATE_FORMAT(servico.data_final, '%Y-%m') = DATE_FORMAT(NOW(), '%Y-%m')");
-
+$resultado = mysqli_query($conexao, "
+    SELECT 
+        servico.*, 
+        setor.nome_setor, 
+        GROUP_CONCAT(funcionario.foto_funcionario SEPARATOR ',') as fotos_funcionarios,
+        GROUP_CONCAT(funcionario.nome_funcionario SEPARATOR ',') as nomes_funcionarios
+    FROM 
+        servico 
+    JOIN 
+        setor ON servico.id_setor = setor.id_setor 
+    LEFT JOIN 
+        funcionario ON servico.id_setor = funcionario.id_setor 
+    WHERE 
+        DATE_FORMAT(servico.data_final, '%Y-%m') = DATE_FORMAT(NOW(), '%Y-%m')
+    GROUP BY 
+        servico.id_servico
+");
 ?>
 
 <div class="row">
@@ -653,7 +689,7 @@ $resultado = mysqli_query($conexao, "SELECT servico.*, setor.nome_setor FROM ser
                     <thead>
                         <tr>
                             <th class="w-120">Serviço</th>
-                            <th >Equipe</th>
+                            <th>Equipe</th>
                             <th>Situação</th>
                             <th class="w-75">Prioridade</th>
                             <th>Setor</th>
@@ -671,10 +707,25 @@ $resultado = mysqli_query($conexao, "SELECT servico.*, setor.nome_setor FROM ser
                                     </button>
                                 </td>
                                 <td class="w-50">
-                                    <i class="fa-solid fa-user-plus open-popup" data-id="<?= $row['id_servico'] ?>"></i>
-                                    <br>
-                                    <?= $row['equipe'] ?>
+                                    <div class="team-member">
+                                        <i class="fa-solid fa-user-plus open-popup" data-id="<?= $row['id_servico'] ?>"></i>
+                                        <?php
+                                        $fotos = array_map('trim', explode(',', $row['fotos_funcionarios']));
+                                        $nomes = array_map('trim', explode(',', $row['nomes_funcionarios']));
+                                        foreach ($fotos as $index => $foto) {
+                                            if (!empty($foto)) {
+                                                echo '<img src="' . $foto . '" alt="Foto do funcionário" data-name="' . $nomes[$index] . '">';
+                                            } else {
+                                                echo 'Sem foto';
+                                            }
+                                        }
+                                        ?>
+                                    </div>
                                 </td>
+
+  
+
+
                                 <td class="situacao w-100 <?= strtolower(str_replace(' ', '-', $row['situacao'])) ?>"><?= $row['situacao'] ?></td>
                                 <td class="prioridade <?= strtolower($row['prioridade']) ?>"><?= $row['prioridade'] ?></td>
                                 <td class="w-200"><?= $row['nome_setor'] ?></td>
@@ -682,9 +733,7 @@ $resultado = mysqli_query($conexao, "SELECT servico.*, setor.nome_setor FROM ser
                                 <td><?= date('d M Y', strtotime($row['data_final'])) ?></td>
                                 <td>
                                     <i class="fa-regular fa-comment" data-id="<?= $row['id_servico'] ?>"></i>
-
                                 </td>
-
                             </tr>
 
                             <!-- Modal for <?= $row['nome_servico'] ?> -->
@@ -714,6 +763,7 @@ $resultado = mysqli_query($conexao, "SELECT servico.*, setor.nome_setor FROM ser
             </div>
         </div>
     </div>
+</div>
 
 <!-- O popup -->
 

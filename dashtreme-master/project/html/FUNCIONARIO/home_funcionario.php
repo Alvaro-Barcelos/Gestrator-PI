@@ -472,7 +472,7 @@ i.fa-comment {
    <ul class="sidebar-menu do-nicescrol">
 
       <li>
-        <a href="home_adm.php">
+        <a href="home_funcionario.php">
           <i class="fa-solid fa-chart-line" style="color: #9e9e9e;"></i> <span>Dashboard</span>
         </a>
       </li>
@@ -495,7 +495,7 @@ i.fa-comment {
 
 
       <li>
-        <a href="../profile_adm.html">
+        <a href="profile_funcionario.html">
           <i class="zmdi zmdi-face"></i> <span>Perfil</span>
         </a>
       </li>
@@ -547,6 +547,8 @@ i.fa-comment {
                   // Exibir os dados
                   while ($row = $query_funcionario->fetch_assoc()) {
                       $id_funcionario = $row['id_funcionario'];
+                      $nome_setor = $row['nome_setor'];
+
                       echo "<p class='user-subtitle'>".$row['email']."</p>";
                       echo "<p class='user-subtitle'>".$row['nome_setor']."</p>";
 
@@ -581,7 +583,12 @@ i.fa-comment {
 include_once("../../php/conexao.php");
 
 // Consultas SQL para buscar os dados
-$sqlTotalServicos = "SELECT COUNT(*) AS total FROM servico";
+$sqlTotalServicos = "SELECT COUNT(*) AS total
+FROM servico s
+INNER JOIN setor st ON s.id_setor = st.id_setor
+WHERE st.nome_setor = '$nome_setor'";
+
+
 $sqlServicosConcluidos = "SELECT COUNT(*) AS total FROM servico WHERE situacao = 'concluido'";
 $sqlServicosAndamento = "SELECT COUNT(*) AS total FROM servico WHERE situacao = 'em andamento'";
 $sqlServicosPendentes = "SELECT COUNT(*) AS total FROM servico WHERE situacao = 'pendente'";
@@ -646,7 +653,7 @@ $resultServicosPendentes = $conexao->query($sqlServicosPendentes)->fetch_assoc()
   include_once("../../php/conexao.php");
 
 
-$resultado = mysqli_query($conexao, "SELECT servico.*, setor.nome_setor FROM servico JOIN setor ON servico.id_setor = setor.id_setor WHERE DATE_FORMAT(servico.data_final, '%Y-%m') = DATE_FORMAT(NOW(), '%Y-%m')");
+$resultado = mysqli_query($conexao, "SELECT servico.*, setor.nome_setor FROM servico JOIN setor ON servico.id_setor = setor.id_setor WHERE DATE_FORMAT(servico.data_final, '%Y-%m') = DATE_FORMAT(NOW(), '%Y-%m') AND  setor.nome_setor = '$nome_setor'");
 
 ?>
 
@@ -697,8 +704,7 @@ $resultado = mysqli_query($conexao, "SELECT servico.*, setor.nome_setor FROM ser
                                     <?= $row['equipe'] ?>
                                 </td>
                                 <td class="situacao w-100 <?= strtolower(str_replace(' ', '-', $row['situacao'])) ?>"><?= $row['situacao'] ?></td>
-<td class="prioridade <?= strtolower($row['prioridade']) ?>"><?= $row['prioridade'] ?></td>
-
+                                <td class="prioridade <?= strtolower($row['prioridade']) ?>"><?= $row['prioridade'] ?></td>
                                 <td class="w-200"><?= $row['nome_setor'] ?></td>
                                 <td><?= date('d M Y', strtotime($row['data_criada'])) ?></td>
                                 <td><?= date('d M Y', strtotime($row['data_final'])) ?></td>

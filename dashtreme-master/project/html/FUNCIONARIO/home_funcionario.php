@@ -485,34 +485,17 @@ i.fa-comment {
 
 
       <li>
-        <a href="conteudo_adm.html">
+        <a href="../../recebeConteudo.php">
          <i class="fa-solid fa-book" style="color: #9e9e9e;"></i> <span>Conteúdo</span>
         </a>
       </li>
 
-      <li>
-        <a href="cadastrar_funcionario_adm.html">
-          <i class="fa-solid fa-user" style="color: #9e9e9e;"></i> <span>Funcionário</span>
-        </a>
-      </li>
-      <li>
-      <a href="listar_funcionario.php">
-        <i class="zmdi zmdi-accounts-add"></i><span>Listar Funcionários</span></a> 
-      </a>
-    </li>
-      <li>
-        <a href="registrar_servico_adm.html">
-          <i class="fa-solid fa-list-check" style="color: #9e9e9e;"></i> <span>Serviço</span>
-        </a>
-      </li>      
-      <li>
-        <a href="relatorio_adm.html">
-          <i class="zmdi zmdi-assignment" style="color: #9e9e9e;"></i> <span>Relatório</span>
-        </a>
-      </li>
+
+  
+
 
       <li>
-        <a href="profile_adm.html">
+        <a href="../profile_adm.html">
           <i class="zmdi zmdi-face"></i> <span>Perfil</span>
         </a>
       </li>
@@ -1243,7 +1226,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Requisição para carregar comentários reais
             var xhr = new XMLHttpRequest();
-            xhr.open('GET', 'get_comments.php?service_id=' + serviceId, true);
+            xhr.open('GET', '../get_comments.php?service_id=' + serviceId, true);
             xhr.onload = function() {
                 if (xhr.status === 200) {
                     chatMessages.innerHTML = xhr.responseText;

@@ -272,34 +272,38 @@
             <!-- Formulário de pesquisa -->
             <form>
               <div class="form-group">
-                <label for="nomeFuncionario">Nome do Funcionário</label>
-                <input type="text" class="form-control" id="nomeFuncionario" placeholder="Digite o nome do funcionário">
+                <label for="nomeServico">Serviço</label>
+                <input type="text" class="form-control" id="nomeServico" placeholder="Digite o nome do serviço">
               </div>
               <div class="form-group">
-                <label for="dataServico">Data da Serviço</label>
-                <input type="date" class="form-control" id="dataServico">
-              </div>
-              <div class="form-group">
-                <label for="setorServico">Setor</label>
-                <select id="input-2" class="form-control" name="setor" required>
-                  <option value="">Selecione o setor</option>
-                  <option value="Contabilidade">Contabilidade</option>
-                  <option value="Recursos Humanos">Recursos Humanos</option>
-                  <option value="Tecnologia da Informação">Tecnologia da Informação</option>
+                <label for="nomeServico">Prioridade</label>
+                <select id="input-2" class="form-control" name="Prioridade" >
+                  <option value="" disabled selected hidden>Prioridade</option>
+                  <option value="1">Alta</option>
+                  <option value="2">Média</option>
+                  <option value="3">Baixa</option>
                 </select>
               </div>
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="data_inicio">Data de início</label>
+                  <input type="date" class="form-control" id="data_inicio">
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="data_final">Data Final</label>
+                  <input type="date" class="form-control" id="data_final">
+                </div>
+              </div>
+    
               
-              <div class="form-group">
+    
+              <div class="form-group mt-3">
                 <button type="submit" class="btn btn-light px-5">Pesquisar <i class="fas fa-search" style="color: #dbdbdb;"></i></button>
               </div>
             </form>
 
             <!-- Relatório -->
-            <div class="mt-4">
-              <p class="card-text">Nome do funcionário: Sara | Setor: Contabilidade | Número de registros: 35</p>
-              <p class="card-text">Nome do funcionário: John | Setor: Recursos Humanos | Número de registros: 20</p>
-              <p class="card-text">Nome do funcionário: Emily | Setor: Tecnologia da Informação | Número de registros: 45</p>
-            </div>
+         
           </div>
         </div>
       </div>
@@ -307,13 +311,23 @@
       <!-- Produtividade dos setores -->
       <div class="col-lg-6">
         <div class="card">
-          <div class="card-header">Produtividade dos setores</div>
-          <div class="card-body">
-            <canvas id="produtividadeChart" width="400" height="200"></canvas>
+          <!-- Gráfico e tabela -->
+          <div class="card">
+            <div class="card-header">Gráfico de Status</div>
+            <div class="card-body">
+              <div class="chart-container-2">
+                <canvas id="chart2" style="width: 100%;"></canvas>
+              </div>
+            </div>
+            <div class="table-responsive" style="max-height: 800px; overflow-y: auto;">
+              <table class="table align-items-center">
+                <!-- Conteúdo da tabela -->
+              </table>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+      
 
     <!--End Dashboard Content-->
 
@@ -352,6 +366,7 @@
 <script src="../../assets/js/app-script.js"></script>
 <!-- Chart js -->
 <script src="../../assets/plugins/Chart.js/Chart.min.js"></script>
+
 
 <script>
 // Example chart data

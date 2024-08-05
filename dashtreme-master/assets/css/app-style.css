@@ -3374,14 +3374,12 @@ table.grid td {
 /* Responsive */
 
 @media only screen and (min-width: 1024px){
-    .navbar-nav{
+    .menu-icon{
         display: none;
     }
 }
 
-
 @media only screen and (max-width: 1199px){
-	
 	.row.row-group>div {
 		border-right: 0;
 		border-bottom: 1px solid rgba(255, 255, 255, 0.12);

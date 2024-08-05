@@ -37,8 +37,9 @@
 
   <style>
   .modal-content {
-    background-color: #004085 !important;
+    background-color: black !important;
     color: white;
+    width: 500px;
   }
 
   .btn-custom-close {
@@ -228,9 +229,14 @@
     transform: scale(1.1); /* Um pouco maior quando ativo */
 }
 
-
 .popup.show {
     display: block; /* Mostra o popup */
+    width: 500px;
+}
+
+.btn-{
+  border-radius: 10px;
+  padding: 10px;
 }
 
         .close-btn {
@@ -452,7 +458,7 @@ i.fa-comment {
         </a>
       </li>
       <li>
-      <a href="editar_funcionario.html">
+      <a href="listar_funcionario.php">
         <i class="zmdi zmdi-accounts-add"></i><span>Listar Funcionários</span></a> 
       </a>
     </li>
@@ -489,9 +495,7 @@ i.fa-comment {
  <nav class="navbar navbar-expand fixed-top">
  <ul class="navbar-nav mr-auto align-items-center">
       <li class="nav-item">
-        <a class="nav-link toggle-menu" href="javascript:void();">
-          <i class="icon-menu menu-icon"></i>
-        </a>
+        
       </li>
     </ul>
      
@@ -555,68 +559,73 @@ i.fa-comment {
   <?php
 include_once("../php/conexao.php");
 
-// Definir as situações e suas propriedades
-$situacoes = [
-    'Concluído' => ['icon' => 'fa-check', 'color' => '#ffffff', 'label' => 'Total de ordens concluídas'],
-    'Não iniciado' => ['icon' => 'fa-list-check', 'color' => '#ffffff', 'label' => 'Total de ordens não iniciadas'],
-    'Em andamento' => ['icon' => 'fa-clock', 'color' => '#f1f4f8', 'label' => 'Total de ordens em andamento'],
-    'Pendente' => ['icon' => 'fa-circle-exclamation', 'color' => '#fafcff', 'label' => 'Total de ordens pendentes']
-];
+// Consultas SQL para buscar os dados
+$sqlTotalServicos = "SELECT COUNT(*) AS total FROM servico";
+$sqlServicosConcluidos = "SELECT COUNT(*) AS total FROM servico WHERE situacao = 'concluido'";
+$sqlServicosAndamento = "SELECT COUNT(*) AS total FROM servico WHERE situacao = 'em andamento'";
+$sqlServicosPendentes = "SELECT COUNT(*) AS total FROM servico WHERE situacao = 'pendente'";
 
-// Consulta para contar ordens por situação
-$query = "SELECT situacao, COUNT(*) as total FROM servico GROUP BY situacao";
-$result = $conexao->query($query);
+// Executando as consultas e obtendo os resultados
+$resultTotalServicos = $conexao->query($sqlTotalServicos)->fetch_assoc();
+$resultServicosConcluidos = $conexao->query($sqlServicosConcluidos)->fetch_assoc();
+$resultServicosAndamento = $conexao->query($sqlServicosAndamento)->fetch_assoc();
+$resultServicosPendentes = $conexao->query($sqlServicosPendentes)->fetch_assoc();
+
 ?>
 
 <div class="card mt-3">
     <div class="card-content">
         <div class="row row-group m-0">
-            <?php
-            // Inicializar um array para armazenar os totais das situações
-            $totais = array_fill_keys(array_keys($situacoes), 0);
-
-            // Preencher os totais com os dados da consulta
-            while ($row = $result->fetch_assoc()) {
-                $situacao = $row['situacao'];
-                if (array_key_exists($situacao, $totais)) {
-                    $totais[$situacao] = $row['total'];
-                }
-            }
-
-            // Gerar o HTML para cada situação
-            foreach ($situacoes as $situacao => $props) {
-                $total = $totais[$situacao];
-                ?>
-                <div class="col-12 col-lg-6 col-xl-3 border-light">
-                    <div class="card-body">
-                        <h5 class="text-white mb-0"><?php echo $total; ?> 
-                            <span class="float-right">
-                                <i class="fa-solid <?php echo $props['icon']; ?>" style="color: <?php echo $props['color']; ?>;"></i>
-                            </span>
-                        </h5>
-                        <div class="progress my-3" style="height:3px;">
-                            <div class="progress-bar" style="width:55%"></div>
-                        </div>
-                        <p class="mb-0 text-white small-font"><?php echo $props['label']; ?></p>
+            <div class="col-12 col-lg-6 col-xl-3 border-light">
+                <div class="card-body">
+                    <h5 class="text-white mb-0"><?php echo $resultTotalServicos['total']; ?> <span class="float-right"><i class="fa-solid fa-list-check" style="color: #ffffff;"></i></span></h5>
+                    <div class="progress my-3" style="height:3px;">
+                       <div class="progress-bar" style="width:55%"></div>
                     </div>
+                    <p class="mb-0 text-white small-font">Total de serviços</p>
                 </div>
-                <?php
-            }
-            ?>
+            </div>
+
+            <div class="col-12 col-lg-6 col-xl-3 border-light">
+                <div class="card-body">
+                    <h5 class="text-white mb-0"><?php echo $resultServicosConcluidos['total']; ?> <span class="float-right"><i class="fa-solid fa-check" style="color: #ffffff;"></i></span></h5>
+                    <div class="progress my-3" style="height:3px;">
+                       <div class="progress-bar" style="width:55%"></div>
+                    </div>
+                    <p class="mb-0 text-white small-font">Total de serviços concluídos</p>
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-6 col-xl-3 border-light">
+                <div class="card-body">
+                    <h5 class="text-white mb-0"><?php echo $resultServicosAndamento['total']; ?> <span class="float-right"><i class="fa-solid fa-clock" style="color: #f1f4f8;"></i></span></h5>
+                    <div class="progress my-3" style="height:3px;">
+                       <div class="progress-bar" style="width:55%"></div>
+                    </div>
+                    <p class="mb-0 text-white small-font">Total de serviços em andamento</p>
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-6 col-xl-3 border-light">
+                <div class="card-body">
+                    <h5 class="text-white mb-0"><?php echo $resultServicosPendentes['total']; ?> <span class="float-right"><i class="fa-solid fa-circle-exclamation" style="color: #fafcff;"></i></span></h5>
+                    <div class="progress my-3" style="height:3px;">
+                       <div class="progress-bar" style="width:55%"></div>
+                    </div>
+                    <p class="mb-0 text-white small-font">Total de serviços pendentes</p>
+                </div>
+            </div>
         </div>
     </div>
 </div>
-
 
 	  
 
  <?php
   include_once("../php/conexao.php");
 
-  $resultado = mysqli_query($conexao, "SELECT servico.*, setor.nome_setor FROM servico JOIN setor ON servico.id_setor = setor.id_setor");
 
-  //Para realizar a consulta so deste mês, vou deixar comentado para gente cvs depois...
-  //$resultado = mysqli_query($conexao, "SELECT servico.*, setor.nome_setor FROM servico JOIN setor ON servico.id_setor = setor.id_setor WHERE DATE_FORMAT(servico.data_final, '%Y-%m') = DATE_FORMAT(NOW(), '%Y-%m')");
+$resultado = mysqli_query($conexao, "SELECT servico.*, setor.nome_setor FROM servico JOIN setor ON servico.id_setor = setor.id_setor WHERE DATE_FORMAT(servico.data_final, '%Y-%m') = DATE_FORMAT(NOW(), '%Y-%m')");
 
 ?>
 
@@ -774,6 +783,8 @@ if (isset($_GET['service_id'])) {
 ?>
 
 
+
+
 <?php
 include_once("../php/conexao.php");
 
@@ -826,260 +837,105 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
 	</div><!--End Row-->
-	<div class="row">
-    <div class="col-12 col-lg-12">
-      <div class="card">
-        <div class="card-header proximo-mes">Proximo mês
-       <div class="card-action">
-              <div class="dropdown">
-              <a href="javascript:void();" class="dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown">
-               <i class="icon-options"></i>
-              </a>
-               <div class="dropdown-menu dropdown-menu-right">
-               <a class="dropdown-item" href="javascript:void();">Action</a>
-               <a class="dropdown-item" href="javascript:void();">Another action</a>
-               <a class="dropdown-item" href="javascript:void();">Something else here</a>
-               <div class="dropdown-divider"></div>
-               <a class="dropdown-item" href="javascript:void();">Separated link</a>
-                </div>
-               </div>
-              </div>
-      </div>
-      <div class="table-responsive">
-       <table class="table align-items-center table-flush table-borderless">
-         <thead>
-           <tr>
-             <th class="w-120">Serviço</th>
-             <th>Equipe</th>
-             <th>Situação</th>
-             <th>prioridade</th>
-             <th>Setor</th>
-             <th>Inicio</th>
-             <th>Final</th>
-             <th>Nota</th>
- 
-           </tr>
-         </thead>
-         <tbody>
-           <tr>
-             <td class="sem-espaco w-120">
-               <button type="button" class="btn " data-bs-toggle="modal" data-bs-target="#modalIphone5">Alterar as planilhas S5</button>
-             </td>
-             <td><i class="fa-solid fa-user-plus"></i></td>
-             <td class="teste2">Pendente</td>
-             <td class="alta">Alta</td>
-             <td>Administrativo</td>
-             <td>03 Aug 2017</td>
-             <td>03 Aug 2017</td>
-             <td><i class="fa-regular fa-comment"></i></td>
- 
- 
- 
-           </tr>
-           
-           <tr>
-             <td class="sem-espaco">
-               <button type="button" class="btn " data-bs-toggle="modal" data-bs-target="#modalEarphoneGL">Earphone GL</button>
-             </td>
-             <td><i class="fa-solid fa-user-plus"></i></td>
-             <td class="teste">Em andamento</td>
-             <td class="mediaa">Media</td>
-             <td>Recursos humanos</td>
-             <td>03 Aug 2017</td>
-             <td>03 Aug 2017</td>
-             <td><i class="fa-regular fa-comment"></i></td>
- 
- 
-           </tr>
-     
-           <tr>
-             <td class="sem-espaco">
-               <button type="button" class="btn " data-bs-toggle="modal" data-bs-target="#modalHDHandCamera">HD Hand Camera</button>
-             </td>
-             <td><i class="fa-solid fa-user-plus"></i></td>
-             <td class="teste">Em andamento</td>
-             <td class="baixa">Baixa</td>
-             <td>Compras</td>
-             <td>03 Aug 2017</td>
-             <td>03 Aug 2017</td>
-             <td><i class="fa-regular fa-comment"></i></td>
- 
- 
-           </tr>
-     
-           <tr>
-             <td class="sem-espaco">
-               <button type="button" class="btn " data-bs-toggle="modal" data-bs-target="#modalClasicShoes">Clasic Shoes</button>
-             </td>
-             <td><i class="fa-solid fa-user-plus"></i></td>
-             <td class="teste1">Concluída</td>
-             <td class="baixa">Baixa</td>
-             <td>Tecnologia</td>
-             <td>03 Aug 2017</td>
-             <td>03 Aug 2017</td>
-             <td><i class="fa-regular fa-comment"></i></td>
- 
-           </tr>
-     
-           <tr>
-             <td class="sem-espaco">
-               <button type="button" class="btn " data-bs-toggle="modal" data-bs-target="#modalHandWatch">Hand Watch</button>
-             </td>
-             <td><i class="fa-solid fa-user-plus"></i></td>
-             <td class="teste">Em andamento</td>
-             <td class="alta">Alta</td>
-             <td>Financeiros</td>
-             <td>03 Aug 2017</td>
-             <td>03 Aug 2017</td>
-             <td><i class="fa-regular fa-comment"></i></td>
- 
-           </tr>
-     
-           <tr>
-             <td class="sem-espaco">
-               <button type="button" class="btn " data-bs-toggle="modal" data-bs-target="#modalClasicShoesOp">Clasic Shoes</button>
-             </td>
-             <td><i class="fa-solid fa-user-plus"></i></td>
-             <td class="teste">Em andamento</td>
-             <td class="mediaa">Media</td>
-             <td>Operações</td>
-             <td>03 Aug 2017</td>
-             <td>03 Aug 2017</td>
-             <td><i class="fa-regular fa-comment"></i></td>
- 
-           </tr>
-         </tbody>
-       </table>
-     </div>
-     
-     <!-- Modal Templates -->
-     <!-- Modal for Iphone 5 -->
-     <div class="modal fade" id="modalIphone5" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-       <div class="modal-dialog">
-         <div class="modal-content">
-           <div class="modal-header">
-             <h1 class="modal-title fs-5" id="exampleModalLabel">Iphone 5</h1>
-             <button type="button" class="btn-close-custom" data-bs-dismiss="modal" aria-label="Close">
-               <i class="fas fa-times"></i>
-             </button>
-           </div>
-           <div class="modal-body">
-             <!-- Conteúdo do modal para Iphone 5 -->
-             ...
-           </div>
-           <div class="modal-footer">
-             <button type="button" class="btn btn-secondary btn-custom-close" data-bs-dismiss="modal">Close</button>
-             <button type="button" class="btn btn-primary btn-custom-save">Save changes</button>
-           </div>
-         </div>
-       </div>
-     </div>
-     
-     
-     <!-- Modal for Earphone GL -->
-     <div class="modal fade" id="modalEarphoneGL" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-       <div class="modal-dialog">
-         <div class="modal-content">
-           <div class="modal-header">
-             <h1 class="modal-title fs-5" id="exampleModalLabel">Earphone GL</h1>
-             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-           </div>
-           <div class="modal-body">
-             <!-- Conteúdo do modal para Earphone GL -->
-             ...
-           </div>
-           <div class="modal-footer">
-             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-             <button type="button" class="btn btn-primary">Save changes</button>
-           </div>
-         </div>
-       </div>
-     </div>
-     
-     <!-- Modal for HD Hand Camera -->
-     <div class="modal fade" id="modalHDHandCamera" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-       <div class="modal-dialog">
-         <div class="modal-content">
-           <div class="modal-header">
-             <h1 class="modal-title fs-5" id="exampleModalLabel">HD Hand Camera</h1>
-             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-           </div>
-           <div class="modal-body">
-             <!-- Conteúdo do modal para HD Hand Camera -->
-             ...
-           </div>
-           <div class="modal-footer">
-             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-             <button type="button" class="btn btn-primary">Save changes</button>
-           </div>
-         </div>
-       </div>
-     </div>
-     
-     <!-- Modal for Clasic Shoes -->
-     <div class="modal fade" id="modalClasicShoes" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-       <div class="modal-dialog">
-         <div class="modal-content">
-           <div class="modal-header">
-             <h1 class="modal-title fs-5" id="exampleModalLabel">Clasic Shoes</h1>
-             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-           </div>
-           <div class="modal-body">
-             <!-- Conteúdo do modal para Clasic Shoes -->
-             ...
-           </div>
-           <div class="modal-footer">
-             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-             <button type="button" class="btn btn-primary">Save changes</button>
-           </div>
-         </div>
-       </div>
-     </div>
-     
-     <!-- Modal for Hand Watch -->
-     <div class="modal fade" id="modalHandWatch" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-       <div class="modal-dialog">
-         <div class="modal-content">
-           <div class="modal-header">
-             <h1 class="modal-title fs-5" id="exampleModalLabel">Hand Watch</h1>
-             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-           </div>
-           <div class="modal-body">
-             <!-- Conteúdo do modal para Hand Watch -->
-             ...
-           </div>
-           <div class="modal-footer">
-             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-             <button type="button" class="btn btn-primary">Save changes</button>
-           </div>
-         </div>
-       </div>
-     </div>
-     
-     <!-- Modal for Clasic Shoes in Operações -->
-     <div class="modal fade" id="modalClasicShoesOp" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-       <div class="modal-dialog">
-         <div class="modal-content">
-           <div class="modal-header">
-             <h1 class="modal-title fs-5" id="exampleModalLabel">Clasic Shoes (Operações)</h1>
-             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-           </div>
-           <div class="modal-body">
-             <!-- Conteúdo do modal para Clasic Shoes em Operações -->
-             ...
-           </div>
-           <div class="modal-footer">
-             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-             <button type="button" class="btn btn-primary">Save changes</button>
-           </div>
-         </div>
-       </div>
-     </div>
-     
-      </div>
-    </div>
-   </div><!--End Row-->
+	
 
+  <?php
+  include_once("../php/conexao.php");
+
+
+  $resultado2 = mysqli_query($conexao, "
+  SELECT servico.*, setor.nome_setor 
+  FROM servico 
+  JOIN setor ON servico.id_setor = setor.id_setor 
+  WHERE DATE_FORMAT(servico.data_final, '%Y-%m') = DATE_FORMAT(DATE_ADD(NOW(), INTERVAL 1 MONTH), '%Y-%m')
+");
+
+?>
+  
+<div class="row">
+    <div class="col-12 col-lg-12">
+        <div class="card">
+            <div class="card-header proximo-mes">Proximo mês
+                <div class="card-action">
+                    <div class="dropdown">
+                        <a href="javascript:void();" class="dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown">
+                            <i class="icon-options"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="javascript:void();">Action</a>
+                            <a class="dropdown-item" href="javascript:void();">Another action</a>
+                            <a class="dropdown-item" href="javascript:void();">Something else here</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="javascript:void();">Separated link</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table align-items-center table-flush table-borderless">
+                    <thead>
+                        <tr>
+                            <th class="w-120">Serviço</th>
+                            <th >Equipe</th>
+                            <th>Situação</th>
+                            <th class="w-75">Prioridade</th>
+                            <th>Setor</th>
+                            <th>Início</th>
+                            <th>Final</th>
+                            <th>Nota</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php while($row = mysqli_fetch_assoc($resultado2)): ?>
+                            <tr>
+                                <td class="sem-espaco w-120">
+                                    <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#modal<?= $row['id_servico'] ?>">
+                                        <?= $row['nome_servico'] ?>
+                                    </button>
+                                </td>
+                                <td class="w-50">
+                                    <i class="fa-solid fa-user-plus open-popup" data-id="<?= $row['id_servico'] ?>"></i>
+                                </td>
+                                <td class="situacao w-100 <?= strtolower(str_replace(' ', '-', $row['situacao'])) ?>"><?= $row['situacao'] ?></td>
+                                <td class="prioridade <?= strtolower($row['prioridade']) ?>"><?= $row['prioridade'] ?></td>
+                                <td class="w-200"><?= $row['nome_setor'] ?></td>
+                                <td><?= date('d M Y', strtotime($row['data_criada'])) ?></td>
+                                <td><?= date('d M Y', strtotime($row['data_final'])) ?></td>
+                                <td>
+                                    <i class="fa-regular fa-comment" data-id="<?= $row['id_servico'] ?>"></i>
+                                </td>
+
+                            </tr>
+
+                            <!-- Modal for <?= $row['nome_servico'] ?> -->
+                            <div class="modal fade" id="modal<?= $row['id_servico'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel"><?= $row['nome_servico'] ?></h1>
+                                            <button type="button" class="btn-close-custom" data-bs-dismiss="modal" aria-label="Close">
+                                                <i class="fas fa-times"></i>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <!-- Conteúdo do modal para <?= $row['nome_servico'] ?> -->
+                                            <?= $row['descricao'] ?>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary btn-custom-close" data-bs-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-primary btn-custom-save">Save changes</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endwhile; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    </div><!--End Row-->
 
    <?php
       include_once("../php/conexao.php");
@@ -1217,18 +1073,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <!-- POPUP -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // Selecione todos os ícones com a classe 'open-popup'
+    let popup = document.getElementById('popup');
+
     document.querySelectorAll('.open-popup').forEach(function(icon) {
         icon.addEventListener('click', function() {
-            // Obtenha o ID do serviço e a posição do ícone
             const serviceId = this.getAttribute('data-id');
-            const rect = this.getBoundingClientRect(); // Obtém a posição do ícone
+            const rect = this.getBoundingClientRect();
 
-            // Exiba o popup
-            const popup = document.getElementById('popup');
             const popupContent = popup.querySelector('.popup-content');
-
-            // Defina o conteúdo do popup
             popupContent.innerHTML = `
                 <div class="popup-arrow"></div>
                 <button id="close-btn" class="close-btn">&times;</button>
@@ -1237,58 +1089,55 @@ document.addEventListener('DOMContentLoaded', function() {
                   <input type="text" id="search-bar" name="nome" placeholder="Pesquise nomes ou equipe">
                   <div id="resultados" class="resultados"></div>
                   <input type="hidden" name="serviceId" value="${serviceId}">
-                  <input type="submit" value="Atualizar">
+                  <input type="submit" class="btn-" value="Atualizar">
                 </form>
             `;
 
-            // Posicione o popup abaixo do ícone
-            popup.style.top = `${rect.bottom + window.scrollY}px`; // Ajusta a posição vertical
-            popup.style.left = `${rect.left + window.scrollX}px`; // Ajusta a posição horizontal
+            popup.style.top = `${rect.bottom + window.scrollY}px`;
+            popup.style.left = `${rect.left + window.scrollX}px`;
+            popup.style.display = 'block';
 
-            popup.style.display = 'block'; // Exibe o popup
-
-            // Adiciona funcionalidade para fechar o popup
             document.getElementById('close-btn').addEventListener('click', function() {
-                document.getElementById('popup').style.display = 'none'; // Oculta o popup
+                popup.style.display = 'none';
             });
 
-            // Adiciona funcionalidade de busca em tempo real
             const searchBar = document.getElementById('search-bar');
             searchBar.addEventListener('input', function() {
-                const query = searchBar.value;
-                if (query.length > 0) {
-                    fetch(`buscar_funcionarios.php?query=${query}`)
-                        .then(response => response.json())
-                        .then(data => {
-                            const resultadosDiv = document.getElementById('resultados');
-                            resultadosDiv.innerHTML = '';
-                            data.forEach(funcionario => {
-                                const div = document.createElement('div');
-                                div.textContent = funcionario.nome_funcionario;
-                                div.classList.add('resultado-item'); // Adiciona uma classe para estilização e manipulação
-                                resultadosDiv.appendChild(div);
+              const query = searchBar.value;
+              if (query.length > 0) {
+                  fetch(`buscar_funcionarios.php?query=${query}`)
+                      .then(response => response.json())
+                      .then(data => {
+                          const resultadosDiv = document.getElementById('resultados');
+                          resultadosDiv.innerHTML = '';
+                          data.forEach(funcionario => {
+                              const div = document.createElement('div');
+                              div.textContent = funcionario.nome_funcionario;
+                              div.classList.add('resultado-item');
+                              resultadosDiv.appendChild(div);
 
-                                // Adiciona um manipulador de eventos para cada item de resultado
-                                div.addEventListener('click', function() {
-                                    searchBar.value = funcionario.nome_funcionario;
-                                    resultadosDiv.innerHTML = ''; // Limpa os resultados após a seleção
-                                });
-                            });
-                        });
-                } else {
-                    document.getElementById('resultados').innerHTML = '';
-                }
-            });
+                              div.addEventListener('click', function(event) {
+                                  event.stopPropagation(); // Impede o fechamento do popup
+                                  searchBar.value = funcionario.nome_funcionario;
+                                  resultadosDiv.innerHTML = '';
+                              });
+                          });
+                      });
+              } else {
+                  document.getElementById('resultados').innerHTML = '';
+              }
+          });
+
         });
     });
 
-    // Adiciona funcionalidade para fechar o popup clicando fora dele
-    document.getElementById('popup').addEventListener('click', function(event) {
-        if (event.target === this) {
-            this.style.display = 'none';
+    document.addEventListener('click', function(event) {
+        if (!popup.contains(event.target) && !event.target.closest('.open-popup')) {
+            popup.style.display = 'none';
         }
     });
 });
+
 
 </script>
 

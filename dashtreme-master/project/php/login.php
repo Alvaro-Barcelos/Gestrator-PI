@@ -24,9 +24,17 @@ if (isset($_POST['email']) && isset($_POST['senha'])) {
                 // Armazenar dados do usuário na sessão
                 $_SESSION['id_login'] = $usuario['id_login'];
                 $_SESSION['usuario'] = $usuario['usuario'];
+                $_SESSION['tipo'] = $usuario['tipo'];
 
+                if($_SESSION['tipo'] == 'comum'){
+                    header("Location: ../html/FUNCIONARIO/home_funcionario.php");
+                }
+                else if($_SESSION['tipo'] == 'supervisor'){
+                    header("Location: ../html/RECURSOS_HUMANOS/home_lider.html");
+                }else{
+                    header("Location: ../html/home_adm.php");
+                }
                 // Redirecionar para a página de teste
-                header("Location: ../html/home_adm.php");
                 exit;
             } else {
                 header("Location: ../html/index.html");

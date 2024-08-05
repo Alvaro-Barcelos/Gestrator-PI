@@ -553,60 +553,61 @@ i.fa-comment {
   <!--Start Dashboard Content-->
   
   <?php
+include_once("../php/conexao.php");
 
-    include_once("../php/conexao.php");
+// Definir as situações e suas propriedades
+$situacoes = [
+    'Concluído' => ['icon' => 'fa-check', 'color' => '#ffffff', 'label' => 'Total de ordens concluídas'],
+    'Não iniciado' => ['icon' => 'fa-list-check', 'color' => '#ffffff', 'label' => 'Total de ordens não iniciadas'],
+    'Em andamento' => ['icon' => 'fa-clock', 'color' => '#f1f4f8', 'label' => 'Total de ordens em andamento'],
+    'Pendente' => ['icon' => 'fa-circle-exclamation', 'color' => '#fafcff', 'label' => 'Total de ordens pendentes']
+];
 
-    
+// Consulta para contar ordens por situação
+$query = "SELECT situacao, COUNT(*) as total FROM servico GROUP BY situacao";
+$result = $conexao->query($query);
+?>
 
-  ?>
-	<div class="card mt-3">
+<div class="card mt-3">
     <div class="card-content">
         <div class="row row-group m-0">
-            <div class="col-12 col-lg-6 col-xl-3 border-light">
-                <div class="card-body">
-                  <h5 class="text-white mb-0">9526 <span class="float-right"><i class="fa-solid fa-list-check" style="color: #ffffff;"></i></span></h5>
-                    <div class="progress my-3" style="height:3px;">
-                       <div class="progress-bar" style="width:55%"></div>
+            <?php
+            // Inicializar um array para armazenar os totais das situações
+            $totais = array_fill_keys(array_keys($situacoes), 0);
+
+            // Preencher os totais com os dados da consulta
+            while ($row = $result->fetch_assoc()) {
+                $situacao = $row['situacao'];
+                if (array_key_exists($situacao, $totais)) {
+                    $totais[$situacao] = $row['total'];
+                }
+            }
+
+            // Gerar o HTML para cada situação
+            foreach ($situacoes as $situacao => $props) {
+                $total = $totais[$situacao];
+                ?>
+                <div class="col-12 col-lg-6 col-xl-3 border-light">
+                    <div class="card-body">
+                        <h5 class="text-white mb-0"><?php echo $total; ?> 
+                            <span class="float-right">
+                                <i class="fa-solid <?php echo $props['icon']; ?>" style="color: <?php echo $props['color']; ?>;"></i>
+                            </span>
+                        </h5>
+                        <div class="progress my-3" style="height:3px;">
+                            <div class="progress-bar" style="width:55%"></div>
+                        </div>
+                        <p class="mb-0 text-white small-font"><?php echo $props['label']; ?></p>
                     </div>
-                  <p class="mb-0 text-white small-font">Total de ordens</p>
                 </div>
-            </div>
-
-            <div class="col-12 col-lg-6 col-xl-3 border-light">
-                <div class="card-body">
-                  <h5 class="text-white mb-0">8323 <span class="float-right"><i class="fa-solid fa-check" style="color: #ffffff;"></i></span></h5>
-                    <div class="progress my-3" style="height:3px;">
-                       <div class="progress-bar" style="width:55%"></div>
-                    </div>
-                  <p class="mb-0 text-white small-font">Total de ordens concluidas</p>
-                </div>
-            </div>
-
-            <div class="col-12 col-lg-6 col-xl-3 border-light">
-              <div class="card-body">
-                <h5 class="text-white mb-0">8323 <span class="float-right"><i class="fa-solid fa-clock" style="color: #f1f4f8;"></i></span></h5>
-                  <div class="progress my-3" style="height:3px;">
-                     <div class="progress-bar" style="width:55%"></div>
-                  </div>
-                <p class="mb-0 text-white small-font">Total de ordens em processo</p>
-              </div>
-          </div>
-
-          <div class="col-12 col-lg-6 col-xl-3 border-light">
-            <div class="card-body">
-              <h5 class="text-white mb-0">8323 <span class="float-right"><i class="fa-solid fa-circle-exclamation" style="color: #fafcff;"></i></span></h5>
-                <div class="progress my-3" style="height:3px;">
-                   <div class="progress-bar" style="width:55%"></div>
-                </div>
-              <p class="mb-0 text-white small-font">Total de ordens atrasadas</p>
-            </div>
-        </div>
-
-
-
+                <?php
+            }
+            ?>
         </div>
     </div>
- </div>  
+</div>
+
+
 	  
 
  <?php
@@ -661,8 +662,10 @@ i.fa-comment {
                                     </button>
                                 </td>
                                 <td class="w-50">
-    <i class="fa-solid fa-user-plus open-popup" data-id="<?= $row['id_servico'] ?>"></i>
-</td>
+                                    <i class="fa-solid fa-user-plus open-popup" data-id="<?= $row['id_servico'] ?>"></i>
+                                    <br>
+                                    <?= $row['equipe'] ?>
+                                </td>
                                 <td class="situacao w-100 <?= strtolower(str_replace(' ', '-', $row['situacao'])) ?>"><?= $row['situacao'] ?></td>
                                 <td class="prioridade <?= strtolower($row['prioridade']) ?>"><?= $row['prioridade'] ?></td>
                                 <td class="w-200"><?= $row['nome_setor'] ?></td>
@@ -670,6 +673,7 @@ i.fa-comment {
                                 <td><?= date('d M Y', strtotime($row['data_final'])) ?></td>
                                 <td>
                                     <i class="fa-regular fa-comment" data-id="<?= $row['id_servico'] ?>"></i>
+
                                 </td>
 
                             </tr>

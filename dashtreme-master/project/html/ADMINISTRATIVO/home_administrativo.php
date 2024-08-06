@@ -501,7 +501,7 @@ i.fa-comment {
       </li>
 
       <li>
-        <a href="../../php/logout.php">
+        <a href="../php/logout.php">
           <i class="fa-solid fa-right-from-bracket" style="color: #9e9e9e;"></i> <span>Sair</span>
         </a>
       </li>
@@ -563,7 +563,7 @@ i.fa-comment {
         <li class="dropdown-divider"></li>
         <a href="profile_adm.html"><li class="dropdown-item"><i class="icon-wallet mr-2"></i> Perfil</li></a>
         <li class="dropdown-divider"></li>
-        <a href="../../php/logout.php"><li class="dropdown-item"><i class="icon-power mr-2"></i> Sair</li></a>
+        <a href="../php/logout.php"><li class="dropdown-item"><i class="icon-power mr-2"></i> Sair</li></a>
         
       </ul>
     </li>
@@ -594,21 +594,21 @@ $sqlServicosConcluidos = "SELECT COUNT(*) AS total
 FROM servico s
 INNER JOIN setor st ON s.id_setor = st.id_setor
 INNER JOIN funcionario f ON f.id_setor = st.id_setor
-WHERE st.nome_setor = '$nome_setor' AND s.situacao = 'Concluido'";
+WHERE st.nome_setor = '$nome_setor' AND situacao = 'concluido'";
 
 
-$sqlServicosAndamento = "SELECT COUNT(*) AS total 
+$sqlServicosAndamento = "SELECT COUNT(*) AS total
 FROM servico s
 INNER JOIN setor st ON s.id_setor = st.id_setor
 INNER JOIN funcionario f ON f.id_setor = st.id_setor
-WHERE st.nome_setor = '$nome_setor' AND s.situacao = 'Em andamento'";
+WHERE st.nome_setor = '$nome_setor' AND situacao = 'em andamento'";
 
 
-$sqlServicosPendentes = "SELECT COUNT(*) AS total 
+$sqlServicosPendentes = "SELECT COUNT(*) AS total
 FROM servico s
 INNER JOIN setor st ON s.id_setor = st.id_setor
 INNER JOIN funcionario f ON f.id_setor = st.id_setor
-WHERE st.nome_setor = '$nome_setor' AND s.situacao = 'Pendente'";
+WHERE st.nome_setor = '$nome_setor' AND situacao = 'pendente'";
 
 // Executando as consultas e obtendo os resultados
 $resultTotalServicos = $conexao->query($sqlTotalServicos)->fetch_assoc();

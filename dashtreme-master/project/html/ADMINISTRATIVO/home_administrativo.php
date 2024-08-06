@@ -1,6 +1,6 @@
 <?php
-  include("protect_gerente.php");
-  include_once("../php/conexao.php");
+  include("../protect_funcionario.php");
+  include_once("../../php/conexao.php");
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -10,26 +10,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
   <meta name="description" content=""/>
   <meta name="author" content=""/>
-  <title>Gestrator Gerente</title>
+  <title>Gestrator Funcionário</title>
   <!-- loader-->
-  <link href="../../assets/css/pace.min.css" rel="stylesheet"/>
-  <script src="../../assets/js/pace.min.js"></script>
+  <link href="../../../assets/css/pace.min.css" rel="stylesheet"/>
+  <script src="../../../assets/js/pace.min.js"></script>
   <!--favicon-->
-  <link rel="icon" href="../../assets/images/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="../../../assets/images/favicon.ico" type="image/x-icon">
   <!-- Vector CSS -->
-  <link href="../../assets/plugins/vectormap/jquery-jvectormap-2.0.2.css" rel="stylesheet"/>
+  <link href="../../../assets/plugins/vectormap/jquery-jvectormap-2.0.2.css" rel="stylesheet"/>
   <!-- simplebar CSS-->
-  <link href="../../assets/plugins/simplebar/css/simplebar.css" rel="stylesheet"/>
+  <link href="../../../assets/plugins/simplebar/css/simplebar.css" rel="stylesheet"/>
   <!-- Bootstrap core CSS-->
-  <link href="../../assets/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="../../../assets/css/bootstrap.min.css" rel="stylesheet"/>
   <!-- animate CSS-->
-  <link href="../../assets/css/animate.css" rel="stylesheet" type="text/css"/>
+  <link href="../../../assets/css/animate.css" rel="stylesheet" type="text/css"/>
   <!-- Icons CSS-->
-  <link href="../../assets/css/icons.css" rel="stylesheet" type="text/css"/>
+  <link href="../../../assets/css/icons.css" rel="stylesheet" type="text/css"/>
   <!-- Sidebar CSS-->
-  <link href="../../assets/css/sidebar-menu.css" rel="stylesheet"/>
+  <link href="../../../assets/css/sidebar-menu.css" rel="stylesheet"/>
   <!-- Custom Style-->
-  <link href="../../assets/css/app-style.css" rel="stylesheet"/>
+  <link href="../../../assets/css/app-style.css" rel="stylesheet"/>
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   
@@ -37,7 +37,7 @@
 
   <style>
   .modal-content {
-    background-color: #78929B !important;
+    background-color: black !important;
     color: white;
     width: 500px;
   }
@@ -102,7 +102,7 @@
     width: 200px !important;
   }
   .w-50{
-    width: 120px !important;
+    width: 100px !important;
   }
   .w-75{
     width: 150px !important;
@@ -160,23 +160,26 @@
     
 
   .dropdown-menu {
-            background-color: #78929B; /* Cor de fundo branca */
+            background-color: gray; /* Cor de fundo branca */
             border: 1px solid #ddd;  /* Borda cinza clara */
         }
         .dropdown-item {
-            color: white; /* Cor do texto */
+            color: #333; /* Cor do texto */
         }
-       
+        .dropdown-item:hover {
+            background-color: black; /* Cor de fundo ao passar o mouse */
+            color: #007bff; /* Cor do texto ao passar o mouse */
+        }
+
 
 
 
 
 /* styles.css popup */
 /* Estilo geral do popup */
-
-  .popup {
+.popup {
     position: absolute;
-    background: #78929B;
+    background: #fff;
     border-radius: 8px;
     border: 1px solid #ddd;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -186,25 +189,7 @@
     transition: opacity 0.3s ease, transform 0.3s ease; /* Transição suave */
     opacity: 0; /* Inicialmente invisível */
     transform: scale(0.95); /* Inicialmente um pouco menor */
-    color: white; /* Cor do texto */
 }
-
-/* Estilo para links dentro do popup */
-.popup a {
-    color: white; /* Cor do texto do link */
-    text-decoration: none; /* Remover sublinhado */
-}
-
-/* Efeito de hover para links dentro do popup */
-.popup a:hover {
-    color: black; /* Cor do texto do link ao passar o mouse */
-}
-
-/* Opcional: caso você queira garantir que todos os elementos internos também tenham texto branco */
-.popup * {
-    color:
-}
-
 
 .popup.show {
     display: block; /* Mostra o popup */
@@ -216,14 +201,14 @@
 .popup-content {
     padding: 15px;
     position: relative;
-  }
+}
 
 /* Botão de fechar */
 .close-btn {
     position: absolute;
     top: 10px;
     right: 10px;
-    background: #78929B;
+    background: #f1f1f1;
     border: none;
     border-radius: 50%;
     width: 24px;
@@ -231,7 +216,6 @@
     text-align: center;
     cursor: pointer;
     font-size: 16px;
-    background: #78929B;
 }
 
 /* Ícone que abre o popup */
@@ -241,10 +225,9 @@
 }
 
 .open-popup.active {
-    background-color: #78929B; /* Define a cor de fundo quando ativo */
+    color: #007bff;
     transform: scale(1.1); /* Um pouco maior quando ativo */
 }
-
 
 .popup.show {
     display: block; /* Mostra o popup */
@@ -254,7 +237,6 @@
 .btn-{
   border-radius: 10px;
   padding: 10px;
-  
 }
 
         .close-btn {
@@ -326,7 +308,7 @@
 }
 
 h2, p {
-    color:  /* Garante que todos os textos sejam pretos */
+    color: #000; /* Garante que todos os textos sejam pretos */
 }
 
 .chat-body {
@@ -429,27 +411,42 @@ i.fa-comment {
 }
 
 
-.team-member {
-    display: flex;
-    align-items: center;
-    gap: 10px; /* Espaçamento entre os elementos */
+/* Estilos para as situações */
+/* Estilos para as situações */
+.situacao.em-andamento {
+  background-color: #F2B705;
+  color: white;
 }
 
-.team-member img {
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    object-fit: cover;
-    position: relative;
+.situacao.nao_iniciado {
+  background-color: #808080;
+  color: white;
 }
 
-.team-member img:hover {
-    content: attr(data-name); /* Pega o nome do atributo data-name */
+.situacao.pendente {
+  background-color: #D93D59;
+  color: white;
+}
 
-    transform: translateY(-5px);
-    color: #fff;
-    padding: 5px;
-    white-space: nowrap;
+.situacao.concluido {
+  background-color: #04BF68;
+  color: white;
+}
+
+/* Estilos para as prioridades */
+.prioridade.alta {
+  background-color: #5D55DB;
+  color: white;
+}
+
+.prioridade.media3 {
+  background-color:#450F91;
+  color: white;
+}
+
+.prioridade.baixa {
+  background-color: #5E9FF2;
+  color: white;
 }
 
 
@@ -475,7 +472,7 @@ i.fa-comment {
    <ul class="sidebar-menu do-nicescrol">
 
       <li>
-        <a href="home_adm.php">
+        <a href="home_funcionario.php">
           <i class="fa-solid fa-chart-line" style="color: #9e9e9e;"></i> <span>Dashboard</span>
         </a>
       </li>
@@ -488,34 +485,17 @@ i.fa-comment {
 
 
       <li>
-        <a href="conteudo_adm.html">
+        <a href="../../recebeConteudo.php">
          <i class="fa-solid fa-book" style="color: #9e9e9e;"></i> <span>Conteúdo</span>
         </a>
       </li>
 
-      <li>
-        <a href="cadastrar_funcionario_adm.html">
-          <i class="fa-solid fa-user" style="color: #9e9e9e;"></i> <span>Funcionário</span>
-        </a>
-      </li>
-      <li>
-      <a href="listar_funcionario.php">
-        <i class="zmdi zmdi-accounts-add"></i><span>Listar Funcionários</span></a> 
-      </a>
-    </li>
-      <li>
-        <a href="registrar_servico_adm.html">
-          <i class="fa-solid fa-list-check" style="color: #9e9e9e;"></i> <span>Serviço</span>
-        </a>
-      </li>      
-      <li>
-        <a href="relatorio_adm.html">
-          <i class="zmdi zmdi-assignment" style="color: #9e9e9e;"></i> <span>Relatório</span>
-        </a>
-      </li>
+
+  
+
 
       <li>
-        <a href="profile_adm.html">
+        <a href="profile_funcionario.html">
           <i class="zmdi zmdi-face"></i> <span>Perfil</span>
         </a>
       </li>
@@ -567,6 +547,8 @@ i.fa-comment {
                   // Exibir os dados
                   while ($row = $query_funcionario->fetch_assoc()) {
                       $id_funcionario = $row['id_funcionario'];
+                      $nome_setor = $row['nome_setor'];
+
                       echo "<p class='user-subtitle'>".$row['email']."</p>";
                       echo "<p class='user-subtitle'>".$row['nome_setor']."</p>";
 
@@ -598,13 +580,35 @@ i.fa-comment {
   <!--Start Dashboard Content-->
   
   <?php
-include_once("../php/conexao.php");
+include_once("../../php/conexao.php");
 
 // Consultas SQL para buscar os dados
-$sqlTotalServicos = "SELECT COUNT(*) AS total FROM servico";
-$sqlServicosConcluidos = "SELECT COUNT(*) AS total FROM servico WHERE situacao = 'concluido'";
-$sqlServicosAndamento = "SELECT COUNT(*) AS total FROM servico WHERE situacao = 'em andamento'";
-$sqlServicosPendentes = "SELECT COUNT(*) AS total FROM servico WHERE situacao = 'pendente'";
+$sqlTotalServicos = "SELECT COUNT(*) AS total
+FROM servico s
+INNER JOIN setor st ON s.id_setor = st.id_setor
+WHERE st.nome_setor = '$nome_setor'";
+
+
+
+$sqlServicosConcluidos = "SELECT COUNT(*) AS total
+FROM servico s
+INNER JOIN setor st ON s.id_setor = st.id_setor
+INNER JOIN funcionario f ON f.id_setor = st.id_setor
+WHERE st.nome_setor = '$nome_setor' AND situacao = 'concluido'";
+
+
+$sqlServicosAndamento = "SELECT COUNT(*) AS total
+FROM servico s
+INNER JOIN setor st ON s.id_setor = st.id_setor
+INNER JOIN funcionario f ON f.id_setor = st.id_setor
+WHERE st.nome_setor = '$nome_setor' AND situacao = 'em andamento'";
+
+
+$sqlServicosPendentes = "SELECT COUNT(*) AS total
+FROM servico s
+INNER JOIN setor st ON s.id_setor = st.id_setor
+INNER JOIN funcionario f ON f.id_setor = st.id_setor
+WHERE st.nome_setor = '$nome_setor' AND situacao = 'pendente'";
 
 // Executando as consultas e obtendo os resultados
 $resultTotalServicos = $conexao->query($sqlTotalServicos)->fetch_assoc();
@@ -615,7 +619,7 @@ $resultServicosPendentes = $conexao->query($sqlServicosPendentes)->fetch_assoc()
 ?>
 
 <div class="card mt-3">
-    <div class="card-content"> 
+    <div class="card-content">
         <div class="row row-group m-0">
             <div class="col-12 col-lg-6 col-xl-3 border-light">
                 <div class="card-body">
@@ -661,26 +665,13 @@ $resultServicosPendentes = $conexao->query($sqlServicosPendentes)->fetch_assoc()
 </div>
 
 	  
-<?php
-include_once("../php/conexao.php");
 
-$resultado = mysqli_query($conexao, "
-    SELECT 
-        servico.*, 
-        setor.nome_setor, 
-        GROUP_CONCAT(funcionario.foto_funcionario SEPARATOR ',') as fotos_funcionarios,
-        GROUP_CONCAT(funcionario.nome_funcionario SEPARATOR ',') as nomes_funcionarios
-    FROM 
-        servico 
-    JOIN 
-        setor ON servico.id_setor = setor.id_setor 
-    LEFT JOIN 
-        funcionario ON servico.id_setor = funcionario.id_setor 
-    WHERE 
-        DATE_FORMAT(servico.data_final, '%Y-%m') = DATE_FORMAT(NOW(), '%Y-%m')
-    GROUP BY 
-        servico.id_servico
-");
+ <?php
+  include_once("../../php/conexao.php");
+
+
+$resultado = mysqli_query($conexao, "SELECT servico.*, setor.nome_setor FROM servico JOIN setor ON servico.id_setor = setor.id_setor WHERE DATE_FORMAT(servico.data_final, '%Y-%m') = DATE_FORMAT(NOW(), '%Y-%m') AND  setor.nome_setor = '$nome_setor'");
+
 ?>
 
 <div class="row">
@@ -707,7 +698,7 @@ $resultado = mysqli_query($conexao, "
                     <thead>
                         <tr>
                             <th class="w-120">Serviço</th>
-                            <th>Equipe</th>
+                            <th >Equipe</th>
                             <th>Situação</th>
                             <th class="w-75">Prioridade</th>
                             <th>Setor</th>
@@ -725,25 +716,10 @@ $resultado = mysqli_query($conexao, "
                                     </button>
                                 </td>
                                 <td class="w-50">
-                                    <div class="team-member">
-                                        <i class="fa-solid fa-user-plus open-popup" data-id="<?= $row['id_servico'] ?>"></i>
-                                        <?php
-                                        $fotos = array_map('trim', explode(',', $row['fotos_funcionarios']));
-                                        $nomes = array_map('trim', explode(',', $row['nomes_funcionarios']));
-                                        foreach ($fotos as $index => $foto) {
-                                            if (!empty($foto)) {
-                                                echo '<img src="' . $foto . '" alt="Foto do funcionário" data-name="' . $nomes[$index] . '">';
-                                            } else {
-                                                echo 'Sem foto';
-                                            }
-                                        }
-                                        ?>
-                                    </div>
+                                    <i class="fa-solid fa-user-plus open-popup" data-id="<?= $row['id_servico'] ?>"></i>
+                                    <br>
+                                    <?= $row['equipe'] ?>
                                 </td>
-
-  
-
-
                                 <td class="situacao w-100 <?= strtolower(str_replace(' ', '-', $row['situacao'])) ?>"><?= $row['situacao'] ?></td>
                                 <td class="prioridade <?= strtolower($row['prioridade']) ?>"><?= $row['prioridade'] ?></td>
                                 <td class="w-200"><?= $row['nome_setor'] ?></td>
@@ -751,7 +727,9 @@ $resultado = mysqli_query($conexao, "
                                 <td><?= date('d M Y', strtotime($row['data_final'])) ?></td>
                                 <td>
                                     <i class="fa-regular fa-comment" data-id="<?= $row['id_servico'] ?>"></i>
+
                                 </td>
+
                             </tr>
 
                             <!-- Modal for <?= $row['nome_servico'] ?> -->
@@ -769,8 +747,8 @@ $resultado = mysqli_query($conexao, "
                                             <?= $row['descricao'] ?>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary btn-custom-close" data-bs-dismiss="modal">Enviar</button>
-                                            <button type="button" class="btn btn-primary btn-custom-save">Salvar</button>
+                                            <button type="button" class="btn btn-secondary btn-custom-close" data-bs-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-primary btn-custom-save">Save changes</button>
                                         </div>
                                     </div>
                                 </div>
@@ -781,7 +759,6 @@ $resultado = mysqli_query($conexao, "
             </div>
         </div>
     </div>
-</div>
 
 <!-- O popup -->
 
@@ -817,7 +794,7 @@ $resultado = mysqli_query($conexao, "
 </div>
 
    <?php
-include_once('../php/conexao.php');
+include_once('../../php/conexao.php');
 
 if (isset($_GET['service_id'])) {
     $service_id = intval($_GET['service_id']);
@@ -854,7 +831,7 @@ if (isset($_GET['service_id'])) {
 
 
 <?php
-include_once("../php/conexao.php");
+include_once("../../php/conexao.php");
 
 
 // Inicializa variáveis
@@ -908,7 +885,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	
 
   <?php
-  include_once("../php/conexao.php");
+  include_once("../../php/conexao.php");
 
 
   $resultado2 = mysqli_query($conexao, "
@@ -990,8 +967,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                             <?= $row['descricao'] ?>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary btn-custom-close" data-bs-dismiss="modal">Enviar</button>
-                                            <button type="button" class="btn btn-primary btn-custom-save">Salvar</button>
+                                            <button type="button" class="btn btn-secondary btn-custom-close" data-bs-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-primary btn-custom-save">Save changes</button>
                                         </div>
                                     </div>
                                 </div>
@@ -1006,7 +983,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div><!--End Row-->
 
    <?php
-      include_once("../php/conexao.php");
+      include_once("../../php/conexao.php");
    ?>
 
 <div class="row">
@@ -1272,7 +1249,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Requisição para carregar comentários reais
             var xhr = new XMLHttpRequest();
-            xhr.open('GET', 'get_comments.php?service_id=' + serviceId, true);
+            xhr.open('GET', '../get_comments.php?service_id=' + serviceId, true);
             xhr.onload = function() {
                 if (xhr.status === 200) {
                     chatMessages.innerHTML = xhr.responseText;
@@ -1354,51 +1331,27 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 </script>
-  <script>
-    $(document).ready(function(){
-        // Handle status change
-        $(".situacao").click(function(){
-            var situacoes = ["Pendente", "Em andamento", "Concluída", "Não iniciado"];
-            var classes = ["teste2", "teste", "teste1", "teste3"];
-            var current = $(this).text().trim();
-            var index = situacoes.indexOf(current);
-            var nextIndex = (index + 1) % situacoes.length;
-
-            $(this).removeClass(classes.join(" ")).addClass(classes[nextIndex]).text(situacoes[nextIndex]);
-        });
-
-        // Handle priority change
-        $(".prioridade").click(function(){
-            var prioridades = ["Alta", "Média", "Baixa"];
-            var classes = ["alta", "media3", "baixa"];
-            var current = $(this).text().trim();
-            var index = prioridades.indexOf(current);
-            var nextIndex = (index + 1) % prioridades.length;
-
-            $(this).removeClass(classes.join(" ")).addClass(classes[nextIndex]).text(prioridades[nextIndex]);
-        });
-    });
-</script>
+ 
 
   <!-- Bootstrap core JavaScript-->
-  <script src="../../assets/js/jquery.min.js"></script>
-  <script src="../../assets/js/popper.min.js"></script>
-  <script src="../../assets/js/bootstrap.min.js"></script>
+  <script src="../../../assets/js/jquery.min.js"></script>
+  <script src="../../../assets/js/popper.min.js"></script>
+  <script src="../../../assets/js/bootstrap.min.js"></script>
 	
  <!-- simplebar js -->
-  <script src="../../assets/plugins/simplebar/js/simplebar.js"></script>
+  <script src="../../../assets/plugins/simplebar/js/simplebar.js"></script>
   <!-- sidebar-menu js -->
-  <script src="../../assets/js/sidebar-menu.js"></script>
+  <script src="../../../assets/js/sidebar-menu.js"></script>
   <!-- loader scripts -->
-  <script src="../../assets/js/jquery.loading-indicator.js"></script>
+  <script src="../../../assets/js/jquery.loading-indicator.js"></script>
   <!-- Custom scripts -->
-  <script src="../../assets/js/app-script.js"></script>
+  <script src="../../../assets/js/app-script.js"></script>
   <!-- Chart js -->
   
-  <script src="../../assets/plugins/Chart.js/Chart.min.js"></script>
+  <script src="../../../assets/plugins/Chart.js/Chart.min.js"></script>
  
   <!-- Index js -->
-  <script src="../../assets/js/index.js"></script>
+  <script src="../../../assets/js/index.js"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>

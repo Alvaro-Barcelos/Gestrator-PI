@@ -439,6 +439,12 @@ i.fa-comment {
     display: block; /* Remove espaço extra ao redor da imagem */
 }
 
+.circular-image:hover {
+    transform: translateY(-8px);
+    transition: 0.5s;
+}
+
+
 .team-card {
     display: none;
     position: absolute;
@@ -459,6 +465,9 @@ i.fa-comment {
     overflow: visible; /* Permite que os elementos flutuantes sejam visíveis fora da tabela */
 }
 
+.fa-user-plus{
+    margin-left: 10px;
+}
 
 
   </style>

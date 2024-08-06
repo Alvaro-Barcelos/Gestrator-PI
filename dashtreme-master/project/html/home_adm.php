@@ -410,28 +410,55 @@ i.fa-comment {
   height: 530px;
 }
 
-
 .team-member {
-    display: flex;
-    align-items: center;
-    gap: 10px; /* Espaçamento entre os elementos */
+    display: flex; /* Alinha o ícone e as imagens na mesma linha */
+    align-items: center; /* Alinha verticalmente o ícone e as imagens */
+    margin-right: 20px; /* Ajusta a sobreposição das imagens */
 }
 
-.team-member img {
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    object-fit: cover;
+.icon {
+    margin-right: 10px; /* Espaçamento entre o ícone e as imagens */
+}
+
+.team-images {
+    display: flex; /* Alinha as imagens horizontalmente */
+    align-items: center; /* Alinha verticalmente as imagens */
+    position: relative; /* Define um contexto para as imagens absolutas */
+    margin-left: 20px;
+}
+
+.team-image {
     position: relative;
+    display: inline-block; /* Garante que as imagens fiquem lado a lado */
+    margin-left: -10px;
 }
 
-.team-member img:hover {
-    content: attr(data-name); /* Pega o nome do atributo data-name */
+.circular-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block; /* Remove espaço extra ao redor da imagem */
+}
 
-    transform: translateY(-5px);
-    color: #fff;
-    padding: 5px;
+.team-card {
+    display: none;
+    position: absolute;
+    bottom: 60px; /* Ajuste conforme necessário */
+    left: 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 10px;
+    z-index: 10;
     white-space: nowrap;
+}
+
+.team-image:hover .team-card {
+    display: block;
+}
+
+.table-responsive {
+    overflow: visible; /* Permite que os elementos flutuantes sejam visíveis fora da tabela */
 }
 
 
@@ -641,27 +668,21 @@ $resultServicosPendentes = $conexao->query($sqlServicosPendentes)->fetch_assoc()
         </div>
     </div>
 </div>
-
-	  
 <?php
 include_once("../php/conexao.php");
 
 $resultado = mysqli_query($conexao, "
     SELECT 
         servico.*, 
-        setor.nome_setor, 
-        GROUP_CONCAT(funcionario.foto_funcionario SEPARATOR ',') as fotos_funcionarios,
-        GROUP_CONCAT(funcionario.nome_funcionario SEPARATOR ',') as nomes_funcionarios
+        setor.nome_setor
     FROM 
         servico 
     JOIN 
         setor ON servico.id_setor = setor.id_setor 
-    LEFT JOIN 
-        funcionario ON servico.id_setor = funcionario.id_setor 
     WHERE 
         DATE_FORMAT(servico.data_final, '%Y-%m') = DATE_FORMAT(NOW(), '%Y-%m')
-    GROUP BY 
-        servico.id_servico
+    ORDER BY
+        data_final asc
 ");
 ?>
 
@@ -706,25 +727,31 @@ $resultado = mysqli_query($conexao, "
                                         <?= $row['nome_servico'] ?>
                                     </button>
                                 </td>
+
                                 <td class="w-50">
                                     <div class="team-member">
                                         <i class="fa-solid fa-user-plus open-popup" data-id="<?= $row['id_servico'] ?>"></i>
-                                        <?php
-                                        $fotos = array_map('trim', explode(',', $row['fotos_funcionarios']));
-                                        $nomes = array_map('trim', explode(',', $row['nomes_funcionarios']));
-                                        foreach ($fotos as $index => $foto) {
-                                            if (!empty($foto)) {
-                                                echo '<img src="' . $foto . '" alt="Foto do funcionário" data-name="' . $nomes[$index] . '">';
-                                            } else {
-                                                echo 'Sem foto';
-                                            }
-                                        }
-                                        ?>
+                                        <div class="team-images">
+                                            <?php 
+                                            $nomesEquipe = explode(',', $row['equipe']);
+                                            foreach ($nomesEquipe as $nome) {
+                                                $nome = trim($nome);
+                                                $funcionarioResult = mysqli_query($conexao, "SELECT foto_funcionario, nome_funcionario, email, cargo FROM funcionario WHERE nome_funcionario = '$nome'");
+                                                $funcionarioRow = mysqli_fetch_assoc($funcionarioResult);
+                                                if ($funcionarioRow): ?>
+                                                    <div class="team-image">
+                                                        <img src="<?= $funcionarioRow['foto_funcionario'] ?>" alt="<?= $funcionarioRow['nome_funcionario'] ?>" class="circular-image" />
+                                                        <div class="team-card">
+                                                            <p>Nome: <?= $funcionarioRow['nome_funcionario'] ?></p>
+                                                            <p>Email: <?= $funcionarioRow['email'] ?></p>
+                                                            <p>Cargo: <?= $funcionarioRow['cargo'] ?></p>
+                                                        </div>
+                                                    </div>
+                                                <?php endif; 
+                                            } ?>
+                                        </div>
                                     </div>
                                 </td>
-
-  
-
 
                                 <td class="situacao w-100 <?= strtolower(str_replace(' ', '-', $row['situacao'])) ?>"><?= $row['situacao'] ?></td>
                                 <td class="prioridade <?= strtolower($row['prioridade']) ?>"><?= $row['prioridade'] ?></td>
@@ -764,6 +791,8 @@ $resultado = mysqli_query($conexao, "
         </div>
     </div>
 </div>
+
+
 
 <!-- O popup -->
 

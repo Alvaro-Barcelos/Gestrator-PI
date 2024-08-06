@@ -1,3 +1,7 @@
+<?php
+  include("protect_gerente.php");
+  include_once("../php/conexao.php");
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -33,8 +37,9 @@
 
   <style>
   .modal-content {
-    background-color: #004085 !important;
+    background-color: #78929B !important;
     color: white;
+    width: 500px;
   }
 
   .btn-custom-close {
@@ -97,7 +102,7 @@
     width: 200px !important;
   }
   .w-50{
-    width: 100px !important;
+    width: 120px !important;
   }
   .w-75{
     width: 150px !important;
@@ -155,110 +160,298 @@
     
 
   .dropdown-menu {
-            background-color: white; /* Cor de fundo branca */
+            background-color: #78929B; /* Cor de fundo branca */
             border: 1px solid #ddd;  /* Borda cinza clara */
         }
         .dropdown-item {
-            color: #333; /* Cor do texto */
+            color: white; /* Cor do texto */
         }
-        .dropdown-item:hover {
-            background-color: #f8f9fa; /* Cor de fundo ao passar o mouse */
-            color: #007bff; /* Cor do texto ao passar o mouse */
-        }
+       
 
 
 
 
+/* styles.css popup */
+/* Estilo geral do popup */
 
-/* styles.css */
-.popup {
-    display: none; /* Inicialmente oculto */
-    position: absolute; /* Permite o posicionamento absoluto */
-    background: white;
+  .popup {
+    position: absolute;
+    background: #78929B;
+    border-radius: 8px;
     border: 1px solid #ddd;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     z-index: 1000;
+    display: none; /* Inicialmente oculto */
+    max-width: 300px; /* Tamanho máximo */
+    transition: opacity 0.3s ease, transform 0.3s ease; /* Transição suave */
+    opacity: 0; /* Inicialmente invisível */
+    transform: scale(0.95); /* Inicialmente um pouco menor */
+    color: white; /* Cor do texto */
 }
 
+/* Estilo para links dentro do popup */
+.popup a {
+    color: white; /* Cor do texto do link */
+    text-decoration: none; /* Remover sublinhado */
+}
+
+/* Efeito de hover para links dentro do popup */
+.popup a:hover {
+    color: black; /* Cor do texto do link ao passar o mouse */
+}
+
+/* Opcional: caso você queira garantir que todos os elementos internos também tenham texto branco */
+.popup * {
+    color:
+}
+
+
+.popup.show {
+    display: block; /* Mostra o popup */
+    opacity: 1; /* Visível */
+    transform: scale(1); /* Tamanho normal */
+}
+
+/* Conteúdo do popup */
 .popup-content {
     padding: 15px;
     position: relative;
-}
-
-.popup-arrow {
-    position: absolute;
-    top: -10px;
-    left: 20px; /* Ajuste conforme necessário */
-    width: 0;
-    height: 0;
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
-    border-bottom: 10px solid white;
-}
-
-.close-btn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    cursor: pointer;
-}
-
-
-/* sobreposição de tela */
-/* Estilo do ícone */
-#open-chat {
-    font-size: 24px;
-    cursor: pointer;
-}
-
-/* Sobreposição de tela */
-.overlay {
-    display: none; /* Oculta a sobreposição por padrão */
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 300px; /* Largura da sobreposição */
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
-    color: white;
-    z-index: 1000; /* Garante que a sobreposição fique sobre outros elementos */
-    overflow: auto;
-    transition: transform 0.3s ease;
-    transform: translateX(100%);
-}
-
-.overlay-content {
-    position: relative;
-    height: 100%;
-    padding: 20px;
-}
+  }
 
 /* Botão de fechar */
 .close-btn {
     position: absolute;
     top: 10px;
-    right: 20px;
-    font-size: 24px;
+    right: 10px;
+    background: #78929B;
+    border: none;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 16px;
+    background: #78929B;
+}
+
+/* Ícone que abre o popup */
+.open-popup {
+    cursor: pointer;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.open-popup.active {
+    background-color: #78929B; /* Define a cor de fundo quando ativo */
+    transform: scale(1.1); /* Um pouco maior quando ativo */
+}
+
+
+.popup.show {
+    display: block; /* Mostra o popup */
+    width: 500px;
+}
+
+.btn-{
+  border-radius: 10px;
+  padding: 10px;
+  
+}
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        .resultados {
+            margin-top: 10px;
+            color: black;
+        }
+        .resultado-item {
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #ddd;
+}
+
+.resultado-item:hover {
+    background-color: #f0f0f0;
+}
+
+
+#search-bar {
+    width: 80%;
+    padding: 8px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    max-width: 600px;
+}
+
+
+/* Sobreposição de tela */
+.overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 400px; /* Largura da sobreposição */
+    height: 100%;
+    background: #fff; /* Fundo branco */
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    transition: transform 0.3s ease;
+    transform: translateX(100%); /* Inicialmente fora da tela */
+}
+
+.overlay.show {
+    display: flex;
+    transform: translateX(0); /* Quando visível, posiciona a sobreposição na tela */
+}
+
+.overlay-content {
+    background: #fff;
+    padding: 25px;
+    border-radius: 8px;
+    width: 100%;
+    box-sizing: border-box;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    color: #000; /* Cor do texto preto */
+}
+
+h2, p {
+    color:  /* Garante que todos os textos sejam pretos */
+}
+
+.chat-body {
+    flex: 1;
+    overflow-y: auto; /* Rolagem vertical se necessário */
+    padding-bottom: 60px; /* Espaço para a área de entrada de texto ou botões de enviar */
+}
+
+.card-header img {
+    margin-right: 10px;
+}
+
+.chat-message img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+.chat-message {
+    background-color: #e1e1e1;
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-direction: column;
+    margin-bottom: 50px;
+}
+
+.message-input {
+    display: flex;
+    gap: 10px;
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+}
+
+.message-input input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.message-input button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
     cursor: pointer;
 }
 
-/* Caixa de chat */
-.chat-box {
-    margin-top: 40px;
+.message-input button:hover {
+    background-color: #0056b3;
 }
 
+.close-btn {
+    position: absolute;
+    top: 20px;
+    left: -50px; /* Ajuste para posicionar o botão fora da sobreposição */
+    background: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 18px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
 
+.close-btn i {
+    color: #333; /* Cor do ícone do botão de fechar */
+}
+
+i.fa-comment {
+    cursor: pointer;
+    font-size: 24px;
+}
+
+.text-principal {
+    margin-top: 20px;
+    text-align: left;
+}
+
+/* GRAFICO */
 .chart-container-2 {
     position: relative;
     height: 450px !important; /* Ajuste a altura conforme necessário */
-    width: 850px ; /* Faz o gráfico ocupar 100% da largura disponível */
+    width: 820px ; /* Faz o gráfico ocupar 100% da largura disponível */
     margin-left: 20%;
 
 }
 
 .tamanho{
-  height: 600px;
+  height: 530px;
 }
+
+
+.team-member {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Espaçamento entre os elementos */
+}
+
+.team-member img {
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+    position: relative;
+}
+
+.team-member img:hover {
+    content: attr(data-name); /* Pega o nome do atributo data-name */
+
+    transform: translateY(-5px);
+    color: #fff;
+    padding: 5px;
+    white-space: nowrap;
+}
+
 
 
   </style>
@@ -282,7 +475,7 @@
    <ul class="sidebar-menu do-nicescrol">
 
       <li>
-        <a href="home_adm.html">
+        <a href="home_adm.php">
           <i class="fa-solid fa-chart-line" style="color: #9e9e9e;"></i> <span>Dashboard</span>
         </a>
       </li>
@@ -305,15 +498,16 @@
           <i class="fa-solid fa-user" style="color: #9e9e9e;"></i> <span>Funcionário</span>
         </a>
       </li>
-
+      <li>
+      <a href="listar_funcionario.php">
+        <i class="zmdi zmdi-accounts-add"></i><span>Listar Funcionários</span></a> 
+      </a>
+    </li>
       <li>
         <a href="registrar_servico_adm.html">
           <i class="fa-solid fa-list-check" style="color: #9e9e9e;"></i> <span>Serviço</span>
         </a>
-      </li>
-
-      
-      
+      </li>      
       <li>
         <a href="relatorio_adm.html">
           <i class="zmdi zmdi-assignment" style="color: #9e9e9e;"></i> <span>Relatório</span>
@@ -340,9 +534,11 @@
 <!--Start topbar header-->
 <header class="topbar-nav">
  <nav class="navbar navbar-expand fixed-top">
-  <ul class="navbar-nav mr-auto align-items-center">
-   
-  </ul>
+ <ul class="navbar-nav mr-auto align-items-center">
+      <li class="nav-item">
+        
+      </li>
+    </ul>
      
   <ul class="navbar-nav align-items-center right-nav-link">
     
@@ -357,21 +553,36 @@
            <div class="media">
              <div class="avatar"><img class="align-self-start mr-3" src="https://via.placeholder.com/110x110" alt="user avatar"></div>
             <div class="media-body">
-            <h6 class="mt-2 user-title">Sarajhon Mccoy</h6>
-            <p class="user-subtitle">mccoy@example.com</p>
-            <p class="user-subtitle">Contabilidade</p>
+            <h6 class="mt-2 user-title"><?php echo $_SESSION['usuario']; ?></h6>
+            <?php 
+            
+              $usuario = $_SESSION['usuario']; 
+              
+              $query_funcionario = mysqli_query($conexao, "SELECT f.id_funcionario, f.email, s.nome_setor 
+              FROM funcionario f 
+              JOIN setor s ON f.id_setor = s.id_setor 
+              WHERE f.nome_funcionario = '$usuario'");
+
+                if ($query_funcionario->num_rows > 0) {
+                  // Exibir os dados
+                  while ($row = $query_funcionario->fetch_assoc()) {
+                      $id_funcionario = $row['id_funcionario'];
+                      echo "<p class='user-subtitle'>".$row['email']."</p>";
+                      echo "<p class='user-subtitle'>".$row['nome_setor']."</p>";
+
+                  }}
+                  ?>
+
             </div>
            </div>
           </a>
         </li>
+
         <li class="dropdown-divider"></li>
-        <li class="dropdown-item"><i class="icon-envelope mr-2"></i>Mensagens</li>
+        <a href="profile_adm.html"><li class="dropdown-item"><i class="icon-wallet mr-2"></i> Perfil</li></a>
         <li class="dropdown-divider"></li>
-        <li class="dropdown-item"><i class="icon-wallet mr-2"></i> Perfil</li>
-        <li class="dropdown-divider"></li>
-        <li class="dropdown-item"><i class="icon-settings mr-2"></i> Configarações</li>
-        <li class="dropdown-divider"></li>
-        <li class="dropdown-item"><i class="icon-power mr-2"></i> Sair</li>
+        <a href="../php/logout.php"><li class="dropdown-item"><i class="icon-power mr-2"></i> Sair</li></a>
+        
       </ul>
     </li>
   </ul>
@@ -385,67 +596,334 @@
     <div class="container-fluid">
 
   <!--Start Dashboard Content-->
+  
+  <?php
+include_once("../php/conexao.php");
 
-	<div class="card mt-3">
-    <div class="card-content">
+// Consultas SQL para buscar os dados
+$sqlTotalServicos = "SELECT COUNT(*) AS total FROM servico";
+$sqlServicosConcluidos = "SELECT COUNT(*) AS total FROM servico WHERE situacao = 'concluido'";
+$sqlServicosAndamento = "SELECT COUNT(*) AS total FROM servico WHERE situacao = 'em andamento'";
+$sqlServicosPendentes = "SELECT COUNT(*) AS total FROM servico WHERE situacao = 'pendente'";
+
+// Executando as consultas e obtendo os resultados
+$resultTotalServicos = $conexao->query($sqlTotalServicos)->fetch_assoc();
+$resultServicosConcluidos = $conexao->query($sqlServicosConcluidos)->fetch_assoc();
+$resultServicosAndamento = $conexao->query($sqlServicosAndamento)->fetch_assoc();
+$resultServicosPendentes = $conexao->query($sqlServicosPendentes)->fetch_assoc();
+
+?>
+
+<div class="card mt-3">
+    <div class="card-content"> 
         <div class="row row-group m-0">
             <div class="col-12 col-lg-6 col-xl-3 border-light">
                 <div class="card-body">
-                  <h5 class="text-white mb-0">9526 <span class="float-right"><i class="fa-solid fa-list-check" style="color: #ffffff;"></i></span></h5>
+                    <h5 class="text-white mb-0"><?php echo $resultTotalServicos['total']; ?> <span class="float-right"><i class="fa-solid fa-list-check" style="color: #ffffff;"></i></span></h5>
                     <div class="progress my-3" style="height:3px;">
                        <div class="progress-bar" style="width:55%"></div>
                     </div>
-                  <p class="mb-0 text-white small-font">Total de ordens</p>
+                    <p class="mb-0 text-white small-font">Total de serviços</p>
                 </div>
             </div>
 
             <div class="col-12 col-lg-6 col-xl-3 border-light">
                 <div class="card-body">
-                  <h5 class="text-white mb-0">8323 <span class="float-right"><i class="fa-solid fa-check" style="color: #ffffff;"></i></span></h5>
+                    <h5 class="text-white mb-0"><?php echo $resultServicosConcluidos['total']; ?> <span class="float-right"><i class="fa-solid fa-check" style="color: #ffffff;"></i></span></h5>
                     <div class="progress my-3" style="height:3px;">
                        <div class="progress-bar" style="width:55%"></div>
                     </div>
-                  <p class="mb-0 text-white small-font">Total de ordens concluidas</p>
+                    <p class="mb-0 text-white small-font">Total de serviços concluídos</p>
                 </div>
             </div>
 
             <div class="col-12 col-lg-6 col-xl-3 border-light">
-              <div class="card-body">
-                <h5 class="text-white mb-0">8323 <span class="float-right"><i class="fa-solid fa-clock" style="color: #f1f4f8;"></i></span></h5>
-                  <div class="progress my-3" style="height:3px;">
-                     <div class="progress-bar" style="width:55%"></div>
-                  </div>
-                <p class="mb-0 text-white small-font">Total de ordens em processo</p>
-              </div>
-          </div>
-
-          <div class="col-12 col-lg-6 col-xl-3 border-light">
-            <div class="card-body">
-              <h5 class="text-white mb-0">8323 <span class="float-right"><i class="fa-solid fa-circle-exclamation" style="color: #fafcff;"></i></span></h5>
-                <div class="progress my-3" style="height:3px;">
-                   <div class="progress-bar" style="width:55%"></div>
+                <div class="card-body">
+                    <h5 class="text-white mb-0"><?php echo $resultServicosAndamento['total']; ?> <span class="float-right"><i class="fa-solid fa-clock" style="color: #f1f4f8;"></i></span></h5>
+                    <div class="progress my-3" style="height:3px;">
+                       <div class="progress-bar" style="width:55%"></div>
+                    </div>
+                    <p class="mb-0 text-white small-font">Total de serviços em andamento</p>
                 </div>
-              <p class="mb-0 text-white small-font">Total de ordens atrasadas</p>
+            </div>
+
+            <div class="col-12 col-lg-6 col-xl-3 border-light">
+                <div class="card-body">
+                    <h5 class="text-white mb-0"><?php echo $resultServicosPendentes['total']; ?> <span class="float-right"><i class="fa-solid fa-circle-exclamation" style="color: #fafcff;"></i></span></h5>
+                    <div class="progress my-3" style="height:3px;">
+                       <div class="progress-bar" style="width:55%"></div>
+                    </div>
+                    <p class="mb-0 text-white small-font">Total de serviços pendentes</p>
+                </div>
             </div>
         </div>
-
-
-
-        </div>
     </div>
- </div>  
-	  
+</div>
 
- <?php
+	  
+<?php
 include_once("../php/conexao.php");
 
-$resultado = mysqli_query($conexao, "SELECT servico.*, setor.nome_setor FROM servico JOIN setor ON servico.id_setor = setor.id_setor");
+$resultado = mysqli_query($conexao, "
+    SELECT 
+        servico.*, 
+        setor.nome_setor, 
+        GROUP_CONCAT(funcionario.foto_funcionario SEPARATOR ',') as fotos_funcionarios,
+        GROUP_CONCAT(funcionario.nome_funcionario SEPARATOR ',') as nomes_funcionarios
+    FROM 
+        servico 
+    JOIN 
+        setor ON servico.id_setor = setor.id_setor 
+    LEFT JOIN 
+        funcionario ON servico.id_setor = funcionario.id_setor 
+    WHERE 
+        DATE_FORMAT(servico.data_final, '%Y-%m') = DATE_FORMAT(NOW(), '%Y-%m')
+    GROUP BY 
+        servico.id_servico
+");
 ?>
 
 <div class="row">
     <div class="col-12 col-lg-12">
         <div class="card">
             <div class="card-header este-mes">Este mês
+                <div class="card-action">
+                    <div class="dropdown">
+                        <a href="javascript:void();" class="dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown">
+                            <i class="icon-options"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="javascript:void();">Action</a>
+                            <a class="dropdown-item" href="javascript:void();">Another action</a>
+                            <a class="dropdown-item" href="javascript:void();">Something else here</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="javascript:void();">Separated link</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table align-items-center table-flush table-borderless">
+                    <thead>
+                        <tr>
+                            <th class="w-120">Serviço</th>
+                            <th>Equipe</th>
+                            <th>Situação</th>
+                            <th class="w-75">Prioridade</th>
+                            <th>Setor</th>
+                            <th>Início</th>
+                            <th>Final</th>
+                            <th>Nota</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php while($row = mysqli_fetch_assoc($resultado)): ?>
+                            <tr>
+                                <td class="sem-espaco w-120">
+                                    <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#modal<?= $row['id_servico'] ?>">
+                                        <?= $row['nome_servico'] ?>
+                                    </button>
+                                </td>
+                                <td class="w-50">
+                                    <div class="team-member">
+                                        <i class="fa-solid fa-user-plus open-popup" data-id="<?= $row['id_servico'] ?>"></i>
+                                        <?php
+                                        $fotos = array_map('trim', explode(',', $row['fotos_funcionarios']));
+                                        $nomes = array_map('trim', explode(',', $row['nomes_funcionarios']));
+                                        foreach ($fotos as $index => $foto) {
+                                            if (!empty($foto)) {
+                                                echo '<img src="' . $foto . '" alt="Foto do funcionário" data-name="' . $nomes[$index] . '">';
+                                            } else {
+                                                echo 'Sem foto';
+                                            }
+                                        }
+                                        ?>
+                                    </div>
+                                </td>
+
+  
+
+
+                                <td class="situacao w-100 <?= strtolower(str_replace(' ', '-', $row['situacao'])) ?>"><?= $row['situacao'] ?></td>
+                                <td class="prioridade <?= strtolower($row['prioridade']) ?>"><?= $row['prioridade'] ?></td>
+                                <td class="w-200"><?= $row['nome_setor'] ?></td>
+                                <td><?= date('d M Y', strtotime($row['data_criada'])) ?></td>
+                                <td><?= date('d M Y', strtotime($row['data_final'])) ?></td>
+                                <td>
+                                    <i class="fa-regular fa-comment" data-id="<?= $row['id_servico'] ?>"></i>
+                                </td>
+                            </tr>
+
+                            <!-- Modal for <?= $row['nome_servico'] ?> -->
+                            <div class="modal fade" id="modal<?= $row['id_servico'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel"><?= $row['nome_servico'] ?></h1>
+                                            <button type="button" class="btn-close-custom" data-bs-dismiss="modal" aria-label="Close">
+                                                <i class="fas fa-times"></i>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <!-- Conteúdo do modal para <?= $row['nome_servico'] ?> -->
+                                            <?= $row['descricao'] ?>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary btn-custom-close" data-bs-dismiss="modal">Enviar</button>
+                                            <button type="button" class="btn btn-primary btn-custom-save">Salvar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endwhile; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- O popup -->
+
+<div id="popup" class="popup">
+    <div class="popup-content">
+        <button id="close-btn" class="close-btn">&times;</button>
+        <h2>Equipe</h2>
+        <p>Adicione funcionários a este serviço</p>
+        <form action="atualizarEquipe.php" method="post">
+            <input type="text" id="search-bar" name="nome" placeholder="Pesquise nomes ou equipe">
+            <div id="resultados" class="resultados"></div>
+            <input type="submit" value="Atualizar">
+        </form>
+    </div>
+</div>
+
+   <!-- Sobreposição -->
+   <div id="overlay" class="overlay">
+    <div class="overlay-content">
+        <button id="close-overlay" class="close-btn">&times;</button>
+        <h2 class="text-principal">Chat Interno</h2>
+        <div class="chat-body">
+            <!-- Conteúdo dos comentários carregados dinamicamente -->
+        </div>
+        <form action="" method="post">
+        <input type="hidden" id="service-id" name="service_id" value="">
+            <div class="message-input">
+                <input type="text" name="mensagem" placeholder="Digite sua mensagem...">
+                <button type="submit">Enviar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+   <?php
+include_once('../php/conexao.php');
+
+if (isset($_GET['service_id'])) {
+    $service_id = intval($_GET['service_id']);
+
+    $query_comentarios = mysqli_query($conexao, 
+        "SELECT c.comentario, f.nome_funcionario 
+         FROM comentario c
+         JOIN funcionario f ON c.id_funcionario = f.id_funcionario
+         WHERE c.id_servico = $service_id");
+
+    if (mysqli_num_rows($query_comentarios) > 0) {
+        while ($comentario = mysqli_fetch_assoc($query_comentarios)) {
+            echo '<div class="chat-message">';
+            echo '    <div class="card">';
+            echo '        <div class="card-header">';
+            echo '            <img src="https://via.placeholder.com/30" alt="Avatar">';
+            echo '            ' . htmlspecialchars($comentario['nome_funcionario']);
+            echo '        </div>';
+            echo '        <div class="card-body">';
+            echo '            <blockquote class="blockquote mb-0">';
+            echo '                <p>' . htmlspecialchars($comentario['comentario']) . '</p>';
+            echo '            </blockquote>';
+            echo '        </div>';
+            echo '    </div>';
+            echo '</div>';
+        }
+    } else {
+        echo '<p>Sem comentários para este serviço.</p>';
+    }
+}
+?>
+
+
+
+
+<?php
+include_once("../php/conexao.php");
+
+
+// Inicializa variáveis
+$id_funcionario = null;
+
+// Obtém o nome do usuário da sessão
+if (isset($_SESSION['usuario'])) {
+    $usuario = $_SESSION['usuario'];
+
+    // Verifica se o nome do usuário está definido
+    if (!empty($usuario)) {
+        // Consulta para obter o id_funcionario
+        $query_funcionario = mysqli_query($conexao, "SELECT id_funcionario FROM funcionario WHERE nome_funcionario = '$usuario'");
+
+        // Verifica se a consulta retornou algum resultado
+        if ($query_funcionario && $query_funcionario->num_rows > 0) {
+            $row = $query_funcionario->fetch_assoc();
+            $id_funcionario = $row['id_funcionario'];
+        } else {
+            echo 'Usuário não encontrado na tabela funcionario.';
+        }
+    } else {
+        echo 'Nome do usuário na sessão está vazio.';
+    }
+} else {
+    echo 'Usuário não está definido na sessão.';
+}
+
+// Verifica se a requisição é do tipo POST
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['service_id']) && $id_funcionario !== null) {
+        $service_id = (int)$_POST['service_id'];
+        $mensagem = mysqli_real_escape_string($conexao, $_POST['mensagem']);
+
+        // Insere o comentário no banco de dados
+        $query = "INSERT INTO comentario (id_servico, id_funcionario, comentario) VALUES ('$service_id', '$id_funcionario', '$mensagem')";
+        if (mysqli_query($conexao, $query)) {
+            echo '';
+        } else {
+            echo 'Erro ao enviar comentário: ' . mysqli_error($conexao);
+        }
+    } else {
+        echo 'ID do serviço ou ID do funcionário não especificado.';
+    }
+}
+?>
+
+
+
+	</div><!--End Row-->
+	
+
+  <?php
+  include_once("../php/conexao.php");
+
+
+  $resultado2 = mysqli_query($conexao, "
+  SELECT servico.*, setor.nome_setor 
+  FROM servico 
+  JOIN setor ON servico.id_setor = setor.id_setor 
+  WHERE DATE_FORMAT(servico.data_final, '%Y-%m') = DATE_FORMAT(DATE_ADD(NOW(), INTERVAL 1 MONTH), '%Y-%m')
+");
+
+?>
+  
+<div class="row">
+    <div class="col-12 col-lg-12">
+        <div class="card">
+            <div class="card-header proximo-mes">Proximo mês
                 <div class="card-action">
                     <div class="dropdown">
                         <a href="javascript:void();" class="dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown">
@@ -476,7 +954,7 @@ $resultado = mysqli_query($conexao, "SELECT servico.*, setor.nome_setor FROM ser
                         </tr>
                     </thead>
                     <tbody>
-                        <?php while($row = mysqli_fetch_assoc($resultado)): ?>
+                        <?php while($row = mysqli_fetch_assoc($resultado2)): ?>
                             <tr>
                                 <td class="sem-espaco w-120">
                                     <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#modal<?= $row['id_servico'] ?>">
@@ -484,14 +962,17 @@ $resultado = mysqli_query($conexao, "SELECT servico.*, setor.nome_setor FROM ser
                                     </button>
                                 </td>
                                 <td class="w-50">
-                                 <i class="fa-solid fa-user-plus open-popup" data-id="<?= $row['id_servico'] ?>"></i>
-                         </td>
+                                    <i class="fa-solid fa-user-plus open-popup" data-id="<?= $row['id_servico'] ?>"></i>
+                                </td>
                                 <td class="situacao w-100 <?= strtolower(str_replace(' ', '-', $row['situacao'])) ?>"><?= $row['situacao'] ?></td>
                                 <td class="prioridade <?= strtolower($row['prioridade']) ?>"><?= $row['prioridade'] ?></td>
                                 <td class="w-200"><?= $row['nome_setor'] ?></td>
                                 <td><?= date('d M Y', strtotime($row['data_criada'])) ?></td>
                                 <td><?= date('d M Y', strtotime($row['data_final'])) ?></td>
-                                <td><i id="open-chat" class="fa-regular fa-comment"></i></td>
+                                <td>
+                                    <i class="fa-regular fa-comment" data-id="<?= $row['id_servico'] ?>"></i>
+                                </td>
+
                             </tr>
 
                             <!-- Modal for <?= $row['nome_servico'] ?> -->
@@ -509,8 +990,8 @@ $resultado = mysqli_query($conexao, "SELECT servico.*, setor.nome_setor FROM ser
                                             <?= $row['descricao'] ?>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary btn-custom-close" data-bs-dismiss="modal">Close</button>
-                                            <button type="button" class="btn btn-primary btn-custom-save">Save changes</button>
+                                            <button type="button" class="btn btn-secondary btn-custom-close" data-bs-dismiss="modal">Enviar</button>
+                                            <button type="button" class="btn btn-primary btn-custom-save">Salvar</button>
                                         </div>
                                     </div>
                                 </div>
@@ -522,286 +1003,11 @@ $resultado = mysqli_query($conexao, "SELECT servico.*, setor.nome_setor FROM ser
         </div>
     </div>
 
-<!-- O popup -->
-<div id="popup" class="popup">
-    <div class="popup-content">
-        <div class="popup-arrow"></div>
-        <button id="close-btn" class="close-btn">&times;</button>
-        <h2>Equipe</h2>
-        <p>Adicione funcionários a este serviço</p>
-        <input type="text" id="search-bar" placeholder="Pesquise nomes ou equipe">
-    </div>
-</div>
+    </div><!--End Row-->
 
-    <!-- Sobreposição de tela -->
-    <div id="overlay" class="overlay">
-        <div class="overlay-content">
-            <span id="close-chat" class="close-btn">&times;</span>
-            <div class="chat-box">
-                <!-- Conteúdo do chat vai aqui -->
-                <p>Chat de bate-papo</p>
-            </div>
-        </div>
-    </div>
-
-
-	</div><!--End Row-->
-	<div class="row">
-    <div class="col-12 col-lg-12">
-      <div class="card">
-        <div class="card-header proximo-mes">Proximo mês
-       <div class="card-action">
-              <div class="dropdown">
-              <a href="javascript:void();" class="dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown">
-               <i class="icon-options"></i>
-              </a>
-               <div class="dropdown-menu dropdown-menu-right">
-               <a class="dropdown-item" href="javascript:void();">Action</a>
-               <a class="dropdown-item" href="javascript:void();">Another action</a>
-               <a class="dropdown-item" href="javascript:void();">Something else here</a>
-               <div class="dropdown-divider"></div>
-               <a class="dropdown-item" href="javascript:void();">Separated link</a>
-                </div>
-               </div>
-              </div>
-      </div>
-      <div class="table-responsive">
-       <table class="table align-items-center table-flush table-borderless">
-         <thead>
-           <tr>
-             <th class="w-120">Serviço</th>
-             <th>Equipe</th>
-             <th>Situação</th>
-             <th>prioridade</th>
-             <th>Setor</th>
-             <th>Inicio</th>
-             <th>Final</th>
-             <th>Nota</th>
- 
-           </tr>
-         </thead>
-         <tbody>
-           <tr>
-             <td class="sem-espaco w-120">
-               <button type="button" class="btn " data-bs-toggle="modal" data-bs-target="#modalIphone5">Alterar as planilhas S5</button>
-             </td>
-             <td><i class="fa-solid fa-user-plus"></i></td>
-             <td class="teste2">Pendente</td>
-             <td class="alta">Alta</td>
-             <td>Administrativo</td>
-             <td>03 Aug 2017</td>
-             <td>03 Aug 2017</td>
-             <td><i class="fa-regular fa-comment"></i></td>
- 
- 
- 
-           </tr>
-           
-           <tr>
-             <td class="sem-espaco">
-               <button type="button" class="btn " data-bs-toggle="modal" data-bs-target="#modalEarphoneGL">Earphone GL</button>
-             </td>
-             <td><i class="fa-solid fa-user-plus"></i></td>
-             <td class="teste">Em andamento</td>
-             <td class="mediaa">Media</td>
-             <td>Recursos humanos</td>
-             <td>03 Aug 2017</td>
-             <td>03 Aug 2017</td>
-             <td><i class="fa-regular fa-comment"></i></td>
- 
- 
-           </tr>
-     
-           <tr>
-             <td class="sem-espaco">
-               <button type="button" class="btn " data-bs-toggle="modal" data-bs-target="#modalHDHandCamera">HD Hand Camera</button>
-             </td>
-             <td><i class="fa-solid fa-user-plus"></i></td>
-             <td class="teste">Em andamento</td>
-             <td class="baixa">Baixa</td>
-             <td>Compras</td>
-             <td>03 Aug 2017</td>
-             <td>03 Aug 2017</td>
-             <td><i class="fa-regular fa-comment"></i></td>
- 
- 
-           </tr>
-     
-           <tr>
-             <td class="sem-espaco">
-               <button type="button" class="btn " data-bs-toggle="modal" data-bs-target="#modalClasicShoes">Clasic Shoes</button>
-             </td>
-             <td><i class="fa-solid fa-user-plus"></i></td>
-             <td class="teste1">Concluída</td>
-             <td class="baixa">Baixa</td>
-             <td>Tecnologia</td>
-             <td>03 Aug 2017</td>
-             <td>03 Aug 2017</td>
-             <td><i class="fa-regular fa-comment"></i></td>
- 
-           </tr>
-     
-           <tr>
-             <td class="sem-espaco">
-               <button type="button" class="btn " data-bs-toggle="modal" data-bs-target="#modalHandWatch">Hand Watch</button>
-             </td>
-             <td><i class="fa-solid fa-user-plus"></i></td>
-             <td class="teste">Em andamento</td>
-             <td class="alta">Alta</td>
-             <td>Financeiros</td>
-             <td>03 Aug 2017</td>
-             <td>03 Aug 2017</td>
-             <td><i class="fa-regular fa-comment"></i></td>
- 
-           </tr>
-     
-           <tr>
-             <td class="sem-espaco">
-               <button type="button" class="btn " data-bs-toggle="modal" data-bs-target="#modalClasicShoesOp">Clasic Shoes</button>
-             </td>
-             <td><i class="fa-solid fa-user-plus"></i></td>
-             <td class="teste">Em andamento</td>
-             <td class="mediaa">Media</td>
-             <td>Operações</td>
-             <td>03 Aug 2017</td>
-             <td>03 Aug 2017</td>
-             <td><i class="fa-regular fa-comment"></i></td>
- 
-           </tr>
-         </tbody>
-       </table>
-     </div>
-     
-     <!-- Modal Templates -->
-     <!-- Modal for Iphone 5 -->
-     <div class="modal fade" id="modalIphone5" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-       <div class="modal-dialog">
-         <div class="modal-content">
-           <div class="modal-header">
-             <h1 class="modal-title fs-5" id="exampleModalLabel">Iphone 5</h1>
-             <button type="button" class="btn-close-custom" data-bs-dismiss="modal" aria-label="Close">
-               <i class="fas fa-times"></i>
-             </button>
-           </div>
-           <div class="modal-body">
-             <!-- Conteúdo do modal para Iphone 5 -->
-             ...
-           </div>
-           <div class="modal-footer">
-             <button type="button" class="btn btn-secondary btn-custom-close" data-bs-dismiss="modal">Close</button>
-             <button type="button" class="btn btn-primary btn-custom-save">Save changes</button>
-           </div>
-         </div>
-       </div>
-     </div>
-     
-     
-     <!-- Modal for Earphone GL -->
-     <div class="modal fade" id="modalEarphoneGL" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-       <div class="modal-dialog">
-         <div class="modal-content">
-           <div class="modal-header">
-             <h1 class="modal-title fs-5" id="exampleModalLabel">Earphone GL</h1>
-             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-           </div>
-           <div class="modal-body">
-             <!-- Conteúdo do modal para Earphone GL -->
-             ...
-           </div>
-           <div class="modal-footer">
-             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-             <button type="button" class="btn btn-primary">Save changes</button>
-           </div>
-         </div>
-       </div>
-     </div>
-     
-     <!-- Modal for HD Hand Camera -->
-     <div class="modal fade" id="modalHDHandCamera" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-       <div class="modal-dialog">
-         <div class="modal-content">
-           <div class="modal-header">
-             <h1 class="modal-title fs-5" id="exampleModalLabel">HD Hand Camera</h1>
-             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-           </div>
-           <div class="modal-body">
-             <!-- Conteúdo do modal para HD Hand Camera -->
-             ...
-           </div>
-           <div class="modal-footer">
-             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-             <button type="button" class="btn btn-primary">Save changes</button>
-           </div>
-         </div>
-       </div>
-     </div>
-     
-     <!-- Modal for Clasic Shoes -->
-     <div class="modal fade" id="modalClasicShoes" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-       <div class="modal-dialog">
-         <div class="modal-content">
-           <div class="modal-header">
-             <h1 class="modal-title fs-5" id="exampleModalLabel">Clasic Shoes</h1>
-             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-           </div>
-           <div class="modal-body">
-             <!-- Conteúdo do modal para Clasic Shoes -->
-             ...
-           </div>
-           <div class="modal-footer">
-             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-             <button type="button" class="btn btn-primary">Save changes</button>
-           </div>
-         </div>
-       </div>
-     </div>
-     
-     <!-- Modal for Hand Watch -->
-     <div class="modal fade" id="modalHandWatch" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-       <div class="modal-dialog">
-         <div class="modal-content">
-           <div class="modal-header">
-             <h1 class="modal-title fs-5" id="exampleModalLabel">Hand Watch</h1>
-             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-           </div>
-           <div class="modal-body">
-             <!-- Conteúdo do modal para Hand Watch -->
-             ...
-           </div>
-           <div class="modal-footer">
-             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-             <button type="button" class="btn btn-primary">Save changes</button>
-           </div>
-         </div>
-       </div>
-     </div>
-     
-     <!-- Modal for Clasic Shoes in Operações -->
-     <div class="modal fade" id="modalClasicShoesOp" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-       <div class="modal-dialog">
-         <div class="modal-content">
-           <div class="modal-header">
-             <h1 class="modal-title fs-5" id="exampleModalLabel">Clasic Shoes (Operações)</h1>
-             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-           </div>
-           <div class="modal-body">
-             <!-- Conteúdo do modal para Clasic Shoes em Operações -->
-             ...
-           </div>
-           <div class="modal-footer">
-             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-             <button type="button" class="btn btn-primary">Save changes</button>
-           </div>
-         </div>
-       </div>
-     </div>
-     
-      </div>
-    </div>
-   </div><!--End Row-->
    <?php
-include_once("../php/conexao.php");
-?>
+      include_once("../php/conexao.php");
+   ?>
 
 <div class="row">
     <div class="col-12 col-lg-12 col-xl-12">
@@ -861,7 +1067,6 @@ include_once("../php/conexao.php");
         </div>
     </div>
 </div><!--End Row-->
-
 
       <!--End Dashboard Content-->
 	  
@@ -931,6 +1136,177 @@ include_once("../php/conexao.php");
 
   
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+<!-- POPUP -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    let popup = document.getElementById('popup');
+
+    document.querySelectorAll('.open-popup').forEach(function(icon) {
+        icon.addEventListener('click', function() {
+            const serviceId = this.getAttribute('data-id');
+            const rect = this.getBoundingClientRect();
+
+            const popupContent = popup.querySelector('.popup-content');
+            popupContent.innerHTML = `
+                <div class="popup-arrow"></div>
+                <button id="close-btn" class="close-btn">&times;</button>
+                <h2>Equipe</h2>
+                <form action="../php/atualizarEquipe.php" method="post">
+                  <input type="text" id="search-bar" name="nome" placeholder="Pesquise nomes ou equipe">
+                  <div id="resultados" class="resultados"></div>
+                  <input type="hidden" name="serviceId" value="${serviceId}">
+                  <input type="submit" class="btn-" value="Atualizar">
+                </form>
+            `;
+
+            popup.style.top = `${rect.bottom + window.scrollY}px`;
+            popup.style.left = `${rect.left + window.scrollX}px`;
+            popup.style.display = 'block';
+
+            document.getElementById('close-btn').addEventListener('click', function() {
+                popup.style.display = 'none';
+            });
+
+            const searchBar = document.getElementById('search-bar');
+            searchBar.addEventListener('input', function() {
+              const query = searchBar.value;
+              if (query.length > 0) {
+                  fetch(`buscar_funcionarios.php?query=${query}`)
+                      .then(response => response.json())
+                      .then(data => {
+                          const resultadosDiv = document.getElementById('resultados');
+                          resultadosDiv.innerHTML = '';
+                          data.forEach(funcionario => {
+                              const div = document.createElement('div');
+                              div.textContent = funcionario.nome_funcionario;
+                              div.classList.add('resultado-item');
+                              resultadosDiv.appendChild(div);
+
+                              div.addEventListener('click', function(event) {
+                                  event.stopPropagation(); // Impede o fechamento do popup
+                                  searchBar.value = funcionario.nome_funcionario;
+                                  resultadosDiv.innerHTML = '';
+                              });
+                          });
+                      });
+              } else {
+                  document.getElementById('resultados').innerHTML = '';
+              }
+          });
+
+        });
+    });
+
+    document.addEventListener('click', function(event) {
+        if (!popup.contains(event.target) && !event.target.closest('.open-popup')) {
+            popup.style.display = 'none';
+        }
+    });
+});
+
+
+</script>
+
+<!-- POPUP estlização -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const popup = document.getElementById('popup');
+    const openPopupIcons = document.querySelectorAll('.open-popup');
+    const closeButton = document.getElementById('close-btn');
+
+    openPopupIcons.forEach(icon => {
+        icon.addEventListener('click', (event) => {
+            const iconRect = icon.getBoundingClientRect();
+            const popupRect = popup.getBoundingClientRect();
+
+            // Define a posição do popup logo abaixo do ícone
+            popup.style.top = `${iconRect.bottom + window.scrollY + 10}px`; // 10px abaixo do ícone
+            popup.style.left = `${iconRect.left}px`;
+            popup.classList.add('show'); // Mostra o popup
+            icon.classList.add('active'); // Adiciona a classe ativa ao ícone
+        });
+    });
+
+    closeButton.addEventListener('click', () => {
+        popup.classList.remove('show'); // Esconde o popup
+        openPopupIcons.forEach(icon => icon.classList.remove('active')); // Remove a classe ativa do ícone
+    });
+
+    document.addEventListener('click', (event) => {
+        if (!popup.contains(event.target) && !event.target.classList.contains('open-popup')) {
+            popup.classList.remove('show'); // Esconde o popup
+            openPopupIcons.forEach(icon => icon.classList.remove('active')); // Remove a classe ativa do ícone
+        }
+    });
+});
+
+</script>
+
+
+  <script>
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var chatIcons = document.querySelectorAll('.fa-comment'); // Alterado para selecionar ícones de comentário
+        var overlay = document.getElementById('overlay');
+        var closeOverlayBtn = document.getElementById('close-overlay');
+        var chatMessages = document.querySelector('.chat-body');
+        var serviceIdInput = document.getElementById('service-id');
+
+        chatIcons.forEach(function(icon) {
+            icon.addEventListener('click', function() {
+                var serviceId = this.getAttribute('data-id');
+                openOverlay(serviceId);
+                serviceIdInput.value = serviceId;
+            });
+        });
+
+        closeOverlayBtn.addEventListener('click', function() {
+            closeOverlay();
+        });
+
+        function openOverlay(serviceId) {
+            overlay.classList.add('show');
+            chatMessages.innerHTML = '<div class="card"><div class="card-header">Mensagem do serviço ID ' + serviceId + '</div><div class="card-body"><blockquote class="blockquote mb-0"><p>Exemplo de mensagem para o serviço ID ' + serviceId + '</p></blockquote></div></div>';
+
+            // Requisição para carregar comentários reais
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'get_comments.php?service_id=' + serviceId, true);
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    chatMessages.innerHTML = xhr.responseText;
+                } else {
+                    chatMessages.innerHTML = '<p>Erro ao carregar comentários.</p>';
+                }
+            };
+            xhr.send();
+        }
+
+        function closeOverlay() {
+            overlay.classList.remove('show');
+        }
+
+        // Fechar a sobreposição ao clicar fora do conteúdo
+        overlay.addEventListener('click', function(e) {
+            if (e.target === overlay) {
+                closeOverlay();
+            }
+        });
+
+        // Enviar mensagem (opcional)
+        document.getElementById('send-message').addEventListener('click', function() {
+            var mensagem = messageInput.value;
+            if (mensagem) {
+                chatMessages.innerHTML += '<div class="card"><div class="card-body"><blockquote class="blockquote mb-0"><p>' + mensagem + '</p></blockquote></div></div>';
+                messageInput.value = '';
+            }
+        });
+    });
+
+
+</script>
+  
   <script>
 document.addEventListener('DOMContentLoaded', function() {
     if (document.getElementById('doughnutChart')) {
@@ -1004,10 +1380,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 </script>
 
-<script>
-
-</script>
-
   <!-- Bootstrap core JavaScript-->
   <script src="../../assets/js/jquery.min.js"></script>
   <script src="../../assets/js/popper.min.js"></script>
@@ -1035,64 +1407,55 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <!-- script pra abrir o popup da equipe -->
 <script>
-$(document).ready(function() {
-    $('.open-popup').on('click', function(e) {
-        // Evita que o popup se mova inesperadamente devido ao scroll da página
-        e.preventDefault();
+// Seleciona os elementos
+const icon = document.getElementById('icon');
+const popup = document.getElementById('popup');
+const closeBtn = document.getElementById('close-btn');
 
-        // Obtém a posição do ícone
-        var icon = $(this);
-        var offset = icon.offset();
-        var popup = $('#popup');
-        
-        // Posiciona o popup diretamente abaixo do ícone
-        popup.css({
-            top: offset.top + icon.outerHeight() + 10, // Ajuste o 10 se necessário para espaçamento
-            left: offset.left
-        }).show();
-    });
+// Função para abrir o popup
+function openPopup() {
+    popup.style.display = 'flex'; // Usa 'flex' para centralizar o conteúdo
+}
 
-    $('#close-btn').on('click', function() {
-        $('#popup').hide();
-    });
+// Função para fechar o popup
+function closePopup() {
+    popup.style.display = 'none';
+}
 
-    // Oculta o popup se clicar fora dele
-    $(document).on('click', function(e) {
-        if (!$(e.target).closest('#popup, .open-popup').length) {
-            $('#popup').hide();
-        }
-    });
+// Adiciona eventos de clique
+icon.addEventListener('click', openPopup);
+closeBtn.addEventListener('click', closePopup);
+
+// Fecha o popup se o usuário clicar fora dele
+window.addEventListener('click', (event) => {
+    if (event.target === popup) {
+        closePopup();
+    }
 });
+
 </script>
 
 
 <!-- Script para abrir sobreposição de tela -->
 <script>
-
+// script.js
 document.addEventListener('DOMContentLoaded', function() {
-    var openChatBtn = document.getElementById('open-chat');
-    var overlay = document.getElementById('overlay');
-    var closeChatBtn = document.getElementById('close-chat');
+    const openChat = document.getElementById('open-chat');
+    const overlay = document.getElementById('overlay');
+    const closeOverlay = document.getElementById('close-overlay');
 
-    openChatBtn.addEventListener('click', function() {
-        overlay.style.display = 'block';
-        overlay.style.transform = 'translateX(0)';
+    openChat.addEventListener('click', function() {
+        overlay.classList.add('show');
     });
 
-    closeChatBtn.addEventListener('click', function() {
-        overlay.style.transform = 'translateX(100%)';
-        setTimeout(function() {
-            overlay.style.display = 'none';
-        }, 300); // Tempo igual ao da transição CSS
+    closeOverlay.addEventListener('click', function() {
+        overlay.classList.remove('show');
     });
 
-    // Fechar a sobreposição ao clicar fora dela
-    window.addEventListener('click', function(event) {
+    // Fecha a sobreposição se clicar fora dela
+    overlay.addEventListener('click', function(event) {
         if (event.target === overlay) {
-            overlay.style.transform = 'translateX(100%)';
-            setTimeout(function() {
-                overlay.style.display = 'none';
-            }, 300); // Tempo igual ao da transição CSS
+            overlay.classList.remove('show');
         }
     });
 });

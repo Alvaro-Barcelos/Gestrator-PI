@@ -68,6 +68,8 @@ CREATE TABLE comentario (
 );
 
 
+INSERT INTO login(usuario, email, senha, tipo) VALUES ('adm','adm','adm','gerente');
+
 INSERT INTO setor(nome_setor, quantidade) VALUES('Administrativo' ,0);
 INSERT INTO setor(nome_setor, quantidade) VALUES('Comercial' ,0);
 INSERT INTO setor(nome_setor, quantidade) VALUES('Marketing' ,0);

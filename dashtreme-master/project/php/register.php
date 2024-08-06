@@ -13,7 +13,7 @@ if (isset($_POST['email']) && isset($_POST['senha']) && isset($_POST['usuario'])
     $sql_query = $conexao->query($sql_code) or die("Falha na execução do código SQL: " . $conexao->error);
 
     if ($sql_query) {
-        echo "Usuário registrado com sucesso!";
+      header("Location: login.php");
     } else {
         echo "Erro ao registrar usuário.";
     }
@@ -29,7 +29,7 @@ if (isset($_POST['email']) && isset($_POST['senha']) && isset($_POST['usuario'])
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
   <meta name="description" content=""/>
   <meta name="author" content=""/>
-  <title>Dashtreme Admin - Free Dashboard for Bootstrap 4 by Codervent</title>
+  <title>Cadastro - GESTRATOR</title>
   <!-- loader-->
   <link href="../../assets/css/pace.min.css" rel="stylesheet"/>
   <script src="../../assets/js/pace.min.js"></script>
@@ -63,7 +63,7 @@ if (isset($_POST['email']) && isset($_POST['senha']) && isset($_POST['usuario'])
 		 	<div class="text-center">
 		 		<img src="../../assets/images/logo-icon.png" alt="logo icon">
 		 	</div>
-		  <div class="card-title text-uppercase text-center py-3">Sign Up</div>
+		  <div class="card-title text-uppercase text-center py-3"></div>
 
 
 		    <form action="" method="post">
@@ -73,7 +73,7 @@ if (isset($_POST['email']) && isset($_POST['senha']) && isset($_POST['usuario'])
 			  <label for="exampleInputEmailId" class="sr-only">Usuario </label>
 
 			   <div class="position-relative has-icon-right">
-				  <input type="text" id="exampleInputEmailId" name="usuario" class="form-control input-shadow" placeholder="Enter Your usuario">
+				  <input type="text" id="exampleInputEmailId" name="usuario" class="form-control input-shadow" placeholder="Gmail">
 
 				  <div class="form-control-position">
 					  <i class="icon-envelope-open"></i>
@@ -88,7 +88,7 @@ if (isset($_POST['email']) && isset($_POST['senha']) && isset($_POST['usuario'])
 			  <label for="exampleInputEmailId" class="sr-only">Email </label>
 
 			   <div class="position-relative has-icon-right">
-				  <input type="text" id="exampleInputEmailId" name="email" class="form-control input-shadow" placeholder="Enter Your Email ID">
+				  <input type="text" id="exampleInputEmailId" name="email" class="form-control input-shadow" placeholder="Confirme seu Gmail">
 
 				  <div class="form-control-position">
 					  <i class="icon-envelope-open"></i>
@@ -101,7 +101,7 @@ if (isset($_POST['email']) && isset($_POST['senha']) && isset($_POST['usuario'])
 			  <div class="form-group">
 			   <label for="exampleInputPassword" class="sr-only">Password</label>
 			   <div class="position-relative has-icon-right">
-				  <input type="password" id="exampleInputPassword" name="senha" class="form-control input-shadow" placeholder="Choose Password">
+				  <input type="password" id="exampleInputPassword" name="senha" class="form-control input-shadow" placeholder="Sua senha">
 				  <div class="form-control-position">
 					  <i class="icon-lock"></i>
 				  </div>
@@ -117,7 +117,7 @@ if (isset($_POST['email']) && isset($_POST['senha']) && isset($_POST['usuario'])
 		   </div>
 		  </div>
 		  <div class="card-footer text-center py-3">
-		    <p class="text-warning mb-0">Already have an account? <a href="login.html"> Sign In here</a></p>
+		    <p class="text-warning mb-0">Já tem uma conta? <a href="login.php"> Clique aqui</a></p>
 		  </div>
 	     </div>
     

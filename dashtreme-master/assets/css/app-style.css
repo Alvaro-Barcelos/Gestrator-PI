@@ -1,7 +1,7 @@
 /*
 Template Name: Dashtreme Admin
 Author: CODERVENT
-Email: codervent@gmail.com
+Email: codervent@gmail.chart-container-2com
 File: app-style
 */
 
@@ -3288,11 +3288,6 @@ table.grid td {
 	 height:260px;
  }
  
- .chart-container-2{
-	 position:relative;
-	 height:188px;
- }
- 
  .chart-container-3{
 	 position:relative;
 	 height:188px;
@@ -3370,6 +3365,29 @@ table.grid td {
     font-size: 20px;
 }
 
+.position-table{
+    position: absolute;
+    top: 8%;
+    width: 40%;
+}
+
+.table-form{
+    width: 100%;
+}
+
+.table-form, .pa-tr{
+    padding: 90px 0 10px 0 !important;
+    border: none !important;
+}
+
+.pa-td{
+    border: none !important;
+    
+}
+
+.pa-row{
+    padding: 500px !important;
+}
 
 /* Responsive */
 

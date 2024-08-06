@@ -600,7 +600,8 @@ WHERE st.nome_setor = '$nome_setor' AND s.situacao = 'Concluido'";
 $sqlServicosAndamento = "SELECT COUNT(*) AS total 
 FROM servico s
 INNER JOIN setor st ON s.id_setor = st.id_setor
-INNER JOIN funcionario f ON f.id_setor = st.id_setor
+INNER JOIN funcionario f ON f.id_setor = s
+t.id_setor
 WHERE st.nome_setor = '$nome_setor' AND s.situacao = 'Em andamento'";
 
 

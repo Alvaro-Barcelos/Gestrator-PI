@@ -1,6 +1,6 @@
 <?php
-  include("protect_gerente.php");
-  include_once("../php/conexao.php");
+  include("../protect_funcionario.php");
+  include_once("../../php/conexao.php");
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -12,24 +12,24 @@
   <meta name="author" content=""/>
   <title>Gestrator Gerente</title>
   <!-- loader-->
-  <link href="../../assets/css/pace.min.css" rel="stylesheet"/>
-  <script src="../../assets/js/pace.min.js"></script>
+  <link href="../../../assets/css/pace.min.css" rel="stylesheet"/>
+  <script src="../../../assets/js/pace.min.js"></script>
   <!--favicon-->
-  <link rel="icon" href="../../assets/images/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="../../../assets/images/favicon.ico" type="image/x-icon">
   <!-- Vector CSS -->
-  <link href="../../assets/plugins/vectormap/jquery-jvectormap-2.0.2.css" rel="stylesheet"/>
+  <link href="../../../assets/plugins/vectormap/jquery-jvectormap-2.0.2.css" rel="stylesheet"/>
   <!-- simplebar CSS-->
-  <link href="../../assets/plugins/simplebar/css/simplebar.css" rel="stylesheet"/>
+  <link href="../../../assets/plugins/simplebar/css/simplebar.css" rel="stylesheet"/>
   <!-- Bootstrap core CSS-->
-  <link href="../../assets/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="../../../assets/css/bootstrap.min.css" rel="stylesheet"/>
   <!-- animate CSS-->
-  <link href="../../assets/css/animate.css" rel="stylesheet" type="text/css"/>
+  <link href="../../../assets/css/animate.css" rel="stylesheet" type="text/css"/>
   <!-- Icons CSS-->
-  <link href="../../assets/css/icons.css" rel="stylesheet" type="text/css"/>
+  <link href="../../../assets/css/icons.css" rel="stylesheet" type="text/css"/>
   <!-- Sidebar CSS-->
-  <link href="../../assets/css/sidebar-menu.css" rel="stylesheet"/>
+  <link href="../../../assets/css/sidebar-menu.css" rel="stylesheet"/>
   <!-- Custom Style-->
-  <link href="../../assets/css/app-style.css" rel="stylesheet"/>
+  <link href="../../../assets/css/app-style.css" rel="stylesheet"/>
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   
@@ -102,7 +102,7 @@
     width: 200px !important;
   }
   .w-50{
-    width: 120px !important;
+    width: 100px !important;
   }
   .w-75{
     width: 150px !important;
@@ -120,7 +120,7 @@
   }
 
   table td{
-    padding: 3px;
+    padding: 3px !important;
     text-align: center;
     border: 1px solid rgba(196, 196, 196, 0.473) !important;
   }
@@ -400,63 +400,53 @@ i.fa-comment {
 /* GRAFICO */
 .chart-container-2 {
     position: relative;
-    height: 450px !important;
-    left: 25%;
+    height: 450px !important; /* Ajuste a altura conforme necessário */
+    width: 820px ; /* Faz o gráfico ocupar 100% da largura disponível */
+    margin-left: 20%;
+
 }
 
 .tamanho{
   height: 530px;
 }
 
-.team-member {
-    display: flex; /* Alinha o ícone e as imagens na mesma linha */
-    align-items: center; /* Alinha verticalmente o ícone e as imagens */
-    margin-right: 20px; /* Ajusta a sobreposição das imagens */
+
+/* Estilos para as situações */
+/* Estilos para as situações */
+.situacao.em-andamento {
+  background-color: #F2B705;
+  color: white;
 }
 
-.icon {
-    margin-right: 10px; /* Espaçamento entre o ícone e as imagens */
+.situacao.nao_iniciado {
+  background-color: #808080;
+  color: white;
 }
 
-.team-images {
-    display: flex; /* Alinha as imagens horizontalmente */
-    align-items: center; /* Alinha verticalmente as imagens */
-    position: relative; /* Define um contexto para as imagens absolutas */
-    margin-left: 20px;
+.situacao.pendente {
+  background-color: #D93D59;
+  color: white;
 }
 
-.team-image {
-    position: relative;
-    display: inline-block; /* Garante que as imagens fiquem lado a lado */
-    margin-left: -10px;
+.situacao.concluido {
+  background-color: #04BF68;
+  color: white;
 }
 
-.circular-image {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    object-fit: cover;
-    display: block; /* Remove espaço extra ao redor da imagem */
+/* Estilos para as prioridades */
+.prioridade.alta {
+  background-color: #5D55DB;
+  color: white;
 }
 
-.team-card {
-    display: none;
-    position: absolute;
-    bottom: 60px; /* Ajuste conforme necessário */
-    left: 0;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    padding: 10px;
-    z-index: 10;
-    white-space: nowrap;
+.prioridade.media3 {
+  background-color:#450F91;
+  color: white;
 }
 
-.team-image:hover .team-card {
-    display: block;
-}
-
-.table-responsive {
-    overflow: visible; /* Permite que os elementos flutuantes sejam visíveis fora da tabela */
+.prioridade.baixa {
+  background-color: #5E9FF2;
+  color: white;
 }
 
 
@@ -481,59 +471,52 @@ i.fa-comment {
    </div>
    <ul class="sidebar-menu do-nicescrol">
 
-      <li>
-        <a href="home_adm.php">
-          <i class="fa-solid fa-chart-line" style="color: #9e9e9e;"></i> <span>Dashboard</span>
-        </a>
-      </li>
+   <li>
+     <a href="home_lider.html">
+       <i class="fa-solid fa-chart-line" style="color: #9e9e9e;"></i> <span>Dashboard</span>
+     </a>
+   </li>
 
-      <li>
-        <a href="https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fcalendar.google.com%2Fcalendar%2Fu%2F0%2Fr&emr=1&followup=https%3A%2F%2Fcalendar.google.com%2Fcalendar%2Fu%2F0%2Fr&ifkv=AdF4I77H6Q8kDjrou1wIGuHz3S3_9WHl1Z6w3HQ5MAbJVDPoIZHRKIQUAYS0YHfymJmHEtgj8rOdfQ&osid=1&passive=1209600&service=cl&flowName=GlifWebSignIn&flowEntry=ServiceLogin&dsh=S268491357%3A1720720457775498&ddm=0">
-          <i class="zmdi zmdi-calendar-check"></i> <span>Calendário</span>
-        </a>
-      </li>
+   <li>
+     <a href="https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fcalendar.google.com%2Fcalendar%2Fu%2F0%2Fr&emr=1&followup=https%3A%2F%2Fcalendar.google.com%2Fcalendar%2Fu%2F0%2Fr&ifkv=AdF4I77H6Q8kDjrou1wIGuHz3S3_9WHl1Z6w3HQ5MAbJVDPoIZHRKIQUAYS0YHfymJmHEtgj8rOdfQ&osid=1&passive=1209600&service=cl&flowName=GlifWebSignIn&flowEntry=ServiceLogin&dsh=S268491357%3A1720720457775498&ddm=0">
+       <i class="zmdi zmdi-calendar-check"></i> <span>Calendário</span>
+     </a>
+   </li>
+   <li>
+   <li>
+     <a href="relatorio_lider.html">
+       <i class="zmdi zmdi-assignment" style="color: #9e9e9e;"></i> <span>Relatório</span>
+     </a>
+   </li>
+   <li>
+    <a href="registrar_servico_lider.html">
+      <i class="fa-solid fa-list-check" style="color: #9e9e9e;"></i> <span>Serviço</span>
+    </a>
+  </li>
+  <li>
+    <a href="cadastrar_funcionario_lider.html">
+      <i class="fa-solid fa-user" style="color: #9e9e9e;"></i> <span>Funcionário</span>
+    </a>
+  </li>
+  <li>
+    <a href="listar_funcionario.php">
+      <i class="zmdi zmdi-accounts-add"></i><span>Listar Funcionários</span></a> 
+    </a>
+  </li>
 
+   <li>
+     <a href="profile_lider.html">
+       <i class="zmdi zmdi-face"></i> <span>Perfil</span>
+     </a>
+   </li>
 
-      <li>
-        <a href="conteudo_adm.html">
-         <i class="fa-solid fa-book" style="color: #9e9e9e;"></i> <span>Conteúdo</span>
-        </a>
-      </li>
+   <li>
+     <a href="../index.html">
+       <i class="fa-solid fa-right-from-bracket" style="color: #9e9e9e;"></i> <span>Sair</span>
+     </a>
+   </li>
 
-      <li>
-        <a href="cadastrar_funcionario_adm.html">
-          <i class="fa-solid fa-user" style="color: #9e9e9e;"></i> <span>Funcionário</span>
-        </a>
-      </li>
-      <li>
-      <a href="listar_funcionario.php">
-        <i class="zmdi zmdi-accounts-add"></i><span>Listar Funcionários</span></a> 
-      </a>
-    </li>
-      <li>
-        <a href="registrar_servico_adm.html">
-          <i class="fa-solid fa-list-check" style="color: #9e9e9e;"></i> <span>Serviço</span>
-        </a>
-      </li>      
-      <li>
-        <a href="relatorio_adm.html">
-          <i class="zmdi zmdi-assignment" style="color: #9e9e9e;"></i> <span>Relatório</span>
-        </a>
-      </li>
-
-      <li>
-        <a href="profile_adm.html">
-          <i class="zmdi zmdi-face"></i> <span>Perfil</span>
-        </a>
-      </li>
-
-      <li>
-        <a href="../php/logout.php">
-          <i class="fa-solid fa-right-from-bracket" style="color: #9e9e9e;"></i> <span>Sair</span>
-        </a>
-      </li>
-
-    </ul>
+ </ul>
    
    </div>
    <!--End sidebar-wrapper-->
@@ -574,6 +557,8 @@ i.fa-comment {
                   // Exibir os dados
                   while ($row = $query_funcionario->fetch_assoc()) {
                       $id_funcionario = $row['id_funcionario'];
+                      $nome_setor = $row['nome_setor'];
+
                       echo "<p class='user-subtitle'>".$row['email']."</p>";
                       echo "<p class='user-subtitle'>".$row['nome_setor']."</p>";
 
@@ -605,10 +590,15 @@ i.fa-comment {
   <!--Start Dashboard Content-->
   
   <?php
-include_once("../php/conexao.php");
+include_once("../../php/conexao.php");
 
 // Consultas SQL para buscar os dados
-$sqlTotalServicos = "SELECT COUNT(*) AS total FROM servico";
+$sqlTotalServicos = "SELECT COUNT(*) AS total
+FROM servico s
+INNER JOIN setor st ON s.id_setor = st.id_setor
+WHERE st.nome_setor = '$nome_setor'";
+
+
 $sqlServicosConcluidos = "SELECT COUNT(*) AS total FROM servico WHERE situacao = 'concluido'";
 $sqlServicosAndamento = "SELECT COUNT(*) AS total FROM servico WHERE situacao = 'em andamento'";
 $sqlServicosPendentes = "SELECT COUNT(*) AS total FROM servico WHERE situacao = 'pendente'";
@@ -622,7 +612,7 @@ $resultServicosPendentes = $conexao->query($sqlServicosPendentes)->fetch_assoc()
 ?>
 
 <div class="card mt-3">
-    <div class="card-content"> 
+    <div class="card-content">
         <div class="row row-group m-0">
             <div class="col-12 col-lg-6 col-xl-3 border-light">
                 <div class="card-body">
@@ -666,22 +656,15 @@ $resultServicosPendentes = $conexao->query($sqlServicosPendentes)->fetch_assoc()
         </div>
     </div>
 </div>
-<?php
-include_once("../php/conexao.php");
 
-$resultado = mysqli_query($conexao, "
-    SELECT 
-        servico.*, 
-        setor.nome_setor
-    FROM 
-        servico 
-    JOIN 
-        setor ON servico.id_setor = setor.id_setor 
-    WHERE 
-        DATE_FORMAT(servico.data_final, '%Y-%m') = DATE_FORMAT(NOW(), '%Y-%m')
-    ORDER BY
-        data_final asc
-");
+	  
+
+ <?php
+  include_once("../../php/conexao.php");
+
+
+$resultado = mysqli_query($conexao, "SELECT servico.*, setor.nome_setor FROM servico JOIN setor ON servico.id_setor = setor.id_setor WHERE DATE_FORMAT(servico.data_final, '%Y-%m') = DATE_FORMAT(NOW(), '%Y-%m') AND  setor.nome_setor = '$nome_setor'");
+
 ?>
 
 <div class="row">
@@ -708,7 +691,7 @@ $resultado = mysqli_query($conexao, "
                     <thead>
                         <tr>
                             <th class="w-120">Serviço</th>
-                            <th>Equipe</th>
+                            <th >Equipe</th>
                             <th>Situação</th>
                             <th class="w-75">Prioridade</th>
                             <th>Setor</th>
@@ -725,32 +708,11 @@ $resultado = mysqli_query($conexao, "
                                         <?= $row['nome_servico'] ?>
                                     </button>
                                 </td>
-
                                 <td class="w-50">
-                                    <div class="team-member">
-                                        <i class="fa-solid fa-user-plus open-popup" data-id="<?= $row['id_servico'] ?>"></i>
-                                        <div class="team-images">
-                                            <?php 
-                                            $nomesEquipe = explode(',', $row['equipe']);
-                                            foreach ($nomesEquipe as $nome) {
-                                                $nome = trim($nome);
-                                                $funcionarioResult = mysqli_query($conexao, "SELECT foto_funcionario, nome_funcionario, email, cargo FROM funcionario WHERE nome_funcionario = '$nome'");
-                                                $funcionarioRow = mysqli_fetch_assoc($funcionarioResult);
-                                                if ($funcionarioRow): ?>
-                                                    <div class="team-image">
-                                                        <img src="<?= $funcionarioRow['foto_funcionario'] ?>" alt="<?= $funcionarioRow['nome_funcionario'] ?>" class="circular-image" />
-                                                        <div class="team-card">
-                                                            <p>Nome: <?= $funcionarioRow['nome_funcionario'] ?></p>
-                                                            <p>Email: <?= $funcionarioRow['email'] ?></p>
-                                                            <p>Cargo: <?= $funcionarioRow['cargo'] ?></p>
-                                                        </div>
-                                                    </div>
-                                                <?php endif; 
-                                            } ?>
-                                        </div>
-                                    </div>
+                                    <i class="fa-solid fa-user-plus open-popup" data-id="<?= $row['id_servico'] ?>"></i>
+                                    <br>
+                                    <?= $row['equipe'] ?>
                                 </td>
-
                                 <td class="situacao w-100 <?= strtolower(str_replace(' ', '-', $row['situacao'])) ?>"><?= $row['situacao'] ?></td>
                                 <td class="prioridade <?= strtolower($row['prioridade']) ?>"><?= $row['prioridade'] ?></td>
                                 <td class="w-200"><?= $row['nome_setor'] ?></td>
@@ -758,7 +720,9 @@ $resultado = mysqli_query($conexao, "
                                 <td><?= date('d M Y', strtotime($row['data_final'])) ?></td>
                                 <td>
                                     <i class="fa-regular fa-comment" data-id="<?= $row['id_servico'] ?>"></i>
+
                                 </td>
+
                             </tr>
 
                             <!-- Modal for <?= $row['nome_servico'] ?> -->
@@ -788,9 +752,6 @@ $resultado = mysqli_query($conexao, "
             </div>
         </div>
     </div>
-</div>
-
-
 
 <!-- O popup -->
 
@@ -826,7 +787,7 @@ $resultado = mysqli_query($conexao, "
 </div>
 
    <?php
-include_once('../php/conexao.php');
+include_once('../../php/conexao.php');
 
 if (isset($_GET['service_id'])) {
     $service_id = intval($_GET['service_id']);
@@ -863,7 +824,7 @@ if (isset($_GET['service_id'])) {
 
 
 <?php
-include_once("../php/conexao.php");
+include_once("../../php/conexao.php");
 
 
 // Inicializa variáveis
@@ -917,7 +878,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	
 
   <?php
-  include_once("../php/conexao.php");
+  include_once("../../php/conexao.php");
 
 
   $resultado2 = mysqli_query($conexao, "
@@ -1015,7 +976,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div><!--End Row-->
 
    <?php
-      include_once("../php/conexao.php");
+      include_once("../../php/conexao.php");
    ?>
 
 <div class="row">
@@ -1041,8 +1002,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="chart-container-2">
               <canvas id="doughnutChart"></canvas>
             </div>
-            <div class="position-table">
-            <table class="table-form">
+          </div>
+          <div class="table-responsive">
+            <table class="table align-items-center">
               <tbody>
                 <?php
                 $query = "
@@ -1058,9 +1020,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     while($row = mysqli_fetch_assoc($result)) {
                         $situacoes[] = $row["situacao"];
                         $quantidades[] = $row["quantidade"];
-                        echo "<tr class='pa-row'>";
-                        echo "<td class='pa-tr'><i class='fa fa-circle text-white mr-2'></i>" . htmlspecialchars($row["situacao"]) . "</td>";
-                        echo "<td class='pa-tr'>" . htmlspecialchars($row["quantidade"]) . "</td>";
+                        echo "<tr>";
+                        echo "<td><i class='fa fa-circle text-white mr-2'></i>" . htmlspecialchars($row["situacao"]) . "</td>";
+                        echo "<td>" . htmlspecialchars($row["quantidade"]) . "</td>";
                         echo "</tr>";
                     }
                 } else {
@@ -1071,7 +1033,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 ?>
               </tbody>
             </table>
-          </div>
           </div>
         </div>
     </div>
@@ -1281,7 +1242,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Requisição para carregar comentários reais
             var xhr = new XMLHttpRequest();
-            xhr.open('GET', 'get_comments.php?service_id=' + serviceId, true);
+            xhr.open('GET', '../get_comments.php?service_id=' + serviceId, true);
             xhr.onload = function() {
                 if (xhr.status === 200) {
                     chatMessages.innerHTML = xhr.responseText;
@@ -1363,51 +1324,27 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 </script>
-  <script>
-    $(document).ready(function(){
-        // Handle status change
-        $(".situacao").click(function(){
-            var situacoes = ["Pendente", "Em andamento", "Concluída", "Não iniciado"];
-            var classes = ["teste2", "teste", "teste1", "teste3"];
-            var current = $(this).text().trim();
-            var index = situacoes.indexOf(current);
-            var nextIndex = (index + 1) % situacoes.length;
-
-            $(this).removeClass(classes.join(" ")).addClass(classes[nextIndex]).text(situacoes[nextIndex]);
-        });
-
-        // Handle priority change
-        $(".prioridade").click(function(){
-            var prioridades = ["Alta", "Média", "Baixa"];
-            var classes = ["alta", "media3", "baixa"];
-            var current = $(this).text().trim();
-            var index = prioridades.indexOf(current);
-            var nextIndex = (index + 1) % prioridades.length;
-
-            $(this).removeClass(classes.join(" ")).addClass(classes[nextIndex]).text(prioridades[nextIndex]);
-        });
-    });
-</script>
+ 
 
   <!-- Bootstrap core JavaScript-->
-  <script src="../../assets/js/jquery.min.js"></script>
-  <script src="../../assets/js/popper.min.js"></script>
-  <script src="../../assets/js/bootstrap.min.js"></script>
+  <script src="../../../assets/js/jquery.min.js"></script>
+  <script src="../../../assets/js/popper.min.js"></script>
+  <script src="../../../assets/js/bootstrap.min.js"></script>
 	
  <!-- simplebar js -->
-  <script src="../../assets/plugins/simplebar/js/simplebar.js"></script>
+  <script src="../../../assets/plugins/simplebar/js/simplebar.js"></script>
   <!-- sidebar-menu js -->
-  <script src="../../assets/js/sidebar-menu.js"></script>
+  <script src="../../../assets/js/sidebar-menu.js"></script>
   <!-- loader scripts -->
-  <script src="../../assets/js/jquery.loading-indicator.js"></script>
+  <script src="../../../assets/js/jquery.loading-indicator.js"></script>
   <!-- Custom scripts -->
-  <script src="../../assets/js/app-script.js"></script>
+  <script src="../../../assets/js/app-script.js"></script>
   <!-- Chart js -->
   
-  <script src="../../assets/plugins/Chart.js/Chart.min.js"></script>
+  <script src="../../../assets/plugins/Chart.js/Chart.min.js"></script>
  
   <!-- Index js -->
-  <script src="../../assets/js/index.js"></script>
+  <script src="../../../assets/js/index.js"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>

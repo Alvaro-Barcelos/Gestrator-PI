@@ -140,65 +140,80 @@
   <!--End topbar header-->
 
 
-   <div class="clearfix"></div>
-	
-   <div class="content-wrapper">
-     <div class="container-fluid">
- 
-     <div class="row mt-3 centralizar">
-       <div class="col-lg-6">
-          <div class="card">
-            <div class="card-body">
-            <div class="card-title">Registrar Tarefa</div>
-            <hr>
-             <form>
-              <div class="form-group">
-                <label for="input-2">Tarefa</label>
-                <div class="custom-dropdown">
-                    <select id="input-2" class="form-control">
-                        <option value="" disabled selected hidden>Selecione uma tarefa</option>
-                        <option value="categoria1">Criar tarefa</option>
-                        <option value="categoria2">Consultar tarefa</option>
-                    </select>
-                    <div class="arrow-down"></div>
-                </div>
-            </div>
+  <div class="clearfix"></div>
+    
+  <div class="content-wrapper">
+    <div class="container-fluid">
 
-            <div class="form-group">
-             <label for="input-1">Nome da Tarefa</label>
-             <input type="text" class="form-control" id="input-1" placeholder="Nome da Tarefa">
-            </div>
-            <div class="form-group">
-              <label for="input-2">Categoria</label>
-              <div class="custom-dropdown">
-                <select id="input-2" class="form-control">
-                  <option value="" disabled selected hidden>Selecione uma categoria</option>
-                  <option value="categoria1">Categoria 1</option>    <!-- Acrescentei novas class e um css la no app-style, para que o options fique da forma correta -->
-                  <option value="categoria2">Categoria 2</option>
-                  <option value="categoria3">Categoria 3</option>
-                </select>
-                 <div class="arrow-down"></div>
-                </div>
-              </div>
-            
-            <div class="form-group">
-             <label for="input-3">Prazo de entrega</label>
-             <input type="date" class="form-control date-input" id="input-3" placeholder="Selecione a data"> 
-            </div>
+    <div class="row mt-3 centralizar">
+     <div class="col-lg-6">
+       <div class="card">
+         <div class="card-body">
+         <div class="card-title">Registrar Serviço</div>
+         <hr>
+          <form method="post" action="../../php/registrar_servico_adm.php">
 
-            <div class="form-group">
-             <label for="input-4">descrição</label>
-             <input type="text" class="form-control" id="input-4" placeholder="Descrição da tarefa">  <!-- Para que o icone do calendario fique branco coloquei um filtro, para achar esse filtro é só ir no css app-style -->
-            </div>
-            
-            <div class="form-group">
-            <center> <button type="submit" class="btn btn-light px-5"><i class="icon-lock"></i> Registrar</button></center>
+         <div class="form-group">
+          <label for="input-1">Nome do Serviço</label>
+          <input type="text" class="form-control" id="input-1" placeholder="Nome do Serviço" name="nome">
+         </div>
+         <div class="form-group">
+           <div class="custom-dropdown">
+             <input type="hidden" name="setor" value="6">
+              <div class="arrow-down"></div>
+             </div>
            </div>
-           </form>
-          </div>
-          </div>
-       </div>
 
+           <div class="form-group">
+             <label for="input-2">Situação</label>
+             <div class="custom-dropdown">
+               <select id="input-2" class="form-control" name="situacao">
+                 <option value="" disabled selected hidden>Selecione a situação</option>
+                 <option value="Concluido">Concluido</option>    <!-- Acrescentei novas class e um css la no app-style, para que o options fique da forma correta -->
+                 <option value="Em andamento">Em andamento</option>
+                 <option value="Pendente">Pendente</option>
+                 <option value="Não iniciado">Não iniciado</option>
+               </select>
+                <div class="arrow-down"></div>
+               </div>
+             </div>
+
+             <div class="form-group">
+               <label for="input-2">Prioridade</label>
+               <div class="custom-dropdown">
+                 <select id="input-2" class="form-control" name="prioridade">
+                   <option value="" disabled selected hidden>Selecione uma prioridade</option>
+                   <option value="Alta">Alta</option>    <!-- Acrescentei novas class e um css la no app-style, para que o options fique da forma correta -->
+                   <option value="media">Média</option>
+                   <option value="baixa">Baixa</option>
+                 </select>
+                  <div class="arrow-down"></div>
+                 </div>
+               </div>
+         
+         <div class="form-group">
+           <label for="input-3">Data de ínicio</label>
+           <input type="date" class="form-control date-input" id="input-3" placeholder="Selecione a data" name="data_inicio"> 
+         </div>    
+         <div class="form-group">
+          <label for="input-3">Prazo de entrega</label>
+          <input type="date" class="form-control date-input" id="input-3" placeholder="Selecione a data" name="data_final"> 
+         </div>
+
+         <div class="form-group">
+           <label for="input-content-description">Descrição do serviço</label>
+           <textarea class="form-control" id="input-content-description"
+               name="descricao" rows="3"
+               placeholder="Digite a descrição do serviço" required></textarea>
+       </div>
+         
+         <div class="form-group">
+         <center> <button type="submit" class="btn btn-light px-5">Registrar Serviço</button></center>
+        </div>
+        </form>
+       </div>
+       </div>
+    </div>
        <!--start color switcher-->
    <div class="right-sidebar">
     <div class="switcher-icon">

@@ -1046,7 +1046,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
              </div>
             </div>
           </div>
-          <div class="card-body tamanho">
+          <div class="card-body tamanho"> <!--O estilo está no app-style.css-->
             <div class="chart-container-2">
               <canvas id="doughnutChart"></canvas>
             </div>

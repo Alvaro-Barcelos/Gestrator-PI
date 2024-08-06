@@ -30,7 +30,7 @@ The employees only use system to see the task they must to do.
 
 ---
 
-# Meet your team 😎
+# Meet our team 😎
 
 **Your team is composed by:** 
 

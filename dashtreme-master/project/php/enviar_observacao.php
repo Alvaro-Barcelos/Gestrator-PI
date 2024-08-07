@@ -4,7 +4,7 @@
 
     $observacao = $_POST['observacao'];
 
-    $enviar_observacao = mysqli_query($conexao, "INSERT INTO servico(observacao) 
+    $enviar_observacao = mysqli_query($conexao, "INSERT INTO servico (observaçao) 
     VALUES('$observacao')");
 
 ?>

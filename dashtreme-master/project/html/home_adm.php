@@ -208,6 +208,7 @@
         overflow-y: auto; /* Permitir rolagem vertical */
         border: 1px solid #ccc; /* Opcional: adicionar borda para diferenciar a área rolável */
         padding: 10px; /* Opcional: adicionar padding para a área rolável */
+        color: black;
     }
 
     .equipe-item {

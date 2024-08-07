@@ -28,6 +28,43 @@
   <link href="../../../assets/css/app-style.css" rel="stylesheet"/>
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>.full-width {
+    width: 100%;
+  }
+  
+  .full-width .form-control {
+    width: 100%;
+  }
+  
+  .form-group {
+    margin-bottom: 1rem;
+  }
+  
+  .form-control {
+    display: block;
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+
+    border-radius: 0.25rem;
+  }
+  
+  .btn {
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+    user-select: none;
+
+  }
+  #tt{
+    margin-top: 16px;
+  }
+  </style>
   
 </head>
 
@@ -156,21 +193,24 @@
            <div class="card-title">Registrar novo funcionário</div>
            <hr>
             <form method="post" action="../../php/cadastrar_funcionario.php" enctype="multipart/form-data">
+              <div class="form-group">
+                <label for="nome-completo">Nome Completo</label>
+                <input type="text" id="nome-completo" name="nome-completo" class="form-control" placeholder="Nome Completo">
+              </div>
               <div class="row">
                 <div class="col-lg-6">
-                  <div class="form-group">
-                    <label for="input-1">Nome completo</label>
-                    <input type="text" class="form-control" name="nome" id="input-1" placeholder="Nome completo">
+                  
+                  <div class="form-group" id="tt">
+                    <label for="imagem_funcionario">Imagem do Funcionário</label>
+                    <i id="image-icon" class="fas" style="display: none;padding: 8px;"></i>
+                    <label class="select-style" class="form-label" for="customFile">Adicionar Imagem</label>
+                    <input type="file" class="select-style" name="imagem_funcionario" id="customFile" onchange="handleImageUpload(event, 'image-icon')" />
                   </div>
+                  
                   <div class="form-group">
-                    <label for="input-3">Imagem do funcionário</label><i id="image-icon" class="fas" style="display: none;padding: 8px;"></i>
-                    <label class="select-style" class="form-label"  for="customFile">Adicionar imagem</label>
-                    <input type="file"  class="select-style" name="imagem_funcionario" id="customFile" onchange="handleImageUpload(event)"/> 
-                  </div>
-                  <div class="form-group">
-                    <label for="input-3">CPF</label><i id="cpf-icon" class="fas" style="display: none;padding: 8px;"></i>
+                    <label for="cpf">CPF</label>
+                    <i id="cpf-icon" class="fas" style="display: none;padding: 8px;"></i>
                     <input class="form-control" type="text" id="cpf" name="cpf" maxlength="14" onkeyup="handleCPF(event)" required placeholder="000.000.000-00">
-                    
                   </div>
                   <div class="form-group">
                     <label for="input-3">RG</label>
@@ -187,7 +227,11 @@
                   <div class="form-group">
                     <label for="input-5">Nacionalidade</label>
                     <input type="text" class="form-control" id="input-5" name="nacionalidade" placeholder="Nacionalidade" required>
-                  </div>     
+                  </div> 
+                  <div class="form-group">
+                    <label for="input-5">Endereço</label>
+                    <input type="text" class="form-control" name="endereco" id="input-5" placeholder="Enderço completo" required>
+                  </div>    
                 </div>
                 <div class="col-lg-6">
 
@@ -229,6 +273,13 @@
                     </div>
                   </div>
                   <div class="form-group">
+                    <div class="form-group">
+                      <!-- Currículo -->
+                        <label for="curriculo">Currículo</label>
+                        <i id="pdf-icon" class="fas fa-check-circle" style="display: none;padding: 8px;"></i>
+                        <label class="select-style" class="form-label" for="curriculo">Adicionar PDF</label>
+                        <input type="file" class="select-style" name="curriculo_funcionario" id="curriculo" accept="application/pdf" onchange="handleFileUpload(event, 'pdf-icon')" />
+                    </div>
                     <label for="input-1">Cargo</label>
                     <input type="text" class="form-control" name="cargo" id="input-1" placeholder="Cargo do funcionário">
                   </div>
@@ -236,6 +287,7 @@
                     <label for="input-1">Salário</label>
                     <input type="text" class="form-control" name="salario" id="input-1" placeholder="Salário do funcionário">
                   </div>
+                  
                   <div class="form-group">
                     <label for="input-3">Data de nascimento</label>
                     <input type="date" class="form-control" name="data_nascimento" id="input-3" placeholder="Enter Your Mobile Number" required >
@@ -249,10 +301,7 @@
                     <label for="input-5">Cidade</label>
                     <input type="text" class="form-control" name="cidade" id="input-5" placeholder="Nome da Cidade" required>
                   </div>
-                  <div class="form-group">
-                    <label for="input-5">Endereço</label>
-                    <input type="text" class="form-control" name="endereco" id="input-5" placeholder="Enderço completo" required>
-                  </div>
+                  
                   
                 </div>
               </div>
@@ -318,14 +367,15 @@
   <!--end color switcher-->
    
   </div><!--End wrapper-->
-
+  <!-- CURRICULO BUSCAR PDF -->
+ 
   <!-- MASCARAS -->
   <script>
     const handlePhone = (event) => {
       let input = event.target;
       input.value = phoneMask(input.value);
     };
-
+  
     const phoneMask = (value) => {
       if (!value) return "";
       value = value.replace(/\D/g, "");
@@ -333,13 +383,13 @@
       value = value.replace(/(\d)(\d{4})$/, "$1-$2");
       return value;
     };
-
+  
     const handleCPF = (event) => {
       let input = event.target;
       input.value = cpfMask(input.value);
       validateCPF(input.value);
     };
-
+  
     const cpfMask = (value) => {
       if (!value) return "";
       value = value.replace(/\D/g, "");
@@ -348,12 +398,12 @@
       value = value.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
       return value;
     };
-
+  
     const handleRG = (event) => {
       let input = event.target;
       input.value = rgMask(input.value);
     };
-
+  
     const rgMask = (value) => {
       if (!value) return "";
       value = value.toUpperCase(); // Converte para maiúsculo
@@ -364,19 +414,19 @@
       value = value.replace(/(\d{3})(\d)/, "$1"); // Os últimos três dígitos
       return value;
     };
-
+  
     const handleCEP = (event) => {
       let input = event.target;
       input.value = cepMask(input.value);
     };
-
+  
     const cepMask = (value) => {
       if (!value) return "";
       value = value.replace(/\D/g, "");
       value = value.replace(/(\d{5})(\d{1,2})$/, "$1-$2");
       return value;
     };
-
+  
     const validateCPF = (cpf) => {
       cpf = cpf.replace(/[^\d]+/g, '');
       if (cpf.length !== 11 || /^(\d)\1+$/.test(cpf)) {
@@ -403,13 +453,22 @@
       setValidationIcon('cpf-icon', true);
       return true;
     };
-
+  
     const setValidationIcon = (elementId, isValid) => {
       const icon = document.getElementById(elementId);
       icon.style.display = 'inline-block';
       icon.className = isValid ? 'fas fa-check-circle text-success' : 'fas fa-times-circle text-danger';
     };
-
+  
+    const handleFileUpload = (event, iconId) => {
+      const file = event.target.files[0];
+      if (file && file.type === "application/pdf") {
+        setValidationIcon(iconId, true);
+      } else {
+        setValidationIcon(iconId, false);
+      }
+    };
+  
     const handleImageUpload = (event) => {
       const input = event.target;
       const icon = document.getElementById('image-icon');
@@ -421,6 +480,7 @@
       }
     };
   </script>
+  
 
   <!-- Bootstrap core JavaScript-->
   <script src="../../../assets/js/jquery.min.js"></script>

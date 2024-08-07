@@ -42,6 +42,37 @@
     width: 500px;
   }
 
+
+/* Centraliza o modal horizontalmente e ajusta a largura */
+.custom-modal .modal-dialog {
+    max-width: 80%; /* Largura máxima do modal */
+    min-width: 300px; /* Largura mínima para garantir que o modal não fique muito pequeno */
+    margin: 2rem auto; /* Espaçamento superior para posicionar o modal mais próximo ao topo e centralização horizontal */
+    display: flex;
+    justify-content: center; /* Centraliza horizontalmente */
+}
+
+/* Estilo do conteúdo do modal */
+.custom-modal .modal-content {
+    font-size: 0.875rem; /* Reduz o tamanho da fonte do conteúdo do modal */
+    overflow: hidden; /* Garante que o conteúdo não ultrapasse as bordas do modal */
+}
+
+/* Estilo do corpo do modal */
+.custom-modal .modal-body {
+    padding: 1rem; /* Ajusta o padding do corpo do modal */
+    word-wrap: break-word; /* Garante que o texto longo seja quebrado para caber dentro do modal */
+}
+
+/* Estilo dos campos de texto */
+.custom-modal .form-control {
+    font-size: 0.875rem; /* Reduz o tamanho da fonte dentro do campo de texto */
+    width: 100%; /* Garante que o campo de texto ocupe toda a largura disponível */
+}
+
+
+
+
   .btn-custom-close {
     background-color: #6c757d; /* Cor personalizada para o botão "Close" */
     border-color: #6c757d;
@@ -755,42 +786,44 @@ $resultado = mysqli_query($conexao, "
                                 </td>
                             </tr>
 
-                            <form action = '../php/enviar_observacao.php' method = 'POST'>
-                            <!-- Modal for <?= $row['nome_servico'] ?> -->
-                            <div class="modal fade" id="modal<?= $row['id_servico'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel"><?= $row['nome_servico'] ?></h1>
-                <button type="button" class="btn-close-custom" data-bs-dismiss="modal" aria-label="Close">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div class="modal-body">
-                <!-- Conteúdo do modal para <?= $row['nome_servico'] ?> -->
-                <p><?= $row['descricao'] ?></p>
-                
-                <!-- Linha branca para separar o conteúdo das observações -->
-                <hr class="my-4">
-
-                <!-- Campo para escrever observações -->
-                <div class="mb-3">
-                    <label for="observacao" class="form-label">Observações:</label>
-                    <textarea id="observacao" name="observacao" class="form-control" rows="4" placeholder="Escreva suas observações aqui..."></textarea>
+                            <form action='../php/enviar_observacao.php' method='POST'>
+    <!-- Modal for <?= $row['nome_servico'] ?> -->
+    <div class="modal fade custom-modal" id="modal<?= $row['id_servico'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg"> <!-- Ajusta a largura do modal -->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title fs-5" id="exampleModalLabel"><?= $row['nome_servico'] ?></h3>
+                    <button type="button" class="btn-close-custom" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fas fa-times"></i>
+                    </button>
                 </div>
-                
-                <!-- Linha horizontal adicional abaixo do campo de observações -->
-                <hr class="mt-4">
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary btn-custom-close" data-bs-dismiss="modal">Fechar</button>
-                <button type="submit" class="btn btn-primary btn-custom-save">Salvar</button>
+                <div class="modal-body">
+                    <!-- Conteúdo do modal para <?= $row['nome_servico'] ?> -->
+                    <p><?= $row['descricao'] ?></p>
+                    
+                    <!-- Linha branca para separar o conteúdo das observações -->
+                    <hr class="my-4">
+    
+                    <!-- Campo para escrever observações -->
+                    <div class="mb-3">
+                        <input type="hidden" name="id_servico" value="<?= $row['id_servico'] ?>" >
+                        <label for="observacao" class="form-label">Observações:</label>
+                        <textarea id="observacao" name="observacao" class="form-control" rows="4" placeholder="Escreva suas observações aqui..."></textarea>
+                    </div>
+                    
+                    <!-- Linha horizontal adicional abaixo do campo de observações -->
+                    <hr class="mt-4">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-custom-close" data-bs-dismiss="modal">Fechar</button>
+                    <button type="submit" class="btn btn-primary btn-custom-save">Salvar</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
-
 </form>
+
+
 
                         <?php endwhile; ?>
                     </tbody>

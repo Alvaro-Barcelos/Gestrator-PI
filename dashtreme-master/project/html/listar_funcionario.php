@@ -118,7 +118,7 @@
     <div id="sidebar-wrapper" data-simplebar="" data-simplebar-auto-hide="true">
       <div class="brand-logo">
         <a href="home_adm.html">
-          <img src="../../imagens/GE.png" class="logo-icon" alt="logo icon">
+          <img src="../imagens/GE.png" class="logo-icon" alt="logo icon">
           <h5 class="logo-text">Gestrator</h5>
         </a>
       </div>

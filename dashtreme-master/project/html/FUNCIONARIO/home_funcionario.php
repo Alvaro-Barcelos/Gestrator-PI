@@ -495,7 +495,7 @@ i.fa-comment {
 
 
       <li>
-        <a href="profile_funcionario.html">
+        <a href="profile_funcionario.php">
           <i class="zmdi zmdi-face"></i> <span>Perfil</span>
         </a>
       </li>

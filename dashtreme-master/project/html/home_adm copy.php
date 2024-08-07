@@ -661,6 +661,7 @@ $resultServicosPendentes = $conexao->query($sqlServicosPendentes)->fetch_assoc()
 </div>
 
 	  
+<form>
 <?php
 include_once("../php/conexao.php");
 
@@ -682,7 +683,7 @@ $resultado = mysqli_query($conexao, "
         servico.id_servico
 ");
 ?>
-
+</form>
 <div class="row">
     <div class="col-12 col-lg-12">
         <div class="card">
@@ -754,27 +755,43 @@ $resultado = mysqli_query($conexao, "
                                 </td>
                             </tr>
 
+                            <form action = '../php/enviar_observacao.php' method = 'POST'>
                             <!-- Modal for <?= $row['nome_servico'] ?> -->
                             <div class="modal fade" id="modal<?= $row['id_servico'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h1 class="modal-title fs-5" id="exampleModalLabel"><?= $row['nome_servico'] ?></h1>
-                                            <button type="button" class="btn-close-custom" data-bs-dismiss="modal" aria-label="Close">
-                                                <i class="fas fa-times"></i>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <!-- Conteúdo do modal para <?= $row['nome_servico'] ?> -->
-                                            <?= $row['descricao'] ?>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary btn-custom-close" data-bs-dismiss="modal">Enviar</button>
-                                            <button type="button" class="btn btn-primary btn-custom-save">Salvar</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel"><?= $row['nome_servico'] ?></h1>
+                <button type="button" class="btn-close-custom" data-bs-dismiss="modal" aria-label="Close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Conteúdo do modal para <?= $row['nome_servico'] ?> -->
+                <p><?= $row['descricao'] ?></p>
+                
+                <!-- Linha branca para separar o conteúdo das observações -->
+                <hr class="my-4">
+
+                <!-- Campo para escrever observações -->
+                <div class="mb-3">
+                    <label for="observacao" class="form-label">Observações:</label>
+                    <textarea id="observacao" name="observacao" class="form-control" rows="4" placeholder="Escreva suas observações aqui..."></textarea>
+                </div>
+                
+                <!-- Linha horizontal adicional abaixo do campo de observações -->
+                <hr class="mt-4">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-custom-close" data-bs-dismiss="modal">Fechar</button>
+                <button type="submit" class="btn btn-primary btn-custom-save">Salvar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</form>
+
                         <?php endwhile; ?>
                     </tbody>
                 </table>

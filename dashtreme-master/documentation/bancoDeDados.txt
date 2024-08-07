@@ -22,6 +22,7 @@ CREATE TABLE servico (
     data_final date,
     situacao Varchar(20),
     prioridade Varchar(20),
+    observaçao text,
     equipe text,
     id_setor int,
     FOREIGN KEY(id_setor) REFERENCES Setor (id_setor)
@@ -41,6 +42,7 @@ CREATE TABLE funcionario (
     cidade varchar(20),
     endereco varchar(60),
     pcd varchar(16),
+    skills_fun text,
     foto_funcionario blob,
     id_setor int,
     id_login int,

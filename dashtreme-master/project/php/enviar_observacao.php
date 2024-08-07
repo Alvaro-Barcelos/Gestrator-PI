@@ -1,10 +1,20 @@
 <?php
+include_once('conexao.php');
 
-    include_once('conexao.php');
-
-    $observacao = $_POST['observacao'];
-
-    $enviar_observacao = mysqli_query($conexao, "INSERT INTO servico (observaçao) 
-    VALUES('$observacao')");
-
+// Verificar se o formulário foi enviado
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Escapar os dados para prevenir injeção de SQL
+    $observacao = mysqli_real_escape_string($conexao, $_POST['observacao']);
+    $id_servico = mysqli_real_escape_string($conexao, $_POST['id_servico']);
+    
+    // Inserir observação no banco de dados
+    $enviar_observacao = mysqli_query($conexao, "UPDATE servico SET observaçao  = '$observacao' WHERE id_servico = '$id_servico'");
+    
+    // Verificar se a inserção foi bem-sucedida
+    if ($enviar_observacao) {
+        echo "Observação salva com sucesso!";
+    } else {
+        echo "Erro ao salvar a observação: " . mysqli_error($conexao);
+    }
+}
 ?>

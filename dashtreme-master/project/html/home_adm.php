@@ -198,10 +198,33 @@
 }
 
 /* Conteúdo do popup */
-.popup-content {
-    padding: 15px;
-    position: relative;
-}
+    .popup-content {
+        max-height: 400px; /* Altura máxima para o conteúdo do popup */
+        overflow-y: auto; /* Permitir rolagem vertical */
+    }
+
+    .equipe-atual {
+        max-height: 200px; /* Altura máxima para a lista de membros da equipe */
+        overflow-y: auto; /* Permitir rolagem vertical */
+        border: 1px solid #ccc; /* Opcional: adicionar borda para diferenciar a área rolável */
+        padding: 10px; /* Opcional: adicionar padding para a área rolável */
+    }
+
+    .equipe-item {
+        display: flex; /* Flex para alinhar os itens em linha */
+        justify-content: space-between; /* Espaço entre o texto e o botão */
+        align-items: center; /* Centralizar itens verticalmente */
+        margin-bottom: 5px; /* Espaçamento entre os itens da equipe */
+        padding-bottom: 5px; /* Espaçamento inferior para a linha */
+        border-bottom: 1px solid #ccc; /* Linha de separação entre os itens */
+    }
+
+    .remove-btn {
+        margin-left: 10px; /* Espaçamento à esquerda do botão de remover */
+        cursor: pointer; /* Mostrar cursor de ponteiro ao passar o mouse */
+    }
+
+
 
 /* Botão de fechar */
 .close-btn {
@@ -469,6 +492,15 @@ i.fa-comment {
     margin-left: 10px;
 }
 
+.text-black{
+    color: black;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.btn-danger{
+    border-radius: 5px;
+}
 
   </style>
 
@@ -806,15 +838,19 @@ $resultado = mysqli_query($conexao, "
 <div id="popup" class="popup">
     <div class="popup-content">
         <button id="close-btn" class="close-btn">&times;</button>
-        <h2>Equipe</h2>
-        <p>Adicione funcionários a este serviço</p>
+        <h4 class="text-black">Equipe</h4>
+        <div id="equipe-atual" class="equipe-atual"></div>
+        <h5 class="text-black">Adicione funcionários a este serviço</h5>
         <form action="atualizarEquipe.php" method="post">
             <input type="text" id="search-bar" name="nome" placeholder="Pesquise nomes ou equipe">
             <div id="resultados" class="resultados"></div>
-            <input type="submit" value="Atualizar">
+            <input type="hidden" name="serviceId" value="">
+            <input type="submit" value="Atualizar" class="btn btn-light px-5">
         </form>
     </div>
 </div>
+
+
 
    <!-- Sobreposição -->
    <div id="overlay" class="overlay">
@@ -1158,7 +1194,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <!-- POPUP -->
 <script>
-document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function() {
     let popup = document.getElementById('popup');
 
     document.querySelectorAll('.open-popup').forEach(function(icon) {
@@ -1170,7 +1206,9 @@ document.addEventListener('DOMContentLoaded', function() {
             popupContent.innerHTML = `
                 <div class="popup-arrow"></div>
                 <button id="close-btn" class="close-btn">&times;</button>
-                <h2>Equipe</h2>
+                <h4 class="text-black">Equipe</h4>
+                <div id="equipe-atual" class="equipe-atual"></div>
+                <h5 class="text-black">Adicione funcionários a este serviço</h5>
                 <form action="../php/atualizarEquipe.php" method="post">
                   <input type="text" id="search-bar" name="nome" placeholder="Pesquise nomes ou equipe">
                   <div id="resultados" class="resultados"></div>
@@ -1178,6 +1216,21 @@ document.addEventListener('DOMContentLoaded', function() {
                   <input type="submit" class="btn-" value="Atualizar">
                 </form>
             `;
+
+            // Fetch the current team members
+            fetch(`buscar_funcionarios_adicionados.php?serviceId=${serviceId}`)
+                .then(response => response.json())
+                .then(data => {
+                    const equipeAtualDiv = document.getElementById('equipe-atual');
+                    equipeAtualDiv.innerHTML = data.map(funcionario => `
+                        <div class="equipe-item">
+                            <p> ${funcionario.nome_funcionario} | ${funcionario.email} | ${funcionario.cargo}
+                                <button class="remove-btn btn-danger px-2" data-nome="${funcionario.nome_funcionario}" data-id="${serviceId}">Remover</button>
+                            </p>
+                            <hr>
+                        </div>
+                    `).join('');
+                });
 
             popup.style.top = `${rect.bottom + window.scrollY}px`;
             popup.style.left = `${rect.left + window.scrollX}px`;
@@ -1222,8 +1275,26 @@ document.addEventListener('DOMContentLoaded', function() {
             popup.style.display = 'none';
         }
     });
-});
 
+    document.addEventListener('click', function(event) {
+        if (event.target.classList.contains('remove-btn')) {
+            const nomeFuncionario = event.target.getAttribute('data-nome');
+            const serviceId = event.target.getAttribute('data-id');
+
+            fetch(`remover_funcionario.php?nome=${nomeFuncionario}&serviceId=${serviceId}`, {
+                method: 'GET'
+            })
+            .then(response => response.text())
+            .then(data => {
+                if (data.trim() === 'success') {  // Verificar se a resposta é exatamente "success"
+                    event.target.parentElement.parentElement.remove();
+                } else {
+                    alert('Erro ao remover funcionário.');
+                }
+            });
+        }
+    });
+});
 
 </script>
 

@@ -3389,6 +3389,10 @@ table.grid td {
     padding: 500px !important;
 }
 
+#legen-color-p{
+    color: white !important;
+}
+
 /* Responsive */
 
 @media only screen and (min-width: 1024px){

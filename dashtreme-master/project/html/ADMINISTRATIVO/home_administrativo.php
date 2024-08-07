@@ -580,41 +580,41 @@ i.fa-comment {
   <!--Start Dashboard Content-->
   
   <?php
-include_once("../../php/conexao.php");
+    include_once("../../php/conexao.php");
 
-// Consultas SQL para buscar os dados
-$sqlTotalServicos = "SELECT COUNT(*) AS total
-FROM servico s
-INNER JOIN setor st ON s.id_setor = st.id_setor
-WHERE st.nome_setor = '$nome_setor'";
-
-
-
-$sqlServicosConcluidos = "SELECT COUNT(*) AS total
-FROM servico s
-INNER JOIN setor st ON s.id_setor = st.id_setor
-INNER JOIN funcionario f ON f.id_setor = st.id_setor
-WHERE st.nome_setor = '$nome_setor' AND situacao = 'concluido'";
+    // Consultas SQL para buscar os dados
+    $sqlTotalServicos = "SELECT COUNT(*) AS total
+    FROM servico s
+    INNER JOIN setor st ON s.id_setor = st.id_setor
+    WHERE st.nome_setor = '$nome_setor'";
 
 
-$sqlServicosAndamento = "SELECT COUNT(*) AS total
-FROM servico s
-INNER JOIN setor st ON s.id_setor = st.id_setor
-INNER JOIN funcionario f ON f.id_setor = st.id_setor
-WHERE st.nome_setor = '$nome_setor' AND situacao = 'em andamento'";
+
+    $sqlServicosConcluidos = "SELECT COUNT(*) AS total
+    FROM servico s
+    INNER JOIN setor st ON s.id_setor = st.id_setor
+    INNER JOIN funcionario f ON f.id_setor = st.id_setor
+    WHERE st.nome_setor = '$nome_setor' AND situacao = 'concluido'";
 
 
-$sqlServicosPendentes = "SELECT COUNT(*) AS total
-FROM servico s
-INNER JOIN setor st ON s.id_setor = st.id_setor
-INNER JOIN funcionario f ON f.id_setor = st.id_setor
-WHERE st.nome_setor = '$nome_setor' AND situacao = 'pendente'";
+    $sqlServicosAndamento = "SELECT COUNT(*) AS total
+    FROM servico s
+    INNER JOIN setor st ON s.id_setor = st.id_setor
+    INNER JOIN funcionario f ON f.id_setor = st.id_setor
+    WHERE st.nome_setor = '$nome_setor' AND situacao = 'em andamento'";
 
-// Executando as consultas e obtendo os resultados
-$resultTotalServicos = $conexao->query($sqlTotalServicos)->fetch_assoc();
-$resultServicosConcluidos = $conexao->query($sqlServicosConcluidos)->fetch_assoc();
-$resultServicosAndamento = $conexao->query($sqlServicosAndamento)->fetch_assoc();
-$resultServicosPendentes = $conexao->query($sqlServicosPendentes)->fetch_assoc();
+
+    $sqlServicosPendentes = "SELECT COUNT(*) AS total
+    FROM servico s
+    INNER JOIN setor st ON s.id_setor = st.id_setor
+    INNER JOIN funcionario f ON f.id_setor = st.id_setor
+    WHERE st.nome_setor = '$nome_setor' AND situacao = 'pendente'";
+
+    // Executando as consultas e obtendo os resultados
+    $resultTotalServicos = $conexao->query($sqlTotalServicos)->fetch_assoc();
+    $resultServicosConcluidos = $conexao->query($sqlServicosConcluidos)->fetch_assoc();
+    $resultServicosAndamento = $conexao->query($sqlServicosAndamento)->fetch_assoc();
+    $resultServicosPendentes = $conexao->query($sqlServicosPendentes)->fetch_assoc();
 
 ?>
 

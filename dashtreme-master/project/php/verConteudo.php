@@ -66,7 +66,7 @@
 
     .card {
       width: 19rem;
-      height: 22rem;
+      height: 22.8rem;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       border-radius: 8px;
       overflow: hidden;
@@ -89,6 +89,13 @@
 
     .card-body {
       padding: 15px;
+      
+      /* Adiciona um pouco de padding ao conteúdo do card */
+    }
+
+    .card-body h4{
+      font-size: 14px;
+      
       /* Adiciona um pouco de padding ao conteúdo do card */
     }
 
@@ -291,7 +298,7 @@
           echo "    <div class='card-body'>";
           echo "    <h5>" . $row['nome_conteudo'] . "</h5>";
           echo "    <hr>";
-          echo "    <h5>" . $row['descricao'] . "</h5>";
+          echo "    <h4>" . $row['descricao'] . "</h4>";
           echo "    <hr>";
           echo "       <a href='" . $row['pdf'] . "' class='card-link' target='_blank'>Abrir PDF</a>";
           echo "    </div>";

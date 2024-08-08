@@ -138,18 +138,25 @@
             <i class="zmdi zmdi-calendar-check"></i> <span>Calendário</span>
           </a>
         </li>
+
         <li>
-          <a href="relatorio_lider.html">
+        <a href="conteudo_adm.html">
+         <i class="fa-solid fa-book" style="color: #9e9e9e;"></i> <span>Conteúdo</span>
+        </a>
+      </li>
+
+        <li>
+          <a href="relatorio_adm.html">
             <i class="zmdi zmdi-assignment" style="color: #9e9e9e;"></i> <span>Relatório</span>
           </a>
         </li>
         <li>
-          <a href="registrar_servico_lider.html">
+          <a href="registrar_servico_adm.html">
             <i class="fa-solid fa-list-check" style="color: #9e9e9e;"></i> <span>Serviço</span>
           </a>
         </li>
         <li>
-          <a href="cadastrar_funcionario_lider.html">
+          <a href="cadastrar_funcionario_adm.html">
             <i class="fa-solid fa-user" style="color: #9e9e9e;"></i> <span>Funcionário</span>
           </a>
         </li>
@@ -250,7 +257,9 @@
                   <div class="search-bar">
                       <input type='text' id='search' name='pesquisa' placeholder='Pesquisar...'
                         value='<?php echo isset($_GET["pesquisa"]) ? $_GET["pesquisa"] : ""; ?>'>
-                      <button type='submit'><i class="fa fa-search"></i></button>
+                        <button type='submit' style='background: none; border: none;'>
+                           <i class="fa fa-search" style='color: white;'></i>
+                        </button>
                     </div>
                   </form>
                   <br>

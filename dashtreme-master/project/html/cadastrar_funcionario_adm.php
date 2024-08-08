@@ -1,3 +1,8 @@
+<?php
+  include("protect_gerente.php");
+  include_once("../php/conexao.php");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -135,20 +140,35 @@
                 <div class="avatar"><img class="align-self-start mr-3" src="https://via.placeholder.com/110x110"
                     alt="user avatar"></div>
                 <div class="media-body">
-                  <h6 class="mt-2 user-title">Sarajhon Mccoy</h6>
-                  <p class="user-subtitle">mccoy@example.com</p>
-                </div>
-              </div>
-            </a>
-          </li>
-          <li class="dropdown-divider"></li>
-          <li class="dropdown-item"><i class="icon-envelope mr-2"></i> Inbox</li>
-          <li class="dropdown-divider"></li>
-          <li class="dropdown-item"><i class="icon-wallet mr-2"></i> Account</li>
-          <li class="dropdown-divider"></li>
-          <li class="dropdown-item"><i class="icon-settings mr-2"></i> Setting</li>
-          <li class="dropdown-divider"></li>
-          <li class="dropdown-item"><i class="icon-power mr-2"></i> Logout</li>
+                  <h6 class="mt-2 user-title"><?php echo $_SESSION['usuario']; ?></h6>
+                  <?php 
+                  
+                    $usuario = $_SESSION['usuario']; 
+                    
+                    $query_funcionario = mysqli_query($conexao, "SELECT f.id_funcionario, f.email, s.nome_setor 
+                    FROM funcionario f 
+                    JOIN setor s ON f.id_setor = s.id_setor 
+                    WHERE f.nome_funcionario = '$usuario'");
+      
+                      if ($query_funcionario->num_rows > 0) {
+                        // Exibir os dados
+                        while ($row = $query_funcionario->fetch_assoc()) {
+                            $id_funcionario = $row['id_funcionario'];
+                            echo "<p class='user-subtitle'>".$row['email']."</p>";
+                            echo "<p class='user-subtitle'>".$row['nome_setor']."</p>";
+      
+                        }}
+                  ?>
+                  </div>
+                 </div>
+                </a>
+              </li>
+      
+              <li class="dropdown-divider"></li>
+              <a href="profile_adm.html"><li class="dropdown-item"><i class="icon-wallet mr-2"></i> Perfil</li></a>
+              <li class="dropdown-divider"></li>
+              <a href="../php/logout.php"><li class="dropdown-item"><i class="icon-power mr-2"></i> Sair</li></a>
+              
         </ul>
       </li>
     </ul>

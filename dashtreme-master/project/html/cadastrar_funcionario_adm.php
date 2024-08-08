@@ -189,7 +189,8 @@
             <form method="post" action="../php/cadastrar_funcionario.php" enctype="multipart/form-data">
                 <div class="form-group">
                   <label for="nome-completo">Nome Completo</label>
-                  <input type="text" id="nome-completo" name="nome-completo" class="form-control" placeholder="Nome Completo">
+                  <input type="text" id="nome-completo" name="nome" class="form-control" placeholder="Nome Completo"> 
+                      <!-- NÃO MEXER NO CAMPO NAME EM HIPOTESE NENHUMA -->
                 </div>
                 <div class="row">
                   <div class="col-lg-6">

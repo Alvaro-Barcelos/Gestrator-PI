@@ -256,7 +256,7 @@
           </div>
             
             <div class="form-group">
-            <center> <button type="submit" class="btn btn-light px-5"><a href="servicoSucesso.html">Registrar Serviço</a></button></center>
+            <center> <button type="submit" class="btn btn-light px-5">Registrar Serviço</button></center>
            </div>
            </form>
           </div>

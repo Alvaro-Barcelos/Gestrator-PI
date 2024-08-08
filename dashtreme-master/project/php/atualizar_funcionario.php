@@ -195,7 +195,7 @@
 
                         echo "<div class='edit-form'>";
                         echo "<label> Salário: </label>";
-                        echo "<input name='salario' type='number' class='form-control form-atualizar' id='salario'  autocomplete='off' value='" . htmlspecialchars($row['salario']) . "'>";
+                        echo "<input name='salario' type='text' class='form-control form-atualizar' id='salario'  autocomplete='off' value='" . htmlspecialchars($row['salario']) . "'>";
                         echo "</div>";
 
                         echo "<div class='edit-form'>";

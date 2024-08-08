@@ -36,7 +36,9 @@
 
 
   <style>
-  .modal-content {
+ 
+ /* Renzo */
+ .modal-content {
     background-color: #78929B !important;
     color: white;
     width: 500px;
@@ -69,7 +71,7 @@
     font-size: 0.875rem; /* Reduz o tamanho da fonte dentro do campo de texto */
     width: 100%; /* Garante que o campo de texto ocupe toda a largura disponível */
 }
-
+/* end Renzo */
 
 
 
@@ -785,7 +787,9 @@ $resultado = mysqli_query($conexao, "
                                     <i class="fa-regular fa-comment" data-id="<?= $row['id_servico'] ?>"></i>
                                 </td>
                             </tr>
-
+                                        
+                                <!-- Renzo novo form com php funcionado e estilizado -->
+                        
                             <form action='../php/enviar_observacao.php' method='POST'>
     <!-- Modal for <?= $row['nome_servico'] ?> -->
     <div class="modal fade custom-modal" id="modal<?= $row['id_servico'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -833,8 +837,8 @@ $resultado = mysqli_query($conexao, "
     </div>
 </div>
 
-<!-- O popup -->
 
+<!-- O popup -->
 <div id="popup" class="popup">
     <div class="popup-content">
         <button id="close-btn" class="close-btn">&times;</button>

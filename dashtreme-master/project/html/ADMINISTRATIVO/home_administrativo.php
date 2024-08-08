@@ -400,10 +400,8 @@ i.fa-comment {
 /* GRAFICO */
 .chart-container-2 {
     position: relative;
-    height: 450px !important; /* Ajuste a altura conforme necessário */
-    width: 820px ; /* Faz o gráfico ocupar 100% da largura disponível */
-    margin-left: 20%;
-
+    height: 450px !important;
+    left: 25%;
 }
 
 .tamanho{
@@ -1005,13 +1003,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
              </div>
             </div>
           </div>
-          <div class="card-body tamanho">
+          <div class="card-body tamanho"> <!--O estilo está no app-style.css-->
             <div class="chart-container-2">
               <canvas id="doughnutChart"></canvas>
             </div>
-          </div>
-          <div class="table-responsive">
-            <table class="table align-items-center">
+            <div class="position-table">
+            <table class="table-form">
               <tbody>
                 <?php
                 $query = "
@@ -1027,9 +1024,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     while($row = mysqli_fetch_assoc($result)) {
                         $situacoes[] = $row["situacao"];
                         $quantidades[] = $row["quantidade"];
-                        echo "<tr>";
-                        echo "<td><i class='fa fa-circle text-white mr-2'></i>" . htmlspecialchars($row["situacao"]) . "</td>";
-                        echo "<td>" . htmlspecialchars($row["quantidade"]) . "</td>";
+                        echo "<tr class='pa-row'>";
+                        echo "<td class='pa-tr'><i class='fa fa-circle text-white mr-2'></i>" . htmlspecialchars($row["situacao"]) . "</td>";
+                        echo "<td class='pa-tr'>" . htmlspecialchars($row["quantidade"]) . "</td>";
                         echo "</tr>";
                     }
                 } else {
@@ -1041,8 +1038,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
               </tbody>
             </table>
           </div>
+          </div>
         </div>
     </div>
+    <!--Start footer-->
+	<footer class="footer">
+      <div class="container">
+        <div class="text-center">
+            <p id="legen-color-p">Copyright 2024 Gestrator-Pi</p>
+        </div>
+      </div>
+    </footer>
+	<!--End footer-->
 </div><!--End Row-->
 
       <!--End Dashboard Content-->
@@ -1058,16 +1065,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
    <!--Start Back To Top Button-->
     <a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
     <!--End Back To Top Button-->
-	
-	<!--Start footer-->
-	<footer class="footer">
-      <div class="container">
-        <div class="text-center">
-
-        </div>
-      </div>
-    </footer>
-	<!--End footer-->
 	
   <!--start color switcher-->
    <div class="right-sidebar">

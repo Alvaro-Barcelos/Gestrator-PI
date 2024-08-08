@@ -1,5 +1,6 @@
-<html>
-  
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -32,22 +33,11 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 </head>
-  
-  <body class="bg-theme bg-theme1">
-  
-<?php
 
-include_once("conexao.php");
+<body class="bg-theme bg-theme1">
 
-$id_funcionario = mysqli_real_escape_string($conexao, $_POST['id']);
-
-$exclui = mysqli_query($conexao, "DELETE FROM funcionario WHERE id_funcionario = '$id_funcionario'");
-
-
-
-if ($exclui) {
-  
-echo '<div id="pageloader-overlay" class="visible incoming">
+    <!-- start loader -->
+    <div id="pageloader-overlay" class="visible incoming">
         <div class="loader-wrapper-outer">
             <div class="loader-wrapper-inner">
                 <div class="loader"></div>
@@ -71,32 +61,20 @@ echo '<div id="pageloader-overlay" class="visible incoming">
             <div class="card-body centralizar">
                 <div class="card-content p-2">
                     <h3>Serviço realizado com sucesso  <i class="fa-regular fa-circle-check" style="color: #ffffff;"></i></h3><br>
-                 <center><button type="submit" class="btn btn-light px-5"><a href="../html/home_adm.php">Voltar a pagina inicial</a></button></center>
+                    <center><button  type="submit" class="btn btn-light px-5"><a href="home_adm.php">Voltar a pagina inicial</a></button></center>
                 </div>
             </div>
         </div>
-    </div>';
+    </div>
 
-
-} else {
-  echo "<div class='retornos'>";
-  echo "<h2> Ocorreu um erro ao inserir os dados. Por favor, tente novamente. </h2>";
-  echo "</div>";
-}
-
-mysqli_close($conexao);
-?>
-
-
-
-<!--Start Back To Top Button-->
-<a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
+    <!--Start Back To Top Button-->
+    <a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
     <!--End Back To Top Button-->
 
     <!--start color switcher--> 
     <!--end color switcher-->
 
-  
+    </div><!--wrapper-->
 
     <!-- Bootstrap core JavaScript-->
     <script src="assets/js/jquery.min.js"></script>
@@ -109,7 +87,6 @@ mysqli_close($conexao);
     <!-- Custom scripts -->
     <script src="assets/js/app-script.js"></script>
 
-
-
 </body>
+
 </html>

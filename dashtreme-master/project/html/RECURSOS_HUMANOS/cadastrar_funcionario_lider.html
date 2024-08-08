@@ -278,7 +278,7 @@
                         <label for="curriculo">Currículo</label>
                         <i id="pdf-icon" class="fas fa-check-circle" style="display: none;padding: 8px;"></i>
                         <label class="select-style" class="form-label" for="curriculo">Adicionar PDF</label>
-                        <input type="file" class="select-style" name="curriculo_funcionario" id="curriculo" accept="application/pdf" onchange="handleFileUpload(event, 'pdf-icon')" />
+                        <input type="file" class="select-style" name="curriculo_funcionario" id="curriculo" accept="application/pdf" required onchange="handleFileUpload(event, 'pdf-icon')" />
                     </div>
                     <label for="input-1">Cargo</label>
                     <input type="text" class="form-control" name="cargo" id="input-1" placeholder="Cargo do funcionário">

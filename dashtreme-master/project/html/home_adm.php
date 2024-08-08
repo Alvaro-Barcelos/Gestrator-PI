@@ -200,11 +200,11 @@
 /* Conteúdo do popup */
     .popup-content {
         max-height: 400px; /* Altura máxima para o conteúdo do popup */
-        overflow-y: auto; /* Permitir rolagem vertical */
+        
     }
 
     .equipe-atual {
-        max-height: 200px; /* Altura máxima para a lista de membros da equipe */
+        max-height: 150px; /* Altura máxima para a lista de membros da equipe */
         overflow-y: auto; /* Permitir rolagem vertical */
         border: 1px solid #ccc; /* Opcional: adicionar borda para diferenciar a área rolável */
         padding: 10px; /* Opcional: adicionar padding para a área rolável */
@@ -479,6 +479,7 @@ i.fa-comment {
     padding: 10px;
     z-index: 10;
     white-space: nowrap;
+    color: black;
 }
 
 .team-image:hover .team-card {
@@ -501,6 +502,10 @@ i.fa-comment {
 
 .btn-danger{
     border-radius: 5px;
+}
+
+#span_classificar{
+    margin-left: 10px;
 }
 
   </style>
@@ -537,13 +542,13 @@ i.fa-comment {
 
 
       <li>
-        <a href="conteudo_adm.html">
+        <a href="conteudo_adm.php">
          <i class="fa-solid fa-book" style="color: #9e9e9e;"></i> <span>Conteúdo</span>
         </a>
       </li>
 
       <li>
-        <a href="cadastrar_funcionario_adm.html">
+        <a href="cadastrar_funcionario_adm.php">
           <i class="fa-solid fa-user" style="color: #9e9e9e;"></i> <span>Funcionário</span>
         </a>
       </li>
@@ -553,18 +558,18 @@ i.fa-comment {
       </a>
     </li>
       <li>
-        <a href="registrar_servico_adm.html">
+        <a href="registrar_servico_adm.php">
           <i class="fa-solid fa-list-check" style="color: #9e9e9e;"></i> <span>Serviço</span>
         </a>
       </li>      
       <li>
-        <a href="relatorio_adm.html">
+        <a href="relatorio_adm.php">
           <i class="zmdi zmdi-assignment" style="color: #9e9e9e;"></i> <span>Relatório</span>
         </a>
       </li>
 
       <li>
-        <a href="profile_adm.html">
+        <a href="profile_adm.php">
           <i class="zmdi zmdi-face"></i> <span>Perfil</span>
         </a>
       </li>
@@ -709,21 +714,22 @@ $resultServicosPendentes = $conexao->query($sqlServicosPendentes)->fetch_assoc()
     </div>
 </div>
 <?php
-include_once("../php/conexao.php");
+    include_once("../php/conexao.php");
 
-$resultado = mysqli_query($conexao, "
-    SELECT 
-        servico.*, 
-        setor.nome_setor
-    FROM 
-        servico 
-    JOIN 
-        setor ON servico.id_setor = setor.id_setor 
-    WHERE 
-        DATE_FORMAT(servico.data_final, '%Y-%m') = DATE_FORMAT(NOW(), '%Y-%m')
-    ORDER BY
-        data_final asc
-");
+
+    $resultado = mysqli_query($conexao, "
+        SELECT 
+            servico.*, 
+            setor.nome_setor
+        FROM 
+            servico 
+        JOIN 
+            setor ON servico.id_setor = setor.id_setor 
+        WHERE 
+            DATE_FORMAT(servico.data_final, '%Y-%m') = DATE_FORMAT(NOW(), '%Y-%m')
+        ORDER BY
+            data_final asc
+    ");
 ?>
 
 <div class="row">
@@ -736,11 +742,11 @@ $resultado = mysqli_query($conexao, "
                             <i class="icon-options"></i>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="javascript:void();">Action</a>
-                            <a class="dropdown-item" href="javascript:void();">Another action</a>
-                            <a class="dropdown-item" href="javascript:void();">Something else here</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="javascript:void();">Separated link</a>
+                            <span id="span_classificar">Classificar Por:</span>
+                            <a class="dropdown-item" href="javascript:void();">Prioridade</a>
+                            <a class="dropdown-item" href="javascript:void();">Situação</a>
+                            <a class="dropdown-item" href="javascript:void();">Mais Recente</a>
+                            <a class="dropdown-item" href="javascript:void();">Mais Antigo</a>
                         </div>
                     </div>
                 </div>
@@ -760,7 +766,11 @@ $resultado = mysqli_query($conexao, "
                         </tr>
                     </thead>
                     <tbody>
-                        <?php while($row = mysqli_fetch_assoc($resultado)): ?>
+                        <?php
+                        while ($row = mysqli_fetch_assoc($resultado)):
+                            $situacaoClass = strtolower(str_replace(' ', '', $row['situacao']));
+                            $prioridadeClass = str_replace(' ', '', $row['prioridade']);
+                        ?>
                             <tr>
                                 <td class="sem-espaco w-120">
                                     <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#modal<?= $row['id_servico'] ?>">
@@ -772,13 +782,14 @@ $resultado = mysqli_query($conexao, "
                                     <div class="team-member">
                                         <i class="fa-solid fa-user-plus open-popup" data-id="<?= $row['id_servico'] ?>"></i>
                                         <div class="team-images">
-                                            <?php 
+                                            <?php
                                             $nomesEquipe = explode(',', $row['equipe']);
-                                            foreach ($nomesEquipe as $nome) {
+                                            foreach ($nomesEquipe as $nome):
                                                 $nome = trim($nome);
                                                 $funcionarioResult = mysqli_query($conexao, "SELECT foto_funcionario, nome_funcionario, email, cargo FROM funcionario WHERE nome_funcionario = '$nome'");
                                                 $funcionarioRow = mysqli_fetch_assoc($funcionarioResult);
-                                                if ($funcionarioRow): ?>
+                                                if ($funcionarioRow):
+                                            ?>
                                                     <div class="team-image">
                                                         <img src="<?= $funcionarioRow['foto_funcionario'] ?>" alt="<?= $funcionarioRow['nome_funcionario'] ?>" class="circular-image" />
                                                         <div class="team-card">
@@ -787,14 +798,15 @@ $resultado = mysqli_query($conexao, "
                                                             <p>Cargo: <?= $funcionarioRow['cargo'] ?></p>
                                                         </div>
                                                     </div>
-                                                <?php endif; 
-                                            } ?>
+                                                <?php endif; ?>
+                                            <?php endforeach; ?>
                                         </div>
                                     </div>
                                 </td>
 
-                                <td class="situacao w-100 <?= strtolower(str_replace(' ', '-', $row['situacao'])) ?>"><?= $row['situacao'] ?></td>
-                                <td class="prioridade <?= strtolower($row['prioridade']) ?>"><?= $row['prioridade'] ?></td>
+                                <td class="situacao w-100 <?= $situacaoClass ?>" data-id="<?= $row['id_servico'] ?>"><?= $row['situacao'] ?></td>
+                                <td class="prioridade <?= $prioridadeClass ?>" data-id="<?= $row['id_servico'] ?>"><?= $row['prioridade'] ?></td>
+
                                 <td class="w-200"><?= $row['nome_setor'] ?></td>
                                 <td><?= date('d M Y', strtotime($row['data_criada'])) ?></td>
                                 <td><?= date('d M Y', strtotime($row['data_final'])) ?></td>
@@ -802,7 +814,6 @@ $resultado = mysqli_query($conexao, "
                                     <i class="fa-regular fa-comment" data-id="<?= $row['id_servico'] ?>"></i>
                                 </td>
                             </tr>
-
                             <!-- Modal for <?= $row['nome_servico'] ?> -->
                             <div class="modal fade" id="modal<?= $row['id_servico'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
@@ -814,7 +825,6 @@ $resultado = mysqli_query($conexao, "
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            <!-- Conteúdo do modal para <?= $row['nome_servico'] ?> -->
                                             <?= $row['descricao'] ?>
                                         </div>
                                         <div class="modal-footer">
@@ -825,14 +835,13 @@ $resultado = mysqli_query($conexao, "
                                 </div>
                             </div>
                         <?php endwhile; ?>
+
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
 </div>
-
-
 
 <!-- O popup -->
 
@@ -841,7 +850,7 @@ $resultado = mysqli_query($conexao, "
         <button id="close-btn" class="close-btn">&times;</button>
         <h4 class="text-black">Equipe</h4>
         <div id="equipe-atual" class="equipe-atual"></div>
-        <h5 class="text-black">Adicione funcionários a este serviço</h5>
+        <h5 class="text-black">Adicione funcionários</h5>
         <form action="atualizarEquipe.php" method="post">
             <input type="text" id="search-bar" name="nome" placeholder="Pesquise nomes ou equipe">
             <div id="resultados" class="resultados"></div>
@@ -870,6 +879,8 @@ $resultado = mysqli_query($conexao, "
         </form>
     </div>
 </div>
+</div><!--End Row-->
+
 
    <?php
 include_once('../php/conexao.php');
@@ -958,10 +969,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 
 
-
-	</div><!--End Row-->
-	
-
   <?php
   include_once("../php/conexao.php");
 
@@ -974,17 +981,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ");
 
 ?>
-  
-<div class="row">
+  <div class="row">
     <div class="col-12 col-lg-12">
         <div class="card">
-            <div class="card-header proximo-mes">Proximo mês
+            <div class="card-header proximo-mes">Proximo mes
                 <div class="card-action">
                     <div class="dropdown">
                         <a href="javascript:void();" class="dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown">
                             <i class="icon-options"></i>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
+                            <span>Classificar Por:</span>
                             <a class="dropdown-item" href="javascript:void();">Action</a>
                             <a class="dropdown-item" href="javascript:void();">Another action</a>
                             <a class="dropdown-item" href="javascript:void();">Something else here</a>
@@ -999,7 +1006,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <thead>
                         <tr>
                             <th class="w-120">Serviço</th>
-                            <th >Equipe</th>
+                            <th>Equipe</th>
                             <th>Situação</th>
                             <th class="w-75">Prioridade</th>
                             <th>Setor</th>
@@ -1016,18 +1023,45 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                         <?= $row['nome_servico'] ?>
                                     </button>
                                 </td>
+
                                 <td class="w-50">
-                                    <i class="fa-solid fa-user-plus open-popup" data-id="<?= $row['id_servico'] ?>"></i>
+                                    <div class="team-member">
+                                        <i class="fa-solid fa-user-plus open-popup" data-id="<?= $row['id_servico'] ?>"></i>
+                                        <div class="team-images">
+                                            <?php 
+                                            $nomesEquipe = explode(',', $row['equipe']);
+                                            foreach ($nomesEquipe as $nome) {
+                                                $nome = trim($nome);
+                                                $funcionarioResult = mysqli_query($conexao, "SELECT foto_funcionario, nome_funcionario, email, cargo FROM funcionario WHERE nome_funcionario = '$nome'");
+                                                $funcionarioRow = mysqli_fetch_assoc($funcionarioResult);
+                                                if ($funcionarioRow): ?>
+                                                    <div class="team-image">
+                                                        <img src="<?= $funcionarioRow['foto_funcionario'] ?>" alt="<?= $funcionarioRow['nome_funcionario'] ?>" class="circular-image" />
+                                                        <div class="team-card">
+                                                            <p>Nome: <?= $funcionarioRow['nome_funcionario'] ?></p>
+                                                            <p>Email: <?= $funcionarioRow['email'] ?></p>
+                                                            <p>Cargo: <?= $funcionarioRow['cargo'] ?></p>
+                                                        </div>
+                                                    </div>
+                                                <?php endif; 
+                                            } ?>
+                                        </div>
+                                    </div>
                                 </td>
-                                <td class="situacao w-100 <?= strtolower(str_replace(' ', '-', $row['situacao'])) ?>"><?= $row['situacao'] ?></td>
-                                <td class="prioridade <?= strtolower($row['prioridade']) ?>"><?= $row['prioridade'] ?></td>
+
+                                <!-- Aplica a classe CSS correta à situação -->
+                                <td class="situacao w-100 <?= isset($situacaoClasses[$row['situacao']]) ? $situacaoClasses[$row['situacao']] : 'classe-padrao' ?>" data-id="<?= $row['id_servico'] ?>">
+                                    <?= $row['situacao'] ?>
+                                </td>
+                                <!-- Aplica a classe CSS correta à prioridade -->
+                                <td class="prioridade <?= $prioridadeClasses[$row['prioridade']] ?>" data-id="<?= $row['id_servico'] ?>"><?= $row['prioridade'] ?></td>
+
                                 <td class="w-200"><?= $row['nome_setor'] ?></td>
                                 <td><?= date('d M Y', strtotime($row['data_criada'])) ?></td>
                                 <td><?= date('d M Y', strtotime($row['data_final'])) ?></td>
                                 <td>
                                     <i class="fa-regular fa-comment" data-id="<?= $row['id_servico'] ?>"></i>
                                 </td>
-
                             </tr>
 
                             <!-- Modal for <?= $row['nome_servico'] ?> -->
@@ -1056,13 +1090,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </table>
             </div>
         </div>
-    </div>
+    </div> 
+</div>
 
-    </div><!--End Row-->
-
-   <?php
-      include_once("../php/conexao.php");
-   ?>
 
 <div class="row">
     <div class="col-12 col-lg-12 col-xl-12">
@@ -1209,7 +1239,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <button id="close-btn" class="close-btn">&times;</button>
                 <h4 class="text-black">Equipe</h4>
                 <div id="equipe-atual" class="equipe-atual"></div>
-                <h5 class="text-black">Adicione funcionários a este serviço</h5>
+                <h5 class="text-black">Adicione funcionários</h5>
                 <form action="../php/atualizarEquipe.php" method="post">
                   <input type="text" id="search-bar" name="nome" placeholder="Pesquise nomes ou equipe">
                   <div id="resultados" class="resultados"></div>
@@ -1445,29 +1475,91 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
   <script>
-    $(document).ready(function(){
-        // Handle status change
-        $(".situacao").click(function(){
-            var situacoes = ["Pendente", "Em andamento", "Concluída", "Não iniciado"];
-            var classes = ["teste2", "teste", "teste1", "teste3"];
-            var current = $(this).text().trim();
-            var index = situacoes.indexOf(current);
-            var nextIndex = (index + 1) % situacoes.length;
+$(document).ready(function(){
+    // Aplicar classes de situação e prioridade ao carregar a página
+    $(".situacao").each(function() {
+        var situacoes = ["Pendente", "Em andamento", "Concluída", "Não iniciado"];
+        var classes = ["teste2", "teste", "teste1", "teste3"];
+        var current = $(this).text().trim();
+        var index = situacoes.indexOf(current);
+        if (index !== -1) {
+            $(this).addClass(classes[index]);
+        }
+    });
 
-            $(this).removeClass(classes.join(" ")).addClass(classes[nextIndex]).text(situacoes[nextIndex]);
-        });
+    $(".prioridade").each(function() {
+        var prioridades = ["Alta", "Média", "Baixa"];
+        var classes = ["alta", "media3", "baixa"];
+        var current = $(this).text().trim();
+        var index = prioridades.indexOf(current);
+        if (index !== -1) {
+            $(this).addClass(classes[index]);
+        }
+    });
 
-        // Handle priority change
-        $(".prioridade").click(function(){
-            var prioridades = ["Alta", "Média", "Baixa"];
-            var classes = ["alta", "media3", "baixa"];
-            var current = $(this).text().trim();
-            var index = prioridades.indexOf(current);
-            var nextIndex = (index + 1) % prioridades.length;
+    // Handle status change
+    $(".situacao").click(function(){
+        var situacoes = ["Pendente", "Em andamento", "Concluída", "Não iniciado"];
+        var classes = ["teste2", "teste", "teste1", "teste3"];
+        var current = $(this).text().trim();
+        var index = situacoes.indexOf(current);
+        var nextIndex = (index + 1) % situacoes.length;
 
-            $(this).removeClass(classes.join(" ")).addClass(classes[nextIndex]).text(prioridades[nextIndex]);
+        var newSituacao = situacoes[nextIndex];
+        var idServico = $(this).data("id");
+
+        // Atualizar a cor e o texto no front-end
+        $(this).removeClass(classes.join(" ")).addClass(classes[nextIndex]).text(newSituacao);
+
+        // Enviar a atualização via AJAX
+        $.ajax({
+            url: 'update_situacao.php',
+            type: 'POST',
+            data: {
+                id_servico: idServico,
+                situacao: newSituacao
+            },
+            success: function(response) {
+                console.log(response);
+            },
+            error: function(xhr, status, error) {
+                console.error(error);
+            }
         });
     });
+
+    // Handle priority change
+    $(".prioridade").click(function(){
+        var prioridades = ["Alta", "Média", "Baixa"];
+        var classes = ["alta", "media3", "baixa"];
+        var current = $(this).text().trim();
+        var index = prioridades.indexOf(current);
+        var nextIndex = (index + 1) % prioridades.length;
+
+        var newPrioridade = prioridades[nextIndex];
+        var idServico = $(this).data("id");
+
+        // Atualizar a cor e o texto no front-end
+        $(this).removeClass(classes.join(" ")).addClass(classes[nextIndex]).text(newPrioridade);
+
+        // Enviar a atualização via AJAX
+        $.ajax({
+            url: 'update_prioridade.php',
+            type: 'POST',
+            data: {
+                id_servico: idServico,
+                prioridade: newPrioridade
+            },
+            success: function(response) {
+                console.log(response);
+            },
+            error: function(xhr, status, error) {
+                console.error(error);
+            }
+        });
+    });
+});
+
 </script>
 
   <!-- Bootstrap core JavaScript-->

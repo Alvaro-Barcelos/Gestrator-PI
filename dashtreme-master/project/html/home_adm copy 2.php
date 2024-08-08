@@ -36,44 +36,11 @@
 
 
   <style>
- 
- /* Renzo */
- .modal-content {
-    background-color: #78929B !important;
+  .modal-content {
+    background-color: black !important;
     color: white;
     width: 500px;
   }
-
-
-/* Centraliza o modal horizontalmente e ajusta a largura */
-.custom-modal .modal-dialog {
-    max-width: 80%; /* Largura máxima do modal */
-    min-width: 300px; /* Largura mínima para garantir que o modal não fique muito pequeno */
-    margin: 2rem auto; /* Espaçamento superior para posicionar o modal mais próximo ao topo e centralização horizontal */
-    display: flex;
-    justify-content: center; /* Centraliza horizontalmente */
-}
-
-/* Estilo do conteúdo do modal */
-.custom-modal .modal-content {
-    font-size: 0.875rem; /* Reduz o tamanho da fonte do conteúdo do modal */
-    overflow: hidden; /* Garante que o conteúdo não ultrapasse as bordas do modal */
-}
-
-/* Estilo do corpo do modal */
-.custom-modal .modal-body {
-    padding: 1rem; /* Ajusta o padding do corpo do modal */
-    word-wrap: break-word; /* Garante que o texto longo seja quebrado para caber dentro do modal */
-}
-
-/* Estilo dos campos de texto */
-.custom-modal .form-control {
-    font-size: 0.875rem; /* Reduz o tamanho da fonte dentro do campo de texto */
-    width: 100%; /* Garante que o campo de texto ocupe toda a largura disponível */
-}
-/* end Renzo */
-
-
 
   .btn-custom-close {
     background-color: #6c757d; /* Cor personalizada para o botão "Close" */
@@ -153,7 +120,7 @@
   }
 
   table td{
-    padding: 3px !important;
+    padding: 3px;
     text-align: center;
     border: 1px solid rgba(196, 196, 196, 0.473) !important;
   }
@@ -193,23 +160,26 @@
     
 
   .dropdown-menu {
-            background-color: #78929B; /* Cor de fundo branca */
+            background-color: gray; /* Cor de fundo branca */
             border: 1px solid #ddd;  /* Borda cinza clara */
         }
         .dropdown-item {
-            color: white; /* Cor do texto */
+            color: #333; /* Cor do texto */
         }
-       
+        .dropdown-item:hover {
+            background-color: black; /* Cor de fundo ao passar o mouse */
+            color: #007bff; /* Cor do texto ao passar o mouse */
+        }
+
 
 
 
 
 /* styles.css popup */
 /* Estilo geral do popup */
-
-  .popup {
+.popup {
     position: absolute;
-    background: #78929B;
+    background: #fff;
     border-radius: 8px;
     border: 1px solid #ddd;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -219,25 +189,7 @@
     transition: opacity 0.3s ease, transform 0.3s ease; /* Transição suave */
     opacity: 0; /* Inicialmente invisível */
     transform: scale(0.95); /* Inicialmente um pouco menor */
-    color: white; /* Cor do texto */
 }
-
-/* Estilo para links dentro do popup */
-.popup a {
-    color: white; /* Cor do texto do link */
-    text-decoration: none; /* Remover sublinhado */
-}
-
-/* Efeito de hover para links dentro do popup */
-.popup a:hover {
-    color: black; /* Cor do texto do link ao passar o mouse */
-}
-
-/* Opcional: caso você queira garantir que todos os elementos internos também tenham texto branco */
-.popup * {
-    color:
-}
-
 
 .popup.show {
     display: block; /* Mostra o popup */
@@ -246,17 +198,41 @@
 }
 
 /* Conteúdo do popup */
-.popup-content {
-    padding: 15px;
-    position: relative;
-  }
+    .popup-content {
+        max-height: 400px; /* Altura máxima para o conteúdo do popup */
+        overflow-y: auto; /* Permitir rolagem vertical */
+    }
+
+    .equipe-atual {
+        max-height: 200px; /* Altura máxima para a lista de membros da equipe */
+        overflow-y: auto; /* Permitir rolagem vertical */
+        border: 1px solid #ccc; /* Opcional: adicionar borda para diferenciar a área rolável */
+        padding: 10px; /* Opcional: adicionar padding para a área rolável */
+        color: black;
+    }
+
+    .equipe-item {
+        display: flex; /* Flex para alinhar os itens em linha */
+        justify-content: space-between; /* Espaço entre o texto e o botão */
+        align-items: center; /* Centralizar itens verticalmente */
+        margin-bottom: 5px; /* Espaçamento entre os itens da equipe */
+        padding-bottom: 5px; /* Espaçamento inferior para a linha */
+        border-bottom: 1px solid #ccc; /* Linha de separação entre os itens */
+    }
+
+    .remove-btn {
+        margin-left: 10px; /* Espaçamento à esquerda do botão de remover */
+        cursor: pointer; /* Mostrar cursor de ponteiro ao passar o mouse */
+    }
+
+
 
 /* Botão de fechar */
 .close-btn {
     position: absolute;
     top: 10px;
     right: 10px;
-    background: #78929B;
+    background: #f1f1f1;
     border: none;
     border-radius: 50%;
     width: 24px;
@@ -264,7 +240,6 @@
     text-align: center;
     cursor: pointer;
     font-size: 16px;
-    background: #78929B;
 }
 
 /* Ícone que abre o popup */
@@ -274,10 +249,9 @@
 }
 
 .open-popup.active {
-    background-color: #78929B; /* Define a cor de fundo quando ativo */
+    color: #007bff;
     transform: scale(1.1); /* Um pouco maior quando ativo */
 }
-
 
 .popup.show {
     display: block; /* Mostra o popup */
@@ -287,7 +261,6 @@
 .btn-{
   border-radius: 10px;
   padding: 10px;
-  
 }
 
         .close-btn {
@@ -358,8 +331,8 @@
     color: #000; /* Cor do texto preto */
 }
 
-h2, p {
-    color:  /* Garante que todos os textos sejam pretos */
+h2{
+    color: #000; /* Garante que todos os textos sejam pretos */
 }
 
 .chat-body {
@@ -451,41 +424,88 @@ i.fa-comment {
 /* GRAFICO */
 .chart-container-2 {
     position: relative;
-    height: 450px !important; /* Ajuste a altura conforme necessário */
-    width: 820px ; /* Faz o gráfico ocupar 100% da largura disponível */
-    margin-left: 20%;
-
+    height: 450px !important;
+    left: 25%;
 }
 
 .tamanho{
   height: 530px;
 }
 
-
 .team-member {
-    display: flex;
-    align-items: center;
-    gap: 10px; /* Espaçamento entre os elementos */
+    display: flex; /* Alinha o ícone e as imagens na mesma linha */
+    align-items: center; /* Alinha verticalmente o ícone e as imagens */
+    margin-right: 20px; /* Ajusta a sobreposição das imagens */
 }
 
-.team-member img {
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    object-fit: cover;
+.icon {
+    margin-right: 10px; /* Espaçamento entre o ícone e as imagens */
+}
+
+.team-images {
+    display: flex; /* Alinha as imagens horizontalmente */
+    align-items: center; /* Alinha verticalmente as imagens */
+    position: relative; /* Define um contexto para as imagens absolutas */
+    margin-left: 20px;
+}
+
+.team-image {
     position: relative;
+    display: inline-block; /* Garante que as imagens fiquem lado a lado */
+    margin-left: -10px;
 }
 
-.team-member img:hover {
-    content: attr(data-name); /* Pega o nome do atributo data-name */
+.circular-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block; /* Remove espaço extra ao redor da imagem */
+}
 
-    transform: translateY(-5px);
-    color: #fff;
-    padding: 5px;
+.circular-image:hover {
+    transform: translateY(-8px);
+    transition: 0.5s;
+}
+
+
+.team-card {
+    display: none;
+    position: absolute;
+    bottom: 60px; /* Ajuste conforme necessário */
+    left: 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 10px;
+    z-index: 10;
     white-space: nowrap;
 }
 
+.team-image:hover .team-card {
+    display: block;
+}
 
+.table-responsive {
+    overflow: visible; /* Permite que os elementos flutuantes sejam visíveis fora da tabela */
+}
+
+.fa-user-plus{
+    margin-left: 10px;
+}
+
+.text-black{
+    color: black;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.btn-danger{
+    border-radius: 5px;
+}
+
+#span_classificar{
+    margin-left: 10px;
+}
 
   </style>
 
@@ -692,31 +712,64 @@ $resultServicosPendentes = $conexao->query($sqlServicosPendentes)->fetch_assoc()
         </div>
     </div>
 </div>
-
-	  
-<form>
 <?php
 include_once("../php/conexao.php");
+
+// Define o critério de classificação padrão
+$sort = isset($_GET['sort']) ? $_GET['sort'] : 'data_final';
+
+// Mapeia o critério de classificação para a coluna correta
+switch ($sort) {
+    case 'prioridade_maior':
+        $orderBy = 'CASE 
+                        WHEN prioridade = "Alta" THEN 1
+                        WHEN prioridade = "Média" THEN 2
+                        WHEN prioridade = "Baixa" THEN 3
+                        ELSE 4
+                    END ASC'; // Maior prioridade primeiro
+        break;
+    case 'prioridade_menor':
+        $orderBy = 'CASE 
+                        WHEN prioridade = "Alta" THEN 1
+                        WHEN prioridade = "Média" THEN 2
+                        WHEN prioridade = "Baixa" THEN 3
+                        ELSE 4
+                    END DESC';  // Menor prioridade primeiro
+        break;
+    case 'situacao':
+        $orderBy = 'CASE 
+                        WHEN situacao = "Pendente" THEN 1
+                        WHEN situacao = "Em Andamento" THEN 2
+                        WHEN situacao = "Concluído" THEN 3
+                        ELSE 4
+                    END ASC'; // Maior prioridade primeiro
+        break;
+    case 'recente':
+        $orderBy = 'data_final ASC';
+        break;
+    case 'antigo':
+        $orderBy = 'data_final DESC';
+        break;
+    default:
+        $orderBy = 'data_final ASC';
+        break;
+}
 
 $resultado = mysqli_query($conexao, "
     SELECT 
         servico.*, 
-        setor.nome_setor, 
-        GROUP_CONCAT(funcionario.foto_funcionario SEPARATOR ',') as fotos_funcionarios,
-        GROUP_CONCAT(funcionario.nome_funcionario SEPARATOR ',') as nomes_funcionarios
+        setor.nome_setor
     FROM 
         servico 
     JOIN 
         setor ON servico.id_setor = setor.id_setor 
-    LEFT JOIN 
-        funcionario ON servico.id_setor = funcionario.id_setor 
     WHERE 
         DATE_FORMAT(servico.data_final, '%Y-%m') = DATE_FORMAT(NOW(), '%Y-%m')
-    GROUP BY 
-        servico.id_servico
+    ORDER BY
+        $orderBy
 ");
 ?>
-</form>
+
 <div class="row">
     <div class="col-12 col-lg-12">
         <div class="card">
@@ -727,11 +780,12 @@ $resultado = mysqli_query($conexao, "
                             <i class="icon-options"></i>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="javascript:void();">Action</a>
-                            <a class="dropdown-item" href="javascript:void();">Another action</a>
-                            <a class="dropdown-item" href="javascript:void();">Something else here</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="javascript:void();">Separated link</a>
+                            <span id="span_classificar">Classificar Por:</span>
+                            <a class="dropdown-item" href="?sort=prioridade_maior">Prioridade Maior</a>
+                            <a class="dropdown-item" href="?sort=prioridade_menor">Prioridade Menor</a>
+                            <a class="dropdown-item" href="?sort=situacao">Situação</a>
+                            <a class="dropdown-item" href="?sort=recente">Início Mês</a>
+                            <a class="dropdown-item" href="?sort=antigo">Final Mês</a>
                         </div>
                     </div>
                 </div>
@@ -758,25 +812,31 @@ $resultado = mysqli_query($conexao, "
                                         <?= $row['nome_servico'] ?>
                                     </button>
                                 </td>
+
                                 <td class="w-50">
                                     <div class="team-member">
                                         <i class="fa-solid fa-user-plus open-popup" data-id="<?= $row['id_servico'] ?>"></i>
-                                        <?php
-                                        $fotos = array_map('trim', explode(',', $row['fotos_funcionarios']));
-                                        $nomes = array_map('trim', explode(',', $row['nomes_funcionarios']));
-                                        foreach ($fotos as $index => $foto) {
-                                            if (!empty($foto)) {
-                                                echo '<img src="' . $foto . '" alt="Foto do funcionário" data-name="' . $nomes[$index] . '">';
-                                            } else {
-                                                echo 'Sem foto';
-                                            }
-                                        }
-                                        ?>
+                                        <div class="team-images">
+                                            <?php 
+                                            $nomesEquipe = explode(',', $row['equipe']);
+                                            foreach ($nomesEquipe as $nome) {
+                                                $nome = trim($nome);
+                                                $funcionarioResult = mysqli_query($conexao, "SELECT foto_funcionario, nome_funcionario, email, cargo FROM funcionario WHERE nome_funcionario = '$nome'");
+                                                $funcionarioRow = mysqli_fetch_assoc($funcionarioResult);
+                                                if ($funcionarioRow): ?>
+                                                    <div class="team-image">
+                                                        <img src="<?= $funcionarioRow['foto_funcionario'] ?>" alt="<?= $funcionarioRow['nome_funcionario'] ?>" class="circular-image" />
+                                                        <div class="team-card">
+                                                            <p>Nome: <?= $funcionarioRow['nome_funcionario'] ?></p>
+                                                            <p>Email: <?= $funcionarioRow['email'] ?></p>
+                                                            <p>Cargo: <?= $funcionarioRow['cargo'] ?></p>
+                                                        </div>
+                                                    </div>
+                                                <?php endif; 
+                                            } ?>
+                                        </div>
                                     </div>
                                 </td>
-
-  
-
 
                                 <td class="situacao w-100 <?= strtolower(str_replace(' ', '-', $row['situacao'])) ?>"><?= $row['situacao'] ?></td>
                                 <td class="prioridade <?= strtolower($row['prioridade']) ?>"><?= $row['prioridade'] ?></td>
@@ -787,48 +847,28 @@ $resultado = mysqli_query($conexao, "
                                     <i class="fa-regular fa-comment" data-id="<?= $row['id_servico'] ?>"></i>
                                 </td>
                             </tr>
-                                        
-                                <!-- Renzo novo form com php funcionado e estilizado -->
-                        
-                            <form action='../php/enviar_observacao.php' method='POST'>
-    <!-- Modal for <?= $row['nome_servico'] ?> -->
-    <div class="modal fade custom-modal" id="modal<?= $row['id_servico'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg"> <!-- Ajusta a largura do modal -->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h3 class="modal-title fs-5" id="exampleModalLabel"><?= $row['nome_servico'] ?></h3>
-                    <button type="button" class="btn-close-custom" data-bs-dismiss="modal" aria-label="Close">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <!-- Conteúdo do modal para <?= $row['nome_servico'] ?> -->
-                    <p><?= $row['descricao'] ?></p>
-                    
-                    <!-- Linha branca para separar o conteúdo das observações -->
-                    <hr class="my-4">
-    
-                    <!-- Campo para escrever observações -->
-                    <div class="mb-3">
-                        <input type="hidden" name="id_servico" value="<?= $row['id_servico'] ?>" >
-                        <label for="observacao" class="form-label">Observações:</label>
-                        <textarea id="observacao" name="observacao" class="form-control" rows="4" placeholder="Escreva suas observações aqui..."></textarea>
-                    </div>
-                    
-                    <!-- Linha horizontal adicional abaixo do campo de observações -->
-                    <hr class="mt-4">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary btn-custom-close" data-bs-dismiss="modal">Fechar</button>
-                    <button type="submit" class="btn btn-primary btn-custom-save">Salvar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</form>
 
-
-
+                            <!-- Modal for <?= $row['nome_servico'] ?> -->
+                            <div class="modal fade" id="modal<?= $row['id_servico'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel"><?= $row['nome_servico'] ?></h1>
+                                            <button type="button" class="btn-close-custom" data-bs-dismiss="modal" aria-label="Close">
+                                                <i class="fas fa-times"></i>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <!-- Conteúdo do modal para <?= $row['nome_servico'] ?> -->
+                                            <?= $row['descricao'] ?>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary btn-custom-close" data-bs-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-primary btn-custom-save">Save changes</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         <?php endwhile; ?>
                     </tbody>
                 </table>
@@ -837,128 +877,8 @@ $resultado = mysqli_query($conexao, "
     </div>
 </div>
 
-
 <!-- O popup -->
-<div id="popup" class="popup">
-    <div class="popup-content">
-        <button id="close-btn" class="close-btn">&times;</button>
-        <h2>Equipe</h2>
-        <p>Adicione funcionários a este serviço</p>
-        <form action="atualizarEquipe.php" method="post">
-            <input type="text" id="search-bar" name="nome" placeholder="Pesquise nomes ou equipe">
-            <div id="resultados" class="resultados"></div>
-            <input type="submit" value="Atualizar">
-        </form>
-    </div>
-</div>
 
-   <!-- Sobreposição -->
-   <div id="overlay" class="overlay">
-    <div class="overlay-content">
-        <button id="close-overlay" class="close-btn">&times;</button>
-        <h2 class="text-principal">Chat Interno</h2>
-        <div class="chat-body">
-            <!-- Conteúdo dos comentários carregados dinamicamente -->
-        </div>
-        <form action="" method="post">
-        <input type="hidden" id="service-id" name="service_id" value="">
-            <div class="message-input">
-                <input type="text" name="mensagem" placeholder="Digite sua mensagem...">
-                <button type="submit">Enviar</button>
-            </div>
-        </form>
-    </div>
-</div>
-
-   <?php
-include_once('../php/conexao.php');
-
-if (isset($_GET['service_id'])) {
-    $service_id = intval($_GET['service_id']);
-
-    $query_comentarios = mysqli_query($conexao, 
-        "SELECT c.comentario, f.nome_funcionario 
-         FROM comentario c
-         JOIN funcionario f ON c.id_funcionario = f.id_funcionario
-         WHERE c.id_servico = $service_id");
-
-    if (mysqli_num_rows($query_comentarios) > 0) {
-        while ($comentario = mysqli_fetch_assoc($query_comentarios)) {
-            echo '<div class="chat-message">';
-            echo '    <div class="card">';
-            echo '        <div class="card-header">';
-            echo '            <img src="https://via.placeholder.com/30" alt="Avatar">';
-            echo '            ' . htmlspecialchars($comentario['nome_funcionario']);
-            echo '        </div>';
-            echo '        <div class="card-body">';
-            echo '            <blockquote class="blockquote mb-0">';
-            echo '                <p>' . htmlspecialchars($comentario['comentario']) . '</p>';
-            echo '            </blockquote>';
-            echo '        </div>';
-            echo '    </div>';
-            echo '</div>';
-        }
-    } else {
-        echo '<p>Sem comentários para este serviço.</p>';
-    }
-}
-?>
-
-
-
-
-<?php
-include_once("../php/conexao.php");
-
-
-// Inicializa variáveis
-$id_funcionario = null;
-
-// Obtém o nome do usuário da sessão
-if (isset($_SESSION['usuario'])) {
-    $usuario = $_SESSION['usuario'];
-
-    // Verifica se o nome do usuário está definido
-    if (!empty($usuario)) {
-        // Consulta para obter o id_funcionario
-        $query_funcionario = mysqli_query($conexao, "SELECT id_funcionario FROM funcionario WHERE nome_funcionario = '$usuario'");
-
-        // Verifica se a consulta retornou algum resultado
-        if ($query_funcionario && $query_funcionario->num_rows > 0) {
-            $row = $query_funcionario->fetch_assoc();
-            $id_funcionario = $row['id_funcionario'];
-        } else {
-            echo 'Usuário não encontrado na tabela funcionario.';
-        }
-    } else {
-        echo 'Nome do usuário na sessão está vazio.';
-    }
-} else {
-    echo 'Usuário não está definido na sessão.';
-}
-
-// Verifica se a requisição é do tipo POST
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($_POST['service_id']) && $id_funcionario !== null) {
-        $service_id = (int)$_POST['service_id'];
-        $mensagem = mysqli_real_escape_string($conexao, $_POST['mensagem']);
-
-        // Insere o comentário no banco de dados
-        $query = "INSERT INTO comentario (id_servico, id_funcionario, comentario) VALUES ('$service_id', '$id_funcionario', '$mensagem')";
-        if (mysqli_query($conexao, $query)) {
-            echo '';
-        } else {
-            echo 'Erro ao enviar comentário: ' . mysqli_error($conexao);
-        }
-    } else {
-        echo 'ID do serviço ou ID do funcionário não especificado.';
-    }
-}
-?>
-
-
-
-	</div><!--End Row-->
 	
 
   <?php
@@ -973,6 +893,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ");
 
 ?>
+
   
 <div class="row">
     <div class="col-12 col-lg-12">
@@ -984,11 +905,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <i class="icon-options"></i>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="javascript:void();">Action</a>
-                            <a class="dropdown-item" href="javascript:void();">Another action</a>
-                            <a class="dropdown-item" href="javascript:void();">Something else here</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="javascript:void();">Separated link</a>
+                            <span id="span_classificar">Classificar Por:</span>
+                            <a class="dropdown-item" href="?sort=prioridade_maior">Prioridade Maior</a>
+                            <a class="dropdown-item" href="?sort=prioridade_menor">Prioridade Menor</a>
+                            <a class="dropdown-item" href="?sort=situacao">Situação</a>
+                            <a class="dropdown-item" href="?sort=recente">Início Mês</a>
+                            <a class="dropdown-item" href="?sort=antigo">Final Mês</a>
                         </div>
                     </div>
                 </div>
@@ -1044,8 +966,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                             <?= $row['descricao'] ?>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary btn-custom-close" data-bs-dismiss="modal">Enviar</button>
-                                            <button type="button" class="btn btn-primary btn-custom-save">Salvar</button>
+                                            <button type="button" class="btn btn-secondary btn-custom-close" data-bs-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-primary btn-custom-save">Save changes</button>
                                         </div>
                                     </div>
                                 </div>
@@ -1082,13 +1004,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
              </div>
             </div>
           </div>
-          <div class="card-body tamanho">
+          <div class="card-body tamanho"> <!--O estilo está no app-style.css-->
             <div class="chart-container-2">
               <canvas id="doughnutChart"></canvas>
             </div>
-          </div>
-          <div class="table-responsive">
-            <table class="table align-items-center">
+            <div class="position-table">
+            <table class="table-form">
               <tbody>
                 <?php
                 $query = "
@@ -1104,9 +1025,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     while($row = mysqli_fetch_assoc($result)) {
                         $situacoes[] = $row["situacao"];
                         $quantidades[] = $row["quantidade"];
-                        echo "<tr>";
-                        echo "<td><i class='fa fa-circle text-white mr-2'></i>" . htmlspecialchars($row["situacao"]) . "</td>";
-                        echo "<td>" . htmlspecialchars($row["quantidade"]) . "</td>";
+                        echo "<tr class='pa-row'>";
+                        echo "<td class='pa-tr'><i class='fa fa-circle text-white mr-2'></i>" . htmlspecialchars($row["situacao"]) . "</td>";
+                        echo "<td class='pa-tr'>" . htmlspecialchars($row["quantidade"]) . "</td>";
                         echo "</tr>";
                     }
                 } else {
@@ -1118,8 +1039,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
               </tbody>
             </table>
           </div>
+          </div>
         </div>
     </div>
+    <!--Start footer-->
+	<footer class="footer">
+      <div class="container">
+        <div class="text-center">
+            <p id="legen-color-p">Copyright 2024 Gestrator-Pi</p>
+        </div>
+      </div>
+    </footer>
+	<!--End footer-->
 </div><!--End Row-->
 
       <!--End Dashboard Content-->
@@ -1136,15 +1067,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
     <!--End Back To Top Button-->
 	
-	<!--Start footer-->
-	<footer class="footer">
-      <div class="container">
-        <div class="text-center">
-
-        </div>
-      </div>
-    </footer>
-	<!--End footer-->
 	
   <!--start color switcher-->
    <div class="right-sidebar">
@@ -1194,7 +1116,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <!-- POPUP -->
 <script>
-document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function() {
     let popup = document.getElementById('popup');
 
     document.querySelectorAll('.open-popup').forEach(function(icon) {
@@ -1206,7 +1128,9 @@ document.addEventListener('DOMContentLoaded', function() {
             popupContent.innerHTML = `
                 <div class="popup-arrow"></div>
                 <button id="close-btn" class="close-btn">&times;</button>
-                <h2>Equipe</h2>
+                <h4 class="text-black">Equipe</h4>
+                <div id="equipe-atual" class="equipe-atual"></div>
+                <h5 class="text-black">Adicione funcionários a este serviço</h5>
                 <form action="../php/atualizarEquipe.php" method="post">
                   <input type="text" id="search-bar" name="nome" placeholder="Pesquise nomes ou equipe">
                   <div id="resultados" class="resultados"></div>
@@ -1214,6 +1138,21 @@ document.addEventListener('DOMContentLoaded', function() {
                   <input type="submit" class="btn-" value="Atualizar">
                 </form>
             `;
+
+            // Fetch the current team members
+            fetch(`buscar_funcionarios_adicionados.php?serviceId=${serviceId}`)
+                .then(response => response.json())
+                .then(data => {
+                    const equipeAtualDiv = document.getElementById('equipe-atual');
+                    equipeAtualDiv.innerHTML = data.map(funcionario => `
+                        <div class="equipe-item">
+                            <p> ${funcionario.nome_funcionario} | ${funcionario.email} | ${funcionario.cargo}
+                                <button class="remove-btn btn-danger px-2" data-nome="${funcionario.nome_funcionario}" data-id="${serviceId}">Remover</button>
+                            </p>
+                            <hr>
+                        </div>
+                    `).join('');
+                });
 
             popup.style.top = `${rect.bottom + window.scrollY}px`;
             popup.style.left = `${rect.left + window.scrollX}px`;
@@ -1258,8 +1197,26 @@ document.addEventListener('DOMContentLoaded', function() {
             popup.style.display = 'none';
         }
     });
-});
 
+    document.addEventListener('click', function(event) {
+        if (event.target.classList.contains('remove-btn')) {
+            const nomeFuncionario = event.target.getAttribute('data-nome');
+            const serviceId = event.target.getAttribute('data-id');
+
+            fetch(`remover_funcionario.php?nome=${nomeFuncionario}&serviceId=${serviceId}`, {
+                method: 'GET'
+            })
+            .then(response => response.text())
+            .then(data => {
+                if (data.trim() === 'success') {  // Verificar se a resposta é exatamente "success"
+                    event.target.parentElement.parentElement.remove();
+                } else {
+                    alert('Erro ao remover funcionário.');
+                }
+            });
+        }
+    });
+});
 
 </script>
 

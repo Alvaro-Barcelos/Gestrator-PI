@@ -715,6 +715,46 @@ $resultServicosPendentes = $conexao->query($sqlServicosPendentes)->fetch_assoc()
 <?php
 include_once("../php/conexao.php");
 
+// Define o critério de classificação padrão
+$sort = isset($_GET['sort']) ? $_GET['sort'] : 'data_final';
+
+// Mapeia o critério de classificação para a coluna correta
+switch ($sort) {
+    case 'prioridade_maior':
+        $orderBy = 'CASE 
+                        WHEN prioridade = "Alta" THEN 1
+                        WHEN prioridade = "Média" THEN 2
+                        WHEN prioridade = "Baixa" THEN 3
+                        ELSE 4
+                    END ASC'; // Maior prioridade primeiro
+        break;
+    case 'prioridade_menor':
+        $orderBy = 'CASE 
+                        WHEN prioridade = "Alta" THEN 1
+                        WHEN prioridade = "Média" THEN 2
+                        WHEN prioridade = "Baixa" THEN 3
+                        ELSE 4
+                    END DESC';  // Menor prioridade primeiro
+        break;
+    case 'situacao':
+        $orderBy = 'CASE 
+                        WHEN situacao = "Pendente" THEN 1
+                        WHEN situacao = "Em Andamento" THEN 2
+                        WHEN situacao = "Concluído" THEN 3
+                        ELSE 4
+                    END ASC'; // Maior prioridade primeiro
+        break;
+    case 'recente':
+        $orderBy = 'data_final ASC';
+        break;
+    case 'antigo':
+        $orderBy = 'data_final DESC';
+        break;
+    default:
+        $orderBy = 'data_final ASC';
+        break;
+}
+
 $resultado = mysqli_query($conexao, "
     SELECT 
         servico.*, 
@@ -726,7 +766,7 @@ $resultado = mysqli_query($conexao, "
     WHERE 
         DATE_FORMAT(servico.data_final, '%Y-%m') = DATE_FORMAT(NOW(), '%Y-%m')
     ORDER BY
-        data_final asc
+        $orderBy
 ");
 ?>
 
@@ -741,10 +781,11 @@ $resultado = mysqli_query($conexao, "
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
                             <span id="span_classificar">Classificar Por:</span>
-                            <a class="dropdown-item" href="javascript:void();">Prioridade</a>
-                            <a class="dropdown-item" href="javascript:void();">Situação</a>
-                            <a class="dropdown-item" href="javascript:void();">Mais Recente</a>
-                            <a class="dropdown-item" href="javascript:void();">Mais Antigo</a>
+                            <a class="dropdown-item" href="?sort=prioridade_maior">Prioridade Maior</a>
+                            <a class="dropdown-item" href="?sort=prioridade_menor">Prioridade Menor</a>
+                            <a class="dropdown-item" href="?sort=situacao">Situação</a>
+                            <a class="dropdown-item" href="?sort=recente">Início Mês</a>
+                            <a class="dropdown-item" href="?sort=antigo">Final Mês</a>
                         </div>
                     </div>
                 </div>
@@ -836,134 +877,8 @@ $resultado = mysqli_query($conexao, "
     </div>
 </div>
 
-
-
 <!-- O popup -->
 
-<div id="popup" class="popup">
-    <div class="popup-content">
-        <button id="close-btn" class="close-btn">&times;</button>
-        <h4 class="text-black">Equipe</h4>
-        <div id="equipe-atual" class="equipe-atual"></div>
-        <h5 class="text-black">Adicione funcionários a este serviço</h5>
-        <form action="atualizarEquipe.php" method="post">
-            <input type="text" id="search-bar" name="nome" placeholder="Pesquise nomes ou equipe">
-            <div id="resultados" class="resultados"></div>
-            <input type="hidden" name="serviceId" value="">
-            <input type="submit" value="Atualizar" class="btn btn-light px-5">
-        </form>
-    </div>
-</div>
-
-
-
-   <!-- Sobreposição -->
-   <div id="overlay" class="overlay">
-    <div class="overlay-content">
-        <button id="close-overlay" class="close-btn">&times;</button>
-        <h2 class="text-principal">Chat Interno</h2>
-        <div class="chat-body">
-            <!-- Conteúdo dos comentários carregados dinamicamente -->
-        </div>
-        <form action="" method="post">
-        <input type="hidden" id="service-id" name="service_id" value="">
-            <div class="message-input">
-                <input type="text" name="mensagem" placeholder="Digite sua mensagem...">
-                <button type="submit">Enviar</button>
-            </div>
-        </form>
-    </div>
-</div>
-
-   <?php
-include_once('../php/conexao.php');
-
-if (isset($_GET['service_id'])) {
-    $service_id = intval($_GET['service_id']);
-
-    $query_comentarios = mysqli_query($conexao, 
-        "SELECT c.comentario, f.nome_funcionario 
-         FROM comentario c
-         JOIN funcionario f ON c.id_funcionario = f.id_funcionario
-         WHERE c.id_servico = $service_id");
-
-    if (mysqli_num_rows($query_comentarios) > 0) {
-        while ($comentario = mysqli_fetch_assoc($query_comentarios)) {
-            echo '<div class="chat-message">';
-            echo '    <div class="card">';
-            echo '        <div class="card-header">';
-            echo '            <img src="https://via.placeholder.com/30" alt="Avatar">';
-            echo '            ' . htmlspecialchars($comentario['nome_funcionario']);
-            echo '        </div>';
-            echo '        <div class="card-body">';
-            echo '            <blockquote class="blockquote mb-0">';
-            echo '                <p>' . htmlspecialchars($comentario['comentario']) . '</p>';
-            echo '            </blockquote>';
-            echo '        </div>';
-            echo '    </div>';
-            echo '</div>';
-        }
-    } else {
-        echo '<p>Sem comentários para este serviço.</p>';
-    }
-}
-?>
-
-
-
-
-<?php
-include_once("../php/conexao.php");
-
-
-// Inicializa variáveis
-$id_funcionario = null;
-
-// Obtém o nome do usuário da sessão
-if (isset($_SESSION['usuario'])) {
-    $usuario = $_SESSION['usuario'];
-
-    // Verifica se o nome do usuário está definido
-    if (!empty($usuario)) {
-        // Consulta para obter o id_funcionario
-        $query_funcionario = mysqli_query($conexao, "SELECT id_funcionario FROM funcionario WHERE nome_funcionario = '$usuario'");
-
-        // Verifica se a consulta retornou algum resultado
-        if ($query_funcionario && $query_funcionario->num_rows > 0) {
-            $row = $query_funcionario->fetch_assoc();
-            $id_funcionario = $row['id_funcionario'];
-        } else {
-            echo 'Usuário não encontrado na tabela funcionario.';
-        }
-    } else {
-        echo 'Nome do usuário na sessão está vazio.';
-    }
-} else {
-    echo 'Usuário não está definido na sessão.';
-}
-
-// Verifica se a requisição é do tipo POST
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($_POST['service_id']) && $id_funcionario !== null) {
-        $service_id = (int)$_POST['service_id'];
-        $mensagem = mysqli_real_escape_string($conexao, $_POST['mensagem']);
-
-        // Insere o comentário no banco de dados
-        $query = "INSERT INTO comentario (id_servico, id_funcionario, comentario) VALUES ('$service_id', '$id_funcionario', '$mensagem')";
-        if (mysqli_query($conexao, $query)) {
-            echo '';
-        } else {
-            echo 'Erro ao enviar comentário: ' . mysqli_error($conexao);
-        }
-    } else {
-        echo 'ID do serviço ou ID do funcionário não especificado.';
-    }
-}
-?>
-
-
-
-	</div><!--End Row-->
 	
 
   <?php
@@ -978,6 +893,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ");
 
 ?>
+
   
 <div class="row">
     <div class="col-12 col-lg-12">
@@ -989,12 +905,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <i class="icon-options"></i>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <span>Classificar Por:</span>
-                            <a class="dropdown-item" href="javascript:void();">Action</a>
-                            <a class="dropdown-item" href="javascript:void();">Another action</a>
-                            <a class="dropdown-item" href="javascript:void();">Something else here</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="javascript:void();">Separated link</a>
+                            <span id="span_classificar">Classificar Por:</span>
+                            <a class="dropdown-item" href="?sort=prioridade_maior">Prioridade Maior</a>
+                            <a class="dropdown-item" href="?sort=prioridade_menor">Prioridade Menor</a>
+                            <a class="dropdown-item" href="?sort=situacao">Situação</a>
+                            <a class="dropdown-item" href="?sort=recente">Início Mês</a>
+                            <a class="dropdown-item" href="?sort=antigo">Final Mês</a>
                         </div>
                     </div>
                 </div>

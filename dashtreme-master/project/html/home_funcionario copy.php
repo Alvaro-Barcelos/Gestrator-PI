@@ -1309,7 +1309,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             // Requisição para carregar comentários reais
             var xhr = new XMLHttpRequest();
-            xhr.open('GET', '../get_comments.php?service_id=' + serviceId, true);
+            xhr.open('GET', 'get_comments.php?service_id=' + serviceId, true);
             xhr.onload = function() {
                 if (xhr.status === 200) {
                     chatMessages.innerHTML = xhr.responseText;

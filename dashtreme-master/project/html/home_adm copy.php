@@ -693,8 +693,7 @@ $resultServicosPendentes = $conexao->query($sqlServicosPendentes)->fetch_assoc()
     </div>
 </div>
 
-	  
-<form>
+
 <?php
 include_once("../php/conexao.php");
 
@@ -716,7 +715,7 @@ $resultado = mysqli_query($conexao, "
         servico.id_servico
 ");
 ?>
-</form>
+
 <div class="row">
     <div class="col-12 col-lg-12">
         <div class="card">
@@ -812,8 +811,10 @@ $resultado = mysqli_query($conexao, "
                     <div class="mb-3">
                         <input type="hidden" name="id_servico" value="<?= $row['id_servico'] ?>" >
                         <label for="observacao" class="form-label">Observações:</label>
-                        <textarea id="observacao" name="observacao" class="form-control" rows="4" placeholder="Escreva suas observações aqui..."></textarea>
+                        <textarea id="observacao" name="observacao" class="form-control" rows="4" placeholder="Escreva suas observações aqui..."><?= $row['observaçao'] ?></textarea>
                     </div>
+
+                    
                     
                     <!-- Linha horizontal adicional abaixo do campo de observações -->
                     <hr class="mt-4">

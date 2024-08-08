@@ -504,6 +504,10 @@ i.fa-comment {
     border-radius: 5px;
 }
 
+#span_classificar{
+    margin-left: 10px;
+}
+
   </style>
 
 
@@ -751,11 +755,11 @@ $resultServicosPendentes = $conexao->query($sqlServicosPendentes)->fetch_assoc()
                             <i class="icon-options"></i>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="javascript:void();">Action</a>
-                            <a class="dropdown-item" href="javascript:void();">Another action</a>
-                            <a class="dropdown-item" href="javascript:void();">Something else here</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="javascript:void();">Separated link</a>
+                            <span id="span_classificar">Classificar Por:</span>
+                            <a class="dropdown-item" href="javascript:void();">Prioridade</a>
+                            <a class="dropdown-item" href="javascript:void();">Situação</a>
+                            <a class="dropdown-item" href="javascript:void();">Mais Recente</a>
+                            <a class="dropdown-item" href="javascript:void();">Mais Antigo</a>
                         </div>
                     </div>
                 </div>
@@ -1001,6 +1005,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <i class="icon-options"></i>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
+                            <span>Classificar Por:</span>
                             <a class="dropdown-item" href="javascript:void();">Action</a>
                             <a class="dropdown-item" href="javascript:void();">Another action</a>
                             <a class="dropdown-item" href="javascript:void();">Something else here</a>

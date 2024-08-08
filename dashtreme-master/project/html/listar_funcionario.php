@@ -9,23 +9,28 @@
   <meta name="author" content="" />
   <title>Listar Funcionários</title>
 
-  <!-- Loader -->
-  <link href="../../assets/css/pace.min.css" rel="stylesheet" />
+   <!-- loader-->
+   <link href="../../assets/css/pace.min.css" rel="stylesheet"/>
   <script src="../../assets/js/pace.min.js"></script>
-
-  <!-- Favicon -->
+  <!--favicon-->
   <link rel="icon" href="../../assets/images/favicon.ico" type="image/x-icon">
+  <!-- Vector CSS -->
+  <link href="../../assets/plugins/vectormap/jquery-jvectormap-2.0.2.css" rel="stylesheet"/>
+  <!-- simplebar CSS-->
+  <link href="../../assets/plugins/simplebar/css/simplebar.css" rel="stylesheet"/>
+  <!-- Bootstrap core CSS-->
+  <link href="../../assets/css/bootstrap.min.css" rel="stylesheet"/>
+  <!-- animate CSS-->
+  <link href="../../assets/css/animate.css" rel="stylesheet" type="text/css"/>
+  <!-- Icons CSS-->
+  <link href="../../assets/css/icons.css" rel="stylesheet" type="text/css"/>
+  <!-- Sidebar CSS-->
+  <link href="../../assets/css/sidebar-menu.css" rel="stylesheet"/>
+  <!-- Custom Style-->
+  <link href="../../assets/css/app-style.css" rel="stylesheet"/>
 
-  <!-- Stylesheets -->
-  <link href="../../assets/plugins/simplebar/css/simplebar.css" rel="stylesheet" />
-  <link href="../../assets/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="../../assets/css/animate.css" rel="stylesheet" type="text/css" />
-  <link href="../../assets/css/icons.css" rel="stylesheet" type="text/css" />
-  <link href="../../../assets/css/sidebar-menu.css" rel="stylesheet" />
-
-  <link href="../../assets/css/app-style.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+  
   <!-- Custom Styles -->
   <style>
     .search-bar {
@@ -124,7 +129,7 @@
       </div>
       <ul class="sidebar-menu do-nicescrol">
         <li>
-          <a href="home_lider.html">
+          <a href="home_adm.php">
             <i class="fa-solid fa-chart-line" style="color: #9e9e9e;"></i> <span>Dashboard</span>
           </a>
         </li>
@@ -154,7 +159,7 @@
           </a>
         </li>
         <li>
-          <a href="profile_lider.html">
+          <a href="profile_adm.html">
             <i class="zmdi zmdi-face"></i> <span>Perfil</span>
           </a>
         </li>

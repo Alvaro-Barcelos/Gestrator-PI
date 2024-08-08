@@ -400,11 +400,10 @@ i.fa-comment {
 /* GRAFICO */
 .chart-container-2 {
     position: relative;
-    height: 450px !important; /* Ajuste a altura conforme necessário */
-    width: 820px ; /* Faz o gráfico ocupar 100% da largura disponível */
-    margin-left: 20%;
-
+    height: 450px !important;
+    left: 25%;
 }
+
 
 .tamanho{
   height: 530px;
@@ -1114,111 +1113,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 
-<!-- POPUP -->
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    let popup = document.getElementById('popup');
 
-    document.querySelectorAll('.open-popup').forEach(function(icon) {
-        icon.addEventListener('click', function() {
-            const serviceId = this.getAttribute('data-id');
-            const rect = this.getBoundingClientRect();
-
-            const popupContent = popup.querySelector('.popup-content');
-            popupContent.innerHTML = `
-                <div class="popup-arrow"></div>
-                <button id="close-btn" class="close-btn">&times;</button>
-                <h2>Equipe</h2>
-                <form action="../php/atualizarEquipe.php" method="post">
-                  <input type="text" id="search-bar" name="nome" placeholder="Pesquise nomes ou equipe">
-                  <div id="resultados" class="resultados"></div>
-                  <input type="hidden" name="serviceId" value="${serviceId}">
-                  <input type="submit" class="btn-" value="Atualizar">
-                </form>
-            `;
-
-            popup.style.top = `${rect.bottom + window.scrollY}px`;
-            popup.style.left = `${rect.left + window.scrollX}px`;
-            popup.style.display = 'block';
-
-            document.getElementById('close-btn').addEventListener('click', function() {
-                popup.style.display = 'none';
-            });
-
-            const searchBar = document.getElementById('search-bar');
-            searchBar.addEventListener('input', function() {
-              const query = searchBar.value;
-              if (query.length > 0) {
-                  fetch(`buscar_funcionarios.php?query=${query}`)
-                      .then(response => response.json())
-                      .then(data => {
-                          const resultadosDiv = document.getElementById('resultados');
-                          resultadosDiv.innerHTML = '';
-                          data.forEach(funcionario => {
-                              const div = document.createElement('div');
-                              div.textContent = funcionario.nome_funcionario;
-                              div.classList.add('resultado-item');
-                              resultadosDiv.appendChild(div);
-
-                              div.addEventListener('click', function(event) {
-                                  event.stopPropagation(); // Impede o fechamento do popup
-                                  searchBar.value = funcionario.nome_funcionario;
-                                  resultadosDiv.innerHTML = '';
-                              });
-                          });
-                      });
-              } else {
-                  document.getElementById('resultados').innerHTML = '';
-              }
-          });
-
-        });
-    });
-
-    document.addEventListener('click', function(event) {
-        if (!popup.contains(event.target) && !event.target.closest('.open-popup')) {
-            popup.style.display = 'none';
-        }
-    });
-});
 
 
 </script>
 
-<!-- POPUP estlização -->
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-    const popup = document.getElementById('popup');
-    const openPopupIcons = document.querySelectorAll('.open-popup');
-    const closeButton = document.getElementById('close-btn');
-
-    openPopupIcons.forEach(icon => {
-        icon.addEventListener('click', (event) => {
-            const iconRect = icon.getBoundingClientRect();
-            const popupRect = popup.getBoundingClientRect();
-
-            // Define a posição do popup logo abaixo do ícone
-            popup.style.top = `${iconRect.bottom + window.scrollY + 10}px`; // 10px abaixo do ícone
-            popup.style.left = `${iconRect.left}px`;
-            popup.classList.add('show'); // Mostra o popup
-            icon.classList.add('active'); // Adiciona a classe ativa ao ícone
-        });
-    });
-
-    closeButton.addEventListener('click', () => {
-        popup.classList.remove('show'); // Esconde o popup
-        openPopupIcons.forEach(icon => icon.classList.remove('active')); // Remove a classe ativa do ícone
-    });
-
-    document.addEventListener('click', (event) => {
-        if (!popup.contains(event.target) && !event.target.classList.contains('open-popup')) {
-            popup.classList.remove('show'); // Esconde o popup
-            openPopupIcons.forEach(icon => icon.classList.remove('active')); // Remove a classe ativa do ícone
-        }
-    });
-});
-
-</script>
 
 
   <script>

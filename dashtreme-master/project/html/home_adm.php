@@ -769,7 +769,7 @@ $resultServicosPendentes = $conexao->query($sqlServicosPendentes)->fetch_assoc()
                         <?php
                         while ($row = mysqli_fetch_assoc($resultado)):
                             $situacaoClass = strtolower(str_replace(' ', '', $row['situacao']));
-                            $prioridadeClass = strtolower(str_replace(' ', '', $row['prioridade']));
+                            $prioridadeClass = str_replace(' ', '', $row['prioridade']);
                         ?>
                             <tr>
                                 <td class="sem-espaco w-120">

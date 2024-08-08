@@ -400,11 +400,10 @@ i.fa-comment {
 /* GRAFICO */
 .chart-container-2 {
     position: relative;
-    height: 450px !important; /* Ajuste a altura conforme necessário */
-    width: 820px ; /* Faz o gráfico ocupar 100% da largura disponível */
-    margin-left: 20%;
-
+    height: 450px !important;
+    left: 25%;
 }
+
 
 .tamanho{
   height: 530px;

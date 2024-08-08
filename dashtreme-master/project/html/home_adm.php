@@ -716,19 +716,6 @@ $resultServicosPendentes = $conexao->query($sqlServicosPendentes)->fetch_assoc()
 <?php
     include_once("../php/conexao.php");
 
-    // Mapeamento das classes CSS para situações e prioridades
-    $situacaoClasses = [
-        "Pendente" => "teste2",
-        "Em andamento" => "teste",
-        "Concluída" => "teste1",
-        "Não iniciado" => "teste3"
-    ];
-
-    $prioridadeClasses = [
-        "Alta" => "alta",
-        "Média" => "media3",
-        "Baixa" => "baixa"
-    ];
 
     $resultado = mysqli_query($conexao, "
         SELECT 
@@ -779,7 +766,11 @@ $resultServicosPendentes = $conexao->query($sqlServicosPendentes)->fetch_assoc()
                         </tr>
                     </thead>
                     <tbody>
-                        <?php while($row = mysqli_fetch_assoc($resultado)): ?>
+                        <?php
+                        while ($row = mysqli_fetch_assoc($resultado)):
+                            $situacaoClass = strtolower(str_replace(' ', '', $row['situacao']));
+                            $prioridadeClass = strtolower(str_replace(' ', '', $row['prioridade']));
+                        ?>
                             <tr>
                                 <td class="sem-espaco w-120">
                                     <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#modal<?= $row['id_servico'] ?>">
@@ -791,13 +782,14 @@ $resultServicosPendentes = $conexao->query($sqlServicosPendentes)->fetch_assoc()
                                     <div class="team-member">
                                         <i class="fa-solid fa-user-plus open-popup" data-id="<?= $row['id_servico'] ?>"></i>
                                         <div class="team-images">
-                                            <?php 
+                                            <?php
                                             $nomesEquipe = explode(',', $row['equipe']);
-                                            foreach ($nomesEquipe as $nome) {
+                                            foreach ($nomesEquipe as $nome):
                                                 $nome = trim($nome);
                                                 $funcionarioResult = mysqli_query($conexao, "SELECT foto_funcionario, nome_funcionario, email, cargo FROM funcionario WHERE nome_funcionario = '$nome'");
                                                 $funcionarioRow = mysqli_fetch_assoc($funcionarioResult);
-                                                if ($funcionarioRow): ?>
+                                                if ($funcionarioRow):
+                                            ?>
                                                     <div class="team-image">
                                                         <img src="<?= $funcionarioRow['foto_funcionario'] ?>" alt="<?= $funcionarioRow['nome_funcionario'] ?>" class="circular-image" />
                                                         <div class="team-card">
@@ -806,17 +798,14 @@ $resultServicosPendentes = $conexao->query($sqlServicosPendentes)->fetch_assoc()
                                                             <p>Cargo: <?= $funcionarioRow['cargo'] ?></p>
                                                         </div>
                                                     </div>
-                                                <?php endif; 
-                                            } ?>
+                                                <?php endif; ?>
+                                            <?php endforeach; ?>
                                         </div>
                                     </div>
                                 </td>
 
-                                <!-- Aplica a classe CSS correta à situação -->
-                                <td class="situacao w-100 <?= $situacaoClasses[$row['situacao']] ?>" data-id="<?= $row['id_servico'] ?>"><?= $row['situacao'] ?></td>
-
-                                <!-- Aplica a classe CSS correta à prioridade -->
-                                <td class="prioridade <?= $prioridadeClasses[$row['prioridade']] ?>" data-id="<?= $row['id_servico'] ?>"><?= $row['prioridade'] ?></td>
+                                <td class="situacao w-100 <?= $situacaoClass ?>" data-id="<?= $row['id_servico'] ?>"><?= $row['situacao'] ?></td>
+                                <td class="prioridade <?= $prioridadeClass ?>" data-id="<?= $row['id_servico'] ?>"><?= $row['prioridade'] ?></td>
 
                                 <td class="w-200"><?= $row['nome_setor'] ?></td>
                                 <td><?= date('d M Y', strtotime($row['data_criada'])) ?></td>
@@ -825,7 +814,6 @@ $resultServicosPendentes = $conexao->query($sqlServicosPendentes)->fetch_assoc()
                                     <i class="fa-regular fa-comment" data-id="<?= $row['id_servico'] ?>"></i>
                                 </td>
                             </tr>
-
                             <!-- Modal for <?= $row['nome_servico'] ?> -->
                             <div class="modal fade" id="modal<?= $row['id_servico'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
@@ -837,7 +825,6 @@ $resultServicosPendentes = $conexao->query($sqlServicosPendentes)->fetch_assoc()
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            <!-- Conteúdo do modal para <?= $row['nome_servico'] ?> -->
                                             <?= $row['descricao'] ?>
                                         </div>
                                         <div class="modal-footer">
@@ -848,6 +835,7 @@ $resultServicosPendentes = $conexao->query($sqlServicosPendentes)->fetch_assoc()
                                 </div>
                             </div>
                         <?php endwhile; ?>
+
                     </tbody>
                 </table>
             </div>
@@ -891,6 +879,8 @@ $resultServicosPendentes = $conexao->query($sqlServicosPendentes)->fetch_assoc()
         </form>
     </div>
 </div>
+</div><!--End Row-->
+
 
    <?php
 include_once('../php/conexao.php');
@@ -980,7 +970,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
 
-	</div><!--End Row-->
 	
 
   <?php
@@ -1104,12 +1093,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </table>
             </div>
         </div>
-    </div>
+    </div> 
 </div>
 
-   <?php
-      include_once("../php/conexao.php");
-   ?>
 
 <div class="row">
     <div class="col-12 col-lg-12 col-xl-12">
@@ -1492,7 +1478,28 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
   <script>
-   $(document).ready(function(){
+$(document).ready(function(){
+    // Aplicar classes de situação e prioridade ao carregar a página
+    $(".situacao").each(function() {
+        var situacoes = ["Pendente", "Em andamento", "Concluída", "Não iniciado"];
+        var classes = ["teste2", "teste", "teste1", "teste3"];
+        var current = $(this).text().trim();
+        var index = situacoes.indexOf(current);
+        if (index !== -1) {
+            $(this).addClass(classes[index]);
+        }
+    });
+
+    $(".prioridade").each(function() {
+        var prioridades = ["Alta", "Média", "Baixa"];
+        var classes = ["alta", "media3", "baixa"];
+        var current = $(this).text().trim();
+        var index = prioridades.indexOf(current);
+        if (index !== -1) {
+            $(this).addClass(classes[index]);
+        }
+    });
+
     // Handle status change
     $(".situacao").click(function(){
         var situacoes = ["Pendente", "Em andamento", "Concluída", "Não iniciado"];

@@ -188,13 +188,17 @@
                       placeholder="Digite uma breve descrição do conteúdo" required></textarea>
                   </div>
                   <div class="form-group">
-                    <label for="customFilePDF">PDF do conteúdo</label>
-                    <input type="file" class="form-control-file" id="customFilePDF" name="pdf" accept=".pdf" required>
+                    <label for="curriculo">PDF do curso</label>
+                    <i id="pdf-icon" class="fas fa-check-circle text-success" style="display: none; padding: 8px;"></i>
+                    <label class="select-style" for="customFilePDF" >PDF do conteúdo</label>
+                    <input type="file"  class="select-style"class="form-control-file" name="pdf" id="customFilePDF" accept="application/pdf" required onchange="handleFileUpload(event, 'pdf-icon')" />
                   </div>
+                  
                   <div class="form-group">
-                    <label for="customFileImage">Imagem do conteúdo</label>
-                    <input type="file" class="form-control-file" id="customFileImage" name="capa" accept="image/*"
-                      required>
+                    <label for="curriculo">Capa do curso</label>
+                    <i id="image-icon" class="fas fa-check-circle text-success" style="display: none; padding: 8px;"></i>
+                    <label class="select-style" for="customFileImage">Imagem do conteúdo</label>
+                    <input class="select-style" type="file" class="form-control-file" name="capa" id="customFileImage" accept="image/*" required onchange="handleImageUpload(event, 'image-icon')" />
                   </div>
                   <div class="form-group">
                     <label for="input-2">Setor</label>
@@ -274,7 +278,32 @@
       
      </div>
    </div>
+<!-- pdf -->
+ <script>
+const handleFileUpload = (event, iconId) => {
+    const file = event.target.files[0];
+    if (file && file.type === "application/pdf") {
+      setValidationIcon(iconId, true);
+    } else {
+      setValidationIcon(iconId, false);
+    }
+  };
 
+  const handleImageUpload = (event, iconId) => {
+    const file = event.target.files[0];
+    if (file && file.type.startsWith('image/')) {
+      setValidationIcon(iconId, true);
+    } else {
+      setValidationIcon(iconId, false);
+    }
+  };
+
+  const setValidationIcon = (elementId, isValid) => {
+    const icon = document.getElementById(elementId);
+    icon.style.display = 'inline-block';
+    icon.className = isValid ? 'fas fa-check-circle text-success' : 'fas fa-times-circle text-danger';
+  };
+ </script>
   <!-- Bootstrap core JavaScript-->
   <script src="../../assets/js/jquery.min.js"></script>
   <script src="../../assets/js/popper.min.js"></script>

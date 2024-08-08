@@ -124,14 +124,14 @@
   <!-- Start wrapper -->
   <div id="wrapper">
 
-    <!-- Start sidebar-wrapper -->
-    <div id="sidebar-wrapper" data-simplebar="" data-simplebar-auto-hide="true">
-     <div class="brand-logo">
-      <a href="home_adm.html">
-       <img src="../../imagens/GE.png" class="logo-icon" alt="logo icon" >
-       <h5 class="logo-text">Gestrator</h5>
-     </a>
-   </div>
+    <!--Start sidebar-wrapper-->
+  <div id="sidebar-wrapper" data-simplebar="" data-simplebar-auto-hide="true">
+      <div class="brand-logo">
+       <a href="home_adm.html">
+        <img src="../../imagens/GE.png" class="logo-icon" alt="logo icon" >
+        <h5 class="logo-text">Gestrator</h5>
+      </a>
+    </div>
    <ul class="sidebar-menu do-nicescrol">
 
       <li>
@@ -148,13 +148,13 @@
 
 
       <li>
-        <a href="conteudo_adm.html">
+        <a href="conteudo_adm.php">
          <i class="fa-solid fa-book" style="color: #9e9e9e;"></i> <span>Conteúdo</span>
         </a>
       </li>
 
       <li>
-        <a href="cadastrar_funcionario_adm.html">
+        <a href="cadastrar_funcionario_adm.php">
           <i class="fa-solid fa-user" style="color: #9e9e9e;"></i> <span>Funcionário</span>
         </a>
       </li>
@@ -164,18 +164,18 @@
       </a>
     </li>
       <li>
-        <a href="registrar_servico_adm.html">
+        <a href="registrar_servico_adm.php">
           <i class="fa-solid fa-list-check" style="color: #9e9e9e;"></i> <span>Serviço</span>
         </a>
       </li>      
       <li>
-        <a href="relatorio_adm.html">
+        <a href="relatorio_adm.php">
           <i class="zmdi zmdi-assignment" style="color: #9e9e9e;"></i> <span>Relatório</span>
         </a>
       </li>
 
       <li>
-        <a href="profile_adm.html">
+        <a href="profile_adm.php">
           <i class="zmdi zmdi-face"></i> <span>Perfil</span>
         </a>
       </li>
@@ -189,7 +189,9 @@
     </ul>
    
    </div>
-    <!-- End sidebar-wrapper -->
+   <!--End sidebar-wrapper-->
+
+<!--Start topbar header-->
 
     <!-- Start topbar header -->
     <header class="topbar-nav">

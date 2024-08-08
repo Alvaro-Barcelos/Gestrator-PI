@@ -12,7 +12,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <meta name="description" content="" />
   <meta name="author" content="" />
-  <title>Cadastrar Funcionário</title>
+  <title>Cadastrar Conteúdo</title>
   <!-- loader-->
   <link href="../../assets/css/pace.min.css" rel="stylesheet" />
   <script src="../../assets/js/pace.min.js"></script>
@@ -69,7 +69,7 @@
            <i class="fa-solid fa-chart-line" style="color: #9e9e9e;"></i> <span>Dashboard</span>
          </a>
        </li>
- 
+
        <li>
          <a href="https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fcalendar.google.com%2Fcalendar%2Fu%2F0%2Fr&emr=1&followup=https%3A%2F%2Fcalendar.google.com%2Fcalendar%2Fu%2F0%2Fr&ifkv=AdF4I77H6Q8kDjrou1wIGuHz3S3_9WHl1Z6w3HQ5MAbJVDPoIZHRKIQUAYS0YHfymJmHEtgj8rOdfQ&osid=1&passive=1209600&service=cl&flowName=GlifWebSignIn&flowEntry=ServiceLogin&dsh=S268491357%3A1720720457775498&ddm=0">
            <i class="zmdi zmdi-calendar-check"></i> <span>Calendário</span>
@@ -78,13 +78,13 @@
  
  
        <li>
-         <a href="conteudo_adm.html">
+         <a href="conteudo_adm.php">
           <i class="fa-solid fa-book" style="color: #9e9e9e;"></i> <span>Conteúdo</span>
          </a>
        </li>
  
        <li>
-         <a href="cadastrar_funcionario_adm.html">
+         <a href="cadastrar_funcionario_adm.php">
            <i class="fa-solid fa-user" style="color: #9e9e9e;"></i> <span>Funcionário</span>
          </a>
        </li>
@@ -94,18 +94,18 @@
        </a>
      </li>
        <li>
-         <a href="registrar_servico_adm.html">
+         <a href="registrar_servico_adm.php">
            <i class="fa-solid fa-list-check" style="color: #9e9e9e;"></i> <span>Serviço</span>
          </a>
        </li>      
        <li>
-         <a href="relatorio_adm.html">
+         <a href="relatorio_adm.php">
            <i class="zmdi zmdi-assignment" style="color: #9e9e9e;"></i> <span>Relatório</span>
          </a>
        </li>
  
        <li>
-         <a href="profile_adm.html">
+         <a href="profile_adm.php">
            <i class="zmdi zmdi-face"></i> <span>Perfil</span>
          </a>
        </li>

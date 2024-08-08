@@ -1207,13 +1207,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     </div>
     <!--Start footer-->
-	<footer class="footer">
-      <div class="container">
-        <div class="text-center">
-            <p id="legen-color-p">Copyright 2024 Gestrator-Pi</p>
-        </div>
-      </div>
-    </footer>
+	
 	<!--End footer-->
 </div><!--End Row-->
       <!--End Dashboard Content-->

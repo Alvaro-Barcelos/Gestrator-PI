@@ -138,6 +138,13 @@
             <i class="zmdi zmdi-calendar-check"></i> <span>Calendário</span>
           </a>
         </li>
+
+        <li>
+        <a href="conteudo_adm.html">
+         <i class="fa-solid fa-book" style="color: #9e9e9e;"></i> <span>Conteúdo</span>
+        </a>
+      </li>
+
         <li>
           <a href="relatorio_adm.html">
             <i class="zmdi zmdi-assignment" style="color: #9e9e9e;"></i> <span>Relatório</span>

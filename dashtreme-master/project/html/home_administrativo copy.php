@@ -1,6 +1,6 @@
 <?php
-  include("../protect_funcionario.php");
-  include_once("../../php/conexao.php");
+  include("protect_funcionario.php");
+  include_once("../php/conexao.php");
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -11,25 +11,26 @@
   <meta name="description" content=""/>
   <meta name="author" content=""/>
   <title>Gestrator Funcionário</title>
+
   <!-- loader-->
-  <link href="../../../assets/css/pace.min.css" rel="stylesheet"/>
-  <script src="../../../assets/js/pace.min.js"></script>
+  <link href="../../assets/css/pace.min.css" rel="stylesheet"/>
+  <script src="../../assets/js/pace.min.js"></script>
   <!--favicon-->
-  <link rel="icon" href="../../../assets/images/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="../../assets/images/favicon.ico" type="image/x-icon">
   <!-- Vector CSS -->
-  <link href="../../../assets/plugins/vectormap/jquery-jvectormap-2.0.2.css" rel="stylesheet"/>
+  <link href="../../assets/plugins/vectormap/jquery-jvectormap-2.0.2.css" rel="stylesheet"/>
   <!-- simplebar CSS-->
-  <link href="../../../assets/plugins/simplebar/css/simplebar.css" rel="stylesheet"/>
+  <link href="../../assets/plugins/simplebar/css/simplebar.css" rel="stylesheet"/>
   <!-- Bootstrap core CSS-->
-  <link href="../../../assets/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="../../assets/css/bootstrap.min.css" rel="stylesheet"/>
   <!-- animate CSS-->
-  <link href="../../../assets/css/animate.css" rel="stylesheet" type="text/css"/>
+  <link href="../../assets/css/animate.css" rel="stylesheet" type="text/css"/>
   <!-- Icons CSS-->
-  <link href="../../../assets/css/icons.css" rel="stylesheet" type="text/css"/>
+  <link href="../../assets/css/icons.css" rel="stylesheet" type="text/css"/>
   <!-- Sidebar CSS-->
-  <link href="../../../assets/css/sidebar-menu.css" rel="stylesheet"/>
+  <link href="../../assets/css/sidebar-menu.css" rel="stylesheet"/>
   <!-- Custom Style-->
-  <link href="../../../assets/css/app-style.css" rel="stylesheet"/>
+  <link href="../../assets/css/app-style.css" rel="stylesheet"/>
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   
@@ -404,7 +405,6 @@ i.fa-comment {
     left: 25%;
 }
 
-
 .tamanho{
   height: 530px;
 }
@@ -448,9 +448,7 @@ i.fa-comment {
   color: white;
 }
 
-#span_classificar{
-    margin-left: 10px;
-}
+
 
   </style>
 
@@ -496,13 +494,13 @@ i.fa-comment {
 
 
       <li>
-        <a href="profile_funcionario.php">
+        <a href="profile_funcionario.html">
           <i class="zmdi zmdi-face"></i> <span>Perfil</span>
         </a>
       </li>
 
       <li>
-        <a href="../../php/logout.php">
+        <a href="../php/logout.php">
           <i class="fa-solid fa-right-from-bracket" style="color: #9e9e9e;"></i> <span>Sair</span>
         </a>
       </li>
@@ -564,7 +562,7 @@ i.fa-comment {
         <li class="dropdown-divider"></li>
         <a href="profile_adm.html"><li class="dropdown-item"><i class="icon-wallet mr-2"></i> Perfil</li></a>
         <li class="dropdown-divider"></li>
-        <a href="../../php/logout.php"><li class="dropdown-item"><i class="icon-power mr-2"></i> Sair</li></a>
+        <a href="../php/logout.php"><li class="dropdown-item"><i class="icon-power mr-2"></i> Sair</li></a>
         
       </ul>
     </li>
@@ -581,41 +579,41 @@ i.fa-comment {
   <!--Start Dashboard Content-->
   
   <?php
-include_once("../../php/conexao.php");
-
-// Consultas SQL para buscar os dados
-$sqlTotalServicos = "SELECT COUNT(*) AS total
-FROM servico s
-INNER JOIN setor st ON s.id_setor = st.id_setor
-WHERE st.nome_setor = '$nome_setor'";
 
 
-
-$sqlServicosConcluidos = "SELECT COUNT(*) AS total
-FROM servico s
-INNER JOIN setor st ON s.id_setor = st.id_setor
-INNER JOIN funcionario f ON f.id_setor = st.id_setor
-WHERE st.nome_setor = '$nome_setor' AND s.situacao = 'Concluido'";
-
-
-$sqlServicosAndamento = "SELECT COUNT(*) AS total 
-FROM servico s
-INNER JOIN setor st ON s.id_setor = st.id_setor
-INNER JOIN funcionario f ON f.id_setor = st.id_setor
-WHERE st.nome_setor = '$nome_setor' AND s.situacao = 'Em andamento'";
+    // Consultas SQL para buscar os dados
+    $sqlTotalServicos = "SELECT COUNT(*) AS total
+    FROM servico s
+    INNER JOIN setor st ON s.id_setor = st.id_setor
+    WHERE st.nome_setor = '$nome_setor'";
 
 
-$sqlServicosPendentes = "SELECT COUNT(*) AS total 
-FROM servico s
-INNER JOIN setor st ON s.id_setor = st.id_setor
-INNER JOIN funcionario f ON f.id_setor = st.id_setor
-WHERE st.nome_setor = '$nome_setor' AND s.situacao = 'Pendente'";
 
-// Executando as consultas e obtendo os resultados
-$resultTotalServicos = $conexao->query($sqlTotalServicos)->fetch_assoc();
-$resultServicosConcluidos = $conexao->query($sqlServicosConcluidos)->fetch_assoc();
-$resultServicosAndamento = $conexao->query($sqlServicosAndamento)->fetch_assoc();
-$resultServicosPendentes = $conexao->query($sqlServicosPendentes)->fetch_assoc();
+    $sqlServicosConcluidos = "SELECT COUNT(*) AS total
+    FROM servico s
+    INNER JOIN setor st ON s.id_setor = st.id_setor
+    INNER JOIN funcionario f ON f.id_setor = st.id_setor
+    WHERE st.nome_setor = '$nome_setor' AND situacao = 'concluido'";
+
+
+    $sqlServicosAndamento = "SELECT COUNT(*) AS total
+    FROM servico s
+    INNER JOIN setor st ON s.id_setor = st.id_setor
+    INNER JOIN funcionario f ON f.id_setor = st.id_setor
+    WHERE st.nome_setor = '$nome_setor' AND situacao = 'em andamento'";
+
+
+    $sqlServicosPendentes = "SELECT COUNT(*) AS total
+    FROM servico s
+    INNER JOIN setor st ON s.id_setor = st.id_setor
+    INNER JOIN funcionario f ON f.id_setor = st.id_setor
+    WHERE st.nome_setor = '$nome_setor' AND situacao = 'pendente'";
+
+    // Executando as consultas e obtendo os resultados
+    $resultTotalServicos = $conexao->query($sqlTotalServicos)->fetch_assoc();
+    $resultServicosConcluidos = $conexao->query($sqlServicosConcluidos)->fetch_assoc();
+    $resultServicosAndamento = $conexao->query($sqlServicosAndamento)->fetch_assoc();
+    $resultServicosPendentes = $conexao->query($sqlServicosPendentes)->fetch_assoc();
 
 ?>
 
@@ -667,9 +665,16 @@ $resultServicosPendentes = $conexao->query($sqlServicosPendentes)->fetch_assoc()
 
 	  
 
+ <?php
 
+
+
+$resultado = mysqli_query($conexao, "SELECT servico.*, setor.nome_setor FROM servico JOIN setor ON servico.id_setor = setor.id_setor WHERE DATE_FORMAT(servico.data_final, '%Y-%m') = DATE_FORMAT(NOW(), '%Y-%m') AND  setor.nome_setor = '$nome_setor'");
+
+?>
 
 <?php
+include_once("../php/conexao.php");
 
 // Define o critério de classificação padrão
 $sort = isset($_GET['sort']) ? $_GET['sort'] : 'data_final';
@@ -720,7 +725,7 @@ $resultado = mysqli_query($conexao, "
     JOIN 
         setor ON servico.id_setor = setor.id_setor 
     WHERE 
-        DATE_FORMAT(servico.data_final, '%Y-%m') = DATE_FORMAT(NOW(), '%Y-%m') AND  setor.nome_setor = '$nome_setor'
+        DATE_FORMAT(servico.data_final, '%Y-%m') = DATE_FORMAT(NOW(), '%Y-%m')
     ORDER BY
         $orderBy
 ");
@@ -885,6 +890,8 @@ if (isset($_GET['service_id'])) {
 
 <?php
 
+
+
 // Inicializa variáveis
 $id_funcionario = null;
 
@@ -937,11 +944,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   <?php
 
+
+
   $resultado2 = mysqli_query($conexao, "
   SELECT servico.*, setor.nome_setor 
   FROM servico 
   JOIN setor ON servico.id_setor = setor.id_setor 
-  WHERE DATE_FORMAT(servico.data_final, '%Y-%m') = DATE_FORMAT(DATE_ADD(NOW(), INTERVAL 1 MONTH), '%Y-%m') AND  setor.nome_setor = '$nome_setor'
+  WHERE DATE_FORMAT(servico.data_final, '%Y-%m') = DATE_FORMAT(DATE_ADD(NOW(), INTERVAL 1 MONTH), '%Y-%m')
 ");
 
 ?>
@@ -1031,10 +1040,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
 
     </div><!--End Row-->
-
-   <?php
-      include_once("../../php/conexao.php");
-   ?>
 
 <div class="row">
     <div class="col-12 col-lg-12 col-xl-12">
@@ -1164,11 +1169,111 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 
+<!-- POPUP -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    let popup = document.getElementById('popup');
 
+    document.querySelectorAll('.open-popup').forEach(function(icon) {
+        icon.addEventListener('click', function() {
+            const serviceId = this.getAttribute('data-id');
+            const rect = this.getBoundingClientRect();
+
+            const popupContent = popup.querySelector('.popup-content');
+            popupContent.innerHTML = `
+                <div class="popup-arrow"></div>
+                <button id="close-btn" class="close-btn">&times;</button>
+                <h2>Equipe</h2>
+                <form action="../php/atualizarEquipe.php" method="post">
+                  <input type="text" id="search-bar" name="nome" placeholder="Pesquise nomes ou equipe">
+                  <div id="resultados" class="resultados"></div>
+                  <input type="hidden" name="serviceId" value="${serviceId}">
+                  <input type="submit" class="btn-" value="Atualizar">
+                </form>
+            `;
+
+            popup.style.top = `${rect.bottom + window.scrollY}px`;
+            popup.style.left = `${rect.left + window.scrollX}px`;
+            popup.style.display = 'block';
+
+            document.getElementById('close-btn').addEventListener('click', function() {
+                popup.style.display = 'none';
+            });
+
+            const searchBar = document.getElementById('search-bar');
+            searchBar.addEventListener('input', function() {
+              const query = searchBar.value;
+              if (query.length > 0) {
+                  fetch(`buscar_funcionarios.php?query=${query}`)
+                      .then(response => response.json())
+                      .then(data => {
+                          const resultadosDiv = document.getElementById('resultados');
+                          resultadosDiv.innerHTML = '';
+                          data.forEach(funcionario => {
+                              const div = document.createElement('div');
+                              div.textContent = funcionario.nome_funcionario;
+                              div.classList.add('resultado-item');
+                              resultadosDiv.appendChild(div);
+
+                              div.addEventListener('click', function(event) {
+                                  event.stopPropagation(); // Impede o fechamento do popup
+                                  searchBar.value = funcionario.nome_funcionario;
+                                  resultadosDiv.innerHTML = '';
+                              });
+                          });
+                      });
+              } else {
+                  document.getElementById('resultados').innerHTML = '';
+              }
+          });
+
+        });
+    });
+
+    document.addEventListener('click', function(event) {
+        if (!popup.contains(event.target) && !event.target.closest('.open-popup')) {
+            popup.style.display = 'none';
+        }
+    });
+});
 
 
 </script>
 
+<!-- POPUP estlização -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const popup = document.getElementById('popup');
+    const openPopupIcons = document.querySelectorAll('.open-popup');
+    const closeButton = document.getElementById('close-btn');
+
+    openPopupIcons.forEach(icon => {
+        icon.addEventListener('click', (event) => {
+            const iconRect = icon.getBoundingClientRect();
+            const popupRect = popup.getBoundingClientRect();
+
+            // Define a posição do popup logo abaixo do ícone
+            popup.style.top = `${iconRect.bottom + window.scrollY + 10}px`; // 10px abaixo do ícone
+            popup.style.left = `${iconRect.left}px`;
+            popup.classList.add('show'); // Mostra o popup
+            icon.classList.add('active'); // Adiciona a classe ativa ao ícone
+        });
+    });
+
+    closeButton.addEventListener('click', () => {
+        popup.classList.remove('show'); // Esconde o popup
+        openPopupIcons.forEach(icon => icon.classList.remove('active')); // Remove a classe ativa do ícone
+    });
+
+    document.addEventListener('click', (event) => {
+        if (!popup.contains(event.target) && !event.target.classList.contains('open-popup')) {
+            popup.classList.remove('show'); // Esconde o popup
+            openPopupIcons.forEach(icon => icon.classList.remove('active')); // Remove a classe ativa do ícone
+        }
+    });
+});
+
+</script>
 
 
   <script>

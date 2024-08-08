@@ -1,6 +1,6 @@
 <?php
-  include("../protect_funcionario.php");
-  include_once("../../php/conexao.php");
+  include("protect_funcionario.php");
+  include_once("../php/conexao.php");
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -12,24 +12,24 @@
   <meta name="author" content=""/>
   <title>Gestrator Funcionário</title>
   <!-- loader-->
-  <link href="../../../assets/css/pace.min.css" rel="stylesheet"/>
-  <script src="../../../assets/js/pace.min.js"></script>
+  <link href="../../assets/css/pace.min.css" rel="stylesheet"/>
+  <script src="../../assets/js/pace.min.js"></script>
   <!--favicon-->
-  <link rel="icon" href="../../../assets/images/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="../../assets/images/favicon.ico" type="image/x-icon">
   <!-- Vector CSS -->
-  <link href="../../../assets/plugins/vectormap/jquery-jvectormap-2.0.2.css" rel="stylesheet"/>
+  <link href="../../assets/plugins/vectormap/jquery-jvectormap-2.0.2.css" rel="stylesheet"/>
   <!-- simplebar CSS-->
-  <link href="../../../assets/plugins/simplebar/css/simplebar.css" rel="stylesheet"/>
+  <link href="../../assets/plugins/simplebar/css/simplebar.css" rel="stylesheet"/>
   <!-- Bootstrap core CSS-->
-  <link href="../../../assets/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="../../assets/css/bootstrap.min.css" rel="stylesheet"/>
   <!-- animate CSS-->
-  <link href="../../../assets/css/animate.css" rel="stylesheet" type="text/css"/>
+  <link href="../../assets/css/animate.css" rel="stylesheet" type="text/css"/>
   <!-- Icons CSS-->
-  <link href="../../../assets/css/icons.css" rel="stylesheet" type="text/css"/>
+  <link href="../../assets/css/icons.css" rel="stylesheet" type="text/css"/>
   <!-- Sidebar CSS-->
-  <link href="../../../assets/css/sidebar-menu.css" rel="stylesheet"/>
+  <link href="../../assets/css/sidebar-menu.css" rel="stylesheet"/>
   <!-- Custom Style-->
-  <link href="../../../assets/css/app-style.css" rel="stylesheet"/>
+  <link href="../../assets/css/app-style.css" rel="stylesheet"/>
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   
@@ -102,7 +102,7 @@
     width: 200px !important;
   }
   .w-50{
-    width: 100px !important;
+    width: 120px !important;
   }
   .w-75{
     width: 150px !important;
@@ -120,7 +120,7 @@
   }
 
   table td{
-    padding: 3px !important;
+    padding: 3px;
     text-align: center;
     border: 1px solid rgba(196, 196, 196, 0.473) !important;
   }
@@ -198,10 +198,34 @@
 }
 
 /* Conteúdo do popup */
-.popup-content {
-    padding: 15px;
-    position: relative;
-}
+    .popup-content {
+        max-height: 400px; /* Altura máxima para o conteúdo do popup */
+        
+    }
+
+    .equipe-atual {
+        max-height: 150px; /* Altura máxima para a lista de membros da equipe */
+        overflow-y: auto; /* Permitir rolagem vertical */
+        border: 1px solid #ccc; /* Opcional: adicionar borda para diferenciar a área rolável */
+        padding: 10px; /* Opcional: adicionar padding para a área rolável */
+        color: black;
+    }
+
+    .equipe-item {
+        display: flex; /* Flex para alinhar os itens em linha */
+        justify-content: space-between; /* Espaço entre o texto e o botão */
+        align-items: center; /* Centralizar itens verticalmente */
+        margin-bottom: 5px; /* Espaçamento entre os itens da equipe */
+        padding-bottom: 5px; /* Espaçamento inferior para a linha */
+        border-bottom: 1px solid #ccc; /* Linha de separação entre os itens */
+    }
+
+    .remove-btn {
+        margin-left: 10px; /* Espaçamento à esquerda do botão de remover */
+        cursor: pointer; /* Mostrar cursor de ponteiro ao passar o mouse */
+    }
+
+
 
 /* Botão de fechar */
 .close-btn {
@@ -307,7 +331,7 @@
     color: #000; /* Cor do texto preto */
 }
 
-h2, p {
+h2{
     color: #000; /* Garante que todos os textos sejam pretos */
 }
 
@@ -404,48 +428,80 @@ i.fa-comment {
     left: 25%;
 }
 
-
 .tamanho{
   height: 530px;
 }
 
-
-/* Estilos para as situações */
-/* Estilos para as situações */
-.situacao.em-andamento {
-  background-color: #F2B705;
-  color: white;
+.team-member {
+    display: flex; /* Alinha o ícone e as imagens na mesma linha */
+    align-items: center; /* Alinha verticalmente o ícone e as imagens */
+    margin-right: 20px; /* Ajusta a sobreposição das imagens */
 }
 
-.situacao.nao_iniciado {
-  background-color: #808080;
-  color: white;
+.icon {
+    margin-right: 10px; /* Espaçamento entre o ícone e as imagens */
 }
 
-.situacao.pendente {
-  background-color: #D93D59;
-  color: white;
+.team-images {
+    display: flex; /* Alinha as imagens horizontalmente */
+    align-items: center; /* Alinha verticalmente as imagens */
+    position: relative; /* Define um contexto para as imagens absolutas */
+    margin-left: 20px;
 }
 
-.situacao.concluido {
-  background-color: #04BF68;
-  color: white;
+.team-image {
+    position: relative;
+    display: inline-block; /* Garante que as imagens fiquem lado a lado */
+    margin-left: -10px;
 }
 
-/* Estilos para as prioridades */
-.prioridade.alta {
-  background-color: #5D55DB;
-  color: white;
+.circular-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block; /* Remove espaço extra ao redor da imagem */
 }
 
-.prioridade.media3 {
-  background-color:#450F91;
-  color: white;
+.circular-image:hover {
+    transform: translateY(-8px);
+    transition: 0.5s;
 }
 
-.prioridade.baixa {
-  background-color: #5E9FF2;
-  color: white;
+
+.team-card {
+    display: none;
+    position: absolute;
+    bottom: 60px; /* Ajuste conforme necessário */
+    left: 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 10px;
+    z-index: 10;
+    white-space: nowrap;
+    color: black;
+}
+
+.team-image:hover .team-card {
+    display: block;
+}
+
+.table-responsive {
+    overflow: visible; /* Permite que os elementos flutuantes sejam visíveis fora da tabela */
+}
+
+.fa-user-plus{
+    margin-left: 10px;
+}
+
+.text-black{
+    color: black;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.btn-danger{
+    border-radius: 5px;
 }
 
 #span_classificar{
@@ -460,128 +516,128 @@ i.fa-comment {
 <body class="bg-theme bg-theme1">
  
 <!-- Start wrapper-->
- <div id="wrapper">
+<div id="wrapper">
  
-  <!--Start sidebar-wrapper-->
-   <div id="sidebar-wrapper" data-simplebar="" data-simplebar-auto-hide="true">
-     <div class="brand-logo">
-      <a href="home_adm.html">
-       <img src="../../imagens/GE.png" class="logo-icon" alt="logo icon" >
-       <h5 class="logo-text">Gestrator</h5>
-     </a>
-   </div>
-   <ul class="sidebar-menu do-nicescrol">
+ <!--Start sidebar-wrapper-->
+  <div id="sidebar-wrapper" data-simplebar="" data-simplebar-auto-hide="true">
+    <div class="brand-logo">
+     <a href="home_adm.html">
+      <img src="../imagens/GE.png" class="logo-icon" alt="logo icon" >
+      <h5 class="logo-text">Gestrator</h5>
+    </a>
+  </div>
+  <ul class="sidebar-menu do-nicescrol">
 
-      <li>
-        <a href="home_funcionario.php">
-          <i class="fa-solid fa-chart-line" style="color: #9e9e9e;"></i> <span>Dashboard</span>
-        </a>
-      </li>
+     <li>
+       <a href="home_funcionario.php">
+         <i class="fa-solid fa-chart-line" style="color: #9e9e9e;"></i> <span>Dashboard</span>
+       </a>
+     </li>
 
-      <li>
-        <a href="https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fcalendar.google.com%2Fcalendar%2Fu%2F0%2Fr&emr=1&followup=https%3A%2F%2Fcalendar.google.com%2Fcalendar%2Fu%2F0%2Fr&ifkv=AdF4I77H6Q8kDjrou1wIGuHz3S3_9WHl1Z6w3HQ5MAbJVDPoIZHRKIQUAYS0YHfymJmHEtgj8rOdfQ&osid=1&passive=1209600&service=cl&flowName=GlifWebSignIn&flowEntry=ServiceLogin&dsh=S268491357%3A1720720457775498&ddm=0">
-          <i class="zmdi zmdi-calendar-check"></i> <span>Calendário</span>
-        </a>
-      </li>
-
-
-      <li>
-        <a href="../../recebeConteudo.php">
-         <i class="fa-solid fa-book" style="color: #9e9e9e;"></i> <span>Conteúdo</span>
-        </a>
-      </li>
+     <li>
+       <a href="https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fcalendar.google.com%2Fcalendar%2Fu%2F0%2Fr&emr=1&followup=https%3A%2F%2Fcalendar.google.com%2Fcalendar%2Fu%2F0%2Fr&ifkv=AdF4I77H6Q8kDjrou1wIGuHz3S3_9WHl1Z6w3HQ5MAbJVDPoIZHRKIQUAYS0YHfymJmHEtgj8rOdfQ&osid=1&passive=1209600&service=cl&flowName=GlifWebSignIn&flowEntry=ServiceLogin&dsh=S268491357%3A1720720457775498&ddm=0">
+         <i class="zmdi zmdi-calendar-check"></i> <span>Calendário</span>
+       </a>
+     </li>
 
 
+     <li>
+       <a href="../recebeConteudo.php">
+        <i class="fa-solid fa-book" style="color: #9e9e9e;"></i> <span>Conteúdo</span>
+       </a>
+     </li>
+
+
+ 
+
+
+     <li>
+       <a href="profile_funcionario.php">
+         <i class="zmdi zmdi-face"></i> <span>Perfil</span>
+       </a>
+     </li>
+
+     <li>
+       <a href="../php/logout.php">
+         <i class="fa-solid fa-right-from-bracket" style="color: #9e9e9e;"></i> <span>Sair</span>
+       </a>
+     </li>
+
+   </ul>
   
-
-
-      <li>
-        <a href="profile_funcionario.php">
-          <i class="zmdi zmdi-face"></i> <span>Perfil</span>
-        </a>
-      </li>
-
-      <li>
-        <a href="../../php/logout.php">
-          <i class="fa-solid fa-right-from-bracket" style="color: #9e9e9e;"></i> <span>Sair</span>
-        </a>
-      </li>
-
-    </ul>
-   
-   </div>
-   <!--End sidebar-wrapper-->
+  </div>
+  <!--End sidebar-wrapper-->
 
 <!--Start topbar header-->
 <header class="topbar-nav">
- <nav class="navbar navbar-expand fixed-top">
- <ul class="navbar-nav mr-auto align-items-center">
-      <li class="nav-item">
-        
-      </li>
-    </ul>
-     
-  <ul class="navbar-nav align-items-center right-nav-link">
+<nav class="navbar navbar-expand fixed-top">
+<ul class="navbar-nav mr-auto align-items-center">
+     <li class="nav-item">
+       
+     </li>
+   </ul>
     
+ <ul class="navbar-nav align-items-center right-nav-link">
+   
 
-    <li class="nav-item">
-      <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown" href="#">
-        <span class="user-profile"><img src="https://via.placeholder.com/110x110" class="img-circle" alt="user avatar"></span>
-      </a>
-      <ul class="dropdown-menu dropdown-menu-right">
-       <li class="dropdown-item user-details">
-        <a href="javaScript:void();">
-           <div class="media">
-             <div class="avatar"><img class="align-self-start mr-3" src="https://via.placeholder.com/110x110" alt="user avatar"></div>
-            <div class="media-body">
-            <h6 class="mt-2 user-title"><?php echo $_SESSION['usuario']; ?></h6>
-            <?php 
-            
-              $usuario = $_SESSION['usuario']; 
-              
-              $query_funcionario = mysqli_query($conexao, "SELECT f.id_funcionario, f.email, s.nome_setor 
-              FROM funcionario f 
-              JOIN setor s ON f.id_setor = s.id_setor 
-              WHERE f.nome_funcionario = '$usuario'");
+   <li class="nav-item">
+     <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown" href="#">
+       <span class="user-profile"><img src="https://via.placeholder.com/110x110" class="img-circle" alt="user avatar"></span>
+     </a>
+     <ul class="dropdown-menu dropdown-menu-right">
+      <li class="dropdown-item user-details">
+       <a href="javaScript:void();">
+          <div class="media">
+            <div class="avatar"><img class="align-self-start mr-3" src="https://via.placeholder.com/110x110" alt="user avatar"></div>
+           <div class="media-body">
+           <h6 class="mt-2 user-title"><?php echo $_SESSION['usuario']; ?></h6>
+           <?php 
+           
+             $usuario = $_SESSION['usuario']; 
+             
+             $query_funcionario = mysqli_query($conexao, "SELECT f.id_funcionario, f.email, s.nome_setor 
+             FROM funcionario f 
+             JOIN setor s ON f.id_setor = s.id_setor 
+             WHERE f.nome_funcionario = '$usuario'");
 
-                if ($query_funcionario->num_rows > 0) {
-                  // Exibir os dados
-                  while ($row = $query_funcionario->fetch_assoc()) {
-                      $id_funcionario = $row['id_funcionario'];
-                      $nome_setor = $row['nome_setor'];
+               if ($query_funcionario->num_rows > 0) {
+                 // Exibir os dados
+                 while ($row = $query_funcionario->fetch_assoc()) {
+                     $id_funcionario = $row['id_funcionario'];
+                     $nome_setor = $row['nome_setor'];
 
-                      echo "<p class='user-subtitle'>".$row['email']."</p>";
-                      echo "<p class='user-subtitle'>".$row['nome_setor']."</p>";
+                     echo "<p class='user-subtitle'>".$row['email']."</p>";
+                     echo "<p class='user-subtitle'>".$row['nome_setor']."</p>";
 
-                  }}
-                  ?>
+                 }}
+                 ?>
 
-            </div>
            </div>
-          </a>
-        </li>
+          </div>
+         </a>
+       </li>
 
-        <li class="dropdown-divider"></li>
-        <a href="profile_adm.html"><li class="dropdown-item"><i class="icon-wallet mr-2"></i> Perfil</li></a>
-        <li class="dropdown-divider"></li>
-        <a href="../../php/logout.php"><li class="dropdown-item"><i class="icon-power mr-2"></i> Sair</li></a>
-        
-      </ul>
-    </li>
-  </ul>
+       <li class="dropdown-divider"></li>
+       <a href="profile_adm.html"><li class="dropdown-item"><i class="icon-wallet mr-2"></i> Perfil</li></a>
+       <li class="dropdown-divider"></li>
+       <a href="../php/logout.php"><li class="dropdown-item"><i class="icon-power mr-2"></i> Sair</li></a>
+       
+     </ul>
+   </li>
+ </ul>
 </nav>
 </header>
 <!--End topbar header-->
 
 <div class="clearfix"></div>
-	
-  <div class="content-wrapper">
-    <div class="container-fluid">
+   
+ <div class="content-wrapper">
+   <div class="container-fluid">
 
-  <!--Start Dashboard Content-->
-  
-  <?php
-include_once("../../php/conexao.php");
+ <!--Start Dashboard Content-->
+ 
+ <?php
+
 
 // Consultas SQL para buscar os dados
 $sqlTotalServicos = "SELECT COUNT(*) AS total
@@ -620,56 +676,58 @@ $resultServicosPendentes = $conexao->query($sqlServicosPendentes)->fetch_assoc()
 ?>
 
 <div class="card mt-3">
-    <div class="card-content">
-        <div class="row row-group m-0">
-            <div class="col-12 col-lg-6 col-xl-3 border-light">
-                <div class="card-body">
-                    <h5 class="text-white mb-0"><?php echo $resultTotalServicos['total']; ?> <span class="float-right"><i class="fa-solid fa-list-check" style="color: #ffffff;"></i></span></h5>
-                    <div class="progress my-3" style="height:3px;">
-                       <div class="progress-bar" style="width:55%"></div>
-                    </div>
-                    <p class="mb-0 text-white small-font">Total de serviços</p>
-                </div>
-            </div>
+   <div class="card-content">
+       <div class="row row-group m-0">
+           <div class="col-12 col-lg-6 col-xl-3 border-light">
+               <div class="card-body">
+                   <h5 class="text-white mb-0"><?php echo $resultTotalServicos['total']; ?> <span class="float-right"><i class="fa-solid fa-list-check" style="color: #ffffff;"></i></span></h5>
+                   <div class="progress my-3" style="height:3px;">
+                      <div class="progress-bar" style="width:55%"></div>
+                   </div>
+                   <p class="mb-0 text-white small-font">Total de serviços</p>
+               </div>
+           </div>
 
-            <div class="col-12 col-lg-6 col-xl-3 border-light">
-                <div class="card-body">
-                    <h5 class="text-white mb-0"><?php echo $resultServicosConcluidos['total']; ?> <span class="float-right"><i class="fa-solid fa-check" style="color: #ffffff;"></i></span></h5>
-                    <div class="progress my-3" style="height:3px;">
-                       <div class="progress-bar" style="width:55%"></div>
-                    </div>
-                    <p class="mb-0 text-white small-font">Total de serviços concluídos</p>
-                </div>
-            </div>
+           <div class="col-12 col-lg-6 col-xl-3 border-light">
+               <div class="card-body">
+                   <h5 class="text-white mb-0"><?php echo $resultServicosConcluidos['total']; ?> <span class="float-right"><i class="fa-solid fa-check" style="color: #ffffff;"></i></span></h5>
+                   <div class="progress my-3" style="height:3px;">
+                      <div class="progress-bar" style="width:55%"></div>
+                   </div>
+                   <p class="mb-0 text-white small-font">Total de serviços concluídos</p>
+               </div>
+           </div>
 
-            <div class="col-12 col-lg-6 col-xl-3 border-light">
-                <div class="card-body">
-                    <h5 class="text-white mb-0"><?php echo $resultServicosAndamento['total']; ?> <span class="float-right"><i class="fa-solid fa-clock" style="color: #f1f4f8;"></i></span></h5>
-                    <div class="progress my-3" style="height:3px;">
-                       <div class="progress-bar" style="width:55%"></div>
-                    </div>
-                    <p class="mb-0 text-white small-font">Total de serviços em andamento</p>
-                </div>
-            </div>
+           <div class="col-12 col-lg-6 col-xl-3 border-light">
+               <div class="card-body">
+                   <h5 class="text-white mb-0"><?php echo $resultServicosAndamento['total']; ?> <span class="float-right"><i class="fa-solid fa-clock" style="color: #f1f4f8;"></i></span></h5>
+                   <div class="progress my-3" style="height:3px;">
+                      <div class="progress-bar" style="width:55%"></div>
+                   </div>
+                   <p class="mb-0 text-white small-font">Total de serviços em andamento</p>
+               </div>
+           </div>
 
-            <div class="col-12 col-lg-6 col-xl-3 border-light">
-                <div class="card-body">
-                    <h5 class="text-white mb-0"><?php echo $resultServicosPendentes['total']; ?> <span class="float-right"><i class="fa-solid fa-circle-exclamation" style="color: #fafcff;"></i></span></h5>
-                    <div class="progress my-3" style="height:3px;">
-                       <div class="progress-bar" style="width:55%"></div>
-                    </div>
-                    <p class="mb-0 text-white small-font">Total de serviços pendentes</p>
-                </div>
-            </div>
-        </div>
-    </div>
+           <div class="col-12 col-lg-6 col-xl-3 border-light">
+               <div class="card-body">
+                   <h5 class="text-white mb-0"><?php echo $resultServicosPendentes['total']; ?> <span class="float-right"><i class="fa-solid fa-circle-exclamation" style="color: #fafcff;"></i></span></h5>
+                   <div class="progress my-3" style="height:3px;">
+                      <div class="progress-bar" style="width:55%"></div>
+                   </div>
+                   <p class="mb-0 text-white small-font">Total de serviços pendentes</p>
+               </div>
+           </div>
+       </div>
+   </div>
 </div>
 
-	  
+     
+
 
 
 
 <?php
+
 
 // Define o critério de classificação padrão
 $sort = isset($_GET['sort']) ? $_GET['sort'] : 'data_final';
@@ -720,7 +778,7 @@ $resultado = mysqli_query($conexao, "
     JOIN 
         setor ON servico.id_setor = setor.id_setor 
     WHERE 
-        DATE_FORMAT(servico.data_final, '%Y-%m') = DATE_FORMAT(NOW(), '%Y-%m') AND  setor.nome_setor = '$nome_setor'
+        DATE_FORMAT(servico.data_final, '%Y-%m') = DATE_FORMAT(NOW(), '%Y-%m')AND  setor.nome_setor = '$nome_setor'
     ORDER BY
         $orderBy
 ");
@@ -751,7 +809,7 @@ $resultado = mysqli_query($conexao, "
                     <thead>
                         <tr>
                             <th class="w-120">Serviço</th>
-                            <th >Equipe</th>
+                            <th>Equipe</th>
                             <th>Situação</th>
                             <th class="w-75">Prioridade</th>
                             <th>Setor</th>
@@ -761,30 +819,54 @@ $resultado = mysqli_query($conexao, "
                         </tr>
                     </thead>
                     <tbody>
-                        <?php while($row = mysqli_fetch_assoc($resultado)): ?>
+                        <?php
+                        while ($row = mysqli_fetch_assoc($resultado)):
+                            $situacaoClass = strtolower(str_replace(' ', '', $row['situacao']));
+                            $prioridadeClass = str_replace(' ', '', $row['prioridade']);
+                        ?>
                             <tr>
                                 <td class="sem-espaco w-120">
                                     <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#modal<?= $row['id_servico'] ?>">
                                         <?= $row['nome_servico'] ?>
                                     </button>
                                 </td>
+
                                 <td class="w-50">
-                                    <i class="fa-solid fa-user-plus open-popup" data-id="<?= $row['id_servico'] ?>"></i>
-                                    <br>
-                                    <?= $row['equipe'] ?>
+                                    <div class="team-member">
+                                        <i class="fa-solid fa-user-plus open-popup" data-id="<?= $row['id_servico'] ?>"></i>
+                                        <div class="team-images">
+                                            <?php
+                                            $nomesEquipe = explode(',', $row['equipe']);
+                                            foreach ($nomesEquipe as $nome):
+                                                $nome = trim($nome);
+                                                $funcionarioResult = mysqli_query($conexao, "SELECT foto_funcionario, nome_funcionario, email, cargo FROM funcionario WHERE nome_funcionario = '$nome'");
+                                                $funcionarioRow = mysqli_fetch_assoc($funcionarioResult);
+                                                if ($funcionarioRow):
+                                            ?>
+                                                    <div class="team-image">
+                                                        <img src="<?= $funcionarioRow['foto_funcionario'] ?>" alt="<?= $funcionarioRow['nome_funcionario'] ?>" class="circular-image" />
+                                                        <div class="team-card">
+                                                            <p>Nome: <?= $funcionarioRow['nome_funcionario'] ?></p>
+                                                            <p>Email: <?= $funcionarioRow['email'] ?></p>
+                                                            <p>Cargo: <?= $funcionarioRow['cargo'] ?></p>
+                                                        </div>
+                                                    </div>
+                                                <?php endif; ?>
+                                            <?php endforeach; ?>
+                                        </div>
+                                    </div>
                                 </td>
-                                <td class="situacao w-100 <?= strtolower(str_replace(' ', '-', $row['situacao'])) ?>"><?= $row['situacao'] ?></td>
-                                <td class="prioridade <?= strtolower($row['prioridade']) ?>"><?= $row['prioridade'] ?></td>
+
+                                <td class="situacao w-100 <?= $situacaoClass ?>" data-id="<?= $row['id_servico'] ?>"><?= $row['situacao'] ?></td>
+                                <td class="prioridade <?= $prioridadeClass ?>" data-id="<?= $row['id_servico'] ?>"><?= $row['prioridade'] ?></td>
+
                                 <td class="w-200"><?= $row['nome_setor'] ?></td>
                                 <td><?= date('d M Y', strtotime($row['data_criada'])) ?></td>
                                 <td><?= date('d M Y', strtotime($row['data_final'])) ?></td>
                                 <td>
                                     <i class="fa-regular fa-comment" data-id="<?= $row['id_servico'] ?>"></i>
-
                                 </td>
-
                             </tr>
-
                             <!-- Modal for <?= $row['nome_servico'] ?> -->
                             <div class="modal fade" id="modal<?= $row['id_servico'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
@@ -796,7 +878,6 @@ $resultado = mysqli_query($conexao, "
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            <!-- Conteúdo do modal para <?= $row['nome_servico'] ?> -->
                                             <?= $row['descricao'] ?>
                                         </div>
                                         <div class="modal-footer">
@@ -807,26 +888,32 @@ $resultado = mysqli_query($conexao, "
                                 </div>
                             </div>
                         <?php endwhile; ?>
+
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
+</div>
 
 <!-- O popup -->
 
 <div id="popup" class="popup">
     <div class="popup-content">
         <button id="close-btn" class="close-btn">&times;</button>
-        <h2>Equipe</h2>
-        <p>Adicione funcionários a este serviço</p>
+        <h4 class="text-black">Equipe</h4>
+        <div id="equipe-atual" class="equipe-atual"></div>
+        <h5 class="text-black">Adicione funcionários</h5>
         <form action="atualizarEquipe.php" method="post">
             <input type="text" id="search-bar" name="nome" placeholder="Pesquise nomes ou equipe">
             <div id="resultados" class="resultados"></div>
-            <input type="submit" value="Atualizar">
+            <input type="hidden" name="serviceId" value="">
+            <input type="submit" value="Atualizar" class="btn btn-light px-5">
         </form>
     </div>
 </div>
+
+
 
    <!-- Sobreposição -->
    <div id="overlay" class="overlay">
@@ -845,6 +932,8 @@ $resultado = mysqli_query($conexao, "
         </form>
     </div>
 </div>
+</div><!--End Row-->
+
 
    <?php
 
@@ -884,6 +973,8 @@ if (isset($_GET['service_id'])) {
 
 
 <?php
+
+
 
 // Inicializa variáveis
 $id_funcionario = null;
@@ -931,11 +1022,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 
 
-
-	</div><!--End Row-->
-	
-
   <?php
+
+
 
   $resultado2 = mysqli_query($conexao, "
   SELECT servico.*, setor.nome_setor 
@@ -945,11 +1034,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ");
 
 ?>
-  
-<div class="row">
+
+  <div class="row">
     <div class="col-12 col-lg-12">
         <div class="card">
-            <div class="card-header proximo-mes">Proximo mês
+            <div class="card-header proximo-mes">Proximo mes
                 <div class="card-action">
                     <div class="dropdown">
                         <a href="javascript:void();" class="dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown">
@@ -971,7 +1060,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <thead>
                         <tr>
                             <th class="w-120">Serviço</th>
-                            <th >Equipe</th>
+                            <th>Equipe</th>
                             <th>Situação</th>
                             <th class="w-75">Prioridade</th>
                             <th>Setor</th>
@@ -988,18 +1077,45 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                         <?= $row['nome_servico'] ?>
                                     </button>
                                 </td>
+
                                 <td class="w-50">
-                                    <i class="fa-solid fa-user-plus open-popup" data-id="<?= $row['id_servico'] ?>"></i>
+                                    <div class="team-member">
+                                        <i class="fa-solid fa-user-plus open-popup" data-id="<?= $row['id_servico'] ?>"></i>
+                                        <div class="team-images">
+                                            <?php 
+                                            $nomesEquipe = explode(',', $row['equipe']);
+                                            foreach ($nomesEquipe as $nome) {
+                                                $nome = trim($nome);
+                                                $funcionarioResult = mysqli_query($conexao, "SELECT foto_funcionario, nome_funcionario, email, cargo FROM funcionario WHERE nome_funcionario = '$nome'");
+                                                $funcionarioRow = mysqli_fetch_assoc($funcionarioResult);
+                                                if ($funcionarioRow): ?>
+                                                    <div class="team-image">
+                                                        <img src="<?= $funcionarioRow['foto_funcionario'] ?>" alt="<?= $funcionarioRow['nome_funcionario'] ?>" class="circular-image" />
+                                                        <div class="team-card">
+                                                            <p>Nome: <?= $funcionarioRow['nome_funcionario'] ?></p>
+                                                            <p>Email: <?= $funcionarioRow['email'] ?></p>
+                                                            <p>Cargo: <?= $funcionarioRow['cargo'] ?></p>
+                                                        </div>
+                                                    </div>
+                                                <?php endif; 
+                                            } ?>
+                                        </div>
+                                    </div>
                                 </td>
-                                <td class="situacao w-100 <?= strtolower(str_replace(' ', '-', $row['situacao'])) ?>"><?= $row['situacao'] ?></td>
-                                <td class="prioridade <?= strtolower($row['prioridade']) ?>"><?= $row['prioridade'] ?></td>
+
+                                <!-- Aplica a classe CSS correta à situação -->
+                                <td class="situacao w-100 <?= isset($situacaoClasses[$row['situacao']]) ? $situacaoClasses[$row['situacao']] : 'classe-padrao' ?>" data-id="<?= $row['id_servico'] ?>">
+                                    <?= $row['situacao'] ?>
+                                </td>
+                                <!-- Aplica a classe CSS correta à prioridade -->
+                                <td class="prioridade <?= $prioridadeClasses[$row['prioridade']] ?>" data-id="<?= $row['id_servico'] ?>"><?= $row['prioridade'] ?></td>
+
                                 <td class="w-200"><?= $row['nome_setor'] ?></td>
                                 <td><?= date('d M Y', strtotime($row['data_criada'])) ?></td>
                                 <td><?= date('d M Y', strtotime($row['data_final'])) ?></td>
                                 <td>
                                     <i class="fa-regular fa-comment" data-id="<?= $row['id_servico'] ?>"></i>
                                 </td>
-
                             </tr>
 
                             <!-- Modal for <?= $row['nome_servico'] ?> -->
@@ -1028,13 +1144,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </table>
             </div>
         </div>
-    </div>
+    </div> 
+</div>
 
-    </div><!--End Row-->
 
-   <?php
-      include_once("../../php/conexao.php");
-   ?>
 
 <div class="row">
     <div class="col-12 col-lg-12 col-xl-12">
@@ -1103,7 +1216,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </footer>
 	<!--End footer-->
 </div><!--End Row-->
-
       <!--End Dashboard Content-->
 	  
 	<!--start overlay-->
@@ -1117,6 +1229,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
    <!--Start Back To Top Button-->
     <a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
     <!--End Back To Top Button-->
+	
 	
   <!--start color switcher-->
    <div class="right-sidebar">
@@ -1165,9 +1278,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
 
-
-
-</script>
+<!-- POPUP estlização -->
 
 
 
@@ -1233,7 +1344,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 </script>
   
-  <script>
+<script>
 document.addEventListener('DOMContentLoaded', function() {
     if (document.getElementById('doughnutChart')) {
         var ctx = document.getElementById('doughnutChart').getContext('2d');
@@ -1280,30 +1391,58 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 </script>
- 
+  <script>
+$(document).ready(function(){
+    // Aplicar classes de situação e prioridade ao carregar a página
+    $(".situacao").each(function() {
+        var situacoes = ["Pendente", "Em andamento", "Concluída", "Não iniciado"];
+        var classes = ["teste2", "teste", "teste1", "teste3"];
+        var current = $(this).text().trim();
+        var index = situacoes.indexOf(current);
+        if (index !== -1) {
+            $(this).addClass(classes[index]);
+        }
+    });
+
+    $(".prioridade").each(function() {
+        var prioridades = ["Alta", "Média", "Baixa"];
+        var classes = ["alta", "media3", "baixa"];
+        var current = $(this).text().trim();
+        var index = prioridades.indexOf(current);
+        if (index !== -1) {
+            $(this).addClass(classes[index]);
+        }
+    });
+
+
+});
+
+</script>
+
 
   <!-- Bootstrap core JavaScript-->
-  <script src="../../../assets/js/jquery.min.js"></script>
-  <script src="../../../assets/js/popper.min.js"></script>
-  <script src="../../../assets/js/bootstrap.min.js"></script>
+  <script src="../../assets/js/jquery.min.js"></script>
+  <script src="../../assets/js/popper.min.js"></script>
+  <script src="../../assets/js/bootstrap.min.js"></script>
 	
  <!-- simplebar js -->
-  <script src="../../../assets/plugins/simplebar/js/simplebar.js"></script>
+  <script src="../../assets/plugins/simplebar/js/simplebar.js"></script>
   <!-- sidebar-menu js -->
-  <script src="../../../assets/js/sidebar-menu.js"></script>
+  <script src="../../assets/js/sidebar-menu.js"></script>
   <!-- loader scripts -->
-  <script src="../../../assets/js/jquery.loading-indicator.js"></script>
+  <script src="../../assets/js/jquery.loading-indicator.js"></script>
   <!-- Custom scripts -->
-  <script src="../../../assets/js/app-script.js"></script>
+  <script src="../../assets/js/app-script.js"></script>
   <!-- Chart js -->
   
-  <script src="../../../assets/plugins/Chart.js/Chart.min.js"></script>
+  <script src="../../assets/plugins/Chart.js/Chart.min.js"></script>
  
   <!-- Index js -->
-  <script src="../../../assets/js/index.js"></script>
+  <script src="../../assets/js/index.js"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+  
   
 
 

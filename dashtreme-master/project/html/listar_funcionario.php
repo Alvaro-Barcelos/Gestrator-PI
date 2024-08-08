@@ -287,12 +287,12 @@
                           echo "<td>" . $row['cargo'] . "</td>";
                           echo "<td class='action-buttons'>";
                           // Formulário para atualizar funcionário
-                          echo "<form action='../../php/atualizar_funcionario.php' method='post'>";
+                          echo "<form action='../php/atualizar_funcionario.php' method='post'>";
                           echo "<input type='hidden' name='id' value='" . $row['id_funcionario'] . "'>";
                           echo "<button type='submit' class='fa-regular fa-pen-to-square'></button>";
                           echo "</form>";
                           // Formulário para excluir funcionário
-                          echo "<form action='../../php/excluir_funcionario.php' method='post' method='post'>";
+                          echo "<form action='../php/excluir_funcionario.php' method='post' method='post'>";
                           echo "<input type='hidden' name='id' value='" . $row['id_funcionario'] . "'>";
                           echo "<button type='submit' class='fa-solid fa-trash'></button>";
                           echo "</form>";

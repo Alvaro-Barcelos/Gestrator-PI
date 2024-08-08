@@ -128,46 +128,58 @@
       </li>
     </ul>
     <ul class="navbar-nav align-items-center right-nav-link">
-      <li class="nav-item">
-        <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown" href="#">
-          <span class="user-profile"><img src="https://via.placeholder.com/110x110" class="img-circle"
-              alt="user avatar"></span>
-        </a>
-        <ul class="dropdown-menu dropdown-menu-right">
-          <li class="dropdown-item user-details">
-            <a href="javaScript:void();">
-              <div class="media">
-                <div class="avatar"><img class="align-self-start mr-3" src="https://via.placeholder.com/110x110"
-                    alt="user avatar"></div>
-                <div class="media-body">
-                  <h6 class="mt-2 user-title"><?php echo $_SESSION['usuario']; ?></h6>
-                  <?php 
-                  
-                    $usuario = $_SESSION['usuario']; 
-                    
-                    $query_funcionario = mysqli_query($conexao, "SELECT f.id_funcionario, f.email, s.nome_setor 
-                    FROM funcionario f 
-                    JOIN setor s ON f.id_setor = s.id_setor 
-                    WHERE f.nome_funcionario = '$usuario'");
-      
-                      if ($query_funcionario->num_rows > 0) {
-                        // Exibir os dados
-                        while ($row = $query_funcionario->fetch_assoc()) {
-                            $id_funcionario = $row['id_funcionario'];
-                            echo "<p class='user-subtitle'>".$row['email']."</p>";
-                            echo "<p class='user-subtitle'>".$row['nome_setor']."</p>";
-      
-                        }}
-                  ?>
-                  </div>
-                 </div>
-                </a>
-              </li>
-      
-              <li class="dropdown-divider"></li>
-              <a href="profile_adm.html"><li class="dropdown-item"><i class="icon-wallet mr-2"></i> Perfil</li></a>
-              <li class="dropdown-divider"></li>
-              <a href="../php/logout.php"><li class="dropdown-item"><i class="icon-power mr-2"></i> Sair</li></a>
+    <?php
+
+
+$usuario = $_SESSION['usuario']; 
+
+$query_funcionario = mysqli_query($conexao, "SELECT f.id_funcionario, f.email, f.foto_funcionario, s.nome_setor 
+FROM funcionario f 
+JOIN setor s ON f.id_setor = s.id_setor 
+WHERE f.nome_funcionario = '$usuario'");
+
+if ($query_funcionario->num_rows > 0) {
+  $row = $query_funcionario->fetch_assoc(); // Pega o resultado da consulta
+  $id_funcionario = $row['id_funcionario'];
+  $nome_setor = $row['nome_setor'];
+} else {
+  // Caso não haja resultados, defina valores padrão ou trate o erro
+  $row = [
+    'email' => 'Email não encontrado',
+    'foto_funcionario' => 'path_to_default_image.jpg', // Imagem padrão se não encontrar a foto
+    'nome_setor' => 'Setor não encontrado'
+  ];
+}
+?>
+
+<li class="nav-item dropdown">
+  <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+    <span class="user-profile">
+      <img src="<?php echo $row['foto_funcionario']; ?>" class="img-circle" alt="user avatar">
+    </span>
+  </a>
+  <ul class="dropdown-menu dropdown-menu-right">
+    <li class="dropdown-item user-details">
+      <a href="javaScript:void();">
+        <div class="media">
+          <div class="avatar">
+            <img class="align-self-start mr-3" src="<?php echo $row['foto_funcionario']; ?>" alt="user avatar">
+          </div>
+          <div class="media-body">
+            <h6 class="mt-2 user-title"><?php echo $_SESSION['usuario']; ?></h6>
+            <p class="user-subtitle"><?php echo $row['email']; ?></p>
+            <p class="user-subtitle"><?php echo $row['nome_setor']; ?></p>
+
+            <li class="dropdown-divider"></li>
+            <a href="profile_adm.html"><li class="dropdown-item"><i class="icon-wallet mr-2"></i> Perfil</li></a>
+            <li class="dropdown-divider"></li>
+            <a href="../php/logout.php"><li class="dropdown-item"><i class="icon-power mr-2"></i> Sair</li></a>
+          </div>
+        </div>
+      </a>
+    </li>
+  </ul>
+</li>
               
         </ul>
       </li>
@@ -189,7 +201,8 @@
             <form method="post" action="../php/cadastrar_funcionario.php" enctype="multipart/form-data">
                 <div class="form-group">
                   <label for="nome-completo">Nome Completo</label>
-                  <input type="text" id="nome-completo" name="nome-completo" class="form-control" placeholder="Nome Completo">
+                  <input type="text" id="nome-completo" name="nome" class="form-control" placeholder="Nome Completo"> 
+                      <!-- NÃO MEXER NO CAMPO NAME EM HIPOTESE NENHUMA -->
                 </div>
                 <div class="row">
                   <div class="col-lg-6">

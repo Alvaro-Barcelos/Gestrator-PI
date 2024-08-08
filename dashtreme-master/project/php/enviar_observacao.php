@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     // Verificar se a inserção foi bem-sucedida
     if ($enviar_observacao) {
-        echo "Observação salva com sucesso!";
+        header("Location: ../html/home_adm copy.php");
     } else {
         echo "Erro ao salvar a observação: " . mysqli_error($conexao);
     }

@@ -121,62 +121,69 @@
 
     <!-- Start sidebar-wrapper -->
     <div id="sidebar-wrapper" data-simplebar="" data-simplebar-auto-hide="true">
-      <div class="brand-logo">
-        <a href="home_adm.html">
-          <img src="../imagens/GE.png" class="logo-icon" alt="logo icon">
-          <h5 class="logo-text">Gestrator</h5>
-        </a>
-      </div>
-      <ul class="sidebar-menu do-nicescrol">
-        <li>
-          <a href="home_adm.php">
-            <i class="fa-solid fa-chart-line" style="color: #9e9e9e;"></i> <span>Dashboard</span>
-          </a>
-        </li>
-        <li>
-          <a href="https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fcalendar.google.com%2Fcalendar%2Fu%2F0%2Fr&emr=1&followup=https%3A%2F%2Fcalendar.google.com%2Fcalendar%2Fu%2F0%2Fr&ifkv=AdF4I77H6Q8kDjrou1wIGuHz3S3_9WHl1Z6w3HQ5MAbJVDPoIZHRKIQUAYS0YHfymJmHEtgj8rOdfQ&osid=1&passive=1209600&service=cl&flowName=GlifWebSignIn&flowEntry=ServiceLogin&dsh=S268491357%3A1720720457775498&ddm=0">
-            <i class="zmdi zmdi-calendar-check"></i> <span>Calendário</span>
-          </a>
-        </li>
+     <div class="brand-logo">
+      <a href="home_adm.html">
+       <img src="../../imagens/GE.png" class="logo-icon" alt="logo icon" >
+       <h5 class="logo-text">Gestrator</h5>
+     </a>
+   </div>
+   <ul class="sidebar-menu do-nicescrol">
 
-        <li>
+      <li>
+        <a href="home_adm.php">
+          <i class="fa-solid fa-chart-line" style="color: #9e9e9e;"></i> <span>Dashboard</span>
+        </a>
+      </li>
+
+      <li>
+        <a href="https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fcalendar.google.com%2Fcalendar%2Fu%2F0%2Fr&emr=1&followup=https%3A%2F%2Fcalendar.google.com%2Fcalendar%2Fu%2F0%2Fr&ifkv=AdF4I77H6Q8kDjrou1wIGuHz3S3_9WHl1Z6w3HQ5MAbJVDPoIZHRKIQUAYS0YHfymJmHEtgj8rOdfQ&osid=1&passive=1209600&service=cl&flowName=GlifWebSignIn&flowEntry=ServiceLogin&dsh=S268491357%3A1720720457775498&ddm=0">
+          <i class="zmdi zmdi-calendar-check"></i> <span>Calendário</span>
+        </a>
+      </li>
+
+
+      <li>
         <a href="conteudo_adm.html">
          <i class="fa-solid fa-book" style="color: #9e9e9e;"></i> <span>Conteúdo</span>
         </a>
       </li>
 
-        <li>
-          <a href="relatorio_adm.html">
-            <i class="zmdi zmdi-assignment" style="color: #9e9e9e;"></i> <span>Relatório</span>
-          </a>
-        </li>
-        <li>
-          <a href="registrar_servico_adm.html">
-            <i class="fa-solid fa-list-check" style="color: #9e9e9e;"></i> <span>Serviço</span>
-          </a>
-        </li>
-        <li>
-          <a href="cadastrar_funcionario_adm.html">
-            <i class="fa-solid fa-user" style="color: #9e9e9e;"></i> <span>Funcionário</span>
-          </a>
-        </li>
-        <li>
-          <a href="listar_funcionario.php">
-            <i class="zmdi zmdi-accounts-add"></i><span>Listar Funcionários</span>
-          </a>
-        </li>
-        <li>
-          <a href="profile_adm.html">
-            <i class="zmdi zmdi-face"></i> <span>Perfil</span>
-          </a>
-        </li>
-        <li>
-          <a href="../index.html">
-            <i class="fa-solid fa-right-from-bracket" style="color: #9e9e9e;"></i> <span>Sair</span>
-          </a>
-        </li>
-      </ul>
-    </div>
+      <li>
+        <a href="cadastrar_funcionario_adm.html">
+          <i class="fa-solid fa-user" style="color: #9e9e9e;"></i> <span>Funcionário</span>
+        </a>
+      </li>
+      <li>
+      <a href="listar_funcionario.php">
+        <i class="zmdi zmdi-accounts-add"></i><span>Listar Funcionários</span></a> 
+      </a>
+    </li>
+      <li>
+        <a href="registrar_servico_adm.html">
+          <i class="fa-solid fa-list-check" style="color: #9e9e9e;"></i> <span>Serviço</span>
+        </a>
+      </li>      
+      <li>
+        <a href="relatorio_adm.html">
+          <i class="zmdi zmdi-assignment" style="color: #9e9e9e;"></i> <span>Relatório</span>
+        </a>
+      </li>
+
+      <li>
+        <a href="profile_adm.html">
+          <i class="zmdi zmdi-face"></i> <span>Perfil</span>
+        </a>
+      </li>
+
+      <li>
+        <a href="../php/logout.php">
+          <i class="fa-solid fa-right-from-bracket" style="color: #9e9e9e;"></i> <span>Sair</span>
+        </a>
+      </li>
+
+    </ul>
+   
+   </div>
     <!-- End sidebar-wrapper -->
 
     <!-- Start topbar header -->
@@ -280,12 +287,12 @@
                           echo "<td>" . $row['cargo'] . "</td>";
                           echo "<td class='action-buttons'>";
                           // Formulário para atualizar funcionário
-                          echo "<form action='../../php/atualizar_funcionario.php' method='post'>";
+                          echo "<form action='../php/atualizar_funcionario.php' method='post'>";
                           echo "<input type='hidden' name='id' value='" . $row['id_funcionario'] . "'>";
                           echo "<button type='submit' class='fa-regular fa-pen-to-square'></button>";
                           echo "</form>";
                           // Formulário para excluir funcionário
-                          echo "<form action='../../php/excluir_funcionario.php' method='post' method='post'>";
+                          echo "<form action='../php/excluir_funcionario.php' method='post' method='post'>";
                           echo "<input type='hidden' name='id' value='" . $row['id_funcionario'] . "'>";
                           echo "<button type='submit' class='fa-solid fa-trash'></button>";
                           echo "</form>";

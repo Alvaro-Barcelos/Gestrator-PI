@@ -542,13 +542,13 @@ i.fa-comment {
 
 
       <li>
-        <a href="conteudo_adm.html">
+        <a href="conteudo_adm.php">
          <i class="fa-solid fa-book" style="color: #9e9e9e;"></i> <span>Conteúdo</span>
         </a>
       </li>
 
       <li>
-        <a href="cadastrar_funcionario_adm.html">
+        <a href="cadastrar_funcionario_adm.php">
           <i class="fa-solid fa-user" style="color: #9e9e9e;"></i> <span>Funcionário</span>
         </a>
       </li>
@@ -558,18 +558,18 @@ i.fa-comment {
       </a>
     </li>
       <li>
-        <a href="registrar_servico_adm.html">
+        <a href="registrar_servico_adm.php">
           <i class="fa-solid fa-list-check" style="color: #9e9e9e;"></i> <span>Serviço</span>
         </a>
       </li>      
       <li>
-        <a href="relatorio_adm.html">
+        <a href="relatorio_adm.php">
           <i class="zmdi zmdi-assignment" style="color: #9e9e9e;"></i> <span>Relatório</span>
         </a>
       </li>
 
       <li>
-        <a href="profile_adm.html">
+        <a href="profile_adm.php">
           <i class="zmdi zmdi-face"></i> <span>Perfil</span>
         </a>
       </li>

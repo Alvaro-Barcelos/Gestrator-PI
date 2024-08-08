@@ -177,12 +177,39 @@
           background-color: #863b3b; /* Vermelho */
         }
       </style>
+
+      <?php
+      include_once("../php/conexao.php");
+
+      $sql = "SELECT setor.id_setor, servico.id_servico
+      FROM setor
+      INNER JOIN servico ON setor.id_setor = servico.id_setor";
+
+      // Consultas SQL para buscar os dados
+      $sqlServicosAdministrativo = "SELECT COUNT(*) AS total FROM servico WHERE id_setor = '1'";
+      $sqlServicosComercial = "SELECT COUNT(*) AS total FROM servico WHERE id_setor = '2'";
+      $sqlServicosMarketing = "SELECT COUNT(*) AS total FROM servico WHERE id_setor = '3'";
+      $sqlServicosFinanceiro = "SELECT COUNT(*) AS total FROM servico WHERE id_setor = '4'";
+      $sqlServicosCompras = "SELECT COUNT(*) AS total FROM servico WHERE id_setor = '5'";
+      $sqlServicosRecursosHumanos = "SELECT COUNT(*) AS total FROM servico WHERE id_setor = '6'";
+      $sqlServicosOperacoes = "SELECT COUNT(*) AS total FROM servico WHERE id_setor = '7'";
+
+      // Executando as consultas e obtendo os resultados
+      $resultServicosAdministrativo = $conexao->query($sqlServicosAdministrativo)->fetch_assoc();
+      $resultServicosComercial = $conexao->query($sqlServicosComercial)->fetch_assoc();
+      $resultServicosMarketing = $conexao->query($sqlServicosMarketing)->fetch_assoc();
+      $resultServicosFinanceiro = $conexao->query($sqlServicosFinanceiro)->fetch_assoc();
+      $resultServicosCompras = $conexao->query($sqlServicosCompras)->fetch_assoc();
+      $resultServicosRecursosHumanos = $conexao->query($sqlServicosRecursosHumanos)->fetch_assoc();
+      $resultServicosOperacoes = $conexao->query($sqlServicosOperacoes)->fetch_assoc();
+
+      ?>
       
       <div class="row mb-4">
         <div class="col-12 col-lg-6 col-xl-3">
           <div class="card bg-custom1">
             <div class="card-body">
-              <h5 class="text-white mb-0">5856 <span class="float-right"><i class="fa fa-circle text-white"></i></span></h5>
+              <h5 class="text-white mb-0"><?php echo $resultServicosAdministrativo['total']; ?><span class="float-right"><i class="fa fa-circle text-white"></i></span></h5>
               <div class="progress my-3" style="height:3px;">
                 <div class="progress-bar" style="width:55%"></div>
               </div>

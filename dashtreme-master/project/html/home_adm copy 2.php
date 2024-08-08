@@ -894,6 +894,63 @@ $resultado = mysqli_query($conexao, "
 
 ?>
 
+<?php
+include_once("../php/conexao.php");
+
+// Define o critério de classificação padrão
+$sort = isset($_GET['sort']) ? $_GET['sort'] : 'data_final';
+
+// Mapeia o critério de classificação para a coluna correta
+switch ($sort) {
+    case 'prioridade_maior':
+        $orderBy = 'CASE 
+                        WHEN prioridade = "Alta" THEN 1
+                        WHEN prioridade = "Média" THEN 2
+                        WHEN prioridade = "Baixa" THEN 3
+                        ELSE 4
+                    END ASC'; // Maior prioridade primeiro
+        break;
+    case 'prioridade_menor':
+        $orderBy = 'CASE 
+                        WHEN prioridade = "Alta" THEN 1
+                        WHEN prioridade = "Média" THEN 2
+                        WHEN prioridade = "Baixa" THEN 3
+                        ELSE 4
+                    END DESC';  // Menor prioridade primeiro
+        break;
+    case 'situacao':
+        $orderBy = 'CASE 
+                        WHEN situacao = "Pendente" THEN 1
+                        WHEN situacao = "Em Andamento" THEN 2
+                        WHEN situacao = "Concluído" THEN 3
+                        ELSE 4
+                    END ASC'; // Maior prioridade primeiro
+        break;
+    case 'recente':
+        $orderBy = 'data_final ASC';
+        break;
+    case 'antigo':
+        $orderBy = 'data_final DESC';
+        break;
+    default:
+        $orderBy = 'data_final ASC';
+        break;
+}
+
+$resultado = mysqli_query($conexao, "
+    SELECT 
+        servico.*, 
+        setor.nome_setor
+    FROM 
+        servico 
+    JOIN 
+        setor ON servico.id_setor = setor.id_setor 
+    WHERE 
+        DATE_FORMAT(servico.data_final, '%Y-%m') = DATE_FORMAT(NOW(), '%Y-%m')
+    ORDER BY
+        $orderBy
+");
+?>
   
 <div class="row">
     <div class="col-12 col-lg-12">

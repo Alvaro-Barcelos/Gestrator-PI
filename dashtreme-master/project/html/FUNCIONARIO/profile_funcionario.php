@@ -1,6 +1,6 @@
 <?php
-include("../protect_funcionario.php");
-include_once("../../php/conexao.php");
+include ("../protect_funcionario.php");
+include_once ("../../php/conexao.php");
 ?>
 
 
@@ -15,6 +15,7 @@ include_once("../../php/conexao.php");
   <meta name="author" content="" />
   <title>Dashtreme Admin - Free Dashboard for Bootstrap 4 by Codervent</title>
   <!-- loader-->
+
   <link href="../../../assets/css/pace.min.css" rel="stylesheet" />
   <script src="../../../assets/js/pace.min.js"></script>
   <!--favicon-->
@@ -32,7 +33,9 @@ include_once("../../php/conexao.php");
   <!-- Custom Style-->
   <link href="../../../assets/css/app-style.css" rel="stylesheet" />
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 </head>
 
@@ -68,7 +71,8 @@ include_once("../../php/conexao.php");
         </li>
 
         <li>
-          <a href="https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fcalendar.google.com%2Fcalendar%2Fu%2F0%2Fr&emr=1&followup=https%3A%2F%2Fcalendar.google.com%2Fcalendar%2Fu%2F0%2Fr&ifkv=AdF4I77H6Q8kDjrou1wIGuHz3S3_9WHl1Z6w3HQ5MAbJVDPoIZHRKIQUAYS0YHfymJmHEtgj8rOdfQ&osid=1&passive=1209600&service=cl&flowName=GlifWebSignIn&flowEntry=ServiceLogin&dsh=S268491357%3A1720720457775498&ddm=0">
+          <a
+            href="https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fcalendar.google.com%2Fcalendar%2Fu%2F0%2Fr&emr=1&followup=https%3A%2F%2Fcalendar.google.com%2Fcalendar%2Fu%2F0%2Fr&ifkv=AdF4I77H6Q8kDjrou1wIGuHz3S3_9WHl1Z6w3HQ5MAbJVDPoIZHRKIQUAYS0YHfymJmHEtgj8rOdfQ&osid=1&passive=1209600&service=cl&flowName=GlifWebSignIn&flowEntry=ServiceLogin&dsh=S268491357%3A1720720457775498&ddm=0">
             <i class="zmdi zmdi-calendar-check"></i> <span>Calendário</span>
           </a>
         </li>
@@ -114,13 +118,15 @@ include_once("../../php/conexao.php");
         <ul class="navbar-nav align-items-center right-nav-link">
           <li class="nav-item">
             <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown" href="#">
-              <span class="user-profile"><img src="https://via.placeholder.com/110x110" class="img-circle" alt="user avatar"></span>
+              <span class="user-profile"><img src="https://via.placeholder.com/110x110" class="img-circle"
+                  alt="user avatar"></span>
             </a>
             <ul class="dropdown-menu dropdown-menu-right">
               <li class="dropdown-item user-details">
                 <a href="javaScript:void();">
                   <div class="media">
-                    <div class="avatar"><img class="align-self-start mr-3" src="https://via.placeholder.com/110x110" alt="user avatar"></div>
+                    <div class="avatar"><img class="align-self-start mr-3" src="https://via.placeholder.com/110x110"
+                        alt="user avatar"></div>
                     <div class="media-body">
                       <h6 class="mt-2 user-title"><?php echo $_SESSION['usuario']; ?></h6>
                       <?php
@@ -166,7 +172,8 @@ include_once("../../php/conexao.php");
           <div class="col-lg-4">
             <div class="card profile-card-2">
               <div class="card-img-block">
-                <img src="../../../../dashtreme-master/imagens/background.png" width="100%" height="100%" alt="Card image cap">
+                <img src="../../../../dashtreme-master/imagens/background.png" width="100%" height="100%"
+                  alt="Card image cap">
               </div>
 
               <div class="card-body pt-5">
@@ -174,14 +181,14 @@ include_once("../../php/conexao.php");
                 $usuario = $_SESSION['usuario'];
 
                 $query_funcionario = mysqli_query($conexao, "SELECT f.id_funcionario,f.nome_funcionario ,f.foto_funcionario , f.email, s.nome_setor 
-              FROM funcionario f 
-              JOIN setor s ON f.id_setor = s.id_setor 
-              WHERE f.nome_funcionario = '$usuario' limit 1");
+                FROM funcionario f 
+                JOIN setor s ON f.id_setor = s.id_setor 
+                WHERE f.nome_funcionario = '$usuario' limit 1");
 
                 if ($query_funcionario->num_rows > 0) {
                   while ($row = $query_funcionario->fetch_assoc()) {
-                    $id_funcionario = $row['id_funcionario'];
-                    echo "    <img class='card-img-top' src='" . $row['foto_funcionario'] . "' alt='Card image cap'>";
+                    // echo "    <img class='card-img-top' src='" . $row['foto_funcionario'] . "' alt='Card image cap'>";
+                    echo "<img src='" . $row['foto_funcionario'] . "' alt='profile-image' class='profile'>";
                     echo "    <h5>" . $row['nome_funcionario'] . "</h5>";
                   }
                 }
@@ -287,7 +294,8 @@ include_once("../../php/conexao.php");
               <div class="card-body">
                 <ul class="nav nav-tabs nav-tabs-primary top-icon nav-justified">
                   <li class="nav-item">
-                    <a href="javascript:void();" data-target="#profile" data-toggle="pill" class="nav-link active"><i class="icon-user"></i> <span class="hidden-xs">Profile</span></a>
+                    <a href="javascript:void();" data-target="#profile" data-toggle="pill" class="nav-link active"><i
+                        class="icon-user"></i> <span class="hidden-xs">Profile</span></a>
                   </li>
                 </ul>
                 <div class="tab-content p-3">
@@ -295,7 +303,7 @@ include_once("../../php/conexao.php");
                     <h5 class="mb-3">User Profile</h5>
                     <div class="row">
                       <div class="col-md-6">
-                        
+
                         <?php
 
                         $usuario = $_SESSION['usuario'];
@@ -311,17 +319,6 @@ include_once("../../php/conexao.php");
                             echo "<p>" . htmlspecialchars($row['nome_funcionario']) . "</p>";
                             echo "<hr>";
 
-                            echo "<h6>Foto</h6>";
-
-                            // Verifique o caminho da imagem
-                            $foto = htmlspecialchars($row['foto_funcionario']);
-                            echo "<p>Caminho da imagem: " . $foto . "</p>";
-
-                            // Exibindo a imagem
-                            echo "<img src='" . $foto . "' alt='Foto do Funcionário' style='max-width: 200px; max-height: 200px;'>";
-
-                            echo "<hr>";
-
                             echo "<h6>Email</h6>";
                             echo "<p>" . htmlspecialchars($row['email']) . "</p>";
                             echo "<hr>";
@@ -334,21 +331,19 @@ include_once("../../php/conexao.php");
                             echo "<p>" . htmlspecialchars($row['celular']) . "</p>";
                             echo "<hr>";
 
-                            echo "<h6>Cidade</h6>";
-                            echo "<p>" . htmlspecialchars($row['cidade']) . "</p>";
-                            echo "<hr>";
-
-                            echo "<h6>Endereço</h6>";
-                            echo "<p>" . htmlspecialchars($row['endereco']) . "</p>";
-                            echo "<hr>";
-
                             echo "<h6>Setor</h6>";
                             echo "<p>" . htmlspecialchars($row['nome_setor']) . "</p>";
+                            echo "<hr>";
                           }
                         }
                         ?>
-                        
+
+
+
                       </div>
+
+
+
 
                       <!-- <div class="col-md-6">
                             <h6>Recent badges</h6>
@@ -401,7 +396,31 @@ include_once("../../php/conexao.php");
                           </div>
                         </div> -->
                     </div>
-                    <!--/row-->
+                    <div class="form-group row">
+                      <label class="col-lg-3 col-form-label form-control-label">Senha</label>
+                      <div class="col-lg-9 input-group">
+                        <input class="form-control" type="password" name="senha" size="15" required
+                          onchange='confereSenha();' placeholder="******">
+                        <div class="input-group-append">
+                          <span class="input-group-text" onclick="mostrarSenha('senha')">
+                            <i class="fa fa-eye" id="olhoSenha"></i>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <label class="col-lg-3 col-form-label form-control-label">Confirmar Senha</label>
+                      <div class="col-lg-9 input-group">
+                        <input class="form-control" type="password" name="confirma" size="15" required
+                          onchange='confereSenha();' placeholder="******">
+                        <div class="input-group-append">
+                          <span class="input-group-text" onclick="mostrarSenha('confirma')">
+                            <i class="fa fa-eye" id="olhoConfirma"></i>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -428,17 +447,7 @@ include_once("../../php/conexao.php");
   </div><!--End content-wrapper-->
   <!--Start Back To Top Button-->
   <a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
-  <!--End Back To Top Button-->
 
-  <!--Start footer-->
-  <footer class="footer">
-    <div class="container">
-      <div class="text-center">
-        Copyright © 2018 Dashtreme Admin
-      </div>
-    </div>
-  </footer>
-  <!--End footer-->
 
   <!--start color switcher-->
   <div class="right-sidebar">

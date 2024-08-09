@@ -5,7 +5,7 @@
     $nome_funcionario = $_POST['nome'];
 
     $imagem = $_FILES['imagem_funcionario']['tmp_name'];
-    $imagem_destino = '../imagensBd/' . $_FILES['imagem_funcionario']['name'];
+    $imagem_destino = '../../imagensBd/' . $_FILES['imagem_funcionario']['name'];
     
     move_uploaded_file($imagem, $imagem_destino);
     

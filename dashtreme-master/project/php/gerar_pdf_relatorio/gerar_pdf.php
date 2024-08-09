@@ -4,14 +4,11 @@
 
 // Seu código PHP para gerar o PDF
 require_once('TCPDF/tcpdf.php');
-include_once("../paginas/conexao.php"); // Inclua o arquivo de conexão com o banco de dados
+include_once("../conexao.php"); // Inclua o arquivo de conexão com o banco de dados
 
 $codigo = $_POST['id'];
 // Consulta SQL para selecionar os veículos
-$sql = "SELECT v.id_veiculo, v.Marca, v.Modelo, v.fabricacao, v.chassi, v.placa, v.tipo_combustivel, v.quilometragem, c.Nome_completo, c.cpf 
-        FROM Cadastro_veiculo v 
-        LEFT JOIN Condutor c ON v.id_veiculo = c.id_veiculo
-        WHERE v.id_veiculo = '$codigo'";
+$sql = "SELECT * FROM servico WHERE id_servico = '$codigo'";
 
 
 // Executar a consulta
@@ -24,21 +21,20 @@ $pdf = new TCPDF();
 $pdf->AddPage();
 
 // Cabeçalho do PDF
-$html = '<h1>Lista de Veículos</h1>';
+$html = '<h1>Relatório</h1>';
 
 // Loop para exibir os registros
 while ($row = mysqli_fetch_assoc($resultado)) {
     $html .= '<hr>'; // Adiciona uma linha horizontal entre os veículos
-    $html .= '<h2>ID: ' . $row['id_veiculo'] . '</h2>';
-    $html .= '<p>Marca: ' . $row['Marca'] . '</p>';
-    $html .= '<p>Modelo: ' . $row['Modelo'] . '</p>';
-    $html .= '<p>Fabricação: ' . $row['fabricacao'] . '</p>';
-    $html .= '<p>Chassi: ' . $row['chassi'] . '</p>';
-    $html .= '<p>Placa: ' . $row['placa'] . '</p>';
-    $html .= '<p>Tipo Combustível: ' . $row['tipo_combustivel'] . '</p>';
-    $html .= '<p>Quilometragem: ' . $row['quilometragem'] . '</p>';
-    $html .= '<p>Nome Completo: ' . $row['Nome_completo'] . '</p>';
-    $html .= '<p>CPF: ' . $row['cpf'] . '</p>';
+    $html .= '<h2>ID: ' . $row['id_servico'] . '</h2>';
+    $html .= '<p>Nome Serviço: ' . $row['nome_servico'] . '</p>';
+    $html .= '<p>Descrição: ' . $row['descricao'] . '</p>';
+    $html .= '<p>Data Criada: ' . $row['data_criada'] . '</p>';
+    $html .= '<p>Data Final: ' . $row['data_final'] . '</p>';
+    $html .= '<p>Situação: ' . $row['situacao'] . '</p>';
+    $html .= '<p>Prioridade: ' . $row['prioridade'] . '</p>';
+    $html .= '<p>Observação: ' . $row['observacao'] . '</p>';
+    $html .= '<p>Equipe: ' . $row['equipe'] . '</p>';
 }
 
 // Escrever o conteúdo HTML no PDF
@@ -48,7 +44,7 @@ $pdf->writeHTML($html, true, false, true, false, '');
 ob_end_clean();
 
 // Saída do PDF para o navegador
-$pdf->Output('lista_veiculos.pdf', 'I');
+$pdf->Output('Relatório.pdf', 'I');
 
 // Fechar a conexão com o banco de dados
 mysqli_close($conexao);

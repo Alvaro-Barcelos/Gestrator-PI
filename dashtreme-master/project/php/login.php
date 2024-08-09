@@ -27,10 +27,10 @@ if (isset($_POST['email']) && isset($_POST['senha'])) {
                 $_SESSION['tipo'] = $usuario['tipo'];
 
                 if($_SESSION['tipo'] == 'comum'){
-                    header("Location: ../html/FUNCIONARIO/home_funcionario.php");
+                    header("Location: ../html/home_funcionario copy.php");
                 }
-                else if($_SESSION['tipo'] == 'supervisor'){
-                    header("Location: ../html/RECURSOS_HUMANOS/home_lider.html");
+                else if($_SESSION['tipo'] == 'rh'){
+                    header("Location: ../html/home_rh copy.php");
                 }else{
                     header("Location: ../html/home_adm.php");
                 }

@@ -12,7 +12,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     // Verificar se a inserção foi bem-sucedida
     if ($enviar_observacao) {
-        header("Location: ../html/home_adm copy.php");
+        if( $_SESSION['tipo_conta'] == 'gerente'){
+            header("Location: ../html/home_adm copy.php");
+        }
     } else {
         echo "Erro ao salvar a observação: " . mysqli_error($conexao);
     }

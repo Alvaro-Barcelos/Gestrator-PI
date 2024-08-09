@@ -16,7 +16,9 @@
     $nacionalidade = $_POST['nacionalidade'];
 
     $acesso = $_POST['acesso'];
-    
+    $tipo_conta = $_POST['tipo_conta'];
+    //gerente | rh | comum
+
     ?>
 
     <!DOCTYPE html>
@@ -56,16 +58,8 @@
     $cidade = $_POST['cidade'];
     $endereco = $_POST['endereco'];
     
-    if ($cargo == "gerente") {
-        $tipo = "gerente";
-    } elseif ($cargo == "supervisor") {
-        $tipo = "supervisor";
-    }
-    else {
-        $tipo = "comum";
-    }
     
-    $query = "INSERT INTO login (usuario, email, senha, tipo) VALUES ('$nome_funcionario', '$email', '$senha_hash', '$tipo')";
+    $query = "INSERT INTO login (usuario, email, senha, tipo) VALUES ('$nome_funcionario', '$email', '$senha_hash', '$tipo_conta')";
     
     $login = mysqli_query($conexao, $query);
     

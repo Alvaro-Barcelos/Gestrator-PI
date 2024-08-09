@@ -295,6 +295,10 @@ if ($query_funcionario->num_rows > 0) {
                       <input type="text" class="form-control" name="cargo" id="input-1" placeholder="Cargo do funcionário">
                     </div>
                     <div class="form-group">
+                      <label for="input-1">Nivel de permissão do usuario</label>
+                      <input type="text" class="form-control" name="tipo_conta" id="input-1" placeholder="Salário do funcionário">
+                    </div>
+                    <div class="form-group">
                       <label for="input-1">Salário</label>
                       <input type="text" class="form-control" name="salario" id="input-1" placeholder="Salário do funcionário">
                     </div>

@@ -1,17 +1,19 @@
 <?php
 
+if (!isset($_SESSION)) {
+    session_start();
+}
 
-    if(!isset($_SESSION)){
-        session_start();
-    }
+// Verifica se o usuário não está logado
+if (!isset($_SESSION['id_login'])) {
+    header("Location: semLogin.html");
+    exit(); // Garante que o script seja interrompido após o redirecionamento
+}
 
-
-
-    if(!isset($_SESSION['id_login'])){
-        header("Location: semLogin.html");
-        if( $_SESSION['tipo_conta'] !== 'rh' && $_SESSION['tipo_conta'] !== 'gerente'){
-            header("Location: restricao.html");
-        }
-    }
+// Verifica se o tipo de conta não é 'rh'
+if ($_SESSION['tipo'] !== 'rh') {
+    header("Location: restricao.html");
+    exit(); // Garante que o script seja interrompido após o redirecionamento
+}
 
 ?>

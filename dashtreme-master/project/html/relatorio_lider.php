@@ -76,7 +76,7 @@
       </a>
     </li>
     <li>
-      <a href="listar_funcionario.php">
+      <a href="listar_funcionario_lider.php">
         <i class="zmdi zmdi-accounts-add"></i><span>Listar Funcionários</span></a> 
       </a>
     </li>

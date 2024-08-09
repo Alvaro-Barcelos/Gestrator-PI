@@ -11,7 +11,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
   <meta name="description" content=""/>
   <meta name="author" content=""/>
-  <title>Dashtreme Admin - Free Dashboard for Bootstrap 4 by Codervent</title>
+  <title>Listagem de Funcionários</title>
   <!-- loader-->
   <link href="../../assets/css/pace.min.css" rel="stylesheet"/>
   <script src="../../assets/js/pace.min.js"></script>
@@ -124,15 +124,15 @@
     <!-- Start sidebar-wrapper -->
     <div id="sidebar-wrapper" data-simplebar="" data-simplebar-auto-hide="true">
     <div class="brand-logo">
-     <a href="home_adm.html">
-     <img src="../../imagens/GE.png" class="logo-icon" alt="logo icon" >
+     <a href="home_rh copy.php">
+     <img src="../imagens/GE.png" class="logo-icon" alt="logo icon" >
       <h5 class="logo-text">Gestrator</h5>
     </a>
   </div>
   <ul class="sidebar-menu do-nicescrol">
   
      <li>
-       <a href="home_rh html.php">
+       <a href="home_rh copy.php">
          <i class="fa-solid fa-chart-line" style="color: #9e9e9e;"></i> <span>Dashboard</span>
        </a>
      </li>
@@ -159,7 +159,7 @@
       </a>
     </li>
     <li>
-      <a href="listar_funcionario.php">
+      <a href="listar_funcionario_lider.php">
         <i class="zmdi zmdi-accounts-add"></i><span>Listar Funcionários</span></a> 
       </a>
     </li>

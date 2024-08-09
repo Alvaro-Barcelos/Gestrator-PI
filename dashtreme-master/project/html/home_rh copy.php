@@ -558,7 +558,7 @@ i.fa-comment {
       </a>
     </li>
     <li>
-      <a href="../html/listar_funcionario.php">
+      <a href="../html/listar_funcionario_lider.php">
         <i class="zmdi zmdi-accounts-add"></i><span>Listar Funcionários</span></a> 
       </a>
     </li>
@@ -570,7 +570,7 @@ i.fa-comment {
      </li>
   
      <li>
-       <a href="../index.php">
+       <a href="../index.html">
          <i class="fa-solid fa-right-from-bracket" style="color: #9e9e9e;"></i> <span>Sair</span>
        </a>
      </li>

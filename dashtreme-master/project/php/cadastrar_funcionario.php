@@ -96,7 +96,7 @@
     VALUES('$nome_funcionario', '$nacionalidade', '$data_nascimento', '$cargo', '$salario', '$cpf', '$rg', '$email', '$celular', '$cidade', '$endereco', '$pcd', '$imagem_destino', '$setor', '$id_login')");
 
     if($criar_funcionario){
-        header("Location: ../html/cadastroSucesso.html");
+        header("Location: ../html/cadastroSucesso_rh.html");
     }else{
         echo"Algo deu errado";
     }

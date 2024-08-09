@@ -265,7 +265,6 @@ if ($query_funcionario->num_rows > 0) {
                             document.getElementById('acesso').value = password;
                         }
                     </script>
-  
                     </div>
                     <div class="form-group">
                       <label for="input-2">Setor</label>
@@ -296,7 +295,7 @@ if ($query_funcionario->num_rows > 0) {
                     </div>
                     <div class="form-group">
                     <div class="custom-dropdown">
-                      <label for="input-2">Nível de acesso</label>
+                      <label for="input-2">Nível de acesso </label>
                         <select id="input-2" class="form-control" name="tipo_conta" required>
                           <option value="" disabled selected hidden>Selecione o Nível de acesso</option>
                           <option value="gerente">Gerente</option>
@@ -314,7 +313,7 @@ if ($query_funcionario->num_rows > 0) {
                     
                     <div class="form-group">
                       <label for="input-3">Data de nascimento</label>
-                      <input type="date" class="form-control" name="data_nascimento" id="input-3" placeholder="Enter Your Mobile Number" required >
+                      <input type="date" class="form-control" name="data_nascimento" id="input-3" max="" required >
                     </div>
                     <div class="form-group">
                       <label for="input-pcd">Funcionário PCD</label>
@@ -502,6 +501,9 @@ if ($query_funcionario->num_rows > 0) {
         icon.style.display = 'none';
       }
     };
+
+    const hoje = new Date().toISOString().split('T')[0];
+    document.getElementById('input-3').setAttribute('max', hoje);
   </script>
 
   <!-- Bootstrap core JavaScript-->
@@ -516,6 +518,5 @@ if ($query_funcionario->num_rows > 0) {
   
   <!-- Custom scripts -->
   <script src="../../assets/js/app-script.js"></script>
-	
 </body>
 </html>

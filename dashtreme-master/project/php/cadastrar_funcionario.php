@@ -13,6 +13,14 @@
     $imagem_destino = '../imagensBd/' . $_FILES['imagem_funcionario']['name'];
     
     move_uploaded_file($imagem, $imagem_destino);
+
+
+    $curriculo_funcionario = $_FILES['curriculo_funcionario']['tmp_name'];
+    $curriculo_funcionario_destino = '../../imagensBd/' . $_FILES['curriculo_funcionario']['name'];
+    
+    move_uploaded_file($curriculo_funcionario, $curriculo_funcionario_destino);
+
+    $curriculo_funcionario = $_POST['curriculo_funcionario'];
     
     $cpf = $_POST['cpf'];
     $rg = $_POST['rg'];
@@ -62,7 +70,7 @@
     $pcd = $_POST['pcd'];
     $cidade = $_POST['cidade'];
     $endereco = $_POST['endereco'];
-    
+
     
     $query = "INSERT INTO login (usuario, email, senha, tipo) VALUES ('$nome_funcionario', '$email', '$senha_hash', '$tipo_conta')";
     
@@ -91,8 +99,8 @@
     $update_setor = mysqli_query($conexao, "UPDATE setor SET quantidade = quantidade + 1 WHERE id_setor = '$setor'");
 
  
-    $criar_funcionario = mysqli_query($conexao, "INSERT INTO funcionario(nome_funcionario, nacionalidade, data_nascimento, cargo, salario, cpf, rg, email, celular, cidade, endereco, pcd, foto_funcionario, id_setor, id_login) 
-    VALUES('$nome_funcionario', '$nacionalidade', '$data_nascimento', '$cargo', '$salario', '$cpf', '$rg', '$email', '$celular', '$cidade', '$endereco', '$pcd', '$imagem_destino', '$setor', '$id_login')");
+    $criar_funcionario = mysqli_query($conexao, "INSERT INTO funcionario(nome_funcionario, nacionalidade, data_nascimento, cargo, salario, cpf, rg, email, celular, cidade, endereco, pcd, foto_funcionario,curriculo, id_setor, id_login) 
+    VALUES('$nome_funcionario', '$nacionalidade', '$data_nascimento', '$cargo', '$salario', '$cpf', '$rg', '$email', '$celular', '$cidade', '$endereco', '$pcd', '$imagem_destino','$curriculo_funcionario_destino' ,'$setor', '$id_login')");
 
     if($criar_funcionario){
         if( $_SESSION['tipo'] == 'gerente'){

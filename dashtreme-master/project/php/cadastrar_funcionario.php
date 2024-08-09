@@ -2,7 +2,7 @@
 
     include_once('conexao.php');
 
-    $nome_funcionario = $_POST['nome_completo'];
+    $nome_funcionario = $_POST['nome'];
 
     $imagem = $_FILES['imagem_funcionario']['tmp_name'];
     $imagem_destino = '../imagensBd/' . $_FILES['imagem_funcionario']['name'];
@@ -60,7 +60,8 @@
         $tipo = "gerente";
     } elseif ($cargo == "supervisor") {
         $tipo = "supervisor";
-    } else {
+    }
+    else {
         $tipo = "comum";
     }
     

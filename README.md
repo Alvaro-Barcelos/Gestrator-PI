@@ -4,7 +4,6 @@ Gestrator is a powerfull ERP to help companies manage all your suplies, like tim
 
 With our system you'll uproot the seeds that you had planted by now choosing this system whose made with a great care. With more time to do task that care you can slow down and take your stress out in a at ease way.
 
-<img src="dashtreme-master/imagens/dash.png" width="600px">
 
 ---
 

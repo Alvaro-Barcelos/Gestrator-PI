@@ -104,6 +104,16 @@
     .fa-regular{
         color: #38a9ff;
     }
+
+    .card-body{
+        width: 1000px;
+        align-itens: center;
+    }
+
+    .card {
+        width: 1000px;
+        align-itens: center;
+    }
   </style>
 </head>
 <body class="bg-theme bg-theme1">
@@ -293,7 +303,7 @@
           <div class="col-lg-8">
             <div class="card">
               <div class="card-body">
-                <h1 class='card-title'>Lista de Funcionários</h1>
+                <h1 class='card-title'>Lista de Serviço</h1>
                 <div class="container">
 
     <div id="results">

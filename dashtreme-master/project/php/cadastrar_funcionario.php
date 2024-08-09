@@ -2,7 +2,7 @@
 
     include_once('conexao.php');
 
-    $nome_funcionario = $_POST['nome_completo'];
+    $nome_funcionario = $_POST['nome'];
 
     $imagem = $_FILES['imagem_funcionario']['tmp_name'];
     $imagem_destino = '../imagensBd/' . $_FILES['imagem_funcionario']['name'];
@@ -60,7 +60,8 @@
         $tipo = "gerente";
     } elseif ($cargo == "supervisor") {
         $tipo = "supervisor";
-    } else {
+    }
+    else {
         $tipo = "comum";
     }
     
@@ -95,7 +96,7 @@
     VALUES('$nome_funcionario', '$nacionalidade', '$data_nascimento', '$cargo', '$salario', '$cpf', '$rg', '$email', '$celular', '$cidade', '$endereco', '$pcd', '$imagem_destino', '$setor', '$id_login')");
 
     if($criar_funcionario){
-        header("Location: ../html/cadastroSucesso.html");
+        header("Location: ../html/cadastroSucesso_rh.html");
     }else{
         echo"Algo deu errado";
     }

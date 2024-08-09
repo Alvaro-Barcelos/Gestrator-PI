@@ -16,7 +16,7 @@
 
 
     $curriculo_funcionario = $_FILES['curriculo_funcionario']['tmp_name'];
-    $curriculo_funcionario_destino = '../../imagensBd/' . $_FILES['curriculo_funcionario']['name'];
+    $curriculo_funcionario_destino = '../imagensBd/' . $_FILES['curriculo_funcionario']['name'];
     
     move_uploaded_file($curriculo_funcionario, $curriculo_funcionario_destino);
 

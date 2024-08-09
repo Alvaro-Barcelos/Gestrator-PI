@@ -36,6 +36,13 @@ include_once ("../php/conexao.php");
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
+  
+  <style>
+    .btnnn{
+      margin-left: -15px;
+    }
+  </style>
+
 
 </head>
 
@@ -196,7 +203,7 @@ include_once ("../php/conexao.php");
               </div>
 
               <div class="card-body border-top border-light">
-                <h5>Curriculo</h5>
+                <h5>Curriculo:</h5>
                 <div class="media align-items-center">
                   <div class="media-body text-left ml-3">
                     <div class="progress-wrapper">
@@ -211,8 +218,7 @@ include_once ("../php/conexao.php");
                       if ($query_funcionario->num_rows > 0) {
                         while ($row = $query_funcionario->fetch_assoc()) {
                           $id_funcionario = $row['id_funcionario'];
-                          
-                          echo "<a href='" . $row['curriculo'] . "' class='card-link' target='_blank'>Abrir PDF do curriculo</a>";
+                          echo "<button type='submit' class='btn btnnn btn-light px-5'><a href='" . $row['curriculo'] . "' class='card-link' target='_blank'>Abrir PDF</a></button>";
                         }
                       }
                       ?>

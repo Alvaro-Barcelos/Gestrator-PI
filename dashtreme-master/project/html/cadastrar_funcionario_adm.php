@@ -295,8 +295,17 @@ if ($query_funcionario->num_rows > 0) {
                       <input type="text" class="form-control" name="cargo" id="input-1" placeholder="Cargo do funcionário">
                     </div>
                     <div class="form-group">
-                      <label for="input-1">Nivel de permissão do usuario</label>
-                      <input type="text" class="form-control" name="tipo_conta" id="input-1" placeholder="Salário do funcionário">
+                    <div class="custom-dropdown">
+                      <label for="input-2">Nível de acesso</label>
+                        <select id="input-2" class="form-control" name="tipo_conta" required>
+                          <option value="" disabled selected hidden>Selecione o Nível de acesso</option>
+                          <option value="gerente">Gerente</option>
+                          <option value="rh">Líder RH</option>
+                          <option value="comum">Funcionário</option>
+                        </select>
+                        <div class="arrow-down"></div>
+                      </div>
+                      
                     </div>
                     <div class="form-group">
                       <label for="input-1">Salário</label>

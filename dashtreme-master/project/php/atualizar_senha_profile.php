@@ -2,6 +2,10 @@
 
     include_once('conexao.php');
 
+    if(!isset($_SESSION)){
+        session_start();
+    }
+    
 
 // Supondo que você já tenha uma conexão estabelecida com $conexao
     $id_funcionario = $_POST['id_funcionario']; // Escapar valores para segurança
@@ -22,7 +26,16 @@
     ");
 
     if ($atualizar_senha) {
-        echo "Senha atualizada com sucesso!";
+   
+        if( $_SESSION['tipo'] == 'gerente'){
+            header("Location: ../html/senhaAlteradaGerente.html");
+        }
+        else if( $_SESSION['tipo'] == 'rh'){
+            header("Location: ../html/senhaAlteradaRh.html");
+        }
+        else if( $_SESSION['tipo'] == 'comum'){
+            header("Location: ../html/senhaAlteradaComum.html");
+        }
     } else {
         echo "Erro na atualização da senha: " . mysqli_error($conexao);
     }

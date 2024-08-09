@@ -1,3 +1,7 @@
+<?php
+  include("../protect_gerente.php");
+  include_once("../../php/conexao.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,62 +44,62 @@
  
 <!--Start sidebar-wrapper-->
 <div id="sidebar-wrapper" data-simplebar="" data-simplebar-auto-hide="true">
-  <div class="brand-logo">
-   <a href="home_adm.html">
-    <img src="../../imagens/GE.png" class="logo-icon" alt="logo icon" >
-    <h5 class="logo-text">Gestrator</h5>
-  </a>
-</div>
-<ul class="sidebar-menu do-nicescrol">
-
-   <li>
-     <a href="home_lider.html">
-       <i class="fa-solid fa-chart-line" style="color: #9e9e9e;"></i> <span>Dashboard</span>
-     </a>
-   </li>
-
-   <li>
-     <a href="https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fcalendar.google.com%2Fcalendar%2Fu%2F0%2Fr&emr=1&followup=https%3A%2F%2Fcalendar.google.com%2Fcalendar%2Fu%2F0%2Fr&ifkv=AdF4I77H6Q8kDjrou1wIGuHz3S3_9WHl1Z6w3HQ5MAbJVDPoIZHRKIQUAYS0YHfymJmHEtgj8rOdfQ&osid=1&passive=1209600&service=cl&flowName=GlifWebSignIn&flowEntry=ServiceLogin&dsh=S268491357%3A1720720457775498&ddm=0">
-       <i class="zmdi zmdi-calendar-check"></i> <span>Calendário</span>
-     </a>
-   </li>
-   <li>
-   <li>
-     <a href="relatorio_lider.html">
-       <i class="zmdi zmdi-assignment" style="color: #9e9e9e;"></i> <span>Relatório</span>
-     </a>
-   </li>
-   <li>
-    <a href="registrar_servico_lider.html">
-      <i class="fa-solid fa-list-check" style="color: #9e9e9e;"></i> <span>Serviço</span>
+    <div class="brand-logo">
+     <a href="home_adm.html">
+      <img src="../../imagens/GE.png" class="logo-icon" alt="logo icon" >
+      <h5 class="logo-text">Gestrator</h5>
     </a>
-  </li>
-  <li>
-    <a href="cadastrar_funcionario_lider.html">
-      <i class="fa-solid fa-user" style="color: #9e9e9e;"></i> <span>Funcionário</span>
-    </a>
-  </li>
-  <li>
-    <a href="listar_funcionario.php">
-      <i class="zmdi zmdi-accounts-add"></i><span>Listar Funcionários</span></a> 
-    </a>
-  </li>
-
-   <li>
-     <a href="profile_lider.html">
-       <i class="zmdi zmdi-face"></i> <span>Perfil</span>
-     </a>
-   </li>
-
-   <li>
-     <a href="../index.html">
-       <i class="fa-solid fa-right-from-bracket" style="color: #9e9e9e;"></i> <span>Sair</span>
-     </a>
-   </li>
-
- </ul>
-
-</div>
+  </div>
+  <ul class="sidebar-menu do-nicescrol">
+  
+     <li>
+       <a href="../home_rh copy.php">
+         <i class="fa-solid fa-chart-line" style="color: #9e9e9e;"></i> <span>Dashboard</span>
+       </a>
+     </li>
+  
+     <li>
+       <a href="https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fcalendar.google.com%2Fcalendar%2Fu%2F0%2Fr&emr=1&followup=https%3A%2F%2Fcalendar.google.com%2Fcalendar%2Fu%2F0%2Fr&ifkv=AdF4I77H6Q8kDjrou1wIGuHz3S3_9WHl1Z6w3HQ5MAbJVDPoIZHRKIQUAYS0YHfymJmHEtgj8rOdfQ&osid=1&passive=1209600&service=cl&flowName=GlifWebSignIn&flowEntry=ServiceLogin&dsh=S268491357%3A1720720457775498&ddm=0">
+         <i class="zmdi zmdi-calendar-check"></i> <span>Calendário</span>
+       </a>
+     </li>
+     <li>
+     <li>
+       <a href="relatorio_lider.php">
+         <i class="zmdi zmdi-assignment" style="color: #9e9e9e;"></i> <span>Relatório</span>
+       </a>
+     </li>
+     <li>
+      <a href="registrar_servico_lider.php">
+        <i class="fa-solid fa-list-check" style="color: #9e9e9e;"></i> <span>Serviço</span>
+      </a>
+    </li>
+    <li>
+      <a href="cadastrar_funcionario_lider.php">
+        <i class="fa-solid fa-user" style="color: #9e9e9e;"></i> <span>Funcionário</span>
+      </a>
+    </li>
+    <li>
+      <a href="listar_funcionario.php">
+        <i class="zmdi zmdi-accounts-add"></i><span>Listar Funcionários</span></a> 
+      </a>
+    </li>
+  
+     <li>
+       <a href="profile_lider.php">
+         <i class="zmdi zmdi-face"></i> <span>Perfil</span>
+       </a>
+     </li>
+  
+     <li>
+       <a href="../index.php">
+         <i class="fa-solid fa-right-from-bracket" style="color: #9e9e9e;"></i> <span>Sair</span>
+       </a>
+     </li>
+  
+   </ul>
+  
+  </div>
  <!--End sidebar-wrapper-->
 
   <!--Start topbar header-->
@@ -120,21 +124,18 @@
              <div class="media">
                <div class="avatar"><img class="align-self-start mr-3" src="https://via.placeholder.com/110x110" alt="user avatar"></div>
               <div class="media-body">
-              <h6 class="mt-2 user-title">Sarajhon Mccoy</h6>
-              <p class="user-subtitle">mccoy@example.com</p>
-              <p class="user-subtitle">Contabilidade</p>
+              <h6 class="mt-2 user-title"><?php echo $_SESSION['usuario']; ?></h6>
+                  <p class="user-subtitle"><?php echo $row['email']; ?></p>
+                  <p class="user-subtitle"><?php echo $row['nome_setor']; ?></p>
+      
+                  <li class="dropdown-divider"></li>
+                  <a href="profile_adm.html"><li class="dropdown-item"><i class="icon-wallet mr-2"></i> Perfil</li></a>
+                  <li class="dropdown-divider"></li>
+                  <a href="../php/logout.php"><li class="dropdown-item"><i class="icon-power mr-2"></i> Sair</li></a>
+                </div>
               </div>
-             </div>
             </a>
           </li>
-          <li class="dropdown-divider"></li>
-          <li class="dropdown-item"><i class="icon-envelope mr-2"></i>Mensagens</li>
-          <li class="dropdown-divider"></li>
-          <li class="dropdown-item"><i class="icon-wallet mr-2"></i> Perfil</li>
-          <li class="dropdown-divider"></li>
-          <li class="dropdown-item"><i class="icon-settings mr-2"></i> Configarações</li>
-          <li class="dropdown-divider"></li>
-          <li class="dropdown-item"><i class="icon-power mr-2"></i> Sair</li>
         </ul>
       </li>
     </ul>

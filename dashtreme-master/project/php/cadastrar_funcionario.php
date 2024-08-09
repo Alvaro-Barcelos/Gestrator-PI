@@ -2,6 +2,11 @@
 
     include_once('conexao.php');
 
+    if(!isset($_SESSION)){
+        session_start();
+    }
+    
+
     $nome_funcionario = $_POST['nome'];
 
     $imagem = $_FILES['imagem_funcionario']['tmp_name'];
@@ -90,7 +95,16 @@
     VALUES('$nome_funcionario', '$nacionalidade', '$data_nascimento', '$cargo', '$salario', '$cpf', '$rg', '$email', '$celular', '$cidade', '$endereco', '$pcd', '$imagem_destino', '$setor', '$id_login')");
 
     if($criar_funcionario){
-        header("Location: ../html/cadastroSucesso_rh.html");
+        if( $_SESSION['tipo'] == 'gerente'){
+            header("Location: ../html/cadastroSucesso.html");
+        }
+        else if( $_SESSION['tipo'] == 'rh'){
+            header("Location: ../html/cadastroSucesso_rh.html");
+        }
+        else if( $_SESSION['tipo'] == 'comum'){
+            header("Location: ../html/cadastroSucessoComum.html");
+        }
+
     }else{
         echo"Algo deu errado";
     }

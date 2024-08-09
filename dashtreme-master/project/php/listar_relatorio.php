@@ -333,7 +333,7 @@
             echo "<td>" . htmlspecialchars($row['data_final']) . "</td>";
             echo "<td class='action-buttons'>";
             // Formulário para atualizar funcionário
-            echo "<form action='abrir_pdf_relatorio.php' method='post'>";
+            echo "<form action='gerar_pdf_relatorio/gerar_pdf.php' method='post'>";
             echo "<input type='hidden' name='id' value='" . $row['id_servico'] . "'>";
             echo "<button type='submit' class='fa-regular fa-file-pdf'></button>";
             echo "</form>";

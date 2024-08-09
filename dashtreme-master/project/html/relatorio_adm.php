@@ -312,37 +312,54 @@
             <h5 class="card-title">Relatório de produção de atividades</h5>
 
             <!-- Formulário de pesquisa -->
-            <form>
-              <div class="form-group">
-                <label for="nomeServico">Serviço</label>
-                <input type="text" class="form-control" id="nomeServico" placeholder="Digite o nome do serviço">
-              </div>
-              <div class="form-group">
-                <label for="nomeServico">Prioridade</label>
-                <select id="input-2" class="form-control" name="Prioridade" >
-                  <option value="" disabled selected hidden>Prioridade</option>
-                  <option value="1">Alta</option>
-                  <option value="2">Média</option>
-                  <option value="3">Baixa</option>
-                </select>
-              </div>
-              <div class="form-row">
-                <div class="form-group col-md-6">
-                  <label for="data_inicio">Data de início</label>
-                  <input type="date" class="form-control" id="data_inicio">
-                </div>
-                <div class="form-group col-md-6">
-                  <label for="data_final">Data Final</label>
-                  <input type="date" class="form-control" id="data_final">
-                </div>
-              </div>
-    
-              
-    
-              <div class="form-group mt-3">
-               <center> <button type="submit" class="btn btn-light px-5">Pesquisar <i class="fas fa-search" style="color: #dbdbdb;"></i></button></center>
-              </div>
-            </form>
+            <form action='../php/listar_relatorio.php' method='POST'>
+    <div class="form-group">
+        <label for="situacaoServico">Situação</label>
+        <select id="input-2" class="form-control" name="situacao">
+            <option value="" disabled selected hidden>Situação</option>
+            <option value="pendente">Pendente</option>
+            <option value="em andamento">Em Andamento</option>
+            <option value="concluido">Concluído</option>
+            <option value="nao iniciado">Não Iniciado</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="prioridadeServico">Prioridade</label>
+        <select id="input-2" class="form-control" name="prioridade">
+            <option value="" disabled selected hidden>Prioridade</option>
+            <option value="Alta">Alta</option>
+            <option value="Média">Média</option>
+            <option value="Baixa">Baixa</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="setorServico">Setor</label>
+        <select id="input-2" class="form-control" name="setor">
+            <option value="" disabled selected hidden>Setor</option>
+            <option value="1">Administrativo</option>
+            <option value="2">Comercial</option>
+            <option value="3">Marketing</option>
+            <option value="4">Financeiro</option>
+            <option value="5">Compras</option>
+            <option value="6">Recursos Humanos</option>
+            <option value="7">Operações</option>
+        </select>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="data_inicio">Data de início</label>
+            <input type="date" class="form-control" id="data_inicio" name="data_inicio">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="data_final">Data Final</label>
+            <input type="date" class="form-control" id="data_final" name="data_final">
+        </div>
+    </div>
+    <div class="form-group mt-3">
+        <center><button type="submit" class="btn btn-light px-5">Pesquisar <i class="fas fa-search" style="color: #dbdbdb;"></i></button></center>
+    </div>
+</form>
+
 
             <!-- Relatório -->
          

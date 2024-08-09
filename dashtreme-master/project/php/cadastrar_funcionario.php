@@ -2,7 +2,7 @@
 
     include_once('conexao.php');
 
-    $nome_funcionario = $_POST['nome'];
+    $nome_funcionario = $_POST['nome_completo'];
 
     $imagem = $_FILES['imagem_funcionario']['tmp_name'];
     $imagem_destino = '../imagensBd/' . $_FILES['imagem_funcionario']['name'];

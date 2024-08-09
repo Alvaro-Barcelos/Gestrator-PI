@@ -172,7 +172,7 @@ include_once ("../php/conexao.php");
           <div class="col-lg-4">
             <div class="card profile-card-2">
               <div class="card-img-block">
-                <img src="../../../../dashtreme-master/imagens/background.png" width="100%" height="100%"
+                <img src="../../../dashtreme-master/imagens/background.png" width="100%" height="100%"
                   alt="Card image cap">
               </div>
 
@@ -197,7 +197,6 @@ include_once ("../php/conexao.php");
 
               <div class="card-body border-top border-light">
                 <h5>Curriculo</h5>
-                <hr>
                 <div class="media align-items-center">
                   <div class="media-body text-left ml-3">
                     <div class="progress-wrapper">
@@ -212,29 +211,8 @@ include_once ("../php/conexao.php");
                       if ($query_funcionario->num_rows > 0) {
                         while ($row = $query_funcionario->fetch_assoc()) {
                           $id_funcionario = $row['id_funcionario'];
-                          echo "    <p>" . $row['curriculo'] . "</p>";
-                        }
-                      }
-                      ?>
-                    </div>
-                  </div>
-                </div>
-                <hr>
-                <div class="media align-items-center">
-                  <div class="media-body text-left ml-3">
-                    <div class="progress-wrapper">
-                      <?php
-                      $usuario = $_SESSION['usuario'];
-
-                      $query_funcionario = mysqli_query($conexao, "SELECT f.id_funcionario,f.skills_3, s.nome_setor 
-                      FROM funcionario f 
-                      JOIN setor s ON f.id_setor = s.id_setor 
-                      WHERE f.nome_funcionario = '$usuario' limit 1");
-
-                      if ($query_funcionario->num_rows > 0) {
-                        while ($row = $query_funcionario->fetch_assoc()) {
-                          $id_funcionario = $row['id_funcionario'];
-                          echo "    <p>" . $row['skills_3'] . "</p>";
+                          
+                          echo "<a href='" . $row['curriculo'] . "' class='card-link' target='_blank'>Abrir PDF do curriculo</a>";
                         }
                       }
                       ?>
@@ -407,7 +385,7 @@ include_once ("../php/conexao.php");
                             <button type="submit" class="btn btn-light px-5">Cancel</button>
                             <button type="submit" class="btn btn-light px-5">Atualizar</button>
                           </div>
-
+                          
                         </div>
                       </form>
                     </div>

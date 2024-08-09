@@ -200,7 +200,7 @@
         }
         .dropdown-item:hover {
             background-color: black; /* Cor de fundo ao passar o mouse */
-            color: #007bff; /* Cor do texto ao passar o mouse */
+            color: #fff; /* Cor do texto ao passar o mouse */
         }
 
 
@@ -209,9 +209,10 @@
 
 /* styles.css popup */
 /* Estilo geral do popup */
+
 .popup {
     position: absolute;
-    background: #fff;
+    background: #78929B;
     border-radius: 8px;
     border: 1px solid #ddd;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -221,7 +222,25 @@
     transition: opacity 0.3s ease, transform 0.3s ease; /* Transição suave */
     opacity: 0; /* Inicialmente invisível */
     transform: scale(0.95); /* Inicialmente um pouco menor */
+    color: white; /* Cor do texto */
 }
+
+/* Estilo para links dentro do popup */
+.popup a {
+    color: white; /* Cor do texto do link */
+    text-decoration: none; /* Remover sublinhado */
+}
+
+/* Efeito de hover para links dentro do popup */
+.popup a:hover {
+    color: black; /* Cor do texto do link ao passar o mouse */
+}
+
+/* Opcional: caso você queira garantir que todos os elementos internos também tenham texto branco */
+.popup * {
+    color:
+}
+
 
 .popup.show {
     display: block; /* Mostra o popup */
@@ -230,41 +249,17 @@
 }
 
 /* Conteúdo do popup */
-    .popup-content {
-        max-height: 400px; /* Altura máxima para o conteúdo do popup */
-        
-    }
-
-    .equipe-atual {
-        max-height: 150px; /* Altura máxima para a lista de membros da equipe */
-        overflow-y: auto; /* Permitir rolagem vertical */
-        border: 1px solid #ccc; /* Opcional: adicionar borda para diferenciar a área rolável */
-        padding: 10px; /* Opcional: adicionar padding para a área rolável */
-        color: black;
-    }
-
-    .equipe-item {
-        display: flex; /* Flex para alinhar os itens em linha */
-        justify-content: space-between; /* Espaço entre o texto e o botão */
-        align-items: center; /* Centralizar itens verticalmente */
-        margin-bottom: 5px; /* Espaçamento entre os itens da equipe */
-        padding-bottom: 5px; /* Espaçamento inferior para a linha */
-        border-bottom: 1px solid #ccc; /* Linha de separação entre os itens */
-    }
-
-    .remove-btn {
-        margin-left: 10px; /* Espaçamento à esquerda do botão de remover */
-        cursor: pointer; /* Mostrar cursor de ponteiro ao passar o mouse */
-    }
-
-
+.popup-content {
+    padding: 15px;
+    position: relative;
+  }
 
 /* Botão de fechar */
 .close-btn {
     position: absolute;
     top: 10px;
     right: 10px;
-    background: #f1f1f1;
+    background: #78929B;
     border: none;
     border-radius: 50%;
     width: 24px;
@@ -272,6 +267,7 @@
     text-align: center;
     cursor: pointer;
     font-size: 16px;
+    background: #78929B;
 }
 
 /* Ícone que abre o popup */
@@ -281,9 +277,10 @@
 }
 
 .open-popup.active {
-    color: #007bff;
+    background-color: #78929B; /* Define a cor de fundo quando ativo */
     transform: scale(1.1); /* Um pouco maior quando ativo */
 }
+
 
 .popup.show {
     display: block; /* Mostra o popup */

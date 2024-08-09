@@ -375,7 +375,10 @@ include_once ("../php/conexao.php");
                         </div> -->
                     </div>
                     <div class="tab-pane" id="edit">
-                      <form>
+                      <form action="../php/atualizar_senha_profile.php" method="POST">
+
+                        <input type="hidden" name="id_funcionario" value="<?=$id_funcionario?>">
+
                         <div class="form-group row">
                           <label class="col-lg-3 col-form-label form-control-label">Senha</label>
                           <div class="col-lg-9 input-group">

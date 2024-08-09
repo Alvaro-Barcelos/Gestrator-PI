@@ -191,14 +191,14 @@
     
 
   .dropdown-menu {
-            background-color: gray; /* Cor de fundo branca */
+            background-color: black; /* Cor de fundo branca */
             border: 1px solid #ddd;  /* Borda cinza clara */
         }
         .dropdown-item {
-            color: #333; /* Cor do texto */
+            color: #fff; /* Cor do texto */
         }
         .dropdown-item:hover {
-            background-color: black; /* Cor de fundo ao passar o mouse */
+            background-color: #333; /* Cor de fundo ao passar o mouse */
             color: #fff; /* Cor do texto ao passar o mouse */
         }
 
@@ -211,7 +211,7 @@
 
 .popup {
     position: absolute;
-    background: #78929B;
+    background: #333;
     border-radius: 8px;
     border: 1px solid #ddd;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -526,7 +526,7 @@ i.fa-comment {
 }
 
 .text-black{
-    color: black;
+    color: white;
     text-align: center;
     margin-top: 10px;
 }
@@ -980,7 +980,7 @@ $resultado = mysqli_query($conexao, "
             <input type="text" id="search-bar" name="nome" placeholder="Pesquise nomes ou equipe">
             <div id="resultados" class="resultados"></div>
             <input type="hidden" name="serviceId" value="">
-            <input type="submit" value="Atualizar" class="btn-atualizar">
+            <input type="submit" value="Atualizar" class="btn btn-primary btn-custom-save">
         </form>
     </div>
 </div>
@@ -1364,7 +1364,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                   <input type="text" id="search-bar" name="nome" placeholder="Pesquise nomes ou equipe">
                   <div id="resultados" class="resultados"></div>
                   <input type="hidden" name="serviceId" value="${serviceId}">
-                  <input type="submit" class="btn-" value="Atualizar">
+                  <input type="submit" class="btn btn-primary btn-custom-save" value="Atualizar">
                 </form>
             `;
 

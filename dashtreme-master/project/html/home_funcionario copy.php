@@ -192,16 +192,17 @@
     
 
   .dropdown-menu {
-            background-color: gray; /* Cor de fundo branca */
+            background-color: black; /* Cor de fundo branca */
             border: 1px solid #ddd;  /* Borda cinza clara */
         }
         .dropdown-item {
-            color: #333; /* Cor do texto */
+            color: #fff; /* Cor do texto */
         }
         .dropdown-item:hover {
-            background-color: black; /* Cor de fundo ao passar o mouse */
+            background-color: #333; /* Cor de fundo ao passar o mouse */
             color: #fff; /* Cor do texto ao passar o mouse */
         }
+
 
 
 
@@ -212,7 +213,7 @@
 
 .popup {
     position: absolute;
-    background: #78929B;
+    background: #333;
     border-radius: 8px;
     border: 1px solid #ddd;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);

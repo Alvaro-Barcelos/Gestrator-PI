@@ -144,7 +144,7 @@
       </div>
       <ul class="sidebar-menu do-nicescrol">
         <li>
-          <a href="home_rh.php">
+          <a href="../html/home_adm.php">
             <i class="fa-solid fa-chart-line" style="color: #9e9e9e;"></i> <span>Dashboard</span>
           </a>
         </li>
@@ -154,32 +154,32 @@
           </a>
         </li>
         <li>
-          <a href="relatorio_lider.html">
+          <a href="../html/relatorio_adm.html">
             <i class="zmdi zmdi-assignment" style="color: #9e9e9e;"></i> <span>Relatório</span>
           </a>
         </li>
         <li>
-          <a href="registrar_servico_lider.html">
+          <a href="../html/registrar_servico_adm.html">
             <i class="fa-solid fa-list-check" style="color: #9e9e9e;"></i> <span>Serviço</span>
           </a>
         </li>
         <li>
-          <a href="cadastrar_funcionario_lider.html">
+          <a href="../html/cadastrar_funcionario_adm.html">
             <i class="fa-solid fa-user" style="color: #9e9e9e;"></i> <span>Funcionário</span>
           </a>
         </li>
         <li>
-          <a href="listar_funcionario.php">
+          <a href="../html/listar_funcionario.php">
             <i class="zmdi zmdi-accounts-add"></i><span>Listar Funcionários</span>
           </a>
         </li>
         <li>
-          <a href="profile_lider.html">
+          <a href="../html/profile_adm.html">
             <i class="zmdi zmdi-face"></i> <span>Perfil</span>
           </a>
         </li>
         <li>
-          <a href="../index.html">
+          <a href="../html/index.html">
             <i class="fa-solid fa-right-from-bracket" style="color: #9e9e9e;"></i> <span>Sair</span>
           </a>
         </li>

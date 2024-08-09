@@ -1,6 +1,10 @@
 <?php
 
     include_once('conexao.php');
+    
+    if(!isset($_SESSION)){
+        session_start();
+    }
 
     $nome = $_POST['nome'];
     $setor = $_POST['setor'];
@@ -27,7 +31,21 @@
     $registrar_servico = mysqli_query($conexao,  "INSERT INTO servico (nome_servico, descricao,situacao, prioridade , data_criada, data_final, id_setor) VALUES ('$nome', '$descricao','$situacao', '$prioridade','$data_inicio' ,'$data_final', '$setor')");
 
     $prioridade = $_POST['prioridade'];
-echo "Valor recebido: " . $prioridade; // Adicione esta linha para depuração
+    
+    if($registrar_servico){
+
+        if( $_SESSION['tipo'] == 'gerente'){
+            header("Location: ../html/cadastroSucesso.html");
+        }
+        else if( $_SESSION['tipo'] == 'rh'){
+            header("Location: ../html/cadastroSucesso_rh.html");
+        }
+        else if( $_SESSION['tipo'] == 'comum'){
+            header("Location: ../html/cadastroSucessoComum.html");
+        }
+        
+
+    }
 
 
 ?>

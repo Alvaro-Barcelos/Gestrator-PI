@@ -543,28 +543,28 @@ i.fa-comment {
      </li>
      <li>
      <li>
-       <a href="../html/RECURSOS_HUMANOS/relatorio_lider.php">
+       <a href="../html/relatorio_lider.php">
          <i class="zmdi zmdi-assignment" style="color: #9e9e9e;"></i> <span>Relatório</span>
        </a>
      </li>
      <li>
-      <a href="../html/RECURSOS_HUMANOS/registrar_servico_lider.php">
+      <a href="../html/registrar_servico_lider.php">
         <i class="fa-solid fa-list-check" style="color: #9e9e9e;"></i> <span>Serviço</span>
       </a>
     </li>
     <li>
-      <a href="../html/RECURSOS_HUMANOS/cadastrar_funcionario_lider.php">
+      <a href="../html/cadastrar_funcionario_lider.php">
         <i class="fa-solid fa-user" style="color: #9e9e9e;"></i> <span>Funcionário</span>
       </a>
     </li>
     <li>
-      <a href="../html/RECURSOS_HUMANOS/listar_funcionario.php">
+      <a href="../html/listar_funcionario.php">
         <i class="zmdi zmdi-accounts-add"></i><span>Listar Funcionários</span></a> 
       </a>
     </li>
   
      <li>
-       <a href="../html/RECURSOS_HUMANOS/profile_lider.php">
+       <a href="../html/profile_lider.php">
          <i class="zmdi zmdi-face"></i> <span>Perfil</span>
        </a>
      </li>

@@ -1,6 +1,6 @@
 <?php
-include ("../protect_funcionario.php");
-include_once ("../../php/conexao.php");
+include("../protect_funcionario.php");
+include_once("../../php/conexao.php");
 ?>
 
 
@@ -32,9 +32,7 @@ include_once ("../../php/conexao.php");
   <!-- Custom Style-->
   <link href="../../../assets/css/app-style.css" rel="stylesheet" />
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-    integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 </head>
 
@@ -70,8 +68,7 @@ include_once ("../../php/conexao.php");
         </li>
 
         <li>
-          <a
-            href="https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fcalendar.google.com%2Fcalendar%2Fu%2F0%2Fr&emr=1&followup=https%3A%2F%2Fcalendar.google.com%2Fcalendar%2Fu%2F0%2Fr&ifkv=AdF4I77H6Q8kDjrou1wIGuHz3S3_9WHl1Z6w3HQ5MAbJVDPoIZHRKIQUAYS0YHfymJmHEtgj8rOdfQ&osid=1&passive=1209600&service=cl&flowName=GlifWebSignIn&flowEntry=ServiceLogin&dsh=S268491357%3A1720720457775498&ddm=0">
+          <a href="https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fcalendar.google.com%2Fcalendar%2Fu%2F0%2Fr&emr=1&followup=https%3A%2F%2Fcalendar.google.com%2Fcalendar%2Fu%2F0%2Fr&ifkv=AdF4I77H6Q8kDjrou1wIGuHz3S3_9WHl1Z6w3HQ5MAbJVDPoIZHRKIQUAYS0YHfymJmHEtgj8rOdfQ&osid=1&passive=1209600&service=cl&flowName=GlifWebSignIn&flowEntry=ServiceLogin&dsh=S268491357%3A1720720457775498&ddm=0">
             <i class="zmdi zmdi-calendar-check"></i> <span>Calendário</span>
           </a>
         </li>
@@ -117,15 +114,13 @@ include_once ("../../php/conexao.php");
         <ul class="navbar-nav align-items-center right-nav-link">
           <li class="nav-item">
             <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown" href="#">
-              <span class="user-profile"><img src="https://via.placeholder.com/110x110" class="img-circle"
-                  alt="user avatar"></span>
+              <span class="user-profile"><img src="https://via.placeholder.com/110x110" class="img-circle" alt="user avatar"></span>
             </a>
             <ul class="dropdown-menu dropdown-menu-right">
               <li class="dropdown-item user-details">
                 <a href="javaScript:void();">
                   <div class="media">
-                    <div class="avatar"><img class="align-self-start mr-3" src="https://via.placeholder.com/110x110"
-                        alt="user avatar"></div>
+                    <div class="avatar"><img class="align-self-start mr-3" src="https://via.placeholder.com/110x110" alt="user avatar"></div>
                     <div class="media-body">
                       <h6 class="mt-2 user-title"><?php echo $_SESSION['usuario']; ?></h6>
                       <?php
@@ -143,7 +138,6 @@ include_once ("../../php/conexao.php");
                           $id_funcionario = $row['id_funcionario'];
                           echo "<p class='user-subtitle'>" . $row['email'] . "</p>";
                           echo "<p class='user-subtitle'>" . $row['nome_setor'] . "</p>";
-
                         }
                       }
                       ?>
@@ -172,8 +166,7 @@ include_once ("../../php/conexao.php");
           <div class="col-lg-4">
             <div class="card profile-card-2">
               <div class="card-img-block">
-                <img src="../../../../dashtreme-master/imagens/background.png" width="100%" height="100%"
-                  alt="Card image cap">
+                <img src="../../../../dashtreme-master/imagens/background.png" width="100%" height="100%" alt="Card image cap">
               </div>
 
               <div class="card-body pt-5">
@@ -294,15 +287,7 @@ include_once ("../../php/conexao.php");
               <div class="card-body">
                 <ul class="nav nav-tabs nav-tabs-primary top-icon nav-justified">
                   <li class="nav-item">
-                    <a href="javascript:void();" data-target="#profile" data-toggle="pill" class="nav-link active"><i
-                        class="icon-user"></i> <span class="hidden-xs">Profile</span></a>
-                  </li>
-                  <!-- <li class="nav-item">
-                    <a href="javascript:void();" data-target="#messages" data-toggle="pill" class="nav-link"><i class="icon-envelope-open"></i> <span class="hidden-xs">Email</span></a>
-                </li> -->
-                  <li class="nav-item">
-                    <a href="javascript:void();" data-target="#edit" data-toggle="pill" class="nav-link"><i
-                        class="icon-note"></i> <span class="hidden-xs">Edit</span></a>
+                    <a href="javascript:void();" data-target="#profile" data-toggle="pill" class="nav-link active"><i class="icon-user"></i> <span class="hidden-xs">Profile</span></a>
                   </li>
                 </ul>
                 <div class="tab-content p-3">
@@ -310,47 +295,59 @@ include_once ("../../php/conexao.php");
                     <h5 class="mb-3">User Profile</h5>
                     <div class="row">
                       <div class="col-md-6">
+                        
                         <?php
 
                         $usuario = $_SESSION['usuario'];
 
-                        $query_funcionario = mysqli_query($conexao, "SELECT f.id_funcionario, f.nome_funcionario, f.email, f.data_nascimento, f.celular, f.cidade, f.endereco, s.nome_setor 
-                        FROM funcionario f 
-                        JOIN setor s ON f.id_setor = s.id_setor 
-                        WHERE f.nome_funcionario = '$usuario' limit 1");
+                        $query_funcionario = mysqli_query($conexao, "SELECT f.id_funcionario, f.foto_funcionario, f.nome_funcionario, f.email, f.data_nascimento, f.celular, f.cidade, f.endereco, s.nome_setor 
+                          FROM funcionario f 
+                          JOIN setor s ON f.id_setor = s.id_setor 
+                          WHERE f.nome_funcionario = '$usuario' limit 1");
 
                         if ($query_funcionario->num_rows > 0) {
                           while ($row = $query_funcionario->fetch_assoc()) {
-
                             echo "<h6>Nome</h6>";
-                            echo "    <p>" . $row['nome_funcionario'] . "</p>";
+                            echo "<p>" . htmlspecialchars($row['nome_funcionario']) . "</p>";
+                            echo "<hr>";
+
+                            echo "<h6>Foto</h6>";
+
+                            // Verifique o caminho da imagem
+                            $foto = htmlspecialchars($row['foto_funcionario']);
+                            echo "<p>Caminho da imagem: " . $foto . "</p>";
+
+                            // Exibindo a imagem
+                            echo "<img src='" . $foto . "' alt='Foto do Funcionário' style='max-width: 200px; max-height: 200px;'>";
+
                             echo "<hr>";
 
                             echo "<h6>Email</h6>";
-                            echo "    <p>" . $row['email'] . "</p>";
+                            echo "<p>" . htmlspecialchars($row['email']) . "</p>";
                             echo "<hr>";
 
                             echo "<h6>Data de Nascimento</h6>";
-                            echo "    <p>" . $row['data_nascimento'] . "</p>";
+                            echo "<p>" . htmlspecialchars($row['data_nascimento']) . "</p>";
                             echo "<hr>";
 
                             echo "<h6>Telefone</h6>";
-                            echo "    <p>" . $row['celular'] . "</p>";
+                            echo "<p>" . htmlspecialchars($row['celular']) . "</p>";
                             echo "<hr>";
 
                             echo "<h6>Cidade</h6>";
-                            echo "    <p>" . $row['cidade'] . "</p>";
+                            echo "<p>" . htmlspecialchars($row['cidade']) . "</p>";
                             echo "<hr>";
 
                             echo "<h6>Endereço</h6>";
-                            echo "    <p>" . $row['endereco'] . "</p>";
+                            echo "<p>" . htmlspecialchars($row['endereco']) . "</p>";
                             echo "<hr>";
 
                             echo "<h6>Setor</h6>";
-                            echo "    <p>" . $row['nome_setor'] . "</p>";
+                            echo "<p>" . htmlspecialchars($row['nome_setor']) . "</p>";
                           }
                         }
                         ?>
+                        
                       </div>
 
                       <!-- <div class="col-md-6">
@@ -406,133 +403,14 @@ include_once ("../../php/conexao.php");
                     </div>
                     <!--/row-->
                   </div>
-                  <div class="tab-pane" id="messages">
-
-                    <form action="" onsubmit="senhaOk();" method="POST">
-                      <div class="col-lg-6">
-                        <div class="card">
-                          <div class="card-body">
-
-                            <div class="card-title">Enviar Email</div>
-                            <hr>
-                            <div class="form-group">
-                              <label for="input-3">Nome</label>
-                              <input type="text" class="form-control" name="nome" id="input-3" placeholder="Seu Nome">
-                            </div>
-
-                            <div class="form-group">
-                              <label for="input-4">Email</label>
-                              <input type="text" class="form-control" name="email" id="input-4" placeholder="Seu Email">
-                            </div>
-
-                            <div class="form-group">
-                              <label for="input-5">Menssagem</label>
-                              <textarea name="mensagem" cols="30" rows="10"></textarea>
-                            </div>
-
-                            <div class="form-group">
-                              <button type="submit" class="btn btn-light px-5"><i class="icon-lock"></i> Enviar
-                                Email</button>
-                            </div>
-
-                    </form>
-                  </div>
                 </div>
               </div>
               <div class="table-responsive">
                 <table class="table table-hover table-striped">
-                  <tbody>
 
-                  </tbody>
                 </table>
               </div>
             </div>
-
-            <?php
-            // Verifica se a chave 'id' está definida no array $_POST
-            if (isset($_POST['id'])) {
-              $id_funcionario = $_POST['id'];
-
-              // Conectar ao banco de dados (garanta que $conexao está configurado corretamente)
-              // $conexao = mysqli_connect('hostname', 'username', 'password', 'database');
-            
-              $sql = "SELECT funcionario.*, setor.nome_setor
-            FROM funcionario INNER JOIN SETOR ON funcionario.id_setor = setor.id_setor
-            WHERE id_funcionario = '$id_funcionario'";
-
-              $resultado = mysqli_query($conexao, $sql);
-              echo "<div class='funcionario-detalhes'>";
-
-              if (mysqli_num_rows($resultado) > 0) {
-                while ($row = mysqli_fetch_assoc($resultado)) {
-                  echo "<div class='tab-pane' id='edit'>";
-                  echo "  <form>";
-                  echo "    <div class='form-group row'>";
-                  echo "      <label class='col-lg-3 col-form-label form-control-label'>Skills 1</label>";
-                  echo "      <div class='col-lg-9'>";
-                  echo "        <input class='form-control' type='text' value='" . htmlspecialchars($row['skills_1']) . "' placeholder='Skill 1'>";
-                  echo "      </div>";
-                  echo "    </div>";
-
-                  echo "    <div class='form-group row'>";
-                  echo "      <label class='col-lg-3 col-form-label form-control-label'>Skills 2</label>";
-                  echo "      <div class='col-lg-9'>";
-                  echo "        <input class='form-control' type='text' value='" . htmlspecialchars($row['skills_2']) . "' placeholder='Skill 2'>";
-                  echo "      </div>";
-                  echo "    </div>";
-
-                  echo "    <div class='form-group row'>";
-                  echo "      <label class='col-lg-3 col-form-label form-control-label'>Skills 3</label>";
-                  echo "      <div class='col-lg-9'>";
-                  echo "        <input class='form-control' type='text' value='" . htmlspecialchars($row['skills_3']) . "' placeholder='Skill 3'>";
-                  echo "      </div>";
-                  echo "    </div>";
-
-                  echo "    <div class='form-group row'>";
-                  echo "      <label class='col-lg-3 col-form-label form-control-label'>Senha</label>";
-                  echo "      <div class='col-lg-9 input-group'>";
-                  echo "        <input class='form-control' type='password' name='senha' size='15' required";
-                  echo "          onchange=\"confereSenha();\" placeholder='******'>";
-                  echo "        <div class='input-group-append'>";
-                  echo "          <span class='input-group-text' onclick=\"mostrarSenha('senha')\">";
-                  echo "            <i class='fa fa-eye' id='olhoSenha'></i>";
-                  echo "          </span>";
-                  echo "        </div>";
-                  echo "      </div>";
-                  echo "    </div>";
-
-                  echo "    <div class='form-group row'>";
-                  echo "      <label class='col-lg-3 col-form-label form-control-label'>Confirmar Senha</label>";
-                  echo "      <div class='col-lg-9 input-group'>";
-                  echo "        <input class='form-control' type='password' name='confirma' size='15' required";
-                  echo "          onchange=\"confereSenha();\" placeholder='******'>";
-                  echo "        <div class='input-group-append'>";
-                  echo "          <span class='input-group-text' onclick=\"mostrarSenha('confirma')\">";
-                  echo "            <i class='fa fa-eye' id='olhoConfirma'></i>";
-                  echo "          </span>";
-                  echo "        </div>";
-                  echo "      </div>";
-                  echo "    </div>";
-
-                  echo "    <div class='form-group row'>";
-                  echo "      <label class='col-lg-3 col-form-label form-control-label'></label>";
-                  echo "      <div class='col-lg-9'>";
-                  echo "        <button type='submit' class='btn btn-light px-5'>Cancel</button>";
-                  echo "        <button type='submit' class='btn btn-light px-5'>Atualizar</button>";
-                  echo "      </div>";
-                  echo "    </div>";
-                  echo "  </form>";
-                  echo "</div>";
-                }
-              } else {
-                echo "<p>No records found.</p>";
-              }
-
-              mysqli_free_result($resultado);
-            } else {
-              echo "<p>ID not provided.</p>";
-            }
-            ?>
           </div>
         </div>
       </div>

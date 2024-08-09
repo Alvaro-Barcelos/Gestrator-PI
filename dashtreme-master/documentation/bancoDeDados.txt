@@ -46,7 +46,7 @@ CREATE TABLE funcionario (
     skills_2 text,
     skills_3 text,
     curriculo longblob,
-    foto_funcionario blob,
+    foto_funcionario longblob,
     id_setor int,
     id_login int,
     FOREIGN KEY (id_setor) REFERENCES setor (id_setor) ON DELETE CASCADE,

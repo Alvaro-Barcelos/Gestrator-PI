@@ -74,8 +74,8 @@
     }
 
     .action-buttons {
-      display: flex;
-      gap: 10px;
+      
+      gap: 30px;
     }
 
     .action-buttons form {
@@ -356,7 +356,7 @@ if ($query_funcionario->num_rows > 0) {
             echo "<td>" . htmlspecialchars($row['nome_setor']) . "</td>";
             echo "<td>" . htmlspecialchars($row['data_criada']) . "</td>";
             echo "<td>" . htmlspecialchars($row['data_final']) . "</td>";
-            echo "<td class='action-buttons'>";
+            echo "<center><td class='action-buttons'></center>";
             // Formulário para atualizar funcionário
             echo "<form action='gerar_pdf_relatorio/gerar_pdf.php' method='post'>";
             echo "<input type='hidden' name='id' value='" . $row['id_servico'] . "'>";

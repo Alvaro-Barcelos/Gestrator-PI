@@ -154,17 +154,13 @@ if ($query_funcionario->num_rows > 0) {
             <li class="dropdown-divider"></li>
             <a href="profile_adm.html"><li class="dropdown-item"><i class="icon-wallet mr-2"></i> Perfil</li></a>
             <li class="dropdown-divider"></li>
-            <a href="php/logout.php"><li class="dropdown-item"><i class="icon-power mr-2"></i> Sair</li></a>
+            <a href="../php/logout.php"><li class="dropdown-item"><i class="icon-power mr-2"></i> Sair</li></a>
           </div>
         </div>
       </a>
     </li>
   </ul>
 </li>
-
-
-
-      </li>
       </ul>
     </nav>
   </header>

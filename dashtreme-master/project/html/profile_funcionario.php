@@ -1,6 +1,6 @@
 <?php
-include ("../protect_funcionario.php");
-include_once ("../../php/conexao.php");
+include ("protect_funcionario.php");
+include_once ("../php/conexao.php");
 ?>
 
 
@@ -16,22 +16,22 @@ include_once ("../../php/conexao.php");
   <title>Dashtreme Admin - Free Dashboard for Bootstrap 4 by Codervent</title>
   <!-- loader-->
 
-  <link href="../../../assets/css/pace.min.css" rel="stylesheet" />
-  <script src="../../../assets/js/pace.min.js"></script>
+  <link href="../../assets/css/pace.min.css" rel="stylesheet" />
+  <script src="../../assets/js/pace.min.js"></script>
   <!--favicon-->
-  <link rel="icon" href="../../../assets/images/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="../../assets/images/favicon.ico" type="image/x-icon">
   <!-- simplebar CSS-->
-  <link href="../../../assets/plugins/simplebar/css/simplebar.css" rel="stylesheet" />
+  <link href="../../assets/plugins/simplebar/css/simplebar.css" rel="stylesheet" />
   <!-- Bootstrap core CSS-->
-  <link href="../../../assets/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="../../assets/css/bootstrap.min.css" rel="stylesheet" />
   <!-- animate CSS-->
-  <link href="../../../assets/css/animate.css" rel="stylesheet" type="text/css" />
+  <link href="../../assets/css/animate.css" rel="stylesheet" type="text/css" />
   <!-- Icons CSS-->
-  <link href="../../../assets/css/icons.css" rel="stylesheet" type="text/css" />
+  <link href="../../assets/css/icons.css" rel="stylesheet" type="text/css" />
   <!-- Sidebar CSS-->
-  <link href="../../../assets/css/sidebar-menu.css" rel="stylesheet" />
+  <link href="../../assets/css/sidebar-menu.css" rel="stylesheet" />
   <!-- Custom Style-->
-  <link href="../../../assets/css/app-style.css" rel="stylesheet" />
+  <link href="../../assets/css/app-style.css" rel="stylesheet" />
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
@@ -172,7 +172,7 @@ include_once ("../../php/conexao.php");
           <div class="col-lg-4">
             <div class="card profile-card-2">
               <div class="card-img-block">
-                <img src="../../../../dashtreme-master/imagens/background.png" width="100%" height="100%"
+                <img src="../../../dashtreme-master/imagens/background.png" width="100%" height="100%"
                   alt="Card image cap">
               </div>
 
@@ -196,15 +196,14 @@ include_once ("../../php/conexao.php");
               </div>
 
               <div class="card-body border-top border-light">
-                <h5 class="mb-3">SKILLS</h5>
-                <hr>
+                <h5>Curriculo</h5>
                 <div class="media align-items-center">
                   <div class="media-body text-left ml-3">
                     <div class="progress-wrapper">
                       <?php
                       $usuario = $_SESSION['usuario'];
 
-                      $query_funcionario = mysqli_query($conexao, "SELECT f.id_funcionario,f.skills_1, s.nome_setor 
+                      $query_funcionario = mysqli_query($conexao, "SELECT f.id_funcionario,f.curriculo, s.nome_setor 
                       FROM funcionario f 
                       JOIN setor s ON f.id_setor = s.id_setor 
                       WHERE f.nome_funcionario = '$usuario' limit 1");
@@ -212,51 +211,8 @@ include_once ("../../php/conexao.php");
                       if ($query_funcionario->num_rows > 0) {
                         while ($row = $query_funcionario->fetch_assoc()) {
                           $id_funcionario = $row['id_funcionario'];
-                          echo "    <p>" . $row['skills_1'] . "</p>";
-                        }
-                      }
-                      ?>
-                    </div>
-                  </div>
-                </div>
-                <hr>
-                <div class="media align-items-center">
-                  <div class="media-body text-left ml-3">
-                    <div class="progress-wrapper">
-                      <?php
-                      $usuario = $_SESSION['usuario'];
-
-                      $query_funcionario = mysqli_query($conexao, "SELECT f.id_funcionario,f.skills_2, s.nome_setor 
-                      FROM funcionario f 
-                      JOIN setor s ON f.id_setor = s.id_setor 
-                      WHERE f.nome_funcionario = '$usuario' limit 1");
-
-                      if ($query_funcionario->num_rows > 0) {
-                        while ($row = $query_funcionario->fetch_assoc()) {
-                          $id_funcionario = $row['id_funcionario'];
-                          echo "    <p>" . $row['skills_2'] . "</p>";
-                        }
-                      }
-                      ?>
-                    </div>
-                  </div>
-                </div>
-                <hr>
-                <div class="media align-items-center">
-                  <div class="media-body text-left ml-3">
-                    <div class="progress-wrapper">
-                      <?php
-                      $usuario = $_SESSION['usuario'];
-
-                      $query_funcionario = mysqli_query($conexao, "SELECT f.id_funcionario,f.skills_3, s.nome_setor 
-                      FROM funcionario f 
-                      JOIN setor s ON f.id_setor = s.id_setor 
-                      WHERE f.nome_funcionario = '$usuario' limit 1");
-
-                      if ($query_funcionario->num_rows > 0) {
-                        while ($row = $query_funcionario->fetch_assoc()) {
-                          $id_funcionario = $row['id_funcionario'];
-                          echo "    <p>" . $row['skills_3'] . "</p>";
+                          
+                          echo "<a href='" . $row['curriculo'] . "' class='card-link' target='_blank'>Abrir PDF do curriculo</a>";
                         }
                       }
                       ?>
@@ -396,51 +352,62 @@ include_once ("../../php/conexao.php");
                           </div>
                         </div> -->
                     </div>
-                    <div class="form-group row">
-                      <label class="col-lg-3 col-form-label form-control-label">Senha</label>
-                      <div class="col-lg-9 input-group">
-                        <input class="form-control" type="password" name="senha" size="15" required
-                          onchange='confereSenha();' placeholder="******">
-                        <div class="input-group-append">
-                          <span class="input-group-text" onclick="mostrarSenha('senha')">
-                            <i class="fa fa-eye" id="olhoSenha"></i>
-                          </span>
+                    <div class="tab-pane" id="edit">
+                      <form>
+                        <div class="form-group row">
+                          <label class="col-lg-3 col-form-label form-control-label">Senha</label>
+                          <div class="col-lg-9 input-group">
+                            <input class="form-control" type="password" name="senha" size="15" required
+                              onchange='confereSenha();' placeholder="******">
+                            <div class="input-group-append">
+                              <span class="input-group-text" onclick="mostrarSenha('senha')">
+                                <i class="fa fa-eye" id="olhoSenha"></i>
+                              </span>
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                    </div>
 
-                    <div class="form-group row">
-                      <label class="col-lg-3 col-form-label form-control-label">Confirmar Senha</label>
-                      <div class="col-lg-9 input-group">
-                        <input class="form-control" type="password" name="confirma" size="15" required
-                          onchange='confereSenha();' placeholder="******">
-                        <div class="input-group-append">
-                          <span class="input-group-text" onclick="mostrarSenha('confirma')">
-                            <i class="fa fa-eye" id="olhoConfirma"></i>
-                          </span>
+                        <div class="form-group row">
+                          <label class="col-lg-3 col-form-label form-control-label">Confirmar Senha</label>
+                          <div class="col-lg-9 input-group">
+                            <input class="form-control" type="password" name="confirma" size="15" required
+                              onchange='confereSenha();' placeholder="******">
+                            <div class="input-group-append">
+                              <span class="input-group-text" onclick="mostrarSenha('confirma')">
+                                <i class="fa fa-eye" id="olhoConfirma"></i>
+                              </span>
+                            </div>
+                          </div>
                         </div>
-                      </div>
+                        <div class="form-group row">
+                          <label class="col-lg-3 col-form-label form-control-label"></label>
+                          <div class="col-lg-9">
+                            <button type="submit" class="btn btn-light px-5">Cancel</button>
+                            <button type="submit" class="btn btn-light px-5">Atualizar</button>
+                          </div>
+                          
+                        </div>
+                      </form>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="table-responsive">
-                <table class="table table-hover table-striped">
+                <div class="table-responsive">
+                  <table class="table table-hover table-striped">
 
-                </table>
+                  </table>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+
     </div>
 
-  </div>
 
-
-  <!--start overlay-->
-  <div class="overlay toggle-menu"></div>
-  <!--end overlay-->
+    <!--start overlay-->
+    <div class="overlay toggle-menu"></div>
+    <!--end overlay-->
 
   </div>
   <!-- End container-fluid-->

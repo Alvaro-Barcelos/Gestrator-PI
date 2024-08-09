@@ -33,6 +33,7 @@
         $html .= '<p>Data Criada: ' . $row['data_criada'] . '</p>';
         $html .= '<p>Data Final: ' . $row['data_final'] . '</p>';
         $html .= '<p>Situação: ' . $row['situacao'] . '</p>';
+        $html .= '<p>Observação: ' . $row['observaçao'] . '</p>';
         $html .= '<p>Prioridade: ' . $row['prioridade'] . '</p>';
         $html .= '<p>Equipe: ' . $row['equipe'] . '</p>';
     }

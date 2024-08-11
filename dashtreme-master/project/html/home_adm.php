@@ -235,12 +235,6 @@
     color: black; /* Cor do texto do link ao passar o mouse */
 }
 
-/* Opcional: caso você queira garantir que todos os elementos internos também tenham texto branco */
-.popup * {
-    color:
-}
-
-
 .popup.show {
     display: block; /* Mostra o popup */
     opacity: 1; /* Visível */
@@ -1277,9 +1271,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           </div>
         </div>
     </div>
-    <!--Start footer-->
-	
-	<!--End footer-->
 </div><!--End Row-->
 
       <!--End Dashboard Content-->
@@ -1559,14 +1550,16 @@ document.addEventListener('DOMContentLoaded', function() {
                     label: 'Quantidade',
                     data: <?php echo json_encode($quantidades); ?>,
                     backgroundColor: [
-                        "rgba(255, 99, 132, 0.7)", // Vermelho
-                        "rgba(75, 192, 192, 0.7)", // Verde
-                        "rgba(255, 206, 86, 0.7)"  // Amarelo
+                        "rgba(4,191,104)", // verde
+                        "rgba(242,183,5)", // amarelo
+                        "rgba(128,128,128)",  // cinza
+                        "rgba(217,61,89)" //vermelho
                     ],
                     borderColor: [
-                        "rgba(255, 99, 132, 1)", // Vermelho
-                        "rgba(75, 192, 192, 1)", // Verde
-                        "rgba(255, 206, 86, 1)"  // Amarelo
+                        "rgba(4,191,104)", // verder
+                        "rgba(242,183,5)", // amarelo
+                        "rgba(128,128,128)",  // cinza
+                        "rgba(217,61,89)" //vermelho
                     ],
                     borderWidth: 1
                 }]
@@ -1598,7 +1591,7 @@ document.addEventListener('DOMContentLoaded', function() {
 $(document).ready(function(){
     // Aplicar classes de situação e prioridade ao carregar a página
     $(".situacao").each(function() {
-        var situacoes = ["Pendente", "Em andamento", "Concluída", "Não iniciado"];
+        var situacoes = ["Pendente", "Em andamento", "Concluído", "Não iniciado"];
         var classes = ["teste2", "teste", "teste1", "teste3"];
         var current = $(this).text().trim();
         var index = situacoes.indexOf(current);
@@ -1619,7 +1612,7 @@ $(document).ready(function(){
 
     // Handle status change
     $(".situacao").click(function(){
-        var situacoes = ["Pendente", "Em andamento", "Concluída", "Não iniciado"];
+        var situacoes = ["Pendente", "Em andamento", "Concluído", "Não iniciado"];
         var classes = ["teste2", "teste", "teste1", "teste3"];
         var current = $(this).text().trim();
         var index = situacoes.indexOf(current);

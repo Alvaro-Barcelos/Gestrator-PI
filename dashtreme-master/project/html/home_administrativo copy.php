@@ -238,11 +238,6 @@
     color: black; /* Cor do texto do link ao passar o mouse */
 }
 
-/* Opcional: caso você queira garantir que todos os elementos internos também tenham texto branco */
-.popup * {
-    color:
-}
-
 
 .popup.show {
     display: block; /* Mostra o popup */
@@ -455,7 +450,7 @@ i.fa-comment {
 }
 
 .tamanho{
-  height: 530px;
+    height: 530px;
 }
 
 
@@ -1179,6 +1174,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     </div>
     <!--Start footer-->
+    <!--Start footer-->
+	<footer class="footer">
+      <div class="container">
+        <div class="text-center">
+            <p id="legen-color-p">Copyright 2024 Gestrator-Pi</p>
+        </div>
+      </div>
+    </footer>
+	<!--End footer-->
 	
 	<!--End footer-->
 </div><!--End Row-->
@@ -1424,14 +1428,16 @@ document.addEventListener('DOMContentLoaded', function() {
                     label: 'Quantidade',
                     data: <?php echo json_encode($quantidades); ?>,
                     backgroundColor: [
-                        "rgba(255, 99, 132, 0.7)", // Vermelho
-                        "rgba(75, 192, 192, 0.7)", // Verde
-                        "rgba(255, 206, 86, 0.7)"  // Amarelo
+                        "rgba(4,191,104)", // verde
+                        "rgba(242,183,5)", // amarelo
+                        "rgba(128,128,128)",  // cinza
+                        "rgba(217,61,89)" //vermelho
                     ],
                     borderColor: [
-                        "rgba(255, 99, 132, 1)", // Vermelho
-                        "rgba(75, 192, 192, 1)", // Verde
-                        "rgba(255, 206, 86, 1)"  // Amarelo
+                        "rgba(4,191,104)", // verder
+                        "rgba(242,183,5)", // amarelo
+                        "rgba(128,128,128)",  // cinza
+                        "rgba(217,61,89)" //vermelho
                     ],
                     borderWidth: 1
                 }]

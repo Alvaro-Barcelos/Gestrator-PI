@@ -597,7 +597,7 @@ i.fa-comment {
      </li>
   
      <li>
-       <a href="../index.html">
+       <a href="../php/logout.php">
          <i class="fa-solid fa-right-from-bracket" style="color: #9e9e9e;"></i> <span>Sair</span>
        </a>
      </li>

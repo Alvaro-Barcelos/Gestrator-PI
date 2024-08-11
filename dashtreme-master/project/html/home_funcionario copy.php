@@ -545,7 +545,7 @@ i.fa-comment {
  <!--Start sidebar-wrapper-->
   <div id="sidebar-wrapper" data-simplebar="" data-simplebar-auto-hide="true">
     <div class="brand-logo">
-     <a href="home_adm.html">
+     <a href="home_funcionario copy.php">
       <img src="../imagens/GE.png" class="logo-icon" alt="logo icon" >
       <h5 class="logo-text">Gestrator</h5>
     </a>
@@ -553,7 +553,7 @@ i.fa-comment {
   <ul class="sidebar-menu do-nicescrol">
 
      <li>
-       <a href="home_funcionario.php">
+       <a href="home_funcionario copy.php">
          <i class="fa-solid fa-chart-line" style="color: #9e9e9e;"></i> <span>Dashboard</span>
        </a>
      </li>
@@ -566,7 +566,7 @@ i.fa-comment {
 
 
      <li>
-       <a href="../recebeConteudo.php">
+       <a href="../php/verConteudo.php">
         <i class="fa-solid fa-book" style="color: #9e9e9e;"></i> <span>Conteúdo</span>
        </a>
      </li>
@@ -1266,13 +1266,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
     <!--Start footer-->
     <!--Start footer-->
-	<footer class="footer">
-      <div class="container">
-        <div class="text-center">
-            <p id="legen-color-p">Copyright 2024 Gestrator-Pi</p>
-        </div>
-      </div>
-    </footer>
+
 	<!--End footer-->
 	
 	<!--End footer-->

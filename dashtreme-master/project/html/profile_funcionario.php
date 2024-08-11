@@ -72,7 +72,7 @@ include_once ("../php/conexao.php");
       <ul class="sidebar-menu do-nicescrol">
 
         <li>
-          <a href="home_lider.html">
+          <a href="home_funcionario copy.php">
             <i class="fa-solid fa-chart-line" style="color: #9e9e9e;"></i> <span>Dashboard</span>
           </a>
         </li>
@@ -84,16 +84,15 @@ include_once ("../php/conexao.php");
           </a>
         </li>
         <li>
+
         <li>
-          <a href="relatorio_lider.html">
-            <i class="zmdi zmdi-assignment" style="color: #9e9e9e;"></i> <span>Relatório</span>
-          </a>
-        </li>
-        <li>
-          <a href="registrar_servico_lider.html">
-            <i class="fa-solid fa-list-check" style="color: #9e9e9e;"></i> <span>Serviço</span>
-          </a>
-        </li>
+       <a href="../php/verConteudo.php">
+        <i class="fa-solid fa-book" style="color: #9e9e9e;"></i> <span>Conteúdo</span>
+       </a>
+     </li>
+
+
+
         <li>
           <a href="profile_lider.html">
             <i class="zmdi zmdi-face"></i> <span>Perfil</span>

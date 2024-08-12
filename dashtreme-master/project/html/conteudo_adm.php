@@ -257,13 +257,7 @@ if ($query_funcionario->num_rows > 0) {
     <!--End content-wrapper-->
 
     <!--Start footer-->
-    <footer class="footer">
-      <div class="container">
-        <div class="text-center">
-          © 2022 Gestrator. Criado com amor por Grupo GE. Todos os direitos reservados.
-        </div>
-      </div>
-    </footer>
+  
     <!--End footer-->
 
   </div>

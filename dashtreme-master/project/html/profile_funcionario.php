@@ -13,7 +13,7 @@ include_once ("../php/conexao.php");
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <meta name="description" content="" />
   <meta name="author" content="" />
-  <title>Dashtreme Admin - Free Dashboard for Bootstrap 4 by Codervent</title>
+  <title>Perfil Funcionário</title>
   <!-- loader-->
 
   <link href="../../assets/css/pace.min.css" rel="stylesheet" />
@@ -165,7 +165,7 @@ if ($query_funcionario->num_rows > 0) {
             <p class="user-subtitle"><?php echo $row['nome_setor']; ?></p>
 
             <li class="dropdown-divider"></li>
-            <a href="profile_adm.html"><li class="dropdown-item"><i class="icon-wallet mr-2"></i> Perfil</li></a>
+            <a href="profile_funcionario.php"><li class="dropdown-item"><i class="icon-wallet mr-2"></i> Perfil</li></a>
             <li class="dropdown-divider"></li>
             <a href="../php/logout.php"><li class="dropdown-item"><i class="icon-power mr-2"></i> Sair</li></a>
           </div>

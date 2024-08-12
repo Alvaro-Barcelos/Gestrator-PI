@@ -197,7 +197,7 @@
                       <p class="user-subtitle"><?php echo $row['nome_setor']; ?></p>
 
                       <li class="dropdown-divider"></li>
-                      <a href="profile_adm.html"><li class="dropdown-item"><i class="icon-wallet mr-2"></i> Perfil</li></a>
+                      <a href="profile_lider.php"><li class="dropdown-item"><i class="icon-wallet mr-2"></i> Perfil</li></a>
                       <li class="dropdown-divider"></li>
                       <a href="../php/logout.php"><li class="dropdown-item"><i class="icon-power mr-2"></i> Sair</li></a>
                     </div>

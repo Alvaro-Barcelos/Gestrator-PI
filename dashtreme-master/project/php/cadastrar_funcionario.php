@@ -10,13 +10,13 @@
     $nome_funcionario = $_POST['nome'];
 
     $imagem = $_FILES['imagem_funcionario']['tmp_name'];
-    $imagem_destino = '../imagensBd/' . $_FILES['imagem_funcionario']['name'];
+    $imagem_destino = '../imagens/' . $_FILES['imagem_funcionario']['name'];
     
     move_uploaded_file($imagem, $imagem_destino);
 
 
     $curriculo_funcionario = $_FILES['curriculo_funcionario']['tmp_name'];
-    $curriculo_funcionario_destino = '../imagensBd/' . $_FILES['curriculo_funcionario']['name'];
+    $curriculo_funcionario_destino = '../imagens/' . $_FILES['curriculo_funcionario']['name'];
     
     move_uploaded_file($curriculo_funcionario, $curriculo_funcionario_destino);
 
